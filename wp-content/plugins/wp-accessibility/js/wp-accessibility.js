@@ -260,11 +260,11 @@
 							let url      = new URL( href );
 							let hostname = url.hostname;
 							if ( ! hostname.includes( 'facebook' ) ) {
-								el.removeAttr( 'target' );
+								el.removeAttribute( 'target' );
 								targetRemoved++;
 							}
 						} catch (exception) {
-
+							console.log( "href value is not a URL or a fragment:", href );
 							// No action; the `href` attribute didn't resolve as a URL.
 						}
 					}
@@ -492,7 +492,7 @@
 			contrastButton.addEventListener('click', function () {
 				let event;
 				// This fires after the contrast change happens, and the ID is already changed.
-				if ( this.getAttribute( 'id' ) == "is_normal_contrast") {
+				if ( this.getAttribute( 'data-id' ) == "is_normal_contrast") {
 					// high contrast turned on.
 					event = {'contrast' : 'disabled'};
 				} else {
@@ -508,7 +508,7 @@
 			fontsizeButton.addEventListener('click', function () {
 				let event;
 				// This fires after the fontsize change happens, and the ID is already changed.
-				if ( this.getAttribute( 'id' ) == "is_normal_fontsize") {
+				if ( this.getAttribute( 'data-id' ) == "is_normal_fontsize") {
 					// fontsizes turned on.
 					event = {'fontsize' : 'disabled'};
 				} else {
