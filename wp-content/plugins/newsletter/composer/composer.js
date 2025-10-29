@@ -397,9 +397,16 @@ const NewsletterComposer = {
     },
 
     hide_block_options: function () {
-        jQuery("#tnpc-block-options").fadeOut(500);
+        //jQuery("#tnpc-block-options").fadeOut(500);
         jQuery("#tnpc-block-options-form").html('');
     }
+
+}
+
+/**
+ * @deprecated Kept for compatibility
+ */
+function tnpc_reload_options(e) {
 
 }
 

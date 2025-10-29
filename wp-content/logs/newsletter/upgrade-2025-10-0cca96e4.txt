@@ -36,3 +36,42 @@
 
 27-10-2025 20:17:32 - INFO  - 9.0.5 - 52,6 МБ/512 МБ - administrator > Backing up options of 0.0.0
 27-10-2025 20:17:32 - INFO  - 9.0.5 - 52,6 МБ/512 МБ - administrator > End
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 73.5 MB/512 MB - [cron] > Start upgrade from 9.0.5
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 77.2 MB/512 MB - [cron] > Array
+(
+    [`wp_newsletter_emails`] => Created table `wp_newsletter_emails`
+)
+
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 77.2 MB/512 MB - [cron] > Array
+(
+    [`wp_newsletter_sent`] => Created table `wp_newsletter_sent`
+)
+
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 77.2 MB/512 MB - [cron] > Array
+(
+    [`wp_newsletter`] => Created table `wp_newsletter`
+)
+
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 77.2 MB/512 MB - [cron] > Array
+(
+    [`wp_newsletter_user_logs`] => Created table `wp_newsletter_user_logs`
+)
+
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 77.2 MB/512 MB - [cron] > Array
+(
+    [`wp_newsletter_user_meta`] => Created table `wp_newsletter_user_meta`
+)
+
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 77.2 MB/512 MB - [cron] > Array
+(
+    [`wp_newsletter_stats`] => Created table `wp_newsletter_stats`
+)
+
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 77.2 MB/512 MB - [cron] > Array
+(
+    [`wp_newsletter_logs`] => Created table `wp_newsletter_logs`
+    [wp_newsletter_logs.status] => Changed type of wp_newsletter_logs.status from int(11) to int
+)
+
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 77.2 MB/512 MB - [cron] > Backing up options of 9.0.5
+29-10-2025 20:54:55 - INFO  - 9.0.6 - 77.4 MB/512 MB - [cron] > End
