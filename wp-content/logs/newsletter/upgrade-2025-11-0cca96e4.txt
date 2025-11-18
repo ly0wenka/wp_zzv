@@ -1,0 +1,39 @@
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.1 MB/512 MB - administrator > Start upgrade from 9.0.6
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.5 MB/512 MB - administrator > Array
+(
+    [`wp_newsletter_emails`] => Created table `wp_newsletter_emails`
+)
+
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.5 MB/512 MB - administrator > Array
+(
+    [`wp_newsletter_sent`] => Created table `wp_newsletter_sent`
+)
+
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.5 MB/512 MB - administrator > Array
+(
+    [`wp_newsletter`] => Created table `wp_newsletter`
+)
+
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.5 MB/512 MB - administrator > Array
+(
+    [`wp_newsletter_user_logs`] => Created table `wp_newsletter_user_logs`
+)
+
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.5 MB/512 MB - administrator > Array
+(
+    [`wp_newsletter_user_meta`] => Created table `wp_newsletter_user_meta`
+)
+
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.5 MB/512 MB - administrator > Array
+(
+    [`wp_newsletter_stats`] => Created table `wp_newsletter_stats`
+)
+
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.5 MB/512 MB - administrator > Array
+(
+    [`wp_newsletter_logs`] => Created table `wp_newsletter_logs`
+    [wp_newsletter_logs.status] => Changed type of wp_newsletter_logs.status from int(11) to int
+)
+
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.6 MB/512 MB - administrator > Backing up options of 9.0.6
+18-11-2025 20:36:09 - INFO  - 9.0.7 - 55.8 MB/512 MB - administrator > End
