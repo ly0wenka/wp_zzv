@@ -93,7 +93,7 @@ class NewsletterEngine {
         $this->send_setup();
 
         if ($this->max_emails <= 0) {
-            $this->logger->info('No more capacity');
+            $this->logger->error('No more capacity');
             return false;
         }
 
@@ -212,6 +212,7 @@ class NewsletterEngine {
             }
 
             if (!$supplied_users && !$test && $this->time_exceeded()) {
+                $this->logger->error('Time excedeed');
                 $result = false;
                 break;
             }
