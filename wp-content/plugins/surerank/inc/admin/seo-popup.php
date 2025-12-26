@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use SureRank\Inc\Analyzer\PostAnalyzer;
 use SureRank\Inc\Frontend\Crawl_Optimization;
 use SureRank\Inc\Frontend\Image_Seo;
 use SureRank\Inc\Functions\Get;
@@ -96,6 +95,49 @@ class Seo_Popup {
 		}
 
 		do_action( 'surerank_after_update_category_seo_values', $term_id );
+	}
+
+	/**
+	 * Get keyword checks configuration
+	 *
+	 * @since 1.0.0
+	 * @return array
+	 */
+	/**
+	 * Get keyword checks configuration
+	 *
+	 * @since 1.0.0
+	 * @return array<string>
+	 */
+	public function keyword_checks() {
+		return [
+			'keyword_in_title',
+			'keyword_in_description',
+			'keyword_in_url',
+			'keyword_in_content',
+		];
+	}
+
+	/**
+	 * Get page checks configuration
+	 *
+	 * @since 1.0.0
+	 * @return array<string>
+	 */
+	public function page_checks() {
+		return [
+			'h2_subheadings',
+			'image_alt_text',
+			'media_present',
+			'links_present',
+			'url_length',
+			'search_engine_title',
+			'search_engine_description',
+			'canonical_url',
+			'all_links',
+			'open_graph_tags',
+			'broken_links',
+		];
 	}
 
 	/**
@@ -295,48 +337,5 @@ class Seo_Popup {
 				),
 			]
 		);
-	}
-
-	/**
-	 * Get keyword checks configuration
-	 *
-	 * @since 1.0.0
-	 * @return array
-	 */
-	/**
-	 * Get keyword checks configuration
-	 *
-	 * @since 1.0.0
-	 * @return array<string>
-	 */
-	public function keyword_checks() {
-		return [
-			'keyword_in_title',
-			'keyword_in_description', 
-			'keyword_in_url',
-			'keyword_in_content',
-		];
-	}
-
-	/**
-	 * Get page checks configuration
-	 *
-	 * @since 1.0.0
-	 * @return array<string>
-	 */
-	public function page_checks() {
-		return [
-			'h2_subheadings',
-			'image_alt_text',
-			'media_present',
-			'links_present',
-			'url_length',
-			'search_engine_title',
-			'search_engine_description',
-			'canonical_url',
-			'all_links',
-			'open_graph_tags',
-			'broken_links',
-		];
 	}
 }

@@ -29,7 +29,7 @@ const SiteSeoChecksSummary = ( { limit = 5, showViewAll = true } ) => {
 				<SaveAuthToken />
 				<Title
 					tag="h4"
-					title={ __( 'Site SEO Analysis', 'surerank' ) }
+					title={ __( 'Site SEO Audit', 'surerank' ) }
 					size="md"
 				/>
 				<Button
@@ -45,7 +45,7 @@ const SiteSeoChecksSummary = ( { limit = 5, showViewAll = true } ) => {
 					onClick={ handleRunChecksAgain }
 					disabled={ isLoading } // Disable button while loading
 				>
-					{ __( 'Re-run Checks', 'surerank' ) }
+					{ __( 'Run Checks', 'surerank' ) }
 				</Button>
 			</Container>
 		);

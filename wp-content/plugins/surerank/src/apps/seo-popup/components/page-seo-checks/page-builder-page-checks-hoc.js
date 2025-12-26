@@ -1,7 +1,5 @@
 import { useSelect, useDispatch } from '@wordpress/data';
 import { Suspense, useMemo } from '@wordpress/element';
-import { Text } from '@bsf/force-ui';
-import { __ } from '@wordpress/i18n';
 import { PageChecks } from '..';
 import { PAGE_SEO_CHECKS_ID_TO_STATE_MAPPING } from '@Global/constants/content-generation';
 import { isBricksBuilder } from './analyzer/utils/page-builder';
@@ -91,16 +89,7 @@ const PageBuilderPageSeoChecksHoc = ( { type = 'page' } ) => {
 
 	// Handle the case where no focus keyword is provided for keyword checks
 	if ( type === 'keyword' && ! focusKeyword ) {
-		return (
-			<div className="text-center py-4">
-				<Text as="p" color="secondary" size={ 14 }>
-					{ __(
-						'Enter a focus keyword to see keyword-specific SEO checks.',
-						'surerank'
-					) }
-				</Text>
-			</div>
-		);
+		return null;
 	}
 
 	return (

@@ -30,7 +30,7 @@ class Seo_Bar {
 		if ( ! Settings::get( 'enable_page_level_seo' ) ) {
 			return;
 		}
-		
+
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}

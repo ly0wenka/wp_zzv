@@ -116,8 +116,13 @@ export const quickLinks = [
 export const themesAndPlugins = [
 	{
 		name: __( 'Astra Theme', 'surerank' ),
+		title: __( 'Build Lightning-Fast Websites!', 'surerank' ),
 		description: __(
-			'Fast and customizable theme for your website.',
+			'Fast, lightweight and customizable WordPress theme.',
+			'surerank'
+		),
+		long_description: __(
+			'Fast, lightweight & customizable WordPress theme that combines speed optimization with extensive customization capabilities. Perfect for any website without compromising on design possibilities.',
 			'surerank'
 		),
 		icon: AstraLogo,
@@ -126,15 +131,25 @@ export const themesAndPlugins = [
 	},
 	{
 		name: __( 'Spectra', 'surerank' ),
-		description: __( 'Free WordPress Page Builder Plugin.', 'surerank' ),
+		title: __( 'Create Lightning-Fast WordPress Websites!', 'surerank' ),
+		description: __( 'Website builder for Gutenberg.', 'surerank' ),
+		long_description: __(
+			'Create lightning-fast WordPress websites with this powerful website builder. Supercharge your Gutenberg editor with advanced blocks and page builder capabilities for building stunning websites.',
+			'surerank'
+		),
 		icon: SpectraLogo,
 		slug: 'ultimate-addons-for-gutenberg',
 		type: 'plugin',
 	},
 	{
 		name: __( 'SureMail', 'surerank' ),
+		title: __( 'Supercharge Your Email Deliverability!', 'surerank' ),
 		description: __(
 			'Connect and send emails via SMTP connections.',
+			'surerank'
+		),
+		long_description: __(
+			'Powerful, easy-to-use email delivery service that ensures your emails land in inboxes, not spam folders. Automate your WordPress email workflows confidently with reliable SMTP connections.',
 			'surerank'
 		),
 		icon: SureMailIcon,
@@ -143,15 +158,25 @@ export const themesAndPlugins = [
 	},
 	{
 		name: __( 'SureForms', 'surerank' ),
-		description: __( 'Best no code WordPress form builder', 'surerank' ),
+		title: __( 'Build Beautiful Forms Effortlessly!', 'surerank' ),
+		description: __( 'AI-powered form builder for WordPress.', 'surerank' ),
+		long_description: __(
+			'Creating beautiful, functional forms has never been easier with this AI-powered form builder. Build contact forms, surveys, and more with an intuitive drag-and-drop interface designed for WordPress.',
+			'surerank'
+		),
 		icon: SureFormsIcon,
 		slug: 'sureforms',
 		type: 'plugin',
 	},
 	{
 		name: __( 'Ultimate Addons for Elementor', 'surerank' ),
+		title: __( 'Create Modern Elementor Websites!', 'surerank' ),
 		description: __(
-			'Build modern websites with elementor addons.',
+			'Powerful Elementor addons for modern websites.',
+			'surerank'
+		),
+		long_description: __(
+			'Build modern, professional websites with powerful Elementor addons. Create stunning headers, footers, and page layouts with advanced widgets and design capabilities.',
 			'surerank'
 		),
 		icon: UAE,
@@ -160,7 +185,12 @@ export const themesAndPlugins = [
 	},
 	{
 		name: __( 'OttoKit', 'surerank' ),
-		description: __( 'All-in-One Automation Platform.', 'surerank' ),
+		title: __( 'Automate Your WordPress Workflows!', 'surerank' ),
+		description: __( 'No-code AI automation tool.', 'surerank' ),
+		long_description: __(
+			'No-code AI automation tool for creating automated workflows without technical skills. Connect your favorite apps and automate business processes with ease.',
+			'surerank'
+		),
 		icon: OttoKitLogo,
 		slug: 'suretriggers',
 		type: 'plugin',

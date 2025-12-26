@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useEffect, useMemo, useState } from '@wordpress/element';
 import { Label, Alert, Accordion, Text } from '@bsf/force-ui';
 import { Info, Trash } from 'lucide-react';
+import WpSchemaProNotice from '@/global/components/wp-schema-pro-notice';
 import { cn } from '@Functions/utils';
 import {
 	renderFieldCommon,
@@ -24,6 +25,7 @@ const SchemaTab = ( { postMetaData, globalDefaults, updatePostMetaData } ) => {
 	const [ selectedType, setSelectedType ] = useState( '' );
 	const [ expandedSchemaId, setExpandedSchemaId ] = useState( null );
 	const [ fieldItemIds, setFieldItemIds ] = useState( {} );
+	const isWpSchemaProActive = surerank_globals?.wp_schema_pro_active || false;
 
 	const defaultSchemasObject = surerank_globals?.default_schemas || {};
 	const defaultSchemas = Object.entries( defaultSchemasObject ).map(
@@ -206,7 +208,7 @@ const SchemaTab = ( { postMetaData, globalDefaults, updatePostMetaData } ) => {
 		handleFieldUpdate( schemaId, fieldId, newValue );
 		if ( fieldId === '@type' ) {
 			const updatedSchemas = { ...schemas };
-			updatedSchemas[ schemaId ].type = newValue;
+			updatedSchemas[ schemaId ].type = updatedSchemas[ schemaId ]?.title || ''; // added for backward compatibility.
 			updatedSchemas[ schemaId ].fields[ '@type' ] = newValue;
 			updatePostMetaData( {
 				schemas: updatedSchemas,
@@ -431,6 +433,10 @@ const SchemaTab = ( { postMetaData, globalDefaults, updatePostMetaData } ) => {
 			);
 		} );
 	};
+
+	if ( isWpSchemaProActive ) {
+		return <WpSchemaProNotice />;
+	}
 
 	return (
 		<div className="pt-2 gap-2">

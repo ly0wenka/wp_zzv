@@ -122,26 +122,26 @@ class ChangeMembershipPlan extends AutomateAction {
 		}
 
 		// Change the plan.
-		$meta_key = ( function_exists( '\Voxel\is_test_mode' ) && \Voxel\is_test_mode() ) ? 'voxel:test_plan' : 'voxel:plan';
+		$meta_key  = ( function_exists( '\Voxel\is_test_mode' ) && \Voxel\is_test_mode() ) ? 'voxel:test_plan' : 'voxel:plan';
+		$plan_data = wp_json_encode(
+			[
+				'plan'     => $plan_key,
+				'price_id' => $price_id,
+				'type'     => $price_type,
+				'status'   => 'active',
+				'metadata' => [
+					'voxel:payment_for'       => 'membership',
+					'voxel:plan'              => $plan_key,
+					'voxel:limits'            => wp_json_encode( [] ),
+					'voxel:original_price_id' => $price_id,
+				],
+			]
+		);
+		
 		update_user_meta(
 			$voxel_user->get_id(),
 			$meta_key,
-			wp_slash(
-				wp_json_encode(
-					[
-						'plan'     => $plan_key,
-						'price_id' => $price_id,
-						'type'     => $price_type,
-						'status'   => 'active',
-						'metadata' => [
-							'voxel:payment_for'       => 'membership',
-							'voxel:plan'              => $plan_key,
-							'voxel:limits'            => wp_json_encode( [] ),
-							'voxel:original_price_id' => $price_id,
-						],
-					]
-				)
-			)
+			wp_slash( $plan_data ? $plan_data : '{}' )
 		);
 
 		do_action( 'voxel/membership/pricing-plan-updated', $voxel_user, $voxel_user->get_membership(), $voxel_user->get_membership( $refresh_cache = true ) ); // @phpcs:ignore

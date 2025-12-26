@@ -411,7 +411,7 @@ class GlobalSearchController {
 			'hasMore' => false,
 		];
 	}
-	
+
 	/**
 	 * Search Course.
 	 *
@@ -9251,6 +9251,49 @@ Cc:johnDoe@xyz.com Bcc:johnDoe@xyz.com',
 	}
 
 	/**
+	 * Get Amelia Package List.
+	 *
+	 * @param array $data data.
+	 *
+	 * @return array
+	 */
+	public function search_amelia_package_list( $data ) {
+		global $wpdb;
+
+		$page   = isset( $data['page'] ) ? $data['page'] : 1;
+		$limit  = Utilities::get_search_page_limit();
+		$offset = $limit * ( $page - 1 );
+
+		$packages = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT SQL_CALC_FOUND_ROWS id, name FROM {$wpdb->prefix}amelia_packages 
+				WHERE status = %s 
+				ORDER BY name ASC LIMIT %d OFFSET %d",
+				[ 'visible', $limit, $offset ]
+			),
+			OBJECT
+		);
+
+		$packages_count = $wpdb->get_var( 'SELECT FOUND_ROWS();' );
+
+		$options = [];
+		if ( ! empty( $packages ) ) {
+			foreach ( $packages as $package ) {
+				$options[] = [
+					'label' => $package->name,
+					'value' => $package->id,
+				];
+			}
+		}
+
+		return [
+			'options' => $options,
+			'hasMore' => $packages_count > $limit && $packages_count > $offset,
+		];
+
+	}
+
+	/**
 	 * Get Amelia Events.
 	 *
 	 * @param array $data data.
@@ -9435,6 +9478,208 @@ Cc:johnDoe@xyz.com Bcc:johnDoe@xyz.com',
 		} else {
 
 			$context = json_decode( '{"response_type":"sample","pluggable_data":{"id":"1","status":"visible","bookingStart":"2023-02-28 13:00:00","bookingEnd":"2023-02-28 14:00:00","notifyParticipants":"1","serviceId":"4","packageId":null,"providerId":"2","locationId":null,"internalNotes":"","googleCalendarEventId":null,"googleMeetUrl":null,"outlookCalendarEventId":null,"zoomMeeting":null,"lessonSpace":null,"parentId":null,"appointmentId":"1","customerId":"1","price":"15","persons":"1","couponId":null,"token":"02cf0988c6","info":"{\"firstName\":\"John\",\"lastName\":\"Doe\",\"phone\":\"1 (234) 789\",\"locale\":\"en_US\",\"timeZone\":\"Asia\\\/Kolkata\",\"urlParams\":null}","utcOffset":null,"aggregatedPrice":"1","packageCustomerServiceId":null,"duration":"3600","created":"2023-02-08 11:16:03","actionsCompleted":"1","Do You Know Automation?":"Yes","When Are You Coming?":"2023-04-20","Upload Something":"","Tell Us About You!":"Hey there!","customerBookingId":"103","amount":"0","dateTime":"2023-02-28 13:00:00","gateway":"onSite","gatewayTitle":"","data":"","packageCustomerId":null,"entity":"appointment","wcOrderId":null,"type":"customer","externalId":"89","firstName":"John","lastName":"Doe","email":"johnd@gmail.com","birthday":null,"phone":"1 (234) 789","gender":null,"note":null,"description":null,"pictureFullPath":null,"pictureThumbPath":null,"password":null,"usedTokens":null,"zoomUserId":null,"countryPhoneIso":"us","translations":"{\"defaultLanguage\":\"en_US\"}","timeZone":null,"serviceName":"demo service","serviceDescription":"","categoryId":"2","categoryName":"New Category1"}}', true );
+		}
+
+		return $context;
+	}
+
+	/**
+	 * Get last data for package purchase triggers (both purchase and status updated).
+	 *
+	 * @param array $data data.
+	 * @return array
+	 */
+	public function search_amelia_package_purchase_triggers_last_data( $data ) {
+		global $wpdb;
+
+		$context        = [];
+		$term           = isset( $data['search_term'] ) ? $data['search_term'] : '';
+		$package_filter = isset( $data['filter']['amelia_package_list']['value'] ) ? $data['filter']['amelia_package_list']['value'] : -1;
+		
+
+		if ( -1 === $package_filter ) {
+			$result = $wpdb->get_row(
+				'SELECT packages.*, customer.*, pc.* FROM ' . $wpdb->prefix . 'amelia_packages_to_customers as pc 
+				INNER JOIN ' . $wpdb->prefix . 'amelia_packages as packages ON pc.packageId=packages.id 
+				INNER JOIN ' . $wpdb->prefix . 'amelia_users as customer ON pc.customerId=customer.id 
+				WHERE pc.id = ( SELECT max(id) FROM ' . $wpdb->prefix . 'amelia_packages_to_customers )',
+				ARRAY_A
+			);
+		} else {
+			$result = $wpdb->get_row(
+				$wpdb->prepare(
+					'SELECT packages.*, customer.*, pc.* FROM ' . $wpdb->prefix . 'amelia_packages_to_customers as pc 
+					INNER JOIN ' . $wpdb->prefix . 'amelia_packages as packages ON pc.packageId=packages.id 
+					INNER JOIN ' . $wpdb->prefix . 'amelia_users as customer ON pc.customerId=customer.id 
+					WHERE packages.id = %d AND pc.id = ( SELECT max(id) FROM ' . $wpdb->prefix . 'amelia_packages_to_customers WHERE packageId = %d )',
+					[ $package_filter, $package_filter ]
+				),
+				ARRAY_A
+			);
+		}
+
+		if ( ! empty( $result ) ) {
+			$payment_result = $wpdb->get_row(
+				$wpdb->prepare(
+					'SELECT * FROM ' . $wpdb->prefix . 'amelia_payments WHERE packageCustomerId = %d',
+					[ $result['id'] ]
+				),
+				ARRAY_A
+			);
+
+			if ( empty( $payment_result ) ) {
+				$payment_result = [];
+			}
+
+			if ( ! empty( $result['couponId'] ) ) {
+				$coupon_result = $wpdb->get_row(
+					$wpdb->prepare(
+						'SELECT code AS couponCode, expirationDate AS couponExpirationDate FROM ' . $wpdb->prefix . 'amelia_coupons WHERE id = %d',
+						[ $result['couponId'] ]
+					),
+					ARRAY_A
+				);
+			} else {
+				$coupon_result = [];
+			}
+
+			$fields_arr = [];
+			if ( ! empty( $result['customFields'] ) ) {
+				$custom_fields = json_decode( $result['customFields'], true );
+				if ( is_array( $custom_fields ) ) {
+					foreach ( $custom_fields as $fields ) {
+						if ( is_array( $fields ) && isset( $fields['label'], $fields['value'] ) ) {
+							$fields_arr[ $fields['label'] ] = $fields['value'];
+						}
+					}
+				}
+				unset( $result['customFields'] );
+			}
+
+			$json_fields = [ 'limitPerCustomer', 'settings', 'translations' ];
+			foreach ( $json_fields as $field ) {
+				if ( isset( $result[ $field ] ) && is_string( $result[ $field ] ) && ! empty( $result[ $field ] ) ) {
+					$decoded = json_decode( $result[ $field ], true );
+					if ( json_last_error() === JSON_ERROR_NONE && is_array( $decoded ) ) {
+						foreach ( $decoded as $key => $value ) {
+							if ( is_array( $value ) ) {
+								foreach ( $value as $subkey => $subvalue ) {
+									$result[ $field . '_' . $key . '_' . $subkey ] = $subvalue;
+								}
+							} else {
+								$result[ $field . '_' . $key ] = $value;
+							}
+						}
+						$result[ $field . '_original' ] = $decoded;
+						unset( $result[ $field ] );
+					}
+				}
+			}
+
+			$context['pluggable_data']                        = array_merge( $result, $fields_arr, $payment_result, $coupon_result );
+			$context['pluggable_data']['amelia_package_list'] = $result['packageId'];
+			
+			switch ( $term ) {
+				case 'amelia_package_purchase_status_updated':
+					$context['pluggable_data']['old_status'] = isset( $result['status'] ) ? $result['status'] : 'pending';
+					$context['pluggable_data']['new_status'] = 'approved';
+					break;
+			}
+			
+			$context['response_type'] = 'live';
+		} else {
+			$context = [
+				'response_type'  => 'sample',
+				'pluggable_data' => [
+					'id'                             => '1',
+					'name'                           => 'Premium Wellness Package',
+					'description'                    => 'Complete wellness package with multiple services',
+					'color'                          => '#1788FB',
+					'price'                          => '1800',
+					'status'                         => 'visible',
+					'pictureFullPath'                => '',
+					'pictureThumbPath'               => '',
+					'position'                       => '1',
+					'calculatedPrice'                => '1',
+					'discount'                       => '0',
+					'endDate'                        => '',
+					'durationType'                   => '',
+					'durationCount'                  => '',
+					'depositPayment'                 => 'disabled',
+					'deposit'                        => '0',
+					'fullPayment'                    => '0',
+					'sharedCapacity'                 => '0',
+					'quantity'                       => '1',
+					'type'                           => 'customer',
+					'externalId'                     => '',
+					'firstName'                      => 'John',
+					'lastName'                       => 'Doe',
+					'email'                          => 'john.doe@example.com',
+					'birthday'                       => '1990-05-15',
+					'phone'                          => '+1-234-567-8900',
+					'gender'                         => 'male',
+					'note'                           => 'Regular customer',
+					'password'                       => '',
+					'usedTokens'                     => '',
+					'zoomUserId'                     => '',
+					'stripeConnect'                  => '',
+					'countryPhoneIso'                => 'us',
+					'timeZone'                       => 'America/New_York',
+					'appleCalendarId'                => '',
+					'employeeAppleCalendar'          => '',
+					'badgeId'                        => '',
+					'error'                          => '',
+					'show'                           => '1',
+					'customerId'                     => '4',
+					'customer'                       => '',
+					'couponId'                       => '',
+					'coupon'                         => '',
+					'tax'                            => '',
+					'packageId'                      => '1',
+					'payments'                       => [],
+					'start'                          => '2025-12-15 08:39:52',
+					'end'                            => '2025-12-29 08:39:52',
+					'purchased'                      => '2025-12-15 08:39:52',
+					'bookingsCount'                  => '3',
+					'token'                          => 'abc123xyz',
+					'limitPerCustomer_enabled'       => '1',
+					'limitPerCustomer_numberOfApp'   => '15',
+					'limitPerCustomer_timeFrame'     => 'day',
+					'limitPerCustomer_period'        => '15',
+					'limitPerCustomer_original'      => [
+						'enabled'     => true,
+						'numberOfApp' => 15,
+						'timeFrame'   => 'day',
+						'period'      => 15,
+					],
+					'settings_payments_paymentLinks' => [
+						'enabled'             => '',
+						'changeBookingStatus' => '',
+						'redirectUrl'         => '',
+					],
+					'settings_original'              => [
+						'payments' => [
+							'paymentLinks' => [
+								'enabled'             => '',
+								'changeBookingStatus' => '',
+								'redirectUrl'         => '',
+							],
+						],
+					],
+					'translations_defaultLanguage'   => 'en_US',
+					'translations_original'          => [
+						'defaultLanguage' => 'en_US',
+					],
+					'amelia_package_list'            => '1',
+				],
+			];
+
+			switch ( $term ) {
+				case 'amelia_package_purchase_status_updated':
+					$context['pluggable_data']['old_status'] = 'pending';
+					$context['pluggable_data']['new_status'] = 'approved';
+					break;
+			}
 		}
 
 		return $context;
@@ -22280,6 +22525,407 @@ Cc:johnDoe@xyz.com Bcc:johnDoe@xyz.com',
 	} 
 	
 	/**
+	 * Search Thrive Apprentice Courses List.
+	 *
+	 * @param array $data Search Params.
+	 * @return array
+	 */
+	public function search_thrive_apprentice_courses_list( $data ) {
+		$page   = isset( $data['page'] ) ? $data['page'] : 1;
+		$limit  = Utilities::get_search_page_limit();
+		$offset = $limit * ( $page - 1 );
+
+		if ( ! defined( 'TVA_IS_APPRENTICE' ) && ! class_exists( 'TVA_Const' ) ) {
+			return [
+				'options' => [],
+				'hasMore' => false,
+			];
+		}
+
+		$courses = get_terms(
+			[
+				'taxonomy'   => 'tva_courses',
+				'hide_empty' => false,
+				'number'     => $limit,
+				'offset'     => $offset,
+			]
+		);
+
+		$options = [];
+
+		if ( ! empty( $courses ) && ! is_wp_error( $courses ) ) {
+			foreach ( $courses as $course ) {
+				$options[] = [
+					'label' => $course->name,
+					'value' => $course->term_id,
+				];
+			}
+		}
+
+		$all_courses_count = get_terms(
+			[
+				'taxonomy'   => 'tva_courses',
+				'hide_empty' => false,
+				'fields'     => 'count',
+			]
+		);
+
+		$has_more = ( $offset + $limit ) < $all_courses_count;
+
+		return [
+			'options' => $options,
+			'hasMore' => $has_more,
+		];
+	}
+	
+	/**
+	 * Search Thrive Apprentice Assessments List.
+	 *
+	 * @param array $data Search Params.
+	 * @return array
+	 */
+	public function search_thrive_apprentice_assessments_list( $data ) {
+		$page      = isset( $data['page'] ) ? $data['page'] : 1;
+		$limit     = Utilities::get_search_page_limit();
+		$offset    = $limit * ( $page - 1 );
+		$course_id = isset( $data['dynamic']['course_id'] ) ? $data['dynamic']['course_id'] : '';
+
+		if ( ! defined( 'TVA_IS_APPRENTICE' ) && ! class_exists( 'TVA_Const' ) ) {
+			return [
+				'options' => [],
+				'hasMore' => false,
+			];
+		}
+
+		if ( ! empty( $course_id ) ) {
+			$course_post_ids = get_objects_in_term( intval( $course_id ), 'tva_courses' );
+			if ( empty( $course_post_ids ) || is_wp_error( $course_post_ids ) ) {
+				return [
+					'options' => [],
+					'hasMore' => false,
+				];
+			}
+			$args = [
+				'post_type'      => 'tva_assessment',
+				'post_status'    => 'publish',
+				'posts_per_page' => $limit,
+				'offset'         => $offset,
+				'fields'         => 'ids',
+				'post__in'       => array_map( 'intval', $course_post_ids ),
+			];
+		} else {
+			$args = [
+				'post_type'      => 'tva_assessment',
+				'post_status'    => 'publish',
+				'posts_per_page' => $limit,
+				'offset'         => $offset,
+				'fields'         => 'ids',
+			];
+		}
+
+		$assessments = get_posts( $args );
+		$options     = [];
+
+		if ( ! empty( $assessments ) ) {
+			foreach ( $assessments as $assessment_id ) {
+				$assessment = get_post( $assessment_id );
+				if ( $assessment ) {
+					$options[] = [
+						'label' => $assessment->post_title,
+						'value' => $assessment->ID,
+					];
+				}
+			}
+		}
+
+		$count_args                   = $args;
+		$count_args['posts_per_page'] = -1;
+		$count_args['offset']         = 0;
+		$all_assessments              = get_posts( $count_args );
+		$has_more                     = ( $offset + $limit ) < count( $all_assessments );
+
+		return [
+			'options' => $options,
+			'hasMore' => $has_more,
+		];
+	}
+	
+	/**
+	 * Search Thrive Apprentice Lessons List.
+	 *
+	 * @param array $data Search Params.
+	 * @return array
+	 */
+	public function search_thrive_apprentice_lessons_list( $data ) {
+		$page      = isset( $data['page'] ) ? $data['page'] : 1;
+		$limit     = Utilities::get_search_page_limit();
+		$offset    = $limit * ( $page - 1 );
+		$course_id = isset( $data['dynamic']['course_id'] ) ? $data['dynamic']['course_id'] : '';
+
+		if ( ! defined( 'TVA_IS_APPRENTICE' ) && ! class_exists( 'TVA_Const' ) ) {
+			return [
+				'options' => [],
+				'hasMore' => false,
+			];
+		}
+
+		if ( ! empty( $course_id ) ) {
+			$course_post_ids = get_objects_in_term( intval( $course_id ), 'tva_courses' );
+			if ( empty( $course_post_ids ) || is_wp_error( $course_post_ids ) ) {
+				return [
+					'options' => [],
+					'hasMore' => false,
+				];
+			}
+			$args = [
+				'post_type'      => 'tva_lesson',
+				'post_status'    => 'publish',
+				'posts_per_page' => $limit,
+				'offset'         => $offset,
+				'fields'         => 'ids',
+				'post__in'       => array_map( 'intval', $course_post_ids ),
+			];
+		} else {
+			$args = [
+				'post_type'      => 'tva_lesson',
+				'post_status'    => 'publish',
+				'posts_per_page' => $limit,
+				'offset'         => $offset,
+				'fields'         => 'ids',
+			];
+		}
+
+		$lessons = get_posts( $args );
+		$options = [];
+
+		if ( ! empty( $lessons ) ) {
+			foreach ( $lessons as $lesson_id ) {
+				$lesson = get_post( $lesson_id );
+				if ( $lesson ) {
+					$options[] = [
+						'label' => $lesson->post_title,
+						'value' => $lesson->ID,
+					];
+				}
+			}
+		}
+
+		$count_args                   = $args;
+		$count_args['posts_per_page'] = -1;
+		$count_args['offset']         = 0;
+		$all_lessons                  = get_posts( $count_args );
+		$has_more                     = ( $offset + $limit ) < count( $all_lessons );
+
+		return [
+			'options' => $options,
+			'hasMore' => $has_more,
+		];
+	}
+	
+	/**
+	 * Search Thrive Apprentice Premium Courses List.
+	 *
+	 * @param array $data Search Params.
+	 * @return array
+	 */
+	public function search_thrive_apprentice_premium_courses_list( $data ) {
+		$page   = isset( $data['page'] ) ? $data['page'] : 1;
+		$limit  = Utilities::get_search_page_limit();
+		$offset = $limit * ( $page - 1 );
+
+		if ( ! defined( 'TVA_IS_APPRENTICE' ) && ! class_exists( 'TVA_Const' ) ) {
+			return [
+				'options' => [],
+				'hasMore' => false,
+			];
+		}
+
+		$courses = get_terms(
+			[
+				'taxonomy'   => 'tva_courses',
+				'hide_empty' => false,
+				'number'     => $limit,
+				'offset'     => $offset,
+			]
+		);
+
+		$options = [];
+
+		if ( ! empty( $courses ) && ! is_wp_error( $courses ) ) {
+			foreach ( $courses as $course ) {
+				if ( class_exists( 'TVA_Course_V2' ) ) {
+					$course_obj = new \TVA_Course_V2( $course->term_id );
+					$product    = $course_obj->get_product();
+					if ( ! empty( $product ) ) {
+						$options[] = [
+							'label' => $course->name,
+							'value' => $course->term_id,
+						];
+					}
+				}
+			}
+		}
+		$all_courses = get_terms(
+			[
+				'taxonomy'   => 'tva_courses',
+				'hide_empty' => false,
+				'fields'     => 'all',
+			]
+		);
+
+		$premium_count = 0;
+		if ( ! empty( $all_courses ) && ! is_wp_error( $all_courses ) ) {
+			foreach ( $all_courses as $course ) {
+				if ( class_exists( 'TVA_Course_V2' ) ) {
+					$course_obj = new \TVA_Course_V2( $course->term_id );
+					$product    = $course_obj->get_product();
+					if ( ! empty( $product ) ) {
+						$premium_count++;
+					}
+				}
+			}
+		}
+
+		$has_more = ( $offset + $limit ) < $premium_count;
+
+		return [
+			'options' => $options,
+			'hasMore' => $has_more,
+		];
+	}
+	
+	/**
+	 * Search Thrive Apprentice Modules List.
+	 *
+	 * @param array $data Search Params.
+	 * @return array
+	 */
+	public function search_thrive_apprentice_modules_list( $data ) {
+		$page      = isset( $data['page'] ) ? $data['page'] : 1;
+		$limit     = Utilities::get_search_page_limit();
+		$offset    = $limit * ( $page - 1 );
+		$course_id = isset( $data['dynamic']['course_id'] ) ? $data['dynamic']['course_id'] : '';
+
+		if ( ! defined( 'TVA_IS_APPRENTICE' ) && ! class_exists( 'TVA_Const' ) ) {
+			return [
+				'options' => [],
+				'hasMore' => false,
+			];
+		}
+
+		if ( ! empty( $course_id ) ) {
+			$course_post_ids = get_objects_in_term( intval( $course_id ), 'tva_courses' );
+			if ( empty( $course_post_ids ) || is_wp_error( $course_post_ids ) ) {
+				return [
+					'options' => [],
+					'hasMore' => false,
+				];
+			}
+			$args = [
+				'post_type'      => 'tva_module',
+				'post_status'    => 'publish',
+				'posts_per_page' => $limit,
+				'offset'         => $offset,
+				'fields'         => 'ids',
+				'post__in'       => array_map( 'intval', $course_post_ids ),
+			];
+		} else {
+			$args = [
+				'post_type'      => 'tva_module',
+				'post_status'    => 'publish',
+				'posts_per_page' => $limit,
+				'offset'         => $offset,
+				'fields'         => 'ids',
+			];
+		}
+
+		$modules = get_posts( $args );
+		$options = [];
+
+		if ( ! empty( $modules ) ) {
+			foreach ( $modules as $module_id ) {
+				$module = get_post( $module_id );
+				if ( $module ) {
+					$options[] = [
+						'label' => $module->post_title,
+						'value' => $module->ID,
+					];
+				}
+			}
+		}
+
+		if ( ! empty( $course_id ) ) {
+			$total_count = count( $course_post_ids );
+			$has_more    = ( $offset + $limit ) < $total_count;
+		} else {
+			$count_args                   = $args;
+			$count_args['posts_per_page'] = -1;
+			$count_args['offset']         = 0;
+			$all_modules                  = get_posts( $count_args );
+			$has_more                     = ( $offset + $limit ) < count( $all_modules );
+		}
+
+		return [
+			'options' => $options,
+			'hasMore' => $has_more,
+		];
+	}
+	
+	/**
+	 * Search Thrive Apprentice Products List.
+	 *
+	 * @param array $data Search Params.
+	 * @return array
+	 */
+	public function search_thrive_apprentice_products_list( $data ) {
+		$page   = isset( $data['page'] ) ? $data['page'] : 1;
+		$limit  = Utilities::get_search_page_limit();
+		$offset = $limit * ( $page - 1 );
+
+		if ( ! defined( 'TVA_IS_APPRENTICE' ) && ! class_exists( 'TVA_Const' ) ) {
+			return [
+				'options' => [],
+				'hasMore' => false,
+			];
+		}
+
+		$products = get_terms(
+			[
+				'taxonomy'   => 'tva_product',
+				'hide_empty' => false,
+				'number'     => $limit,
+				'offset'     => $offset,
+			]
+		);
+
+		$options = [];
+
+		if ( ! empty( $products ) && ! is_wp_error( $products ) ) {
+			foreach ( $products as $product ) {
+				$options[] = [
+					'label' => $product->name,
+					'value' => $product->term_id,
+				];
+			}
+		}
+
+		$all_products_count = get_terms(
+			[
+				'taxonomy'   => 'tva_product',
+				'hide_empty' => false,
+				'fields'     => 'count',
+			]
+		);
+
+		$has_more = ( $offset + $limit ) < $all_products_count;
+
+		return [
+			'options' => $options,
+			'hasMore' => $has_more,
+		];
+	}
+	
+	/**
 	 * Prepare FluentCommunity Spaces List.
 	 *
 	 * @param array $data Search Params.
@@ -24152,6 +24798,709 @@ Cc:johnDoe@xyz.com Bcc:johnDoe@xyz.com',
 
 		return $context;
 	}
+
+	/**
+	 * Prepare FluentCart Product list.
+	 *
+	 * @param array $data data.
+	 *
+	 * @return array
+	 */
+	public function search_fluentcart_product_list( $data ) {
+		$options = [];
+
+		if ( ! class_exists( '\FluentCart\App\Models\Product' ) ) {
+			return [
+				'options' => $options,
+				'hasMore' => false,
+			];
+		}
+
+		$page   = isset( $data['page'] ) ? max( 1, intval( $data['page'] ) ) : 1;
+		$limit  = Utilities::get_search_page_limit();
+		$offset = $limit * ( $page - 1 );
+		
+		$search_term = isset( $data['search_term'] ) ? $data['search_term'] : '';
+		
+		// Start with a basic query.
+		$query = \FluentCart\App\Models\Product::where( 'post_status', 'publish' );
+
+		if ( ! empty( $search_term ) ) {
+			$query->where( 'post_title', 'LIKE', '%' . $search_term . '%' );
+		}
+
+		$products = $query->select( [ 'ID', 'post_title' ] )
+			->offset( $offset )
+			->limit( $limit )
+			->get();
+
+		if ( ! empty( $products ) ) {
+			foreach ( $products as $product ) {
+				$options[] = [
+					'label' => $product->post_title,
+					'value' => $product->ID,
+				];
+			}
+		}
+
+		// Get total count for pagination.
+		$total_query = \FluentCart\App\Models\Product::where( 'post_status', 'publish' );
+			
+		if ( ! empty( $search_term ) ) {
+			$total_query->where( 'post_title', 'LIKE', '%' . $search_term . '%' );
+		}
+		
+		$posts_count = $total_query->count();
+
+		return [
+			'options' => $options,
+			'hasMore' => $posts_count > ( $offset + $limit ),
+		];
+	}
+
+	/**
+	 * Search SureDash triggers last data.
+	 *
+	 * @param array $data query params.
+	 *
+	 * @return array
+	 * @since 1.0.0
+	 */
+	public function search_suredash_triggers_last_data( $data ) {
+		$context = [];
+		$term    = isset( $data['search_term'] ) ? $data['search_term'] : '';
+		
+		global $wpdb;
+		
+		// Sample user data reused across all cases.
+		$sample_user = [
+			'user_id'       => 789,
+			'user_login'    => 'john_doe',
+			'user_email'    => 'john@example.com',
+			'user_nicename' => 'John Doe',
+			'display_name'  => 'John Doe',
+		];
+		
+		switch ( $term ) {
+			case 'suredash_comments_data':
+				$recent_comments = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT c.*, p.post_title, p.post_content, p.post_author, p.post_type, p.post_status 
+					FROM {$wpdb->comments} c 
+					LEFT JOIN {$wpdb->posts} p ON c.comment_post_ID = p.ID 
+					WHERE c.comment_approved = 1 
+					ORDER BY c.comment_date DESC 
+					LIMIT %d",
+						1
+					)
+				);
+
+				if ( ! empty( $recent_comments ) ) {
+					$comment      = $recent_comments[0];
+					$user_context = [];
+					if ( $comment->user_id ) {
+						$user_context = WordPress::get_user_context( $comment->user_id );
+					}
+
+					$context                   = array_merge(
+						[
+							'comment_id'           => $comment->comment_ID,
+							'comment_content'      => $comment->comment_content,
+							'comment_author'       => $comment->comment_author,
+							'comment_author_email' => $comment->comment_author_email,
+							'comment_date'         => $comment->comment_date,
+							'comment_approved'     => $comment->comment_approved,
+							'comment_type'         => $comment->comment_type,
+							'comment_parent'       => $comment->comment_parent,
+							'post_id'              => $comment->comment_post_ID,
+							'post_title'           => $comment->post_title,
+							'post_content'         => $comment->post_content,
+							'post_author'          => $comment->post_author,
+							'post_type'            => $comment->post_type,
+							'post_status'          => $comment->post_status,
+							'post_permalink'       => get_permalink( $comment->comment_post_ID ),
+							'suredash_post'        => $comment->comment_post_ID,
+						],
+						$user_context
+					);
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'live';
+				} else {
+					$context = [
+						'comment_id'           => 123,
+						'comment_content'      => 'This is a sample comment submission',
+						'comment_author'       => 'John Doe',
+						'comment_author_email' => 'john@example.com',
+						'comment_date'         => '2024-01-15 10:30:00',
+						'comment_approved'     => 1,
+						'comment_type'         => 'comment',
+						'comment_parent'       => 0,
+						'post_id'              => 456,
+						'post_title'           => 'Sample Course Title',
+						'post_content'         => 'Course content here...',
+						'post_author'          => 1,
+						'post_type'            => 'suredash_course',
+						'post_status'          => 'publish',
+						'post_permalink'       => 'https://example.com/course/sample-course',
+						'suredash_post'        => 456,
+					];
+					$context = array_merge( $context, $sample_user );
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'sample';
+				}
+
+				return $context;
+				
+			case 'suredash_comment_deleted_data':
+				$recent_comments = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT c.comment_ID, c.user_id 
+					FROM {$wpdb->comments} c 
+					ORDER BY c.comment_date DESC 
+					LIMIT %d",
+						1
+					)
+				);
+
+				if ( ! empty( $recent_comments ) ) {
+					$comment      = $recent_comments[0];
+					$user_context = WordPress::get_user_context( $comment->user_id );
+
+					$context = array_merge(
+						[
+							'comment_id' => $comment->comment_ID,
+						],
+						$user_context
+					);
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'live';
+				} else {
+					$context = array_merge( [ 'comment_id' => 123 ], $sample_user );
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'sample';
+				}
+
+				return $context;
+			
+			case 'suredash_post_deleted_data':
+				$recent_posts = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT ID, post_author 
+					FROM {$wpdb->posts} 
+					ORDER BY post_date DESC 
+					LIMIT %d",
+						1
+					)
+				);
+
+				if ( ! empty( $recent_posts ) ) {
+					$post         = $recent_posts[0];
+					$user_context = WordPress::get_user_context( $post->post_author );
+
+					$context = array_merge(
+						[
+							'post_id'         => $post->ID,
+							'deleter_user_id' => $post->post_author,
+						],
+						$user_context
+					);
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'live';
+				} else {
+					$context = array_merge(
+						[
+							'post_id'         => 456,
+							'deleter_user_id' => 789,
+						],
+						$sample_user 
+					);
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'sample';
+				}
+
+				return $context;
+			
+			case 'suredash_post_data':
+				$recent_posts = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT * FROM {$wpdb->posts} 
+					WHERE post_status = 'publish' 
+					AND post_type NOT IN ('revision', 'nav_menu_item', 'attachment') 
+					ORDER BY post_date DESC 
+					LIMIT %d",
+						1
+					)
+				);
+
+				if ( ! empty( $recent_posts ) ) {
+					$post         = $recent_posts[0];
+					$user_context = WordPress::get_user_context( $post->post_author );
+
+					$context = array_merge(
+						[
+							'post_id'        => $post->ID,
+							'post_title'     => $post->post_title,
+							'post_content'   => $post->post_content,
+							'post_excerpt'   => $post->post_excerpt,
+							'post_status'    => $post->post_status,
+							'post_author'    => $post->post_author,
+							'post_date'      => $post->post_date,
+							'post_modified'  => $post->post_modified,
+							'post_type'      => $post->post_type,
+							'post_name'      => $post->post_name,
+							'post_permalink' => get_permalink( $post->ID ),
+							'suredash_post'  => $post->ID,
+							'form_data'      => [],
+						],
+						$user_context
+					);
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'live';
+				} else {
+					$context = [
+						'post_id'        => 456,
+						'post_title'     => 'Sample Post Title',
+						'post_content'   => 'This is sample post content for SureDash...',
+						'post_excerpt'   => 'Sample excerpt',
+						'post_status'    => 'publish',
+						'post_author'    => 1,
+						'post_date'      => '2024-01-15 10:30:00',
+						'post_modified'  => '2024-01-15 10:35:00',
+						'post_type'      => 'post',
+						'post_name'      => 'sample-post-title',
+						'post_permalink' => 'https://example.com/sample-post-title',
+						'suredash_post'  => 456,
+						'form_data'      => [
+							'post_title'   => 'Sample Post Title',
+							'post_content' => 'Sample content',
+						],
+					];
+					$context = array_merge( $context, $sample_user );
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'sample';
+				}
+
+				return $context;
+				
+			case 'suredash_item_bookmarked':
+				$recent_posts = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT * FROM {$wpdb->posts} 
+					WHERE post_status = 'publish' 
+					AND post_type NOT IN ('revision', 'nav_menu_item', 'attachment') 
+					ORDER BY post_date DESC 
+					LIMIT %d",
+						1
+					)
+				);
+
+				if ( ! empty( $recent_posts ) ) {
+					$post         = $recent_posts[0];
+					$user_context = WordPress::get_user_context( $post->post_author );
+
+					$context = array_merge(
+						[
+							'item_id'         => $post->ID,
+							'item_type'       => $post->post_type,
+							'bookmark_status' => 'bookmarked',
+							'is_bookmarked'   => true,
+							'is_unbookmarked' => false,
+							'item_title'      => $post->post_title,
+							'item_content'    => $post->post_content,
+							'item_excerpt'    => $post->post_excerpt,
+							'item_author'     => $post->post_author,
+							'item_date'       => $post->post_date,
+							'item_status'     => $post->post_status,
+							'item_permalink'  => get_permalink( $post->ID ),
+						],
+						$user_context
+					);
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'live';
+				} else {
+					$context = [
+						'item_id'         => 456,
+						'item_type'       => 'post',
+						'bookmark_status' => 'bookmarked',
+						'is_bookmarked'   => true,
+						'is_unbookmarked' => false,
+						'item_title'      => 'Sample Item Title',
+						'item_content'    => 'This is sample item content for bookmarking...',
+						'item_excerpt'    => 'Sample item excerpt',
+						'item_author'     => 1,
+						'item_date'       => '2024-01-15 10:30:00',
+						'item_status'     => 'publish',
+						'item_permalink'  => 'https://example.com/sample-item-title',
+					];
+					$context = array_merge( $context, $sample_user );
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'sample';
+				}
+
+				return $context;
+				
+			case 'suredash_space_data':
+				$recent_posts = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT * FROM {$wpdb->posts} 
+					WHERE post_status = 'publish' 
+					AND post_type NOT IN ('revision', 'nav_menu_item', 'attachment') 
+					ORDER BY post_date DESC 
+					LIMIT %d",
+						1
+					)
+				);
+
+				if ( ! empty( $recent_posts ) ) {
+					$post = $recent_posts[0];
+
+					$context = [
+						'space_id'     => $post->ID,
+						'space_status' => 'deleted',
+					];
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'live';
+				} else {
+					$context = [
+						'space_id'     => 456,
+						'space_status' => 'deleted',
+					];
+				
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'sample';
+				}
+
+				return $context;
+				
+			default:
+				return $context;
+		}
+	}
+	/**
+	 * Get MailerPress contact lists
+	 *
+	 * @param array $data data.
+	 *
+	 * @return array
+	 */
+	public function search_mailerpress_contact_lists( $data ) {
+		global $wpdb;   
+
+		$lists   = $wpdb->get_results( "SELECT name, list_id FROM {$wpdb->prefix}mailerpress_lists ORDER BY name ASC" );
+		$options = [];
+		
+		if ( ! empty( $lists ) ) {
+			foreach ( $lists as $list ) {
+				$options[] = [
+					'label' => $list->name,
+					'value' => $list->list_id,
+				];
+			}
+		}
+		
+		return [
+			'options' => $options,
+			'hasMore' => false,
+		];
+	}
+	
+	/**
+	 * Get MailerPress contact tags
+	 *
+	 * @param array $data data.
+	 *
+	 * @return array
+	 */
+	public function search_mailerpress_contact_tags( $data ) {
+
+		global $wpdb;   
+
+		$tags    = $wpdb->get_results( "SELECT name, tag_id FROM {$wpdb->prefix}mailerpress_tags ORDER BY name ASC" );
+		$options = [];
+		
+		if ( ! empty( $tags ) ) {
+			foreach ( $tags as $tag ) {
+				$options[] = [
+					'label' => $tag->name,
+					'value' => $tag->tag_id,
+				];
+			}
+		}
+		
+		return [
+			'options' => $options,
+			'hasMore' => false,
+		];
+	}
+
+	/**
+	 * Get MailerPress last data
+	 *
+	 * @param array $data data.
+	 *
+	 * @return array
+	 */
+	public function search_mailerpress_last_data( $data ) {
+		$context = [];
+		$term    = isset( $data['search_term'] ) ? $data['search_term'] : '';
+		
+		global $wpdb;
+		
+		switch ( $term ) {
+			case 'mailerpress_contact_data':
+				$recent_contact = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}mailerpress_contact ORDER BY created_at DESC LIMIT 1" );
+				
+				if ( $recent_contact ) {
+					$context                   = [
+						'contact_id'          => $recent_contact->contact_id,
+						'email'               => $recent_contact->email,
+						'first_name'          => $recent_contact->first_name,
+						'last_name'           => $recent_contact->last_name,
+						'subscription_status' => $recent_contact->subscription_status,
+						'opt_in_source'       => $recent_contact->opt_in_source,
+						'opt_in_details'      => $recent_contact->opt_in_details,
+						'created_at'          => $recent_contact->created_at,
+						'updated_at'          => $recent_contact->updated_at,
+					];
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'live';
+				} else {
+					$context                   = [
+						'contact_id'          => 15,
+						'email'               => 'sarah.johnson@example.com',
+						'first_name'          => 'Sarah',
+						'last_name'           => 'Johnson',
+						'subscription_status' => 'subscribed',
+						'opt_in_source'       => 'signup_form',
+						'opt_in_details'      => 'Newsletter signup - Homepage',
+						'created_at'          => '2025-12-01 14:23:17',
+						'updated_at'          => '2025-12-01 14:23:17',
+					];
+					$context['pluggable_data'] = $context;
+					$context['response_type']  = 'sample';
+				}
+				break;
+				
+			case 'list_created':
+				$recent_list = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}mailerpress_lists ORDER BY created_at DESC LIMIT 1" );
+				
+				if ( $recent_list ) {
+					$user_data = get_userdata( 1 );
+					
+					$context['pluggable_data'] = [
+						'wp_user_id'      => $user_data ? $user_data->ID : 1,
+						'user_login'      => $user_data ? $user_data->user_login : 'root',
+						'display_name'    => $user_data ? $user_data->display_name : 'Arian',
+						'user_firstname'  => get_user_meta( $user_data ? $user_data->ID : 1, 'first_name', true ) ? get_user_meta( $user_data ? $user_data->ID : 1, 'first_name', true ) : '',
+						'user_lastname'   => get_user_meta( $user_data ? $user_data->ID : 1, 'last_name', true ) ? get_user_meta( $user_data ? $user_data->ID : 1, 'last_name', true ) : '',
+						'user_email'      => $user_data ? $user_data->user_email : 'dev-email@wpengine.local',
+						'user_registered' => $user_data ? $user_data->user_registered : '2025-07-02 10:50:38',
+						'user_role'       => $user_data ? $user_data->roles : [ 'administrator' ],
+						'list'            => [
+							'id'          => $recent_list->list_id,
+							'name'        => $recent_list->name,
+							'description' => $recent_list->description,
+							'created_at'  => $recent_list->created_at,
+							'updated_at'  => $recent_list->updated_at,
+						],
+					];
+					$context['response_type']  = 'live';
+				} else {
+					$context['pluggable_data'] = [
+						'wp_user_id'      => 1,
+						'user_login'      => 'root',
+						'display_name'    => 'Arian',
+						'user_firstname'  => '',
+						'user_lastname'   => '',
+						'user_email'      => 'dev-email@wpengine.local',
+						'user_registered' => '2025-07-02 10:50:38',
+						'user_role'       => [ 'administrator' ],
+						'list'            => [
+							'id'          => 7,
+							'name'        => 'Weekly Newsletter Subscribers',
+							'description' => 'Subscribers who opted in for weekly newsletter updates',
+							'created_at'  => '2025-12-01 10:15:23',
+							'updated_at'  => '2025-12-01 15:30:45',
+						],
+					];
+					$context['response_type']  = 'sample';
+				}
+				break;
+				
+			case 'contact_added_to_list':
+				$recent_list    = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}mailerpress_lists ORDER BY created_at DESC LIMIT 1" );
+				$recent_contact = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}mailerpress_contact ORDER BY created_at DESC LIMIT 1" );
+				
+				if ( $recent_contact && $recent_list ) {
+					$context['pluggable_data'] = [
+						'contact' => [
+							'id'                  => $recent_contact->contact_id,
+							'email'               => $recent_contact->email,
+							'first_name'          => $recent_contact->first_name,
+							'last_name'           => $recent_contact->last_name,
+							'subscription_status' => $recent_contact->subscription_status,
+							'created_at'          => $recent_contact->created_at,
+							'updated_at'          => $recent_contact->updated_at,
+						],
+						'list'    => [
+							'id'          => $recent_list->list_id,
+							'name'        => $recent_list->name,
+							'description' => $recent_list->description,
+							'created_at'  => $recent_list->created_at,
+							'updated_at'  => $recent_list->updated_at,
+						],
+					];
+					$context['response_type']  = 'live';
+				} else {
+					$context['pluggable_data'] = [
+						'contact' => [
+							'id'                  => 12,
+							'email'               => 'michael.chen@company.com',
+							'first_name'          => 'Michael',
+							'last_name'           => 'Chen',
+							'subscription_status' => 'subscribed',
+							'created_at'          => '2025-12-01 09:15:33',
+							'updated_at'          => '2025-12-01 11:22:47',
+						],
+						'list'    => [
+							'id'          => 7,
+							'name'        => 'Weekly Newsletter Subscribers',
+							'description' => 'Subscribers who opted in for weekly newsletter updates',
+							'created_at'  => '2025-12-01 10:15:23',
+							'updated_at'  => '2025-12-01 15:30:45',
+						],
+					];
+					$context['response_type']  = 'sample';
+				}
+				break;
+				
+			case 'tag_created':
+				$recent_tag = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}mailerpress_tags LIMIT 1" );
+				
+				if ( $recent_tag ) {
+					$context['pluggable_data'] = [
+						'tag_id' => $recent_tag->tag_id,
+						'name'   => $recent_tag->name,
+					];
+					$context['response_type']  = 'live';
+				} else {
+					$context['pluggable_data'] = [
+						'tag_id' => 8,
+						'name'   => 'VIP Customers',
+					];
+					$context['response_type']  = 'sample';
+				}
+				break;
+
+			case 'mailerpress_tag_added_to_contact_data':
+				$recent_contact = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}mailerpress_contact ORDER BY created_at DESC LIMIT 1" );
+				$recent_tag     = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}mailerpress_tags LIMIT 1" );
+				
+				if ( $recent_contact && $recent_tag ) {
+					$user_data = get_userdata( 1 );
+					
+					$context['pluggable_data'] = [
+						'contact' => [
+							'id'                  => $recent_contact->contact_id,
+							'email'               => $recent_contact->email,
+							'first_name'          => $recent_contact->first_name,
+							'last_name'           => $recent_contact->last_name,
+							'subscription_status' => $recent_contact->subscription_status,
+							'created_at'          => $recent_contact->created_at,
+							'updated_at'          => $recent_contact->updated_at,
+						],
+						'tag'     => [
+							'id'   => $recent_tag->tag_id,
+							'name' => $recent_tag->name,
+						],
+					];
+					$context['response_type']  = 'live';
+				} else {
+					$context['pluggable_data'] = [
+						'contact' => [
+							'id'                  => 18,
+							'email'               => 'emma.wilson@startup.io',
+							'first_name'          => 'Emma',
+							'last_name'           => 'Wilson',
+							'subscription_status' => 'subscribed',
+							'created_at'          => '2025-12-01 13:45:12',
+							'updated_at'          => '2025-12-01 16:18:35',
+						],
+						'tag'     => [
+							'id'   => 5,
+							'name' => 'Premium Member',
+						],
+					];
+					$context['response_type']  = 'sample';
+				}
+				break;
+				
+			case 'campaign_created':
+				$recent_campaign = $wpdb->get_row( "SELECT * FROM {$wpdb->prefix}mailerpress_campaigns ORDER BY created_at DESC LIMIT 1" );
+				
+				if ( $recent_campaign ) {
+					$user_data = get_userdata( 1 );
+					
+					$context['pluggable_data'] = [
+						'wp_user_id'      => $user_data ? $user_data->ID : 1,
+						'user_login'      => $user_data ? $user_data->user_login : 'root',
+						'display_name'    => $user_data ? $user_data->display_name : 'Arian',
+						'user_firstname'  => get_user_meta( $user_data ? $user_data->ID : 1, 'first_name', true ) ? get_user_meta( $user_data ? $user_data->ID : 1, 'first_name', true ) : '',
+						'user_lastname'   => get_user_meta( $user_data ? $user_data->ID : 1, 'last_name', true ) ? get_user_meta( $user_data ? $user_data->ID : 1, 'last_name', true ) : '',
+						'user_email'      => $user_data ? $user_data->user_email : 'dev-email@wpengine.local',
+						'user_registered' => $user_data ? $user_data->user_registered : '2025-07-02 10:50:38',
+						'user_role'       => $user_data ? $user_data->roles : [ 'administrator' ],
+						'campaign'        => [
+							'campaign_id' => $recent_campaign->campaign_id,
+							'name'        => $recent_campaign->name,
+							'subject'     => $recent_campaign->subject,
+							'status'      => $recent_campaign->status,
+							'type'        => $recent_campaign->type,
+							'created_at'  => $recent_campaign->created_at,
+							'updated_at'  => $recent_campaign->updated_at,
+						],
+					];
+					$context['response_type']  = 'live';
+				} else {
+					$user_data = get_userdata( 1 );
+					
+					$context['pluggable_data'] = [
+						'wp_user_id'      => $user_data ? $user_data->ID : 1,
+						'user_login'      => $user_data ? $user_data->user_login : 'root',
+						'display_name'    => $user_data ? $user_data->display_name : 'Arian',
+						'user_firstname'  => get_user_meta( $user_data ? $user_data->ID : 1, 'first_name', true ) ? get_user_meta( $user_data ? $user_data->ID : 1, 'first_name', true ) : '',
+						'user_lastname'   => get_user_meta( $user_data ? $user_data->ID : 1, 'last_name', true ) ? get_user_meta( $user_data ? $user_data->ID : 1, 'last_name', true ) : '',
+						'user_email'      => $user_data ? $user_data->user_email : 'dev-email@wpengine.local',
+						'user_registered' => $user_data ? $user_data->user_registered : '2025-07-02 10:50:38',
+						'user_role'       => $user_data ? $user_data->roles : [ 'administrator' ],
+						'campaign'        => [
+							'campaign_id' => 23,
+							'name'        => 'Holiday Special Offer 2025',
+							'subject'     => 'Exclusive 30% OFF - Limited Time Holiday Deal!',
+							'status'      => 'draft',
+							'type'        => 'newsletter',
+							'created_at'  => '2025-12-01 16:45:22',
+							'updated_at'  => '2025-12-01 17:12:38',
+						],
+					];
+					$context['response_type']  = 'sample';
+				}
+				break;
+
+		}
+		return $context;
+	}
+	
 
 }
 

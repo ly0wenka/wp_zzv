@@ -183,14 +183,20 @@ const GenerateContent = ( props ) => {
 	if ( status === PROCESS_STATUSES.FAILED ) {
 		// If the error is due to not having a Pro plan and limit exceeded, show the upgrade component
 		if ( genError?.code === 'require_pro' ) {
-			const handleClickUpgrade = () => {
-				window.open(
-					window?.surerank_globals.pricing_link,
-					'_blank',
-					'noopener'
-				);
-			};
-			return <UpgradeCPT onClickUpgrade={ handleClickUpgrade } />;
+			return <UpgradeCPT />;
+		}
+
+		if ( genError?.code === 'limit_exceeded' ) {
+			return (
+				<UpgradeCPT
+					title={ __( 'Daily Limit Reached', 'surerank' ) }
+					description={ __(
+						"You've used all your AI credits for today. Your credits will refresh automatically tomorrow, so you can continue creating content.",
+						'surerank'
+					) }
+					showButton={ false }
+				/>
+			);
 		}
 
 		// For other errors, show the ContentGenerationError component

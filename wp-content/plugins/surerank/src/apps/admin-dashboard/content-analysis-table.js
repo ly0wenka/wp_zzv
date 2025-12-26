@@ -551,7 +551,6 @@ const ContentAnalysisTable = ( {
 											"See what's driving traffic, content score, rankings, and performance trends.",
 											'surerank'
 										) }
-										link={ surerank_globals.pricing_link }
 										linkLabel={ __(
 											'Upgrade',
 											'surerank'

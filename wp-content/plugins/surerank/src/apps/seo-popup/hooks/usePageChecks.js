@@ -137,7 +137,8 @@ const usePageChecks = () => {
 			} );
 		},
 		[]
-	);	const start = async () => {
+	);
+	const start = async () => {
 		const snapshot = getEditorData();
 		await runChecks(
 			snapshot,

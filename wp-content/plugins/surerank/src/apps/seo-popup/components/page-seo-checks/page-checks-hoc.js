@@ -8,8 +8,6 @@ import {
 	PROCESS_STATUSES,
 	PAGE_SEO_CHECKS_ID_TO_STATE_MAPPING,
 } from '@Global/constants';
-import { __ } from '@wordpress/i18n';
-import { Text } from '@bsf/force-ui';
 import PageChecksListSkeleton from './page-checks-list-skeleton';
 import { useKeywordChecks } from '@SeoPopup/components/keyword-checks/hooks/use-keyword-checks';
 import { getCheckTypeKey } from '@/functions/utils';
@@ -55,7 +53,11 @@ const PageSeoChecksWrapper = ( { type = 'page' } ) => {
 			ignoredChecks: [],
 		};
 
-		return pageSeoChecks[ getCheckTypeKey( type )?.categorizedType ] ?? { ...categorizedChecks };
+		return (
+			pageSeoChecks[ getCheckTypeKey( type )?.categorizedType ] ?? {
+				...categorizedChecks,
+			}
+		);
 	}, [ type, pageSeoChecks?.checks ] );
 
 	const handleIgnoreCheck = ( checkId ) => {
@@ -103,16 +105,7 @@ const PageSeoChecksWrapper = ( { type = 'page' } ) => {
 	};
 	// Handle the case where no focus keyword is provided for keyword checks
 	if ( type === 'keyword' && ! focusKeyword ) {
-		return (
-			<div className="text-center py-4">
-				<Text as="p" color="secondary" size={ 14 }>
-					{ __(
-						'To see keyword-specific SEO checks, first set a focus keyword under the Optimize tab.',
-						'surerank'
-					) }
-				</Text>
-			</div>
-		);
+		return null;
 	}
 
 	return (

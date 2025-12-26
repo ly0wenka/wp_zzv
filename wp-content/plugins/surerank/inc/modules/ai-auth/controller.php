@@ -33,7 +33,7 @@ class Controller {
 	 * @since 1.4.2
 	 * @var string
 	 */
-	private const SETTINGS_KEY = 'surerank_auth';
+	public const SETTINGS_KEY = 'surerank_auth';
 
 	/**
 	 * Encryption key.
@@ -135,26 +135,5 @@ class Controller {
 		update_option( self::SETTINGS_KEY, $decrypted_data_array );
 
 		return true;
-	}
-
-	/**
-	 * Get Auth Data.
-	 * 
-	 * @since 1.4.2
-	 * @param string $key Optional. Key to retrieve specific data. Default is empty which returns all data.
-	 * @return array<string, mixed>|WP_Error
-	 */
-	public function get_auth_data( $key = '' ) {
-		$auth_data = get_option( self::SETTINGS_KEY, false );
-
-		if ( empty( $auth_data ) ) {
-			return new WP_Error( 'no_auth_data', __( 'No authentication data found.', 'surerank' ) );
-		}
-
-		if ( ! empty( $key ) && is_string( $key ) ) {
-			return $auth_data[ $key ] ?? new WP_Error( 'no_key_found', __( 'No data found for the provided key.', 'surerank' ) );
-		}
-
-		return $auth_data;
 	}
 }

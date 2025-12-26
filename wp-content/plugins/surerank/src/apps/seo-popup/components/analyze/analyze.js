@@ -10,17 +10,20 @@ import RefreshButtonPortal from '@SeoPopup/components/refresh-button-portal';
 import { STORE_NAME } from '@/store/constants';
 import PageChecksHoc from '@SeoPopup/components/page-seo-checks/page-checks-hoc';
 import PageBuilderPageSeoChecksHoc from '@SeoPopup/components/page-seo-checks/page-builder-page-checks-hoc';
+import KeywordInput from '@SeoPopup/components/keyword-input';
+import { ENABLE_PAGE_LEVEL_SEO } from '@Global/constants';
 import {
-	isBricksBuilder,
 	isPageBuilderActive,
 	isElementorBuilder,
 	refreshPageChecks,
+	isSeoAnalysisDisabled,
+	isBricksBuilder,
+	isAvadaBuilder,
 } from '@SeoPopup/components/page-seo-checks/analyzer/utils/page-builder';
-import { ENABLE_PAGE_LEVEL_SEO } from '@/global/constants';
 import { calculateCheckStatus } from '@SeoPopup/utils/calculate-check-status';
 
 const ChecksComponent = ( { type } ) => {
-	if ( ! ENABLE_PAGE_LEVEL_SEO || isBricksBuilder() ) {
+	if ( isSeoAnalysisDisabled() ) {
 		return null;
 	}
 
@@ -75,39 +78,51 @@ const Analyze = () => {
 	const { setPageSeoCheck, setRefreshCalled } = useDispatch( STORE_NAME );
 
 	// Create Redux action wrapper functions to maintain compatibility with refreshPageChecks
-	const setIsRefreshing = useCallback( ( value ) => {
-		setPageSeoCheck( 'isRefreshing', value );
-	}, [ setPageSeoCheck ] );
+	const setIsRefreshing = useCallback(
+		( value ) => {
+			setPageSeoCheck( 'isRefreshing', value );
+		},
+		[ setPageSeoCheck ]
+	);
 
-	const setBrokenLinkState = useCallback( ( value ) => {
-		// Convert Sets to arrays before storing in Redux
-		let storeValue = value;
-		if ( typeof value === 'function' ) {
-			// For functional updates, we need to get current state, apply function, then convert
-			const currentState = {
-				...brokenLinkStateFromStore,
-				checkedLinks: new Set( brokenLinkStateFromStore.checkedLinks ),
-				brokenLinks: new Set( brokenLinkStateFromStore.brokenLinks ),
-			};
-			const updatedState = value( currentState );
-			storeValue = {
-				...updatedState,
-				checkedLinks: Array.from( updatedState.checkedLinks || [] ),
-				brokenLinks: Array.from( updatedState.brokenLinks || [] ),
-			};
-		} else if ( value && typeof value === 'object' ) {
-			storeValue = {
-				...value,
-				checkedLinks: value.checkedLinks instanceof Set
-					? Array.from( value.checkedLinks )
-					: value.checkedLinks || [],
-				brokenLinks: value.brokenLinks instanceof Set
-					? Array.from( value.brokenLinks )
-					: value.brokenLinks || [],
-			};
-		}
-		setPageSeoCheck( 'brokenLinkState', storeValue );
-	}, [ setPageSeoCheck, brokenLinkStateFromStore ] );
+	const setBrokenLinkState = useCallback(
+		( value ) => {
+			// Convert Sets to arrays before storing in Redux
+			let storeValue = value;
+			if ( typeof value === 'function' ) {
+				// For functional updates, we need to get current state, apply function, then convert
+				const currentState = {
+					...brokenLinkStateFromStore,
+					checkedLinks: new Set(
+						brokenLinkStateFromStore.checkedLinks
+					),
+					brokenLinks: new Set(
+						brokenLinkStateFromStore.brokenLinks
+					),
+				};
+				const updatedState = value( currentState );
+				storeValue = {
+					...updatedState,
+					checkedLinks: Array.from( updatedState.checkedLinks || [] ),
+					brokenLinks: Array.from( updatedState.brokenLinks || [] ),
+				};
+			} else if ( value && typeof value === 'object' ) {
+				storeValue = {
+					...value,
+					checkedLinks:
+						value.checkedLinks instanceof Set
+							? Array.from( value.checkedLinks )
+							: value.checkedLinks || [],
+					brokenLinks:
+						value.brokenLinks instanceof Set
+							? Array.from( value.brokenLinks )
+							: value.brokenLinks || [],
+				};
+			}
+			setPageSeoCheck( 'brokenLinkState', storeValue );
+		},
+		[ setPageSeoCheck, brokenLinkStateFromStore ]
+	);
 
 	const handleRefreshWithBrokenLinks = useCallback( async () => {
 		setRefreshCalled( true );
@@ -157,7 +172,7 @@ const Analyze = () => {
 		: 'keyword-checks';
 
 	// Early return if no valid component is found.
-	if ( ! ENABLE_PAGE_LEVEL_SEO || isBricksBuilder() ) {
+	if ( isSeoAnalysisDisabled() ) {
 		return (
 			<div>
 				<Text
@@ -178,7 +193,7 @@ const Analyze = () => {
 		<div className="space-y-2">
 			{ /* Show save message only for Elementor */ }
 			{ isElementorBuilder() && (
-				<div className="[&_p.mr-10]:mr-0">
+				<div className="[&_p.mr-10]:mr-0 m-1">
 					<Alert
 						variant="info"
 						content={
@@ -231,6 +246,13 @@ const Analyze = () => {
 					</Accordion.Trigger>
 					<Accordion.Content>
 						<div className="pt-3">
+							{ ENABLE_PAGE_LEVEL_SEO &&
+								! isBricksBuilder() &&
+								! isAvadaBuilder() && (
+									<div className="flex items-center gap-2 mb-3">
+										<KeywordInput />
+									</div>
+								) }
 							<ChecksComponent type="keyword" />
 						</div>
 					</Accordion.Content>

@@ -4,11 +4,11 @@
  *
  * Module class for fixing Page SEO Checks functionality.
  *
- * @package SureRank\Inc\Modules\FixSeoChecks
+ * @package SureRank\Inc\Modules\Fix_Seo_Checks
  * @since 1.4.2
  */
 
-namespace SureRank\Inc\Modules\FixSeoChecks;
+namespace SureRank\Inc\Modules\Fix_Seo_Checks;
 
 use SureRank\Inc\API\Post;
 use SureRank\Inc\API\Term;

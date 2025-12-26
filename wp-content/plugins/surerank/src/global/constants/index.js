@@ -100,5 +100,5 @@ export * from './site-seo-fix';
 export * from './process-status';
 
 // Page SEO Checks
-export const PAGE_SEO_CHECKS_LEARN_MORE_URL =
-	'https://surerank.com/docs-category/page-seo-analysis/';
+export const LEARN_MORE_AI_AUTH =
+	'https://surerank.com/surerank-ai/?utm_medium=surerank_plugin';

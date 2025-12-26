@@ -111,26 +111,30 @@ class Analyzer extends Api_Base {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	public function get_page_seo_checks( $request ) {
-		$post_id = $request->get_param( 'post_id' );
+		$post_ids = $request->get_param( 'post_ids' );
 
-		$validation_error = $this->validate_post_id( $post_id );
-		if ( $validation_error ) {
-			return $validation_error;
-		}
-
-		$post = get_post( (int) $post_id );
-		if ( ! $post ) {
+		if ( empty( $post_ids ) || ! is_array( $post_ids ) ) {
 			return $this->create_error_response( __( 'Invalid Post ID.', 'surerank' ) );
 		}
 
-		if ( $this->is_post_cache_valid( $post, $post_id ) ) {
-			$cached_response = $this->get_cached_post_checks( $post_id );
-			if ( $cached_response ) {
-				return $cached_response;
+		$data = [];
+		foreach ( $post_ids as $p_id ) {
+			$checks = $this->get_post_checks_data( $p_id );
+			if ( is_wp_error( $checks ) ) {
+				continue;
 			}
+			$data[ $p_id ] = [
+				'checks' => $checks,
+			];
 		}
 
-		return $this->run_and_return_post_checks( $post_id );
+		return rest_ensure_response(
+			[
+				'status'  => 'success',
+				'message' => __( 'SEO checks retrieved.', 'surerank' ),
+				'data'    => $data,
+			]
+		);
 	}
 
 	/**
@@ -140,20 +144,30 @@ class Analyzer extends Api_Base {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	public function get_taxonomy_seo_checks( $request ) {
-		$term_id = $request->get_param( 'term_id' );
+		$term_ids = $request->get_param( 'term_ids' );
 
-		if ( ! $term_id ) {
-			return $this->create_error_response( __( 'Taxonomy and term ID are required.', 'surerank' ) );
+		if ( empty( $term_ids ) || ! is_array( $term_ids ) ) {
+			return $this->create_error_response( __( 'Invalid Term ID.', 'surerank' ) );
 		}
 
-		if ( $this->is_taxonomy_cache_valid( $term_id ) ) {
-			$cached_response = $this->get_cached_taxonomy_checks( $term_id );
-			if ( $cached_response ) {
-				return $cached_response;
+		$data = [];
+		foreach ( $term_ids as $p_id ) {
+			$checks = $this->get_term_checks_data( $p_id );
+			if ( is_wp_error( $checks ) ) {
+				continue;
 			}
+			$data[ $p_id ] = [
+				'checks' => $checks,
+			];
 		}
 
-		return $this->run_and_return_taxonomy_checks( $term_id );
+		return rest_ensure_response(
+			[
+				'status'  => 'success',
+				'message' => __( 'SEO checks retrieved.', 'surerank' ),
+				'data'    => $data,
+			]
+		);
 	}
 
 	/**
@@ -434,7 +448,6 @@ class Analyzer extends Api_Base {
 		$working_label     = __( 'Google Search Console is connected.', 'surerank' );
 		$not_working_label = __( 'Google Search Console is not connected.', 'surerank' );
 
-
 		$helptext = [
 			__( 'Google Search Console is a free tool that shows how your site is doing in Google search — how many people are finding it, what they’re searching for, and which pages are getting the most attention.', 'surerank' ),
 			__( 'Connecting Search Console to your site doesn’t change anything on the front end — but it gives you a behind-the-scenes view of what’s working. SureRank uses this connection to show useful insights directly in your dashboard.', 'surerank' ),
@@ -521,7 +534,12 @@ class Analyzer extends Api_Base {
 	 */
 	public function get_installed_seo_plugins(): array {
 		$description = [
-			__( 'SEO plugins help manage how your site appears in search engines. They control important things like titles, meta descriptions, canonical tags, and structured data. ', 'surerank' ),
+			sprintf( '<img class="w-full h-full" src="%s" alt="%s" />', esc_attr( 'https://surerank.com/wp-content/uploads/2025/12/other-seo-plugin-banner.webp' ), esc_attr__( 'Other SEO Plugin Banner', 'surerank' ) ),
+			sprintf(
+				'<h6>%s</h6>',
+				__( 'SEO Plugin Conflicts', 'surerank' )
+			),
+			__( 'SEO plugins decide how your site appears in search results by managing titles, descriptions, and structured information. They help search engines understand your content, but also make your site easier for people to find.', 'surerank' ),
 		];
 
 		$plugin_data      = $this->get_installed_seo_plugins_data();
@@ -545,16 +563,39 @@ class Analyzer extends Api_Base {
 
 			/* translators: %s is the list of active plugins */
 			$description[] = sprintf( __( 'Currently active plugins : %s', 'surerank' ), implode( ', ', array_column( $detected_plugins, 'name' ) ) );
-			$description[] = __( 'But here’s something many site owners don’t realize — using more than one SEO plugin at the same time can lead to issues.', 'surerank' );
 		}
 
-		$description[] = sprintf( '<h6> %s </h6>', __( 'Why this matters:', 'surerank' ) );
-		$description[] = __( 'Most SEO plugins try to manage the same parts of your site. When two plugins do this together, they can send mixed signals to search engines. This might affect how your content is indexed or shown in results. It also makes it harder to know which tool is changing what.', 'surerank' );
+		$description[] = sprintf( '<h6>💡 %s </h6>', __( 'Why this matters:', 'surerank' ) );
+		$description[] = __( 'Having more than one SEO plugin active can create confusion. Each plugin might try to change the same things, sending mixed signals to search engines. This can affect how clearly your site appears in search results and make it harder for visitors to find what they’re looking for.', 'surerank' );
 
-		$description[] = sprintf( '<h6> %s </h6>', __( 'What to keep in mind:', 'surerank' ) );
-		$description[] = __( 'Keeping just one SEO plugin active ensures your settings stay clean and consistent. It’s easier to manage, avoids conflicts, and helps search engines read your site clearly.', 'surerank' );
+		$description[]         = sprintf( '<h6>✅ %s </h6>', __( 'How to keep things smooth:', 'surerank' ) );
+		$description[]['list'] = [
+			__( 'Use only one SEO plugin at a time to keep your settings clean and consistent.', 'surerank' ),
+			__( 'Let that plugin handle everything in one place, so there’s no overlap or conflict.', 'surerank' ),
+			__( 'Check your plugin settings regularly to make sure nothing is accidentally duplicated.', 'surerank' ),
+		];
 
-		$description[] = __( 'SureRank is designed to handle everything you need in one place — so there’s no need for multiple plugins doing the same job.', 'surerank' );
+		$description[] = sprintf(
+			'<h6>📌 %s </h6>',
+			__( 'Example', 'surerank' )
+		);
+		$description[] = __( 'If two plugins try to set your homepage description differently, search engines may receive mixed information, resulting in inconsistent search results or snippets.', 'surerank' );
+
+		$description[] = sprintf(
+			'<h6>🛠️ %s </h6>',
+			__( 'Where to update it', 'surerank' )
+		);
+		$description[] = sprintf(
+			"<img class='w-full h-full' src='%s' />",
+			esc_attr( 'https://surerank.com/wp-content/uploads/2025/12/other-seo-plugin-sub-image.webp' )
+		);
+		$description[] = __( 'You can review your active plugins from your WordPress plugins page and deactivate extras. Then manage all your SEO settings from your main SEO plugin for a clear and single source of truth.', 'surerank' );
+
+		$description[] = sprintf(
+			'<h6>🌟 %s </h6>',
+			__( 'How SureRank helps', 'surerank' )
+		);
+		$description[] = __( 'SureRank keeps your SEO setup simple and reliable. It explains why using a single plugin matters, helping you maintain clarity for both search engines and your visitors, without unnecessary confusion.', 'surerank' );
 
 		return [
 			'exists'      => true,
@@ -612,17 +653,57 @@ class Analyzer extends Api_Base {
 		$working_label     = __( 'Robots.txt file is accessible.', 'surerank' );
 		$not_working_label = __( 'Robots.txt file is not accessible.', 'surerank' );
 		$helptext          = [
-			__( 'Your site uses a small file called robots.txt to guide search engines on where they can and can’t go. It’s like a set of instructions that says, “You’re welcome to look here — but please don’t touch this part.”', 'surerank' ),
+			sprintf(
+				"<img class='w-full h-full' src='%s' alt='%s' />",
+				esc_attr( 'https://surerank.com/wp-content/uploads/2025/12/robots.txt-check-banner.webp' ),
+				esc_attr( 'Robots.txt' )
+			),
+			sprintf(
+				'<h6> %s </h6>',
+				__( 'Robots.txt File', 'surerank' )
+			),
+			__( 'Your site has a small file called robots.txt that acts like a guide for search engines, showing them where they’re welcome to explore and where they should stay away. Think of it as a polite set of instructions for visitors who want to browse your site.', 'surerank' ),
 
-			__( 'Most of the time, WordPress creates this automatically. But if the file is missing or misconfigured, search engines might avoid pages they’re actually allowed to visit — or worse, miss important content altogether.', 'surerank' ),
+			sprintf(
+				'<h6>💡 %s </h6>',
+				__( 'Why this matters:', 'surerank' )
+			),
+			sprintf(
+				"<img class='w-full h-full' src='%s' alt='%s' />",
+				esc_attr( 'https://surerank.com/wp-content/uploads/2025/12/robots.txt-sub-banner.webp' ),
+				esc_attr( 'Robots.txt sub banner' )
+			),
+			__( 'If the robots.txt file is missing or set up incorrectly, search engines might skip pages they should see, or spend time on pages that aren’t important. A proper file helps your site get noticed efficiently and ensures the content that matters most is visible to both search engines and people.', 'surerank' ),
 
-			sprintf( '<h6> %s </h6>', __( 'Why it matters:', 'surerank' ) ),
-			__( 'Without a robots.txt file, search engines may not crawl your site properly, or they might spend too much time on pages that don’t matter. With a working file, your site can be explored more efficiently.', 'surerank' ),
+			sprintf(
+				'<h6>✅ %s </h6>',
+				__( 'How to keep things smooth', 'surerank' )
+			),
+			[
+				'list' => [
+					__( 'Check your robots.txt by visiting yoursite.com/robots.txt , if it opens with some rules, it’s active.', 'surerank' ),
+					__( 'Make sure it doesn’t block pages you want visitors to find.', 'surerank' ),
+					__( 'Even if the rules look complicated, having the file is better than not having one.', 'surerank' ),
+					__( 'Use the built-in robots.txt editor in SureRank to view or adjust the file safely.', 'surerank' ),
+				],
+			],
 
-			sprintf( '<h6> %s </h6>', __( 'What you can do:', 'surerank' ) ),
-			__( 'Check if your robots.txt file is available by visiting yourdomain.com/robots.txt in your browser. If it opens and lists some basic rules (even if you don’t understand them), that means it’s active. ', 'surerank' ),
+			sprintf(
+				'<h6>📌 %s </h6>',
+				__( 'Example', 'surerank' )
+			),
+			sprintf(
+				"<img class='w-full h-full' src='%s' alt='%s' />",
+				esc_attr( 'https://surerank.com/wp-content/uploads/2025/12/robot-example.webp' ),
+				esc_attr( 'Robots.txt example' )
+			),
+			__( 'If your robots.txt accidentally blocks your “Shop” or “Pricing” pages, search engines won’t see them, and people searching for your products or services might never find them.', 'surerank' ),
 
-			__( 'SureRank takes care of this by default — so if it’s missing, we’ll help you fix it easily.', 'surerank' ),
+			sprintf( '<h6>🛠️ %s </h6>', __( 'Where to update it', 'surerank' ) ),
+			__( 'The robots.txt file can be edited directly from the SureRank settings using the built-in editor.', 'surerank' ),
+
+			sprintf( '<h6>🌟 %s </h6>', __( 'How SureRank helps', 'surerank' ) ),
+			__( 'SureRank automatically creates a working robots.txt file and lets you manage it directly within the plugin. This keeps your site clear for search engines and ensures important pages are always discoverable.', 'surerank' ),
 		];
 
 		$response = Scraper::get_instance()->fetch_status( $robots_url );
@@ -700,17 +781,48 @@ class Analyzer extends Api_Base {
 		$working_label     = __( 'XML sitemap is accessible to search engines.', 'surerank' );
 		$not_working_label = __( 'XML sitemap is not accessible to search engines.', 'surerank' );
 		$helptext          = [
-			__( 'A sitemap is like a guide or map that helps search engines explore your website more efficiently. It lists out the important pages on your site and gives search engines a clear path to follow — like a floor plan showing where everything is. This way, nothing important gets missed.', 'surerank' ),
+			sprintf(
+				"<img class='w-full h-full' src='%s' alt='%s' />",
+				esc_attr( 'https://surerank.com/wp-content/uploads/2025/12/sitemap-banner.webp' ),
+				esc_attr( 'Sitemap example' )
+			),
+			sprintf(
+				'<h6> %s </h6>',
+				__( 'Sitemap', 'surerank' )
+			),
+			__( 'A sitemap is like a guide or floor plan for your website that helps search engines explore it efficiently. It lists your important pages and shows search engines the path to follow, making sure nothing essential gets missed. Think of it as a chapter list in a book — it doesn’t change how your site looks to visitors, but it helps search engines understand your content quickly and clearly.', 'surerank' ),
+
+			sprintf(
+				'<h6>💡 %s </h6>',
+				__( 'Why this matters:', 'surerank' )
+			),
+			sprintf(
+				"<img class='w-full h-full' src='%s' alt='%s' />",
+				esc_attr( 'https://surerank.com/wp-content/uploads/2025/12/sitemap-example.webp' ),
+				esc_attr( __( 'why this matters', 'surerank' ) )
+			),
+			__( 'Without a sitemap, search engines might overlook some pages or take longer to notice updates. This can slow down how quickly your new content appears in search results. A well-maintained sitemap gives search engines a clear overview of your site, helping your content get indexed faster and more accurately, which improves visibility.', 'surerank' ),
 
 			__( 'Think of it like this: if your website was a story, the sitemap would be the chapter list — helping Google and other search engines jump to the right sections. It doesn’t change how your site looks to visitors, but it makes a big difference in how your site is discovered and understood behind the scenes.', 'surerank' ),
 
-			sprintf( '<h6> %s </h6>', __( 'Why it matters:', 'surerank' ) ),
-			__( 'Without a sitemap, search engines might miss some of your pages or take longer to find new ones. That can slow down how quickly your updates appear in search results. With a sitemap, they get a clear overview of your content and can index it faster and more accurately — which can help improve visibility.', 'surerank' ),
+			sprintf( '<h6>✅ %s </h6>', __( 'How to keep things smooth', 'surerank' ) ),
+			[
+				'list' => [
+					__( 'Make sure your sitemap is active and accessible by visiting yoursite.com/sitemap.xml.', 'surerank' ),
+					__( 'Even if it looks technical, having a list of your pages means search engines know where to go.', 'surerank' ),
+					__( 'Keep the sitemap up to date whenever you add new pages or make major changes', 'surerank' ),
+					__( 'Use the built-in sitemap management in SureRank to create and maintain it automatically.', 'surerank' ),
+				],
+			],
 
-			sprintf( '<h6> %s </h6>', __( 'What you can do:', 'surerank' ) ),
-			__( 'Check that your sitemap is active and accessible. You can usually visit it at a link like yourdomain.com/sitemap.xml. If it opens and shows a list of links (even if it looks a bit technical), that means it’s working.', 'surerank' ),
+			sprintf( '<h6>📌 %s </h6>', __( 'Example', 'surerank' ) ),
+			__( 'If you add a new blog post but don’t have a sitemap, search engines might take longer to find it. With a sitemap, your new post appears in search results more quickly, helping readers discover your content sooner.', 'surerank' ),
 
-			__( 'If you’ve connected tools like Google Search Console, you can also submit the sitemap there — but that’s optional. The key is to make sure it’s available and up to date so search engines can do their job properly.', 'surerank' ),
+			sprintf( '<h6>🛠️ %s </h6>', __( 'Where to update it', 'surerank' ) ),
+			__( 'You can manage and update your sitemap directly from the SureRank settings using the built-in sitemap tool.', 'surerank' ),
+
+			sprintf( '<h6>🌟 %s </h6>', __( 'How SureRank helps', 'surerank' ) ),
+			__( 'SureRank automatically generates and updates your sitemap, so search engines always have a clear path to your important content. This keeps your site organized and ensures nothing valuable gets overlooked, without requiring extra work from you.', 'surerank' ),
 		];
 
 		$sitemap_url = home_url( '/sitemap_index.xml' );
@@ -899,6 +1011,61 @@ class Analyzer extends Api_Base {
 		$this->update_site_seo_checks( $response, 'other' );
 
 		return $response;
+	}
+
+	/**
+	 * Sanitize ids.
+	 *
+	 * @param array<int|string>                     $params IDs.
+	 * @param WP_REST_Request<array<string, mixed>> $request Request object.
+	 * @param string                                $key Key.
+	 * @return array<int>
+	 */
+	public static function sanitize_ids( $params, $request, $key ) {
+		return array_map( 'intval', $params );
+	}
+
+	/**
+	 * Get term checks data (cached or fresh).
+	 *
+	 * @param int $term_id Term ID.
+	 * @return array<string, mixed>|WP_Error
+	 */
+	private function get_term_checks_data( $term_id ) {
+		if ( $this->is_taxonomy_cache_valid( $term_id ) ) {
+			return $this->get_cached_taxonomy_checks( $term_id );
+		}
+
+		$term_checks = $this->run_taxonomy_checks( $term_id );
+		if ( ! is_wp_error( $term_checks ) ) {
+			$term_checks = $this->get_updated_ignored_check_list( $term_checks, $term_id, 'taxonomy' );
+		}
+
+		return $term_checks;
+	}
+
+	/**
+	 * Get post checks data (cached or fresh).
+	 *
+	 * @param int $post_id Post ID.
+	 * @return array<string, mixed>|WP_Error
+	 */
+	private function get_post_checks_data( $post_id ) {
+		$post = get_post( $post_id );
+		if ( ! $post ) {
+			return new WP_Error( 'invalid_post', __( 'Invalid Post ID.', 'surerank' ) );
+		}
+
+		if ( $this->is_post_cache_valid( $post, $post_id ) ) {
+			return $this->get_cached_post_checks( $post_id );
+		}
+
+		$post_checks = $this->run_checks( $post_id );
+		if ( ! is_wp_error( $post_checks ) ) {
+			$post_checks = $this->get_updated_ignored_check_list( $post_checks, $post_id, 'post' );
+		}
+
+		return $post_checks;
 	}
 
 	/**
@@ -1463,9 +1630,13 @@ class Analyzer extends Api_Base {
 	 */
 	private function get_post_id_args() {
 		return [
-			'post_id' => [
-				'type'     => 'integer',
-				'required' => true,
+			'post_ids' => [
+				'type'              => 'array',
+				'required'          => true,
+				'sanitize_callback' => [ self::class, 'sanitize_ids' ],
+				'items'             => [
+					'type' => 'integer',
+				],
 			],
 		];
 	}
@@ -1477,9 +1648,13 @@ class Analyzer extends Api_Base {
 	 */
 	private function get_term_id_args() {
 		return [
-			'term_id' => [
-				'type'     => 'integer',
-				'required' => true,
+			'term_ids' => [
+				'type'              => 'array',
+				'required'          => true,
+				'sanitize_callback' => [ self::class, 'sanitize_ids' ],
+				'items'             => [
+					'type' => 'integer',
+				],
 			],
 		];
 	}
@@ -1565,19 +1740,6 @@ class Analyzer extends Api_Base {
 	}
 
 	/**
-	 * Validate post ID
-	 *
-	 * @param mixed $post_id Post ID to validate.
-	 * @return WP_REST_Response|null
-	 */
-	private function validate_post_id( $post_id ) {
-		if ( ! $post_id ) {
-			return $this->create_error_response( __( 'Post ID is required.', 'surerank' ) );
-		}
-		return null;
-	}
-
-	/**
 	 * Create error response
 	 *
 	 * @param string $message Error message.
@@ -1616,42 +1778,14 @@ class Analyzer extends Api_Base {
 	 * Get cached post checks
 	 *
 	 * @param int $post_id Post ID.
-	 * @return WP_REST_Response|null
+	 * @return array<string,mixed>|WP_Error
 	 */
 	private function get_cached_post_checks( $post_id ) {
 		$post_checks = Get::post_meta( $post_id, 'surerank_seo_checks', true );
 		if ( ! empty( $post_checks ) ) {
-			$post_checks = $this->get_updated_ignored_check_list( $post_checks, $post_id, 'post' );
-			return rest_ensure_response(
-				[
-					'status'  => 'success',
-					'message' => __( 'SEO checks retrieved from cache.', 'surerank' ),
-					'checks'  => $post_checks,
-				]
-			);
+			return $this->get_updated_ignored_check_list( $post_checks, $post_id, 'post' );
 		}
-		return null;
-	}
-
-	/**
-	 * Run and return post checks
-	 *
-	 * @param int $post_id Post ID.
-	 * @return WP_REST_Response
-	 */
-	private function run_and_return_post_checks( $post_id ) {
-		$post_checks = $this->run_checks( $post_id );
-		if ( ! is_wp_error( $post_checks ) ) {
-			$post_checks = $this->get_updated_ignored_check_list( $post_checks, $post_id, 'post' );
-		}
-
-		return rest_ensure_response(
-			[
-				'status'  => 'success',
-				'message' => __( 'SEO checks completed.', 'surerank' ),
-				'checks'  => $post_checks,
-			]
-		);
+		return new WP_Error( 'no_cached_checks', __( 'No cached checks found.', 'surerank' ) );
 	}
 
 	/**
@@ -1678,42 +1812,14 @@ class Analyzer extends Api_Base {
 	 * Get cached taxonomy checks
 	 *
 	 * @param int $term_id Term ID.
-	 * @return WP_REST_Response|null
+	 * @return array<string,mixed>|WP_Error
 	 */
 	private function get_cached_taxonomy_checks( $term_id ) {
 		$term_checks = Get::term_meta( $term_id, 'surerank_seo_checks', true );
 		if ( ! empty( $term_checks ) ) {
-			$term_checks = $this->get_updated_ignored_check_list( $term_checks, $term_id, 'taxonomy' );
-			return rest_ensure_response(
-				[
-					'status'  => 'success',
-					'message' => __( 'Taxonomy SEO checks retrieved from cache.', 'surerank' ),
-					'checks'  => $term_checks,
-				]
-			);
+			return $this->get_updated_ignored_check_list( $term_checks, $term_id, 'taxonomy' );
 		}
-		return null;
-	}
-
-	/**
-	 * Run and return taxonomy checks
-	 *
-	 * @param int $term_id Term ID.
-	 * @return WP_REST_Response
-	 */
-	private function run_and_return_taxonomy_checks( $term_id ) {
-		$term_checks = $this->run_taxonomy_checks( $term_id );
-		if ( ! is_wp_error( $term_checks ) ) {
-			$term_checks = $this->get_updated_ignored_check_list( $term_checks, $term_id, 'taxonomy' );
-		}
-
-		return rest_ensure_response(
-			[
-				'status'  => 'success',
-				'message' => __( 'Taxonomy SEO checks found.', 'surerank' ),
-				'checks'  => $term_checks,
-			]
-		);
+		return new WP_Error( 'no_cached_checks', __( 'No cached checks found.', 'surerank' ) );
 	}
 
 	/**
@@ -1729,7 +1835,7 @@ class Analyzer extends Api_Base {
 				'surerank_broken_link_request_args',
 				[
 					'limit_response_size' => 1,
-					'timeout'             => 10, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout
+					'timeout'             => 30, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout
 				]
 			)
 		);

@@ -56,7 +56,7 @@ const SiteSeoChecksHeader = () => {
 					<Breadcrumb.Separator type="slash" />
 					<Breadcrumb.Item>
 						<Breadcrumb.Page>
-							{ __( 'Site SEO Analysis', 'surerank' ) }
+							{ __( 'Site SEO Audit', 'surerank' ) }
 						</Breadcrumb.Page>
 					</Breadcrumb.Item>
 				</Breadcrumb.List>
@@ -71,7 +71,7 @@ const SiteSeoChecksTitle = ( { isLoading, handleRunChecksAgain } ) => {
 		<Container align="center" justify="between" className="p-2">
 			<Title
 				tag="h4"
-				title={ __( 'Site SEO Analysis', 'surerank' ) }
+				title={ __( 'Site SEO Audit', 'surerank' ) }
 				size="md"
 			/>
 			<div></div>
@@ -88,7 +88,7 @@ const SiteSeoChecksTitle = ( { isLoading, handleRunChecksAgain } ) => {
 				onClick={ handleRunChecksAgain }
 				disabled={ isLoading }
 			>
-				{ __( 'Re-run Checks', 'surerank' ) }
+				{ __( 'Run Checks', 'surerank' ) }
 			</Button>
 		</Container>
 	);

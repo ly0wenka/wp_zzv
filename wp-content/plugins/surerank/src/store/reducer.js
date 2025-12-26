@@ -64,7 +64,7 @@ const DEFAULT_STATE = {
 	},
 	// App settings end.
 
-		// Page SEO checks start.
+	// Page SEO checks start.
 	pageSeoChecks: {
 		authenticated: window?.surerank_globals?.ai_authenticated || false,
 		initializing: true,
@@ -98,6 +98,11 @@ function reducer( state = DEFAULT_STATE, action ) {
 			return {
 				...state,
 				modalEnabled: action.value,
+				appSettings: {
+					...state.appSettings,
+					currentScreen: DEFAULT_STATE.appSettings.currentScreen,
+					previousScreen: state.appSettings.currentScreen,
+				},
 			};
 		case 'UPDATE_INITIAL_STATE':
 			return {
@@ -207,6 +212,14 @@ function reducer( state = DEFAULT_STATE, action ) {
 						sequence: action.payload.sequence,
 						error: action.payload.error,
 					},
+				},
+			};
+		case actionTypes.SET_BATCH_PAGE_SEO_CHECKS:
+			return {
+				...state,
+				pageSeoChecks: {
+					...state.pageSeoChecks,
+					...action.payload,
 				},
 			};
 		default:

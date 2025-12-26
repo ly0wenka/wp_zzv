@@ -88,17 +88,18 @@ export const initialState = {
 		// 	compulsory: false,
 		// 	icon: 'squares-plus',
 		// },
-		{
-			title: __( 'Appointment & Bookings', 'astra-sites' ),
-			id: 'appointment-bookings',
-			description: __(
-				'Easily manage bookings for your services',
-				'astra-sites'
-			),
-			enabled: false,
-			compulsory: false,
-			icon: 'calendar',
-		},
+		// Removing
+		// {
+		// 	title: __( 'Appointment & Bookings', 'astra-sites' ),
+		// 	id: 'appointment-bookings',
+		// 	description: __(
+		// 		'Easily manage bookings for your services',
+		// 		'astra-sites'
+		// 	),
+		// 	enabled: false,
+		// 	compulsory: false,
+		// 	icon: 'calendar',
+		// },
 		{
 			title: __( 'Website Emails & SMTP', 'astra-sites' ),
 			id: 'smtp',

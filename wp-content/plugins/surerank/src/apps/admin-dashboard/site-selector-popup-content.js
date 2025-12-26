@@ -327,7 +327,6 @@ export const ConnectMode = ( { setForceSelectMode } ) => {
 						</Text>
 					) }
 				</div>
-
 				{ /* Current Site URL */ }
 				<div className="p-2 rounded-[4px] bg-background-secondary">
 					<Text
@@ -339,7 +338,6 @@ export const ConnectMode = ( { setForceSelectMode } ) => {
 						{ currentSiteUrl }
 					</Text>
 				</div>
-
 				{ /* Main Action */ }
 				<div className="space-y-4">
 					<Suspense fallback={ <Skeleton className="h-12 w-full" /> }>
@@ -375,14 +373,14 @@ export const ConnectMode = ( { setForceSelectMode } ) => {
 						) : null;
 					} )() }
 				</div>
-
 				{ /* Footer Actions */ }
-				<div className="flex justify-between pt-4 border-t">
+				<div className="flex flex-wrap justify-between items-center gap-3 pt-4 border-t">
 					<Button
 						iconPosition="left"
 						size="sm"
 						variant="link"
 						onClick={ handleDisconnect }
+						className="whitespace-nowrap"
 					>
 						{ TEXTS.SWITCH_ACCOUNTS }
 					</Button>
@@ -393,6 +391,7 @@ export const ConnectMode = ( { setForceSelectMode } ) => {
 						onClick={ () => {
 							setForceSelectMode( true );
 						} }
+						className="whitespace-nowrap"
 					>
 						{ TEXTS.LINK_EXISTING }
 					</Button>
@@ -506,12 +505,13 @@ const SiteSelectorFooter = ( {
 	setForceSelectMode,
 } ) => {
 	return (
-		<div className="flex justify-between items-center border-t bg-background-secondary p-4 gap-3 rounded-b-lg">
+		<div className="flex flex-wrap justify-between items-center border-t bg-background-secondary p-4 gap-3 rounded-b-lg">
 			<Button
 				iconPosition="left"
 				size="sm"
 				variant="link"
 				onClick={ handleDisconnect }
+				className="whitespace-nowrap"
 			>
 				{ TEXTS.SWITCH_ACCOUNTS }
 			</Button>

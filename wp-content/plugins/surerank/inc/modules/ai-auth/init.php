@@ -50,7 +50,6 @@ class Init {
 	 * @return array<string, mixed> Localisation variables.
 	 */
 	public function add_localization_vars( $variables ) {
-
 		return array_merge(
 			$variables,
 			[

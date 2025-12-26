@@ -148,7 +148,7 @@ class PostAnalyzer {
 		$this->page_description = $meta_data['page_description'] ?? '';
 		$this->canonical_url    = $meta_data['canonical_url'] ?? '';
 		$this->post_permalink   = $this->get_original_permalink( $post_id, $post );
-		$this->post_content     = $post->post_content;
+		$this->post_content     = apply_filters( 'surerank_post_analyzer_content', $post->post_content, $post );
 		/**
 		 * Parse blocks and render them to get the rendered content.
 		 * Commented out because it's not needed for the analyzer.
@@ -178,6 +178,41 @@ class PostAnalyzer {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Determine whether a URL should be skipped. We use an inclusive check:
+	 * - Allow absolute http/https URLs
+	 * - Allow relative URLs (no scheme)
+	 * - Skip everything else (mailto:, tel:, sms:, geo:, javascript:, data:, etc.)
+	 *
+	 * @param string $href URL or href attribute value.
+	 * @return bool True if the URL should be skipped.
+	 */
+	public static function should_skip_url( string $href ): bool {
+		$href = trim( $href );
+		if ( $href === '' ) {
+			return true;
+		}
+
+		// Skip anchors like #section.
+		if ( strpos( $href, '#' ) === 0 ) {
+			return true;
+		}
+
+		// If the URL contains a scheme, parse it and allow only http/https.
+		// Examples: mailto:, tel:, sms:, geo:, javascript:, data: will be skipped.
+		$parts  = wp_parse_url( $href );
+		$scheme = null;
+		if ( is_array( $parts ) && ! empty( $parts['scheme'] ) ) {
+			$scheme = strtolower( $parts['scheme'] );
+			// Allow only http and https schemes.
+			return ! in_array( $scheme, [ 'http', 'https' ], true );
+		}
+
+		// If parse_url returned null/false, check if it contains a colon early on
+		// (which would indicate a scheme we can't parse). Otherwise treat as relative (allow).
+		return strpos( $href, ':' ) !== false;
 	}
 
 	/**
@@ -351,7 +386,7 @@ class PostAnalyzer {
 			return 'warning';
 		}
 
-		if ( Image_Seo::get_instance()->status() ) {
+		if ( Image_Seo::get_instance()->status() && ! $is_optimized ) {
 			return 'suggestion';
 		}
 
@@ -574,7 +609,7 @@ class PostAnalyzer {
 		foreach ( $anchor_nodes as $anchor ) {
 			if ( $anchor instanceof DOMElement ) {
 				$href = trim( $anchor->getAttribute( 'href' ) );
-				
+
 				// Skip empty hrefs and duplicates.
 				if ( $href === '' || in_array( $href, $links, true ) ) {
 					continue;
@@ -591,41 +626,6 @@ class PostAnalyzer {
 	}
 
 	/**
-	 * Determine whether a URL should be skipped. We use an inclusive check:
-	 * - Allow absolute http/https URLs
-	 * - Allow relative URLs (no scheme)
-	 * - Skip everything else (mailto:, tel:, sms:, geo:, javascript:, data:, etc.)
-	 *
-	 * @param string $href URL or href attribute value.
-	 * @return bool True if the URL should be skipped.
-	 */
-	public static function should_skip_url( string $href ): bool {
-		$href = trim( $href );
-		if ( $href === '' ) {
-			return true;
-		}
-
-		// Skip anchors like #section.
-		if ( strpos( $href, '#' ) === 0 ) {
-			return true;
-		}
-
-		// If the URL contains a scheme, parse it and allow only http/https.
-		// Examples: mailto:, tel:, sms:, geo:, javascript:, data: will be skipped.
-		$parts  = wp_parse_url( $href );
-		$scheme = null;
-		if ( is_array( $parts ) && ! empty( $parts['scheme'] ) ) {
-			$scheme = strtolower( $parts['scheme'] );
-			// Allow only http and https schemes.
-			return ! in_array( $scheme, [ 'http', 'https' ], true );
-		}
-
-		// If parse_url returned null/false, check if it contains a colon early on
-		// (which would indicate a scheme we can't parse). Otherwise treat as relative (allow).
-		return strpos( $href, ':' ) !== false;
-	}
-
-	/**
 	 * Get the original permalink for a post, even if it's set as homepage.
 	 *
 	 * @param int     $post_id Post ID.
@@ -634,11 +634,11 @@ class PostAnalyzer {
 	 */
 	private function get_original_permalink( $post_id, $post ) {
 		$homepage_id = (int) get_option( 'page_on_front' );
-		
+
 		if ( $homepage_id === $post_id ) {
 			return $this->generate_original_page_url( $post );
 		}
-		
+
 		$permalink = get_permalink( $post_id );
 		return $permalink !== false ? $permalink : '';
 	}
@@ -653,7 +653,7 @@ class PostAnalyzer {
 		if ( empty( $post->post_name ) ) {
 			return '';
 		}
-		
+
 		return trailingslashit( home_url() ) . $post->post_name . '/';
 	}
 

@@ -22,7 +22,13 @@ const KeywordInput = () => {
 	return (
 		<div className="w-full flex flex-col gap-2 [&>div]:w-full">
 			<div className="flex items-center gap-2">
-				<Text size={ 14 } weight={ 500 } lineHeight={ 20 }>
+				<Text
+					as="label"
+					size={ 14 }
+					weight={ 500 }
+					lineHeight={ 20 }
+					htmlFor="focus-keyword-input"
+				>
 					{ __( 'Focus Keyword', 'surerank' ) }
 				</Text>
 				<InfoTooltip
@@ -35,6 +41,7 @@ const KeywordInput = () => {
 				/>
 			</div>
 			<PreviewInputWithSuffix
+				id="focus-keyword-input"
 				value={ focusKeyword || '' }
 				onChange={ handleFocusKeywordChange }
 				isLoading={ ! initialized }

@@ -2,11 +2,11 @@
 /**
  * Utility class for fixing SEO Checks functionality.
  *
- * @package SureRank\Inc\Modules\FixSeoChecks
+ * @package SureRank\Inc\Modules\Fix_Seo_Checks
  * @since 1.4.2
  */
 
-namespace SureRank\Inc\Modules\FixSeoChecks;
+namespace SureRank\Inc\Modules\Fix_Seo_Checks;
 
 use SureRank\Inc\Traits\Get_Instance;
 use WP_Error;
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Utility class for fixing SEO Checks functionality.
  *
- * @package SureRank\Inc\Modules\FixSeoChecks
+ * @package SureRank\Inc\Modules\Fix_Seo_Checks
  * @since 1.4.2
  */
 class Utils {
@@ -74,7 +74,7 @@ class Utils {
 		return apply_filters(
 			'surerank_page_check_use_me_classes',
 			[
-				'SureRank\Inc\Modules\FixSeoChecks\Page',
+				'SureRank\Inc\Modules\Fix_Seo_Checks\Page',
 			]
 		);
 	}

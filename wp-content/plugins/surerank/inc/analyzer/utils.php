@@ -287,20 +287,6 @@ class Utils {
 	}
 
 	/**
-	 * Check if keyword exists in text (case-insensitive).
-	 *
-	 * @param string $text Text to search in.
-	 * @param string $keyword Keyword to search for.
-	 * @return bool
-	 */
-	private static function keyword_exists_in_text( $text, $keyword ) {
-		if ( empty( $text ) || empty( $keyword ) ) {
-			return false;
-		}
-		return stripos( $text, $keyword ) !== false;
-	}
-
-	/**
 	 * Analyze focus keyword in SEO title.
 	 *
 	 * @param string|null $title SEO title.
@@ -471,5 +457,19 @@ class Utils {
 			'message' => sprintf( __( 'Focus keyword "%s" not found in content.', 'surerank' ), $keyword ),
 			'type'    => 'keyword',
 		];
+	}
+
+	/**
+	 * Check if keyword exists in text (case-insensitive).
+	 *
+	 * @param string $text Text to search in.
+	 * @param string $keyword Keyword to search for.
+	 * @return bool
+	 */
+	private static function keyword_exists_in_text( $text, $keyword ) {
+		if ( empty( $text ) || empty( $keyword ) ) {
+			return false;
+		}
+		return stripos( $text, $keyword ) !== false;
 	}
 }

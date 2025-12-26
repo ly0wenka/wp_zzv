@@ -10,7 +10,7 @@ import { PROCESS_STATUSES } from '@/global/constants';
 import { toast } from '@bsf/force-ui';
 import { getAuth } from '@/functions/api';
 import useAuthPolling from '@/global/hooks/use-auth-polling';
-import { PAGE_SEO_CHECKS_LEARN_MORE_URL as LEARN_MORE_URL } from '@Global/constants';
+import { LEARN_MORE_AI_AUTH as LEARN_MORE_URL } from '@Global/constants';
 
 const FixItForMe = () => {
 	const {
@@ -19,6 +19,7 @@ const FixItForMe = () => {
 		currentScreen,
 		previousTab,
 		previousMetaTab,
+		previousAccordion,
 	} = useSelect( ( select ) => {
 		const seoChecks = select( STORE_NAME ).getPageSeoChecks();
 		const appSettings = select( STORE_NAME ).getAppSettings();
@@ -28,6 +29,7 @@ const FixItForMe = () => {
 			currentScreen: appSettings?.currentScreen,
 			previousTab: appSettings?.previousTab,
 			previousMetaTab: appSettings?.previousMetaTab,
+			previousAccordion: appSettings?.previousAccordion,
 		};
 	}, [] );
 	const { updateAppSettings, setPageSeoCheck } = useDispatch( STORE_NAME );
@@ -83,7 +85,8 @@ const FixItForMe = () => {
 			currentScreen: previousScreen,
 			previousScreen: currentScreen,
 			currentTab: previousTab || 'optimize', // Restore the main tab
-			currentMetaTab: previousMetaTab || 'meta', // Restore the meta sub-tab
+			currentMetaTab: previousMetaTab || 'optimize', // Restore the meta tab
+			currentAccordion: previousAccordion || 'general', // Restore the accordion
 			// Clear generation state for both flows
 			selectedCheckId: null,
 			selectedFieldKey: null,

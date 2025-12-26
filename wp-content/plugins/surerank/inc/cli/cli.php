@@ -20,7 +20,6 @@ use WP_CLI;
  */
 class Cli {
 
-
 	use Get_Instance;
 
 	/**
@@ -47,6 +46,7 @@ class Cli {
 			WP_CLI::line( __( 'SureRank Cache generated successfully', 'surerank' ) );
 		}
 	}
+
 }
 
 /**

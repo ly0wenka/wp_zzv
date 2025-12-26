@@ -40,6 +40,7 @@ const MetaField = ( {
 					<MagicButton
 						fieldKey={ fieldKey }
 						onUseThis={ onUseThis }
+						tooltip={ __( 'Generate with AI', 'surerank' ) }
 					/>
 				</div>
 			</div>

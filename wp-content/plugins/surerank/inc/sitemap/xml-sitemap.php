@@ -15,11 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use SureRank\Inc\Functions\Cache;
-use SureRank\Inc\Functions\Helper;
 use SureRank\Inc\Functions\Settings;
-use SureRank\Inc\Schema\Helper as Schema_Helper;
 use SureRank\Inc\Traits\Get_Instance;
-use WP_Query;
 
 /**
  * XML Sitemap
@@ -161,7 +158,7 @@ class Xml_Sitemap extends Sitemap {
 		$sitemap = [];
 
 		if ( '1' === $type ) {
-			$sitemap_index = Cache::get_file( 'sitemap_index.json' );
+			$sitemap_index = Cache::get_file( 'sitemap/sitemap_index.json' );
 			if ( $sitemap_index ) {
 				$sitemap = json_decode( $sitemap_index, true );
 				$this->sitemapindex( $sitemap );
@@ -185,7 +182,7 @@ class Xml_Sitemap extends Sitemap {
 		$sitemap = [];
 
 		$prefix_param = sanitize_text_field( get_query_var( 'surerank_prefix' ) );
-		if ( Cache::file_exists( 'sitemap_index.json' ) ) {
+		if ( Cache::file_exists( 'sitemap/sitemap_index.json' ) ) {
 			$sitemap = $this->get_sitemap_from_cache( $type, $page, $prefix_param );
 			$this->generate_main_sitemap_xml( $sitemap );
 		}
@@ -244,7 +241,7 @@ class Xml_Sitemap extends Sitemap {
 		$combined_sitemap = [];
 		for ( $chunk_number = $start_chunk; $chunk_number <= $end_chunk; $chunk_number++ ) {
 			$chunk_file      = $prefix_param . '-' . $type . '-chunk-' . $chunk_number . '.json';
-			$cache_file_data = Cache::get_file( $chunk_file );
+			$cache_file_data = Cache::get_file( 'sitemap/' . $chunk_file );
 
 			if ( ! $cache_file_data ) {
 				continue;

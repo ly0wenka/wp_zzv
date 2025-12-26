@@ -440,6 +440,9 @@ class Helper {
 			return '';
 		}
 
+		// Strip HTML tags to prevent them from being included in IDs and field names.
+		$input = wp_strip_all_tags( $input );
+
 		// Encrypt the input and return it.
 		$base_64 = base64_encode( $input ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 		return rtrim( $base_64, '=' );
@@ -2126,6 +2129,25 @@ class Helper {
 
 		// If conversion fails, return false.
 		return false;
+	}
+
+	/**
+	 * Generate a unique ID for the saved form.
+	 * Also ensures that the generated ID does not already exist in the database table.
+	 *
+	 * @param class-string $class  The class name where the get method is defined to check for existing IDs.
+	 * @param int<1, max>  $length The length of the random bytes to generate. Default is 8.
+	 * @return string
+	 * @since 2.2.0
+	 */
+	public static function generate_unique_id( $class, $length = 8 ) {
+		// Ensure length is at least 1.
+		$length = max( 1, $length );
+
+		do {
+			$id = bin2hex( random_bytes( $length ) );
+		} while ( is_callable( [ $class, 'get' ] ) && call_user_func( [ $class, 'get' ], $id ) );
+		return $id;
 	}
 
 	/**

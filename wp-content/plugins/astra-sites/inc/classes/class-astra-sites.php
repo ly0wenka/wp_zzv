@@ -187,6 +187,10 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 			add_filter( 'wp_import_insert_term', array( $this, 'store_original_term_id' ), 10, 2 );
 			add_filter( 'getting_started_is_setup_wizard_showing', array( $this, 'maybe_setup_wizard_showing' ) );
 			add_filter( 'getting_started_logo_url', array( $this, 'starter_templates_logo_url' ) );
+
+			// Enable/disable templates force syncing.
+			add_action( 'ast_block_templates_enable_force_sync', array( __CLASS__, 'enable_force_sync' ) );
+			add_filter( 'ast_block_templates_disable_force_sync', 'astra_sites_has_import_started' );
 		}
 
 		/**
@@ -878,7 +882,15 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 				)
 			);
 
-			$api_url = add_query_arg( $api_args, trailingslashit( self::get_instance()->get_api_domain() ) . 'wp-json/wp/v2/' . $url );
+			/**
+			 * Filter to modify the API Request URL.
+			 *
+			 * @param string $api_url The complete API request URL.
+			 *
+			 * @since 4.4.43
+			 */
+			$api_url = apply_filters( 'astra_sites_api_request_' . $url, trailingslashit( self::get_instance()->get_api_domain() ) . 'wp-json/wp/v2/' . $url );
+			$api_url = add_query_arg( $api_args, $api_url );
 
 			if ( ! astra_sites_is_valid_url( $api_url ) ) {
 				wp_send_json_error(
@@ -1926,6 +1938,7 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 					'dismiss_ai_notice' => Astra_Sites_Page::get_instance()->get_setting( 'dismiss_ai_promotion' ),
 					'showClassicTemplates' => apply_filters( 'astra_sites_show_classic_templates', true ),
 					'showAiBuilder'        => self::should_show_ai_builder(),
+					'customTemplateData'   => self::get_custom_template_data(),
 					'bgSyncInProgress'     => self::is_sync_in_progress(),
 					'userDetails'          => array(
 						'first_name' => get_user_meta( get_current_user_ID(), 'first_name', true ),
@@ -2404,7 +2417,14 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 				}
 			}
 
-			return $sites_and_pages;
+			/**
+			 * Filter to modify all sites and pages data.
+			 *
+			 * @param array $sites_and_pages Array of all sites and pages.
+			 *
+			 * @since 4.4.43
+			 */
+			return apply_filters( 'astra_sites_get_all_sites', $sites_and_pages );
 		}
 
 		/**
@@ -2733,6 +2753,7 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 							</div>
 						</div>'
 					),
+					'display-with-other-notices' => false,
 				)
 			);
 		}
@@ -2962,6 +2983,24 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 		}
 
 		/**
+		 * Get custom template data for Custom Templates step.
+		 *
+		 * @since 4.4.43
+		 * @return array Custom template data.
+		 */
+		public static function get_custom_template_data() {
+			/**
+			 * Filter to provide custom template data for Custom Templates step.
+			 *
+			 * @param array $custom_templates Array of custom template data.
+			 *
+			 * @since 4.4.43
+			 * @param array $custom_templates Array of custom template data.
+			 */
+			return apply_filters( 'astra_sites_show_custom_templates', array() );
+		}
+
+		/**
 		 * Determine the appropriate current index (ci) parameter based on page builder flags.
 		 *
 		 * Mirrors the step-skipping logic used in the site-type/index.js (JavaScript).
@@ -3108,10 +3147,12 @@ JS;
 
 			$all_plugins = get_plugins();
 
-			// If spectra is not installed, consider fresh install.
+			// If spectra is installed, check its version.
 			if ( isset( $all_plugins[ $spectra_init ] ) ) {
 				$spectra_plugin  = $all_plugins[ $spectra_init ];
 				$spectra_version = isset( $spectra_plugin['Version'] ) ? $spectra_plugin['Version'] : '';
+
+				// Remove any suffix from the version (e.g., '-beta', '-rc1').
 				$spectra_version = preg_replace_callback(
 					'/-.+$/',
 					function() {
@@ -3126,8 +3167,8 @@ JS;
 				}
 			}
 
-			// Default to v2 if version info is unavailable. will be updated to v3 after stable Spectra v3 release.
-			return 'v2';
+			// Default to v3 for fresh installs.
+			return 'v3';
 		}
 
 		/**
@@ -3143,6 +3184,18 @@ JS;
 			}
  
 			return self::get_spectra_blocks_version();
+		}
+
+		/**
+		 * Enable force sync
+		 *
+		 * Sets the site option to force sync templates.
+		 *
+		 * @since 4.4.44
+		 * @return void
+		 */
+		public static function enable_force_sync() {
+			update_site_option( 'astra-sites-force-sync', 'yes' );
 		}
 	}
 

@@ -66,10 +66,10 @@ class Sync {
 		$vars['crons_available']    = Helper::are_crons_available();
 		$vars['sitemap_cpts']       = array_keys( Sync::get_instance()->get_included_post_types() );
 		$vars['sitemap_taxonomies'] = array_map(
-			function( $taxonomy ) {
+			static function( $taxonomy ) {
 				return $taxonomy['slug'];
 			},
-			Sync::get_instance()->get_included_taxonomies() 
+			Sync::get_instance()->get_included_taxonomies()
 		);
 
 		return $vars;
@@ -110,7 +110,7 @@ class Sync {
 		Cache::clear_all();
 		$classes = $this->generate_classes();
 
-		if ( defined( 'WP_CLI' ) ) {    
+		if ( defined( 'WP_CLI' ) ) {
 			WP_CLI::line( 'Batch Process Started..' );
 			foreach ( $classes as $key => $class ) {
 				if ( is_object( $class ) && method_exists( $class, 'import' ) ) {
@@ -145,10 +145,8 @@ class Sync {
 		$classes    = array_merge( $classes, $this->create_post_type_sync_classes( $chunk_size ) );
 		$classes    = array_merge( $classes, $this->create_taxonomy_sync_classes( $chunk_size ) );
 		$classes    = apply_filters( 'surerank_batch_process_classes', $classes );
-		$classes    = array_merge( $classes, $this->create_cleanup_class() );
-		return $classes;
+		return array_merge( $classes, $this->create_cleanup_class() );
 	}
-
 
 	/**
 	 * Check if batch process should be initiated.
@@ -251,6 +249,18 @@ class Sync {
 	}
 
 	/**
+	 * Finalize cache generation process.
+	 *
+	 * @since 1.4.3
+	 * @return void
+	 */
+	public function finalize_cache_generation(): void {
+		$cleanup = Cleanup::get_instance();
+		$cleanup->import();
+		$this->batch_process_complete();
+	}
+
+	/**
 	 * Create taxonomy sync classes
 	 *
 	 * @param int $chunk_size Chunk size for pagination.
@@ -323,7 +333,6 @@ class Sync {
 
 		return $classes;
 	}
-	
 
 	/**
 	 * Create sync classes for given count and parameters.
@@ -354,17 +363,5 @@ class Sync {
 		}
 
 		return $classes;
-	}
-
-	/**
-	 * Finalize cache generation process.
-	 *
-	 * @since 1.4.3
-	 * @return void
-	 */
-	public function finalize_cache_generation(): void {
-		$cleanup = Cleanup::get_instance();
-		$cleanup->import();
-		$this->batch_process_complete();
 	}
 }

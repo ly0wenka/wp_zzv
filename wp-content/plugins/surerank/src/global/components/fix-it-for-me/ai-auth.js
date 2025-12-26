@@ -1,5 +1,6 @@
 import { Button, Text, Container, Loader } from '@bsf/force-ui';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import { FileText } from 'lucide-react';
 import { SureRankLogo } from '@GlobalComponents/icons';
 import { useState } from '@wordpress/element';
@@ -36,7 +37,19 @@ const AIAuthScreen = ( {
 		},
 	];
 
+	// Apply filter for button configuration (pro can override)
+	const buttonConfig = applyFilters( 'surerank.ai_auth_button_config', {
+		buttonText: __( "Let's Get Started", 'surerank' ),
+		onClick: null, // null means use default handleGetStarted
+	} );
+
 	const handleGetStarted = async () => {
+		// If custom onClick is provided by filter, use it instead
+		if ( buttonConfig.onClick ) {
+			buttonConfig.onClick();
+			return;
+		}
+
 		if ( loading || typeof onClickGetStarted !== 'function' ) {
 			return;
 		}
@@ -120,7 +133,7 @@ const AIAuthScreen = ( {
 							loading && <Loader size="sm" variant="secondary" />
 						}
 					>
-						{ __( "Let's Get Started", 'surerank' ) }
+						{ buttonConfig.buttonText }
 					</Button>
 					<Button
 						variant="ghost"

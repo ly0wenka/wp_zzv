@@ -8,9 +8,9 @@
 
 namespace SureRank\Inc\BatchProcess;
 
+use SureRank\Inc\Lib\Background_Process\Wp_Background_Process;
 use SureRank\Inc\Traits\Get_Instance;
 use SureRank\Inc\Traits\Logger;
-use SureRank\Inc\Lib\Background_Process\Wp_Background_Process;
 
 /**
  * Image Background Process

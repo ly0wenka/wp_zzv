@@ -9,6 +9,7 @@
 
 namespace SureRank\Inc\API;
 
+use SureRank\Inc\Admin\Helper;
 use SureRank\Inc\Admin\Update_Timestamp;
 use SureRank\Inc\Functions\Requests;
 use SureRank\Inc\Functions\Send_Json;
@@ -58,7 +59,7 @@ class Onboarding extends Api_Base {
 				'callback'            => [ $this, 'save_website_details' ],
 				'permission_callback' => [ $this, 'validate_permission' ],
 				'args'                => [
-					'first_name'          => [
+					'first_name'           => [
 						'type'              => 'string',
 						'sanitize_callback' => 'sanitize_text_field',
 						'required'          => false,
@@ -66,7 +67,7 @@ class Onboarding extends Api_Base {
 							return is_string( $value );
 						},
 					],
-					'last_name'           => [
+					'last_name'            => [
 						'type'              => 'string',
 						'sanitize_callback' => 'sanitize_text_field',
 						'required'          => false,
@@ -74,7 +75,7 @@ class Onboarding extends Api_Base {
 							return is_string( $value );
 						},
 					],
-					'email'               => [
+					'email'                => [
 						'type'              => 'string',
 						'sanitize_callback' => 'sanitize_email',
 						'required'          => false,
@@ -82,7 +83,7 @@ class Onboarding extends Api_Base {
 							return filter_var( $value, FILTER_VALIDATE_EMAIL ) !== false;
 						},
 					],
-					'website_type'        => [
+					'website_type'         => [
 						'type'              => 'string',
 						'required'          => false,
 						'description'       => __( 'Type of the website.', 'surerank' ),
@@ -91,7 +92,7 @@ class Onboarding extends Api_Base {
 							return is_string( $value );
 						},
 					],
-					'website_name'        => [
+					'website_name'         => [
 						'type'              => 'string',
 						'required'          => false,
 						'description'       => __( 'Name of the website.', 'surerank' ),
@@ -100,7 +101,16 @@ class Onboarding extends Api_Base {
 							return is_string( $value );
 						},
 					],
-					'website_owner_name'  => [
+					'business_description' => [
+						'type'              => 'string',
+						'required'          => false,
+						'description'       => __( 'Business description of the website.', 'surerank' ),
+						'sanitize_callback' => 'sanitize_text_field',
+						'validate_callback' => static function( $value ) {
+							return is_string( $value );
+						},
+					],
+					'website_owner_name'   => [
 						'type'              => 'string',
 						'required'          => false,
 						'description'       => __( 'Name of the website owner.', 'surerank' ),
@@ -109,7 +119,7 @@ class Onboarding extends Api_Base {
 							return is_string( $value );
 						},
 					],
-					'website_owner_phone' => [
+					'website_owner_phone'  => [
 						'type'              => 'string',
 						'required'          => false,
 						'description'       => __( 'Phone number of the website owner.', 'surerank' ),
@@ -118,7 +128,7 @@ class Onboarding extends Api_Base {
 							return is_string( $value );
 						},
 					],
-					'organization_type'   => [
+					'organization_type'    => [
 						'type'              => 'string',
 						'required'          => false,
 						'description'       => __( 'Type of the organization.', 'surerank' ),
@@ -127,18 +137,18 @@ class Onboarding extends Api_Base {
 							return is_string( $value );
 						},
 					],
-					'about_page'          => [
+					'about_page'           => [
 						'type'              => 'integer',
 						'required'          => false,
 						'sanitize_callback' => 'absint',
 
 					],
-					'contact_page'        => [
+					'contact_page'         => [
 						'type'              => 'integer',
 						'required'          => false,
 						'sanitize_callback' => 'absint',
 					],
-					'social_profiles'     => [
+					'social_profiles'      => [
 						'type'        => 'object',
 						'required'    => false,
 						'description' => __( 'Social profiles URLs.', 'surerank' ),
@@ -153,7 +163,7 @@ class Onboarding extends Api_Base {
 							]
 						),
 					],
-					'website_logo'        => [
+					'website_logo'         => [
 						'type'     => 'string',
 						'required' => false,
 					],
@@ -177,18 +187,19 @@ class Onboarding extends Api_Base {
 		$instance = self::get_instance();
 
 		$defaults = [
-			'website_type'        => '',
-			'website_name'        => '',
-			'website_owner_name'  => '',
-			'organization_type'   => 'Organization',
-			'website_owner_phone' => '',
-			'website_logo'        => '',
-			'first_name'          => '',
-			'last_name'           => '',
-			'email'               => '',
-			'about_page'          => 0,
-			'contact_page'        => 0,
-			'social_profiles'     => [],
+			'website_type'         => '',
+			'website_name'         => '',
+			'business_description' => Helper::get_saved_business_details( 'business_description' ),
+			'website_owner_name'   => '',
+			'organization_type'    => 'Organization',
+			'website_owner_phone'  => '',
+			'website_logo'         => '',
+			'first_name'           => '',
+			'last_name'            => '',
+			'email'                => '',
+			'about_page'           => 0,
+			'contact_page'         => 0,
+			'social_profiles'      => [],
 		];
 
 		$data = wp_parse_args(

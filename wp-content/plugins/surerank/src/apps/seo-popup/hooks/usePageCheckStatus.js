@@ -1,9 +1,7 @@
 import { useSelect } from '@wordpress/data';
 import { useMemo } from '@wordpress/element';
 import { STORE_NAME } from '@/store/constants';
-import {
-	calculateCheckStatus,
-} from '@SeoPopup/utils/calculate-check-status';
+import { calculateCheckStatus } from '@SeoPopup/utils/calculate-check-status';
 
 /**
  * A simplified hook for getting page check status without suspense
@@ -12,19 +10,19 @@ import {
  * @return {Object} Status data object with status, initializing, and counts
  */
 const usePageCheckStatus = () => {
-	const {
-		categorizedChecks = {},
-		initializing = true,
-	} = useSelect( ( select ) => {
-		const storeSelectors = select( STORE_NAME );
+	const { categorizedChecks = {}, initializing = true } = useSelect(
+		( select ) => {
+			const storeSelectors = select( STORE_NAME );
 
-		const pageSeoChecks = storeSelectors.getPageSeoChecks();
+			const pageSeoChecks = storeSelectors.getPageSeoChecks();
 
-		return {
-			categorizedChecks: pageSeoChecks.categorizedChecks,
-			initializing: pageSeoChecks.initializing,
-		};
-	}, [] );
+			return {
+				categorizedChecks: pageSeoChecks.categorizedChecks,
+				initializing: pageSeoChecks.initializing,
+			};
+		},
+		[]
+	);
 
 	const { status, counts } = useMemo( () => {
 		// Calculate page check status

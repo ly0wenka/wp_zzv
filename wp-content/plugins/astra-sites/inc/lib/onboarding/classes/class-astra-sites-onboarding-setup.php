@@ -164,7 +164,7 @@ if ( ! class_exists( 'Astra_Sites_Onboarding_Setup' ) ) :
 			
 			if ( false === $result['status'] ) {
 				/* translators: %s: Error message */
-				wp_send_json_error( sprintf( __( 'Import failed: %s', 'astra-sites' ), $result['data'] ) );
+				wp_send_json_error( sprintf( __( 'Import failed: %s', 'astra-sites' ), $result['error'] ) );
 			} else {
 				wp_send_json_success( $result['data'] );
 			}

@@ -3,8 +3,9 @@ import { renderField } from '../utils';
 import StepNavButtons from '../components/nav-buttons';
 import { Fragment, useState, useEffect, useMemo } from '@wordpress/element';
 import { useOnboardingState } from '@Onboarding/store';
-import { Title } from '@bsf/force-ui';
+import { Title, Label } from '@bsf/force-ui';
 import apiFetch from '@wordpress/api-fetch';
+import { InfoTooltip } from '@AdminComponents/tooltip';
 
 const websiteTypes = [
 	{
@@ -101,6 +102,10 @@ const WebsiteDetails = () => {
 				websiteDetails?.website_owner_phone ||
 				details?.website_owner_phone ||
 				'',
+			business_description:
+				websiteDetails?.business_description ||
+				details?.business_description ||
+				'',
 			website_logo:
 				websiteDetails?.website_logo || details?.website_logo || '',
 			about_page:
@@ -193,18 +198,39 @@ const WebsiteDetails = () => {
 			],
 		},
 		{
+			label: __( 'Phone Number (Optional)', 'surerank' ),
+			name: 'website_owner_phone',
+			type: 'text',
+			width: 'half',
+		},
+		{
+			label: (
+				<>
+					<div className="flex items-center justify-start gap-1">
+						<Label tag="span" size="sm">
+							{ __( 'Describe what you do', 'surerank' ) }
+						</Label>
+						<InfoTooltip
+							content={ __(
+								'Please describe what you do in a few sentences. This description will be used for content generation and other purposes.',
+								'surerank'
+							) }
+						/>
+					</div>
+				</>
+			),
+			name: 'business_description',
+			type: 'textarea',
+			width: 'full',
+			rows: 3,
+		},
+		{
 			label: __( 'Website Owner Name', 'surerank' ),
 			name: 'website_owner_name',
 			type: 'text',
 			width: 'half',
 			conditionalOn: 'website_type',
 			conditionalValues: [ 'personal', 'blog' ],
-		},
-		{
-			label: __( 'Phone Number (Optional)', 'surerank' ),
-			name: 'website_owner_phone',
-			type: 'text',
-			width: 'half',
 		},
 		{
 			label: __( 'Website Logo', 'surerank' ),

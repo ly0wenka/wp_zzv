@@ -2,8 +2,8 @@
 Contributors: sujaypawar, wpcrafter
 Tags: automation, google sheets, webhooks, schedule, SureCart
 Requires at least: 5.4
-Tested up to: 6.8
-Stable tag: 1.1.13
+Tested up to: 6.9
+Stable tag: 1.1.16
 Requires PHP: 5.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -334,6 +334,23 @@ You can report the issue through our [Bug Bounty Program](https://brainstormforc
 8. Workspace Notification Settings.
 
 == Changelog ==
+= Version 1.1.16 - Thursday, 25th December 2025 =
+* New: Added "Thrive Apprentice" Integration
+* Improvement: "Amelia" – Added new Triggers
+* Improvement: "Voxel" – Added new Actions
+* Improvement: "WordPress" – Added new "Post Created" Trigger
+
+= Version 1.1.15 - Tuesday, 16th December 2025 =
+* New: Added "FluentCart" Integration
+* Improvement: "SureDash" – Added new Triggers
+* Improvement: "WooCommerce" – Added new "Create Multi Product Order" Action
+* Improvement: "EDD" – Added new "Order Created for Specific Download" Trigger
+* Improvement: "FluentCRM" – Added new "List Contacts by List ID" Action
+
+= Version 1.1.14 - Tuesday, 2nd December 2025 =
+* New: Added "MailerPress" Integration
+* Improvement: "FluentCommunity" – Added new "Reply to Post/Feed" Action
+
 = Version 1.1.13 - Wednesday, 12th November 2025 =
 * Improvement: "MemberPress" - Added new "Membership Created" Trigger
 * Improvement: "EDD" - Added new Actions

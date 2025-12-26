@@ -42,8 +42,7 @@ const animateVariants = {
 export const getEditorData = () => {
 	const editor = staticSelect( 'core/editor' );
 	const selectors = staticSelect( STORE_NAME );
-	const isBlockEditor =
-		editor && typeof editor.getEditedPostContent === 'function';
+	const isBlockEditor = surerank_seo_popup?.editor_type === 'block';
 
 	if ( isBlockEditor ) {
 		return {
@@ -175,10 +174,9 @@ const SeoModal = ( props ) => {
 						>
 							<RenderScreen />
 						</div>
-						{ appSettings?.currentTab === 'optimize' &&
-							appSettings.currentScreen === 'settings' && (
-								<Footer onClose={ closeModal } />
-							) }
+						{ appSettings.currentScreen === 'settings' && (
+							<Footer onClose={ closeModal } />
+						) }
 					</motion.div>
 				) }
 			</AnimatePresence>

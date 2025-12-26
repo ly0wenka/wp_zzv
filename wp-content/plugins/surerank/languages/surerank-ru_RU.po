@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SureRank 0.0.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/surerank\n"
-"Last-Translator: gpt-po v1.2.3\n"
+"Last-Translator: gpt-po v1.2.4\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -15,8 +15,8 @@ msgstr ""
 
 #. Author of the plugin
 #: surerank.php
-#: inc/admin/dashboard.php:234
-#: inc/admin/dashboard.php:235
+#: inc/admin/dashboard.php:243
+#: inc/admin/dashboard.php:244
 #: inc/nps-notice.php:90
 msgid "SureRank"
 msgstr "SureRank"
@@ -31,13 +31,13 @@ msgstr "https://surerank.com"
 msgid "https://surerank.com/"
 msgstr "https://surerank.com/"
 
-#: inc/admin/dashboard.php:261
+#: inc/admin/dashboard.php:270
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Dashboard"
 msgstr "Панель управления"
 
-#: inc/admin/dashboard.php:265
+#: inc/admin/dashboard.php:274
 #: inc/schema/types/organization.php:178
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
@@ -45,7 +45,7 @@ msgstr "Панель управления"
 msgid "General"
 msgstr "Общие"
 
-#: inc/admin/dashboard.php:269
+#: inc/admin/dashboard.php:278
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 #: build/seo-popup/index.js:1
@@ -100,20 +100,20 @@ msgstr "Не удалось разобрать HTML."
 msgid "Failed to update SEO checks"
 msgstr "Не удалось обновить проверки SEO"
 
-#: inc/analyzer/post-analyzer.php:410
+#: inc/analyzer/post-analyzer.php:445
 msgid "The page does not contain any images."
 msgstr "На странице нет изображений."
 
-#: inc/analyzer/post-analyzer.php:480
+#: inc/analyzer/post-analyzer.php:515
 msgid "No links found on the page."
 msgstr "На странице не найдено ссылок."
 
-#: inc/analyzer/post-analyzer.php:501
+#: inc/analyzer/post-analyzer.php:536
 #: inc/analyzer/term-analyzer.php:188
 msgid "No canonical URL provided."
 msgstr "Канонический URL не предоставлен."
 
-#: inc/analyzer/post-analyzer.php:510
+#: inc/analyzer/post-analyzer.php:545
 #: inc/analyzer/term-analyzer.php:196
 msgid "No permalink provided."
 msgstr "Постоянная ссылка не предоставлена."
@@ -136,14 +136,14 @@ msgstr "Не удалось загрузить DOM для анализа."
 
 #: inc/analyzer/seo-analyzer.php:158
 #: inc/analyzer/seo-analyzer.php:160
-#: inc/analyzer/seo-analyzer.php:901
+#: inc/analyzer/seo-analyzer.php:916
 msgid "Search engine title is missing on the homepage."
 msgstr "Заголовок поисковой системы отсутствует на главной странице."
 
 #: inc/analyzer/seo-analyzer.php:231
 #: inc/analyzer/seo-analyzer.php:233
-#: inc/analyzer/seo-analyzer.php:927
-#: inc/analyzer/seo-analyzer.php:940
+#: inc/analyzer/seo-analyzer.php:942
+#: inc/analyzer/seo-analyzer.php:955
 msgid "Search engine description is missing on the homepage."
 msgstr "Описание поисковой системы отсутствует на главной странице."
 
@@ -179,10 +179,6 @@ msgstr "На главной странице нет изображений."
 #: inc/analyzer/seo-analyzer.php:400
 msgid "No images found on the homepage."
 msgstr "На главной странице не найдено изображений."
-
-#: inc/analyzer/seo-analyzer.php:384
-msgid "Unnamed image"
-msgstr "Безымянное изображение"
 
 #: inc/analyzer/seo-analyzer.php:404
 msgid "Images on the homepage have alt text attributes."
@@ -257,7 +253,7 @@ msgstr "Структурированные данные (схема) отсут�
 msgid "Site correctly redirects between www and non-www versions."
 msgstr "Сайт правильно перенаправляет между версиями www и без www."
 
-#: inc/analyzer/seo-analyzer.php:869
+#: inc/analyzer/seo-analyzer.php:884
 msgid "Invalid URL."
 msgstr "Недействительный URL."
 
@@ -266,7 +262,7 @@ msgstr "Недействительный URL."
 msgid "Search engine title exceeds %1$d characters."
 msgstr "Заголовок поисковой системы превышает %1$d символов."
 
-#: inc/analyzer/seo-analyzer.php:914
+#: inc/analyzer/seo-analyzer.php:929
 msgid "Search engine title is present and under 60 characters."
 msgstr "Заголовок поисковой системы присутствует и содержит менее 60 символов."
 
@@ -296,82 +292,82 @@ msgstr "URL не предоставлен."
 msgid "Post id or term id is required"
 msgstr "Требуется идентификатор поста или идентификатор термина"
 
-#: inc/api/admin.php:166
+#: inc/api/admin.php:175
 msgid "No data found"
 msgstr "Данные не найдены"
 
-#: inc/api/admin.php:196
+#: inc/api/admin.php:205
 msgid "Settings updated"
 msgstr "Настройки обновлены"
 
-#: inc/api/analyzer.php:434
+#: inc/api/analyzer.php:448
 msgid "Google Search Console is connected."
 msgstr "Google Search Console подключен."
 
-#: inc/api/analyzer.php:435
+#: inc/api/analyzer.php:449
 msgid "Google Search Console is not connected."
 msgstr "Google Search Console не подключен."
 
-#: inc/api/analyzer.php:536
+#: inc/api/analyzer.php:554
 msgid "No other SEO plugin detected on the site."
 msgstr "Другие SEO плагины на сайте не обнаружены."
 
-#: inc/api/analyzer.php:540
+#: inc/api/analyzer.php:558
 msgid "More than one SEO plugin detected on the site."
 msgstr "На сайте обнаружено более одного SEO плагина."
 
-#: inc/api/analyzer.php:576
+#: inc/api/analyzer.php:617
 msgid "Site tagline is set in WordPress settings."
 msgstr "Слоган сайта установлен в настройках WordPress."
 
-#: inc/api/analyzer.php:576
+#: inc/api/analyzer.php:617
 msgid "Site tagline is not set in WordPress settings."
 msgstr "Слоган сайта не установлен в настройках WordPress."
 
 #. translators: %s is the URL of the surerank settings page
-#: inc/api/analyzer.php:592
+#: inc/api/analyzer.php:633
 #, php-format
 msgid "Set the site tagline on <a href=\"%s\">General settings page</a>."
 msgstr "Установите слоган сайта на <a href=\"%s\">странице общих настроек</a>."
 
-#: inc/api/analyzer.php:612
+#: inc/api/analyzer.php:653
 msgid "Robots.txt file is accessible."
 msgstr "Файл Robots.txt доступен."
 
-#: inc/api/analyzer.php:613
+#: inc/api/analyzer.php:654
 msgid "Robots.txt file is not accessible."
 msgstr "Файл Robots.txt недоступен."
 
-#: inc/api/analyzer.php:654
+#: inc/api/analyzer.php:735
 msgid "Search engine visibility is not blocked in WordPress settings."
 msgstr "Видимость для поисковых систем не заблокирована в настройках WordPress."
 
-#: inc/api/analyzer.php:655
+#: inc/api/analyzer.php:736
 msgid "Search engine visibility is blocked in WordPress settings."
 msgstr "Видимость для поисковых систем заблокирована в настройках WordPress."
 
-#: inc/api/analyzer.php:657
+#: inc/api/analyzer.php:738
 msgid "Search engine visibility settings need to be enabled. The “Discourage search engines from indexing this site” option in WordPress settings must remain unchecked to allow normal crawling and indexing."
 msgstr "Настройки видимости для поисковых систем должны быть включены. Опция «Запретить поисковым системам индексировать этот сайт» в настройках WordPress должна оставаться неотмеченной, чтобы разрешить нормальный обход и индексацию."
 
-#: inc/api/analyzer.php:700
+#: inc/api/analyzer.php:781
 msgid "XML sitemap is accessible to search engines."
 msgstr "XML карта сайта доступна для поисковых систем."
 
-#: inc/api/analyzer.php:701
+#: inc/api/analyzer.php:782
 msgid "XML sitemap is not accessible to search engines."
 msgstr "XML карта сайта недоступна для поисковых систем."
 
-#: inc/api/analyzer.php:775
+#: inc/api/analyzer.php:887
 msgid "Post not found"
 msgstr "Пост не найден"
 
-#: inc/api/analyzer.php:1768
-#: inc/api/analyzer.php:1791
+#: inc/api/analyzer.php:1874
+#: inc/api/analyzer.php:1897
 msgid "Link is broken"
 msgstr "Ссылка не работает"
 
-#: inc/api/analyzer.php:792
+#: inc/api/analyzer.php:904
 msgid "Link is not broken"
 msgstr "Ссылка работает"
 
@@ -391,15 +387,15 @@ msgstr "Nonce недействителен."
 msgid "Sample Post"
 msgstr "Пример поста"
 
-#: inc/api/onboarding.php:225
+#: inc/api/onboarding.php:236
 msgid "Invalid data provided"
 msgstr "Предоставлены недействительные данные"
 
-#: inc/api/onboarding.php:229
+#: inc/api/onboarding.php:240
 msgid "Settings updated successfully"
 msgstr "Настройки успешно обновлены"
 
-#: inc/api/onboarding.php:234
+#: inc/api/onboarding.php:245
 msgid "Failed to update settings"
 msgstr "Не удалось обновить настройки"
 
@@ -441,11 +437,11 @@ msgstr "Не предоставлен ID термина."
 msgid "No term found."
 msgstr "Термин не найден."
 
-#: inc/google-search-console/controller.php:122
+#: inc/google-search-console/controller.php:119
 msgid "No site URL found"
 msgstr "Не найден URL сайта"
 
-#: inc/google-search-console/controller.php:153
+#: inc/google-search-console/controller.php:150
 msgid "No data found for the selected date range."
 msgstr "Не найдено данных за выбранный диапазон дат."
 
@@ -454,7 +450,7 @@ msgid "Invalid credentials"
 msgstr "Недействительные учетные данные"
 
 #: inc/google-search-console/google-console.php:103
-#: inc/google-search-console/site-verification.php:61
+#: inc/google-search-console/site-verification.php:60
 #: build/seo-popup/index.js:1
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
@@ -484,22 +480,22 @@ msgid "Tag: "
 msgstr "Тег:"
 
 #: inc/frontend/title.php:146
-#: inc/meta-variables/post.php:244
+#: inc/meta-variables/post.php:245
 msgid "Author: "
 msgstr "Автор:"
 
 #: inc/frontend/title.php:155
-#: inc/meta-variables/post.php:248
+#: inc/meta-variables/post.php:249
 msgid "Day Archives: "
 msgstr "Архивы по дням:"
 
 #: inc/frontend/title.php:157
-#: inc/meta-variables/post.php:251
+#: inc/meta-variables/post.php:252
 msgid "Month Archives: "
 msgstr "Архивы по месяцам:"
 
 #: inc/frontend/title.php:159
-#: inc/meta-variables/post.php:254
+#: inc/meta-variables/post.php:255
 msgid "Year Archives: "
 msgstr "Архивы по годам:"
 
@@ -518,65 +514,65 @@ msgstr "Нет запроса"
 msgid "404: Page not found"
 msgstr "404: Страница не найдена"
 
-#: inc/frontend/twitter.php:170
+#: inc/frontend/twitter.php:175
 msgid "In Stock"
 msgstr "В наличии"
 
-#: inc/frontend/twitter.php:170
+#: inc/frontend/twitter.php:175
 msgid "Out of Stock"
 msgstr "Нет в наличии"
 
 #. translators: %s: page number, %s: total pages
-#: inc/functions/helper.php:273
+#: inc/functions/helper.php:276
 #, php-format
 msgid " - Page %1$s of %2$s"
 msgstr "- Страница %1$s из %2$s"
 
-#: inc/meta-variables/post.php:60
-#: inc/meta-variables/term.php:57
+#: inc/meta-variables/post.php:61
+#: inc/meta-variables/term.php:58
 msgid "ID"
 msgstr "ID"
 
-#: inc/meta-variables/post.php:61
+#: inc/meta-variables/post.php:62
 msgid "The unique identifier for a post."
 msgstr "Уникальный идентификатор для поста."
 
-#: inc/admin/dashboard.php:536
-#: inc/meta-variables/post.php:64
-#: inc/schema/variables.php:82
+#: inc/admin/dashboard.php:582
+#: inc/meta-variables/post.php:65
+#: inc/schema/variables.php:83
 #: build/admin-dashboard/index.js:1
 msgid "Post Title"
 msgstr "Название поста"
 
-#: inc/admin/dashboard.php:538
-#: inc/meta-variables/post.php:65
+#: inc/admin/dashboard.php:584
+#: inc/meta-variables/post.php:66
 msgid "The title of the post."
 msgstr "Название поста."
 
-#: inc/meta-variables/post.php:68
+#: inc/meta-variables/post.php:69
 msgid "Excerpt"
 msgstr "Аннотация"
 
-#: inc/admin/dashboard.php:543
-#: inc/meta-variables/post.php:69
+#: inc/admin/dashboard.php:589
+#: inc/meta-variables/post.php:70
 msgid "The excerpt of the post."
 msgstr "Аннотация поста."
 
-#: inc/meta-variables/post.php:72
+#: inc/meta-variables/post.php:73
 msgid "Content"
 msgstr "Содержимое"
 
-#: inc/admin/dashboard.php:548
-#: inc/meta-variables/post.php:73
+#: inc/admin/dashboard.php:594
+#: inc/meta-variables/post.php:74
 msgid "The content of the post."
 msgstr "Содержимое поста."
 
-#: inc/meta-variables/post.php:76
-#: inc/meta-variables/term.php:73
+#: inc/meta-variables/post.php:77
+#: inc/meta-variables/term.php:74
 msgid "Permalink"
 msgstr "Постоянная ссылка"
 
-#: inc/meta-variables/post.php:77
+#: inc/meta-variables/post.php:78
 msgid "The permalink of the site."
 msgstr "Постоянная ссылка сайта."
 
@@ -590,12 +586,12 @@ msgstr "Разделитель"
 msgid "Site Tagline"
 msgstr "Слоган сайта"
 
-#: inc/admin/dashboard.php:528
+#: inc/admin/dashboard.php:574
 #: inc/meta-variables/site.php:65
 msgid "The tagline of the site."
 msgstr "Слоган сайта."
 
-#: inc/admin/dashboard.php:521
+#: inc/admin/dashboard.php:567
 #: inc/meta-variables/site.php:68
 #: build/admin-dashboard/index.js:1
 msgid "Site Name"
@@ -622,21 +618,21 @@ msgstr "Страница"
 msgid "The current page number."
 msgstr "Номер текущей страницы."
 
-#: inc/meta-variables/term.php:58
+#: inc/meta-variables/term.php:59
 msgid "The unique identifier for a term."
 msgstr "Уникальный идентификатор для термина."
 
-#: inc/meta-variables/term.php:61
-#: inc/schema/variables.php:111
+#: inc/meta-variables/term.php:62
+#: inc/schema/variables.php:112
 msgid "Term Name"
 msgstr "Название термина"
 
-#: inc/admin/dashboard.php:533
-#: inc/meta-variables/term.php:62
+#: inc/admin/dashboard.php:579
+#: inc/meta-variables/term.php:63
 msgid "The name of the term."
 msgstr "Название термина."
 
-#: inc/meta-variables/term.php:65
+#: inc/meta-variables/term.php:66
 #: inc/schema/helper.php:170
 #: inc/schema/helper.php:225
 #: inc/schema/types/thing.php:82
@@ -645,20 +641,20 @@ msgstr "Название термина."
 msgid "Description"
 msgstr "Описание"
 
-#: inc/admin/dashboard.php:553
-#: inc/meta-variables/term.php:66
+#: inc/admin/dashboard.php:599
+#: inc/meta-variables/term.php:67
 msgid "The description of the term."
 msgstr "Описание термина."
 
-#: inc/meta-variables/term.php:69
+#: inc/meta-variables/term.php:70
 msgid "Slug"
 msgstr "Слаг"
 
-#: inc/meta-variables/term.php:70
+#: inc/meta-variables/term.php:71
 msgid "The slug of the term."
 msgstr "Слаг термина."
 
-#: inc/meta-variables/term.php:74
+#: inc/meta-variables/term.php:75
 msgid "The permalink of the term."
 msgstr "Постоянная ссылка термина."
 
@@ -902,31 +898,52 @@ msgstr "День недели"
 msgid "The day of the week for which these opening hours are valid"
 msgstr "День недели, для которого действуют эти часы работы"
 
+#: inc/modules/email-reports/utils.php:97
 #: inc/schema/helper.php:405
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 msgid "Monday"
 msgstr "Понедельник"
 
+#: inc/modules/email-reports/utils.php:98
 #: inc/schema/helper.php:406
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 msgid "Tuesday"
 msgstr "Вторник"
 
+#: inc/modules/email-reports/utils.php:99
 #: inc/schema/helper.php:407
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 msgid "Wednesday"
 msgstr "Среда"
 
+#: inc/modules/email-reports/utils.php:100
 #: inc/schema/helper.php:408
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 msgid "Thursday"
 msgstr "Четверг"
 
+#: inc/modules/email-reports/utils.php:101
 #: inc/schema/helper.php:409
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 msgid "Friday"
 msgstr "Пятница"
 
+#: inc/modules/email-reports/utils.php:102
 #: inc/schema/helper.php:410
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 msgid "Saturday"
 msgstr "Суббота"
 
+#: inc/modules/email-reports/utils.php:96
 #: inc/schema/helper.php:411
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 msgid "Sunday"
 msgstr "Воскресенье"
 
@@ -2452,204 +2469,204 @@ msgstr "Укажите физическое лицо или организаци
 msgid "A thumbnail image relevant to the website."
 msgstr "Миниатюрное изображение, относящееся к веб-сайту."
 
-#: inc/schema/variables.php:83
+#: inc/schema/variables.php:84
 msgid "Post ID"
 msgstr "ID поста"
 
-#: inc/admin/dashboard.php:541
-#: inc/schema/variables.php:84
+#: inc/admin/dashboard.php:587
+#: inc/schema/variables.php:85
 msgid "Post Excerpt"
 msgstr "Аннотация поста"
 
-#: inc/admin/dashboard.php:546
-#: inc/schema/variables.php:85
+#: inc/admin/dashboard.php:592
+#: inc/schema/variables.php:86
 msgid "Post Content"
 msgstr "Содержание поста"
 
-#: inc/admin/dashboard.php:566
-#: inc/schema/variables.php:86
+#: inc/admin/dashboard.php:612
+#: inc/schema/variables.php:87
 msgid "Post URL"
 msgstr "URL поста"
 
-#: inc/schema/variables.php:87
+#: inc/schema/variables.php:88
 msgid "Post Slug"
 msgstr "Slug поста"
 
-#: inc/schema/variables.php:88
+#: inc/schema/variables.php:89
 msgid "Post Date"
 msgstr "Дата поста"
 
-#: inc/schema/variables.php:89
+#: inc/schema/variables.php:90
 msgid "Post Modified Date"
 msgstr "Дата изменения поста"
 
-#: inc/schema/variables.php:90
+#: inc/schema/variables.php:91
 msgid "Post Thumbnail"
 msgstr "Миниатюра поста"
 
-#: inc/schema/variables.php:91
+#: inc/schema/variables.php:92
 msgid "Post Comment Count"
 msgstr "Количество комментариев к посту"
 
-#: inc/schema/variables.php:92
+#: inc/schema/variables.php:93
 msgid "Post Word Count"
 msgstr "Количество слов в посте"
 
-#: inc/schema/variables.php:93
+#: inc/schema/variables.php:94
 msgid "Post Tags"
 msgstr "Теги поста"
 
-#: inc/schema/variables.php:94
+#: inc/schema/variables.php:95
 msgid "Post Categories"
 msgstr "Категории поста"
 
-#: inc/schema/variables.php:110
+#: inc/schema/variables.php:111
 msgid "Term ID"
 msgstr "Идентификатор термина"
 
-#: inc/schema/variables.php:112
+#: inc/schema/variables.php:113
 msgid "Term Slug"
 msgstr "Слаг термина"
 
-#: inc/schema/variables.php:113
+#: inc/schema/variables.php:114
 msgid "Term Taxonomy"
 msgstr "Таксономия термина"
 
-#: inc/admin/dashboard.php:551
-#: inc/schema/variables.php:114
+#: inc/admin/dashboard.php:597
+#: inc/schema/variables.php:115
 msgid "Term Description"
 msgstr "Описание термина"
 
-#: inc/schema/variables.php:115
+#: inc/schema/variables.php:116
 msgid "Term URL"
 msgstr "URL термина"
 
-#: inc/schema/variables.php:126
+#: inc/schema/variables.php:127
 msgid "Author ID"
 msgstr "Идентификатор автора"
 
-#: inc/schema/variables.php:127
+#: inc/schema/variables.php:128
 msgid "Author First Name"
 msgstr "Имя автора"
 
-#: inc/schema/variables.php:128
+#: inc/schema/variables.php:129
 msgid "Author Last Name"
 msgstr "Фамилия автора"
 
-#: inc/schema/variables.php:129
+#: inc/schema/variables.php:130
 msgid "Author Display Name"
 msgstr "Отображаемое имя автора"
 
-#: inc/schema/variables.php:130
+#: inc/schema/variables.php:131
 msgid "Author Username"
 msgstr "Имя пользователя автора"
 
-#: inc/schema/variables.php:131
+#: inc/schema/variables.php:132
 msgid "Author Nickname"
 msgstr "Псевдоним автора"
 
-#: inc/schema/variables.php:132
+#: inc/schema/variables.php:133
 msgid "Author Email"
 msgstr "Электронная почта автора"
 
-#: inc/schema/variables.php:133
+#: inc/schema/variables.php:134
 msgid "Author Website URL"
 msgstr "URL веб-сайта автора"
 
-#: inc/schema/variables.php:134
+#: inc/schema/variables.php:135
 msgid "Author Nicename"
 msgstr "Чистое имя автора"
 
-#: inc/schema/variables.php:135
+#: inc/schema/variables.php:136
 msgid "Author Description"
 msgstr "Описание автора"
 
-#: inc/schema/variables.php:136
+#: inc/schema/variables.php:137
 msgid "Author Posts URL"
 msgstr "URL постов автора"
 
-#: inc/schema/variables.php:137
+#: inc/schema/variables.php:138
 msgid "Author Avatar"
 msgstr "Аватар автора"
 
-#: inc/schema/variables.php:148
+#: inc/schema/variables.php:149
 msgid "User ID"
 msgstr "Идентификатор пользователя"
 
-#: inc/schema/variables.php:149
+#: inc/schema/variables.php:150
 msgid "User First Name"
 msgstr "Имя пользователя"
 
-#: inc/schema/variables.php:150
+#: inc/schema/variables.php:151
 msgid "User Last Name"
 msgstr "Фамилия пользователя"
 
-#: inc/schema/variables.php:151
+#: inc/schema/variables.php:152
 msgid "User Display Name"
 msgstr "Отображаемое имя пользователя"
 
-#: inc/schema/variables.php:152
+#: inc/schema/variables.php:153
 msgid "User Username"
 msgstr "Имя пользователя"
 
-#: inc/schema/variables.php:153
+#: inc/schema/variables.php:154
 msgid "User Nickname"
 msgstr "Псевдоним пользователя"
 
-#: inc/schema/variables.php:154
+#: inc/schema/variables.php:155
 msgid "User Email"
 msgstr "Электронная почта пользователя"
 
-#: inc/schema/variables.php:155
+#: inc/schema/variables.php:156
 msgid "User Website URL"
 msgstr "URL веб-сайта пользователя"
 
-#: inc/schema/variables.php:156
+#: inc/schema/variables.php:157
 msgid "User Nicename"
 msgstr "Чистое имя пользователя"
 
-#: inc/schema/variables.php:157
+#: inc/schema/variables.php:158
 msgid "User Description"
 msgstr "Описание пользователя"
 
-#: inc/schema/variables.php:158
+#: inc/schema/variables.php:159
 msgid "User Posts URL"
 msgstr "URL постов пользователя"
 
-#: inc/schema/variables.php:159
+#: inc/schema/variables.php:160
 msgid "User Avatar"
 msgstr "Аватар пользователя"
 
-#: inc/schema/variables.php:170
+#: inc/schema/variables.php:171
 msgid "Site Title"
 msgstr "Название сайта"
 
-#: inc/schema/variables.php:171
+#: inc/schema/variables.php:172
 msgid "Site Description"
 msgstr "Описание сайта"
 
-#: inc/schema/variables.php:172
+#: inc/schema/variables.php:173
 msgid "Site URL"
 msgstr "URL сайта"
 
-#: inc/schema/variables.php:173
+#: inc/schema/variables.php:174
 msgid "Site Language"
 msgstr "Язык сайта"
 
-#: inc/schema/variables.php:174
+#: inc/schema/variables.php:175
 msgid "Site Icon"
 msgstr "Иконка сайта"
 
-#: inc/schema/variables.php:185
+#: inc/schema/variables.php:186
 msgid "Current Page Title"
 msgstr "Название текущей страницы"
 
-#: inc/schema/variables.php:186
+#: inc/schema/variables.php:187
 msgid "Current Page URL"
 msgstr "URL текущей страницы"
 
 #. translators: %s is replaced with the schema type (e.g., "Product", "Article").
-#: inc/schema/variables.php:203
+#: inc/schema/variables.php:204
 #, php-format
 msgid "%s Schema"
 msgstr "%s Схема"
@@ -2668,21 +2685,15 @@ msgstr "Исправить проблемы SEO с помощью ИИ"
 #: build/admin-dashboard/index.js:1
 #: build/admin-seo-bar/index.js:1
 #: build/seo-popup/index.js:1
-msgid "Let AI automatically detect and resolve on-page SEO problems, such as missing SEO descriptions, image alt tags, and more."
-msgstr "Позвольте ИИ автоматически обнаруживать и решать проблемы SEO на странице, такие как отсутствующие SEO-описания, альтернативные теги изображений и многое другое."
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-seo-bar/index.js:1
-#: build/seo-popup/index.js:1
 msgid "Fix It for Me"
 msgstr "Исправить это для меня"
 
-#: inc/admin/dashboard.php:526
+#: inc/admin/dashboard.php:572
 #: build/admin-dashboard/index.js:1
 msgid "Tagline"
 msgstr "Слоган"
 
-#: inc/admin/dashboard.php:531
+#: inc/admin/dashboard.php:577
 msgid "Term Title"
 msgstr "Название термина"
 
@@ -2691,6 +2702,7 @@ msgstr "Название термина"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No index"
 msgstr "Нет индекса"
@@ -2700,6 +2712,7 @@ msgstr "Нет индекса"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Prevents search engines from listing your page in search results."
 msgstr "Предотвращает индексацию вашей страницы поисковыми системами в результатах поиска."
@@ -2709,6 +2722,7 @@ msgstr "Предотвращает индексацию вашей страни�
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No follow"
 msgstr "Нет перехода"
@@ -2718,6 +2732,7 @@ msgstr "Нет перехода"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Tells search engines not to follow any links on your page."
 msgstr "Сообщает поисковым системам не следовать по любым ссылкам на вашей странице."
@@ -2727,6 +2742,7 @@ msgstr "Сообщает поисковым системам не следова
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No archive"
 msgstr "Нет архива"
@@ -2736,6 +2752,7 @@ msgstr "Нет архива"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Blocks search engines from storing a cached version of your page."
 msgstr "Блокирует поисковые системы от хранения кэшированной версии вашей страницы."
@@ -2745,6 +2762,7 @@ msgstr "Блокирует поисковые системы от хранени
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "This content will be set as the meta description tag and may appear in search results. Keep it short and clearly explain what the page is about."
 msgstr "Этот контент будет установлен в качестве мета-тега описания и может появиться в результатах поиска. Держите его коротким и четко объясняйте, о чем страница."
@@ -2760,6 +2778,7 @@ msgstr "Предварительный просмотр поисковой си�
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "View a preview of how your page may appear in search engine results. This preview is for guidance only and might not exactly match how search engines display your content."
 msgstr "Посмотрите предварительный просмотр того, как ваша страница может выглядеть в результатах поисковой системы. Этот предварительный просмотр предназначен только для справки и может не точно соответствовать тому, как поисковые системы отображают ваш контент."
@@ -2824,10 +2843,6 @@ msgid "Robot Instructions"
 msgstr "Инструкции для роботов"
 
 #: build/seo-popup/index.js:1
-msgid "These settings help search engines understand how to treat your page in search results. Enabling ‘No Index’ will prevent the page from appearing in search results. ‘No Follow’ tells search engines not to follow any links on the page, and ‘No Archive’ prevents search engines from storing a cached version of the page."
-msgstr "Эти настройки помогают поисковым системам понять, как обрабатывать вашу страницу в результатах поиска. Включение «Нет индекса» предотвратит появление страницы в результатах поиска. «Нет перехода» сообщает поисковым системам не следовать по любым ссылкам на странице, а «Нет архива» предотвращает хранение поисковыми системами кэшированной версии страницы."
-
-#: build/seo-popup/index.js:1
 msgid "Canonical URL"
 msgstr "Канонический URL"
 
@@ -2878,10 +2893,6 @@ msgstr "Добавить новую"
 #: build/seo-popup/index.js:1
 msgid "No schemas configured."
 msgstr "Схемы не настроены."
-
-#: build/seo-popup/index.js:1
-msgid "Meta"
-msgstr "Метаданные"
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
@@ -2937,6 +2948,7 @@ msgid "Passed"
 msgstr "Пройдено"
 
 #: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Settings"
 msgstr "Настройки"
@@ -2955,39 +2967,39 @@ msgstr "Новостная статья"
 msgid "BlogPosting"
 msgstr "Блог-пост"
 
-#: inc/analyzer/post-analyzer.php:236
+#: inc/analyzer/post-analyzer.php:271
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Page contains at least one subheading."
 msgstr "На странице есть хотя бы один подзаголовок."
 
-#: inc/analyzer/post-analyzer.php:370
+#: inc/analyzer/post-analyzer.php:405
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "All images on this page have alt text attributes."
 msgstr "Все изображения на этой странице имеют атрибуты alt."
 
-#: inc/analyzer/post-analyzer.php:411
+#: inc/analyzer/post-analyzer.php:446
 msgid "Add images to improve the post/page's visual appeal and SEO."
 msgstr "Добавьте изображения, чтобы улучшить визуальную привлекательность поста/страницы и SEO."
 
-#: inc/analyzer/post-analyzer.php:422
+#: inc/analyzer/post-analyzer.php:457
 msgid "Images on the post/page have alt text attributes"
 msgstr "Изображения на посте/странице имеют атрибуты alt."
 
-#: inc/analyzer/post-analyzer.php:460
+#: inc/analyzer/post-analyzer.php:495
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "This page includes images or videos to enhance content."
 msgstr "Эта страница включает изображения или видео для улучшения контента."
 
-#: inc/analyzer/post-analyzer.php:460
+#: inc/analyzer/post-analyzer.php:495
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No images or videos found on this page."
 msgstr "На этой странице не найдено изображений или видео."
 
-#: inc/analyzer/post-analyzer.php:487
+#: inc/analyzer/post-analyzer.php:522
 msgid "Links are present on the page."
 msgstr "На странице присутствуют ссылки."
 
@@ -3041,17 +3053,17 @@ msgstr "URL страницы короткий и удобен для SEO."
 msgid "Page URL is longer than %s characters and may affect SEO and readability."
 msgstr "URL страницы длиннее %s символов и может повлиять на SEO и читаемость."
 
-#: inc/api/analyzer.php:1332
+#: inc/api/analyzer.php:1499
 msgid "These broken links were found on the page: "
 msgstr "На странице найдены следующие битые ссылки:"
 
-#: inc/api/analyzer.php:1337
+#: inc/api/analyzer.php:1504
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "One or more broken links found on the page."
 msgstr "На странице найдены одна или несколько битых ссылок."
 
-#: inc/third-party-plugins/cart-flows.php:69
+#: inc/third-party-integrations/cart-flows.php:72
 msgid "This setting is managed by the SureRank plugin, so you don’t need to configure indexing rules for funnels here."
 msgstr "Эта настройка управляется плагином SureRank, поэтому вам не нужно настраивать правила индексации для воронок здесь."
 
@@ -3090,7 +3102,7 @@ msgstr "Теги Open Graph присутствуют на странице."
 msgid "Open Graph tags are not present on the page."
 msgstr "Теги Open Graph отсутствуют на странице."
 
-#: inc/analyzer/post-analyzer.php:529
+#: inc/analyzer/post-analyzer.php:564
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No broken links found on the page."
@@ -3206,15 +3218,20 @@ msgstr "После выбора сайта вы увидите, как ваш к
 msgid "Status"
 msgstr "Статус"
 
+#: inc/modules/email-reports/controller.php:566
 #: build/admin-dashboard/index.js:1
+#: build/search-console-widget/index.js:1
 msgid "Clicks"
 msgstr "Клики"
 
+#: inc/modules/email-reports/controller.php:567
 #: build/admin-dashboard/index.js:1
 msgid "Avg. Position"
 msgstr "Средняя позиция"
 
+#: inc/modules/email-reports/controller.php:568
 #: build/admin-dashboard/index.js:1
+#: build/search-console-widget/index.js:1
 msgid "Impressions"
 msgstr "Показы"
 
@@ -3280,94 +3297,14 @@ msgid "All"
 msgstr "Все"
 
 #: build/admin-dashboard/index.js:1
-msgid "Title & Description"
-msgstr "Заголовок и описание"
-
-#: build/admin-dashboard/index.js:1
-msgid "Manage titles and meta descriptions to boost your search rankings."
-msgstr "Управляйте заголовками и метаописаниями, чтобы повысить свои позиции в поиске."
-
-#: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Home Page"
 msgstr "Главная страница"
 
 #: build/admin-dashboard/index.js:1
-msgid "Set SEO options for your homepage to improve its search visibility."
-msgstr "Установите параметры SEO для вашей главной страницы, чтобы улучшить ее видимость в поиске."
-
-#: build/admin-dashboard/index.js:1
-msgid "Social Network"
-msgstr "Социальная сеть"
-
-#: build/admin-dashboard/index.js:1
-msgid "Configure how your content appears when shared on social media platforms."
-msgstr "Настройте, как ваш контент будет отображаться при публикации в социальных сетях."
-
-#: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Sitemaps"
 msgstr "Карта сайта"
-
-#: build/admin-dashboard/index.js:1
-msgid "Generate XML sitemaps to help search engines crawl your site."
-msgstr "Генерируйте XML-карты сайта, чтобы помочь поисковым системам индексировать ваш сайт."
-
-#: build/admin-dashboard/index.js:1
-msgid "Configure robots.txt to guide search engines on crawling."
-msgstr "Настройте robots.txt, чтобы направлять поисковые системы при индексации."
-
-#: build/admin-dashboard/index.js:1
-msgid "Crawl Optimization"
-msgstr "Оптимизация обхода"
-
-#: build/admin-dashboard/index.js:1
-msgid "Adjust crawl settings to improve search engine indexing."
-msgstr "Настройте параметры обхода для улучшения индексации поисковыми системами."
-
-#: build/admin-dashboard/index.js:1
-msgid "Feeds"
-msgstr "Ленты"
-
-#: build/admin-dashboard/index.js:1
-msgid "Manage RSS feeds to keep search engines updated with your latest content."
-msgstr "Управляйте RSS-лентами, чтобы держать поисковые системы в курсе вашего последнего контента."
-
-#: build/admin-dashboard/index.js:1
-msgid "Add structured data to enhance search engine understanding."
-msgstr "Добавьте структурированные данные, чтобы улучшить понимание поисковыми системами."
-
-#: build/admin-dashboard/index.js:1
-msgid "Astra Theme"
-msgstr "Тема Astra"
-
-#: build/admin-dashboard/index.js:1
-msgid "Fast and customizable theme for your website."
-msgstr "Быстрая и настраиваемая тема для вашего сайта."
-
-#: build/admin-dashboard/index.js:1
-msgid "Spectra"
-msgstr "Spectra"
-
-#: build/admin-dashboard/index.js:1
-msgid "Free WordPress Page Builder Plugin."
-msgstr "Бесплатный плагин для создания страниц WordPress."
-
-#: build/admin-dashboard/index.js:1
-msgid "SureMail"
-msgstr "SureMail"
-
-#: build/admin-dashboard/index.js:1
-msgid "Connect and send emails via SMTP connections."
-msgstr "Подключайтесь и отправляйте электронные письма через SMTP-соединения."
-
-#: build/admin-dashboard/index.js:1
-msgid "SureForms"
-msgstr "SureForms"
-
-#: build/admin-dashboard/index.js:1
-msgid "Best no code WordPress form builder"
-msgstr "Лучший конструктор форм WordPress без кода"
 
 #: build/admin-dashboard/index.js:1
 msgid "Open Support Ticket"
@@ -3380,10 +3317,6 @@ msgstr "Центр помощи"
 #: build/admin-dashboard/index.js:1
 msgid "Join our Community on Facebook"
 msgstr "Присоединяйтесь к нашему сообществу на Facebook"
-
-#: build/admin-dashboard/index.js:1
-msgid "Leave Us a Review"
-msgstr "Оставьте нам отзыв"
 
 #: build/admin-dashboard/index.js:1
 msgid "Launch Setup Wizard"
@@ -3420,22 +3353,6 @@ msgstr "Произошла ошибка. Пожалуйста, попробуй�
 #: build/admin-dashboard/index.js:1
 msgid "Error code: "
 msgstr "Код ошибки:"
-
-#: build/admin-dashboard/index.js:1
-msgid "Activated"
-msgstr "Активировано"
-
-#: build/admin-dashboard/index.js:1
-msgid "Activate"
-msgstr "Активировать"
-
-#: build/admin-dashboard/index.js:1
-msgid "Install & Activate"
-msgstr "Установить и активировать"
-
-#: build/admin-dashboard/index.js:1
-msgid "Extend Your Website"
-msgstr "Расширьте свой сайт"
 
 #: build/admin-dashboard/index.js:1
 msgid "Quick Access"
@@ -3478,6 +3395,7 @@ msgid "Failed to fetch matched site"
 msgstr "Не удалось получить совпадающий сайт"
 
 #: build/admin-dashboard/index.js:1
+#: build/search-console-widget/index.js:1
 msgid "Failed to fetch site traffic"
 msgstr "Не удалось получить трафик сайта"
 
@@ -3502,11 +3420,6 @@ msgid "No additional information to show."
 msgstr "Дополнительная информация не доступна."
 
 #: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "Site SEO Analysis"
-msgstr "SEO-анализ сайта"
-
-#: build/admin-dashboard/index.js:1
 msgid "No Results Found"
 msgstr "Результаты не найдены"
 
@@ -3519,15 +3432,12 @@ msgstr "Ваш поиск не совпал с результатами. Пож�
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Issue"
 msgid_plural "Issues"
 msgstr[0] "Проблема"
 msgstr[1] ""
-
-#: build/admin-dashboard/index.js:1
-msgid "Action"
-msgstr "Действие"
 
 #: build/admin-dashboard/index.js:1
 #, js-format
@@ -3548,50 +3458,6 @@ msgid "Next page"
 msgstr "Следующая страница"
 
 #: build/admin-dashboard/index.js:1
-msgid "WordPress updates API not available."
-msgstr "API обновлений WordPress недоступен."
-
-#: build/admin-dashboard/index.js:1
-#, js-format
-msgid "%1$s %2$s failed: %3$s"
-msgstr "%1$s %2$s не удалось: %3$s"
-
-#: build/admin-dashboard/index.js:1
-msgid "Unknown error occurred"
-msgstr "Произошла неизвестная ошибка"
-
-#: build/admin-dashboard/index.js:1
-msgid "Failed to fetch plugins and themes"
-msgstr "Не удалось получить плагины и темы"
-
-#: build/admin-dashboard/index.js:1
-msgid "Something went wrong"
-msgstr "Что-то пошло не так"
-
-#: build/admin-dashboard/index.js:1
-msgid "Another operation is in progress. Please wait."
-msgstr "Другая операция в процессе. Пожалуйста, подождите."
-
-#: build/admin-dashboard/index.js:1
-#, js-format
-msgid "%1$s is already installed and activated."
-msgstr "%1$s уже установлен и активирован."
-
-#: build/admin-dashboard/index.js:1
-msgid "Operation failed"
-msgstr "Операция не удалась"
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "Enable Author Archive"
-msgstr "Включить архив автора"
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "Enable Date Archive"
-msgstr "Включить архив по дате"
-
-#: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Archive Pages"
 msgstr "Страницы архива"
@@ -3608,28 +3474,8 @@ msgstr "Включить XML-карту сайта"
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
-msgid "Generates an XML sitemap to help search engines index your site content."
-msgstr "Генерирует XML-карту сайта, чтобы помочь поисковым системам индексировать контент вашего сайта."
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
 msgid "Include Images in XML Sitemap"
 msgstr "Включить изображения в XML-карту сайта"
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "Add images from your posts and pages to the XML sitemap so search engines can find and index them more easily. Images are visible only in source code."
-msgstr "Добавьте изображения из ваших записей и страниц в XML-карту сайта, чтобы поисковые системы могли находить и индексировать их более легко. Изображения видны только в исходном коде."
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "Sitemap is currently disabled. Please enable XML sitemap in settings to access the sitemap file."
-msgstr "Карта сайта в настоящее время отключена. Пожалуйста, включите XML-карту сайта в настройках, чтобы получить доступ к файлу карты сайта."
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "Open Sitemap"
-msgstr "Открыть карту сайта"
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
@@ -3686,6 +3532,7 @@ msgstr "Название сайта, используемое в мета-заг
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Site Icon: "
 msgstr "Иконка сайта:"
@@ -3695,6 +3542,7 @@ msgstr "Иконка сайта:"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "The site icon (favicon) appears in browser tabs, bookmarks, and mobile devices. To update it, go to General Settings → Site Icon and upload a new image under Site Identity."
 msgstr "Иконка сайта (favicon) отображается на вкладках браузера, в закладках и на мобильных устройствах. Чтобы обновить ее, перейдите в Общие настройки → Иконка сайта и загрузите новое изображение в разделе Идентификация сайта."
@@ -3704,6 +3552,7 @@ msgstr "Иконка сайта (favicon) отображается на вкла
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Change Here"
 msgstr "Изменить здесь"
@@ -3745,6 +3594,7 @@ msgstr "Введите URL вашей стандартной страницы а
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
+#: build/seo-popup/index.js:1
 msgid "Facebook"
 msgstr "Facebook"
 
@@ -3815,6 +3665,7 @@ msgstr "Введите URL вашей резервной страницы авт
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
+#: build/seo-popup/index.js:1
 msgid "X"
 msgstr "X"
 
@@ -3823,6 +3674,7 @@ msgstr "X"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Invalid Date"
 msgstr "Неверная дата"
@@ -3832,6 +3684,7 @@ msgstr "Неверная дата"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No Date"
 msgstr "Нет даты"
@@ -4003,18 +3856,22 @@ msgstr "Сообщественный блог/новостной сайт"
 msgid "This Website Represents"
 msgstr "Этот сайт представляет"
 
+#: inc/schema/variables.php:223
 #: build/admin-onboarding/index.js:1
 msgid "Organization Type"
 msgstr "Тип организации"
 
+#: inc/schema/variables.php:220
 #: build/admin-onboarding/index.js:1
 msgid "Website Name"
 msgstr "Название сайта"
 
+#: inc/schema/variables.php:222
 #: build/admin-onboarding/index.js:1
 msgid "Website Owner Name"
 msgstr "Имя владельца сайта"
 
+#: inc/schema/variables.php:225
 #: build/admin-onboarding/index.js:1
 msgid "Website Logo"
 msgstr "Логотип сайта"
@@ -4068,33 +3925,10 @@ msgstr "Давайте начнем"
 msgid "Invalid term ID or term object."
 msgstr "Недействительный идентификатор термина или объект термина."
 
-#: inc/api/analyzer.php:1575
-msgid "Post ID is required."
-msgstr "Идентификатор поста обязателен."
-
-#: inc/api/analyzer.php:123
+#: inc/api/analyzer.php:117
+#: inc/api/analyzer.php:1056
 msgid "Invalid Post ID."
 msgstr "Недействительный идентификатор поста."
-
-#: inc/api/analyzer.php:1628
-msgid "SEO checks retrieved from cache."
-msgstr "Проверки SEO получены из кэша."
-
-#: inc/api/analyzer.php:1651
-msgid "SEO checks completed."
-msgstr "Проверки SEO завершены."
-
-#: inc/api/analyzer.php:146
-msgid "Taxonomy and term ID are required."
-msgstr "Таксономия и идентификатор термина обязательны."
-
-#: inc/api/analyzer.php:1690
-msgid "Taxonomy SEO checks retrieved from cache."
-msgstr "Проверки SEO таксономии получены из кэша."
-
-#: inc/api/analyzer.php:1713
-msgid "Taxonomy SEO checks found."
-msgstr "Проверки SEO таксономии найдены."
 
 #: build/admin-seo-bar/index.js:1
 msgid "Close drawer"
@@ -4122,27 +3956,27 @@ msgid "Page does not contain at least one subheading."
 msgstr "Страница не содержит хотя бы одного подзаголовка."
 
 #. translators: %1$d is the maximum recommended length of the title.
-#: inc/analyzer/seo-analyzer.php:906
+#: inc/analyzer/seo-analyzer.php:921
 #, php-format
 msgid "Search engine title of the home page exceeds %1$d characters."
 msgstr "Заголовок поисковой системы главной страницы превышает %1$d символов."
 
-#: inc/analyzer/seo-analyzer.php:911
+#: inc/analyzer/seo-analyzer.php:926
 msgid "Search engine title of the home page is present and under 60 characters."
 msgstr "Заголовок поисковой системы главной страницы присутствует и содержит менее 60 символов."
 
 #. translators: %1$d is the maximum length of the meta description.
-#: inc/analyzer/seo-analyzer.php:932
+#: inc/analyzer/seo-analyzer.php:947
 #, php-format
 msgid "Search engine description of the home page exceeds %1$d characters."
 msgstr "Описание поисковой системы главной страницы превышает %1$d символов."
 
-#: inc/analyzer/seo-analyzer.php:937
+#: inc/analyzer/seo-analyzer.php:952
 msgid "Search engine description of the home page is present and under 160 characters."
 msgstr "Описание поисковой системы главной страницы присутствует и содержит менее 160 символов."
 
 #. translators: %s is the URL of the surerank settings page
-#: inc/api/analyzer.php:660
+#: inc/api/analyzer.php:741
 #, php-format
 msgid "Set the search engine visibility on <a href=\"%s\">WordPress Reading settings page</a>."
 msgstr "Установите видимость для поисковых систем на <a href=\"%s\">странице настроек чтения WordPress</a>."
@@ -4155,7 +3989,7 @@ msgstr "Страница \"О нас\""
 msgid "ContactPage"
 msgstr "Страница \"Контакты\""
 
-#: inc/third-party-plugins/cart-flows.php:53
+#: inc/third-party-integrations/cart-flows.php:56
 msgid "This indexing setting is managed by the SureRank plugin."
 msgstr "Эта настройка индексации управляется плагином SureRank."
 
@@ -4191,6 +4025,7 @@ msgstr "Критично"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Warning"
 msgid_plural "Warnings"
@@ -4223,127 +4058,127 @@ msgstr "Архивы"
 msgid "Grow traffic of your website with SureRank — a lightweight SEO toolkit plugin for WordPress users who want better rankings without the complexity."
 msgstr "Увеличьте трафик вашего сайта с помощью SureRank — легкого SEO-плагина для пользователей WordPress, которые хотят лучшие позиции без сложности."
 
-#: inc/admin/dashboard.php:523
+#: inc/admin/dashboard.php:569
 msgid "The name of the site."
 msgstr "Название сайта."
 
-#: inc/admin/dashboard.php:556
-#: inc/meta-variables/post.php:80
+#: inc/admin/dashboard.php:602
+#: inc/meta-variables/post.php:81
 msgid "Date Published"
 msgstr "Дата публикации"
 
-#: inc/admin/dashboard.php:558
-#: inc/meta-variables/post.php:81
+#: inc/admin/dashboard.php:604
+#: inc/meta-variables/post.php:82
 msgid "Publication date of the current post/page OR specified date on date archives"
 msgstr "Дата публикации текущего поста/страницы ИЛИ указанная дата в архиве по датам"
 
-#: inc/admin/dashboard.php:561
-#: inc/meta-variables/post.php:84
+#: inc/admin/dashboard.php:607
+#: inc/meta-variables/post.php:85
 msgid "Date Modified"
 msgstr "Дата изменения"
 
-#: inc/admin/dashboard.php:563
-#: inc/meta-variables/post.php:85
+#: inc/admin/dashboard.php:609
+#: inc/meta-variables/post.php:86
 msgid "Last modification date of the current post/page"
 msgstr "Дата последнего изменения текущего поста/страницы"
 
-#: inc/admin/dashboard.php:568
+#: inc/admin/dashboard.php:614
 msgid "URL of the current post/page"
 msgstr "URL текущего поста/страницы"
 
-#: inc/admin/dashboard.php:571
+#: inc/admin/dashboard.php:617
 #: inc/meta-variables/site.php:84
 msgid "Current Date"
 msgstr "Текущая дата"
 
-#: inc/admin/dashboard.php:573
+#: inc/admin/dashboard.php:619
 #: inc/meta-variables/site.php:85
 msgid "Current server date"
 msgstr "Текущая дата сервера"
 
-#: inc/admin/dashboard.php:576
+#: inc/admin/dashboard.php:622
 #: inc/meta-variables/site.php:88
 msgid "Current Day"
 msgstr "Текущий день"
 
-#: inc/admin/dashboard.php:578
+#: inc/admin/dashboard.php:624
 #: inc/meta-variables/site.php:89
 msgid "Current server day"
 msgstr "Текущий день сервера"
 
-#: inc/admin/dashboard.php:581
+#: inc/admin/dashboard.php:627
 #: inc/meta-variables/site.php:92
 msgid "Current Month"
 msgstr "Текущий месяц"
 
-#: inc/admin/dashboard.php:583
+#: inc/admin/dashboard.php:629
 #: inc/meta-variables/site.php:93
 msgid "Current server month"
 msgstr "Текущий месяц сервера"
 
-#: inc/admin/dashboard.php:586
+#: inc/admin/dashboard.php:632
 #: inc/meta-variables/site.php:96
 msgid "Current Year"
 msgstr "Текущий год"
 
-#: inc/admin/dashboard.php:588
+#: inc/admin/dashboard.php:634
 #: inc/meta-variables/site.php:97
 msgid "Current server year"
 msgstr "Текущий год сервера"
 
-#: inc/admin/dashboard.php:591
+#: inc/admin/dashboard.php:637
 #: inc/meta-variables/site.php:100
 msgid "Current Time"
 msgstr "Текущее время"
 
-#: inc/admin/dashboard.php:593
+#: inc/admin/dashboard.php:639
 #: inc/meta-variables/site.php:101
 msgid "Current server time"
 msgstr "Текущее время сервера"
 
-#: inc/admin/dashboard.php:596
+#: inc/admin/dashboard.php:642
 #: inc/meta-variables/site.php:104
 msgid "Organization Name"
 msgstr "Название организации"
 
-#: inc/admin/dashboard.php:598
+#: inc/admin/dashboard.php:644
 #: inc/meta-variables/site.php:105
 msgid "The Organization Name added in Local SEO Settings."
 msgstr "Название организации, добавленное в настройках локального SEO."
 
-#: inc/admin/dashboard.php:601
+#: inc/admin/dashboard.php:647
 #: inc/meta-variables/site.php:108
 msgid "Organization Logo"
 msgstr "Логотип организации"
 
-#: inc/admin/dashboard.php:603
+#: inc/admin/dashboard.php:649
 #: inc/meta-variables/site.php:109
 msgid "Organization Logo added in Local SEO Settings."
 msgstr "Логотип организации, добавленный в настройках локального SEO."
 
-#: inc/admin/dashboard.php:606
+#: inc/admin/dashboard.php:652
 #: inc/meta-variables/site.php:112
 msgid "Organization URL"
 msgstr "URL организации"
 
-#: inc/admin/dashboard.php:608
+#: inc/admin/dashboard.php:654
 #: inc/meta-variables/site.php:113
 msgid "Organization URL added in Local SEO Settings."
 msgstr "URL организации, добавленный в настройках локального SEO."
 
-#: inc/admin/dashboard.php:611
+#: inc/admin/dashboard.php:657
 msgid "Post Author Name"
 msgstr "Имя автора поста"
 
-#: inc/admin/dashboard.php:613
+#: inc/admin/dashboard.php:659
 msgid "Display author's nicename of the current post, page or author archive."
 msgstr "Отображение nicename автора текущего поста, страницы или архива автора."
 
-#: inc/meta-variables/post.php:88
+#: inc/meta-variables/post.php:89
 msgid "Author Name"
 msgstr "Имя автора"
 
-#: inc/meta-variables/post.php:89
+#: inc/meta-variables/post.php:90
 msgid "The name of the author of the current post/page"
 msgstr "Имя автора текущего поста/страницы"
 
@@ -4355,7 +4190,7 @@ msgstr "Поисковый запрос"
 msgid "Search query (only available on search results page)"
 msgstr "Поисковый запрос (доступен только на странице результатов поиска)"
 
-#: loader.php:292
+#: loader.php:288
 msgid "Rate our plugin"
 msgstr "Оцените наш плагин"
 
@@ -4387,11 +4222,6 @@ msgstr "Страницы архива позволяют посетителям 
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
-msgid "Generates a sitemap to help search engines find and index your content more efficiently. Showing image count can improve how your media appears in search results."
-msgstr "Генерирует карту сайта, чтобы помочь поисковым системам находить и индексировать ваш контент более эффективно. Отображение количества изображений может улучшить видимость ваших медиа в результатах поиска."
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
 msgid "Create a default template for how your pages appear in Google search. You can still set custom titles and descriptions for individual pages."
 msgstr "Создайте шаблон по умолчанию для отображения ваших страниц в поиске Google. Вы все еще можете задавать индивидуальные заголовки и описания для отдельных страниц."
 
@@ -4407,11 +4237,6 @@ msgstr "Изображение по умолчанию для социальны
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
-msgid "This is your site's default social sharing image (Open Graph). It shows up when your pages are shared on social platforms — unless a custom image is set on that page."
-msgstr "Это изображение по умолчанию для совместного использования вашего сайта в социальных сетях (Open Graph). Оно отображается, когда ваши страницы делятся в социальных платформах — если только на этой странице не установлено пользовательское изображение."
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
 msgid "Control how your pages appear when shared on X. Set attribution and preview settings here."
 msgstr "Управляйте тем, как ваши страницы отображаются при совместном использовании в X. Здесь можно настроить атрибуцию и параметры предварительного просмотра."
 
@@ -4422,16 +4247,11 @@ msgid "Click here to discover more details about this check."
 msgstr "Нажмите здесь, чтобы узнать больше деталей об этой проверке."
 
 #: build/admin-dashboard/index.js:1
-#: build/admin-seo-bar/index.js:1
-#: build/seo-popup/index.js:1
-msgid "Coming Soon in SureRank Pro."
-msgstr "Скоро в SureRank Pro."
-
-#: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "issue"
 msgid_plural "issues"
@@ -4495,9 +4315,11 @@ msgstr "Это часто первое, что видит кто-то, преж�
 #: inc/analyzer/seo-analyzer.php:531
 #: inc/analyzer/seo-analyzer.php:655
 #: inc/analyzer/seo-analyzer.php:780
-#: inc/analyzer/seo-analyzer.php:1056
-#: inc/api/analyzer.php:551
-#: inc/api/analyzer.php:581
+#: inc/analyzer/seo-analyzer.php:1071
+#: inc/api/analyzer.php:568
+#: inc/api/analyzer.php:622
+#: inc/api/analyzer.php:669
+#: inc/api/analyzer.php:797
 msgid "Why this matters:"
 msgstr "Почему это важно:"
 
@@ -4560,7 +4382,7 @@ msgstr "Чтобы все было ясно и видно, старайтесь 
 
 #: inc/analyzer/seo-analyzer.php:210
 #: inc/analyzer/seo-analyzer.php:330
-#: inc/analyzer/seo-analyzer.php:1059
+#: inc/analyzer/seo-analyzer.php:1074
 msgid "What to write:"
 msgstr "Что писать:"
 
@@ -4621,7 +4443,7 @@ msgid "Each H2 should introduce a new section — like your services, your proce
 msgstr "Каждый H2 должен вводить новый раздел — например, ваши услуги, ваш процесс, ваши ценности или ключевые предложения. Держите их короткими и полезными."
 
 #: inc/analyzer/seo-analyzer.php:333
-#: inc/analyzer/seo-analyzer.php:1062
+#: inc/analyzer/seo-analyzer.php:1077
 msgid "Examples:"
 msgstr "Примеры:"
 
@@ -4704,10 +4526,8 @@ msgstr "Если поисковые системы видят несколько
 #: inc/analyzer/seo-analyzer.php:658
 #: inc/analyzer/seo-analyzer.php:735
 #: inc/analyzer/seo-analyzer.php:783
-#: inc/api/analyzer.php:445
-#: inc/api/analyzer.php:584
-#: inc/api/analyzer.php:622
-#: inc/api/analyzer.php:710
+#: inc/api/analyzer.php:458
+#: inc/api/analyzer.php:625
 msgid "What you can do:"
 msgstr "Что вы можете сделать:"
 
@@ -4742,9 +4562,7 @@ msgstr "Это может произойти, если ваша домашняя
 #: inc/analyzer/seo-analyzer.php:586
 #: inc/analyzer/seo-analyzer.php:623
 #: inc/analyzer/seo-analyzer.php:732
-#: inc/api/analyzer.php:442
-#: inc/api/analyzer.php:619
-#: inc/api/analyzer.php:707
+#: inc/api/analyzer.php:455
 msgid "Why it matters:"
 msgstr "Почему это важно:"
 
@@ -4836,190 +4654,130 @@ msgstr "Если ваш сайт работает под обеими верси
 msgid "Pick your preferred domain (with or without www) and set up a redirect so all visitors and search engines are sent to that version. This makes your SEO stronger and avoids unnecessary duplication."
 msgstr "Выберите предпочитаемый домен (с www или без) и настройте перенаправление, чтобы все посетители и поисковые системы направлялись на эту версию. Это укрепляет вашу SEO и избегает ненужного дублирования."
 
-#: inc/analyzer/seo-analyzer.php:1052
+#: inc/analyzer/seo-analyzer.php:1067
 msgid "Images add personality and style to your homepage — but search engines can’t “see” them unless you describe what they are. That’s where ALT text comes in."
 msgstr "Изображения добавляют индивидуальность и стиль вашей главной странице — но поисковые системы не могут их «увидеть», если вы не опишете, что это такое. Вот где появляется ALT-текст."
 
-#: inc/analyzer/seo-analyzer.php:1053
+#: inc/analyzer/seo-analyzer.php:1068
 msgid "ALT (alternative) text is a short description added to each image. It helps with accessibility for users using screen readers, and it helps search engines understand what the image is about. That can help your content appear in image search results too."
 msgstr "ALT (альтернативный) текст — это короткое описание, добавляемое к каждому изображению. Он помогает пользователям с ограниченными возможностями, использующим экранные считыватели, и помогает поисковым системам понять, о чем изображение. Это также может помочь вашему контенту появляться в результатах поиска изображений."
 
-#: inc/analyzer/seo-analyzer.php:1057
+#: inc/analyzer/seo-analyzer.php:1072
 msgid "ALT text improves accessibility, makes your site more inclusive, and helps with SEO. It’s especially important on your homepage, where your most important content and images usually live."
 msgstr "ALT-текст улучшает доступность, делает ваш сайт более инклюзивным и помогает с SEO. Это особенно важно на вашей главной странице, где обычно находится ваш самый важный контент и изображения."
 
-#: inc/analyzer/seo-analyzer.php:1060
+#: inc/analyzer/seo-analyzer.php:1075
 msgid "Just describe what the image is about. If it’s decorative, you can skip it — but for key images, write a short, clear summary."
 msgstr "Просто опишите, о чем изображение. Если оно декоративное, вы можете пропустить его — но для ключевых изображений напишите короткое, четкое резюме."
 
-#: inc/analyzer/seo-analyzer.php:1063
+#: inc/analyzer/seo-analyzer.php:1078
 msgid "Woman doing yoga in a sunny room"
 msgstr "Женщина, занимающаяся йогой в солнечной комнате"
 
-#: inc/analyzer/seo-analyzer.php:1064
+#: inc/analyzer/seo-analyzer.php:1079
 msgid "Handmade ceramic mug on a wooden table"
 msgstr "Ручная керамическая кружка на деревянном столе"
 
-#: inc/analyzer/seo-analyzer.php:1066
+#: inc/analyzer/seo-analyzer.php:1081
 msgid "Where to add it:"
 msgstr "Где добавить:"
 
-#: inc/analyzer/seo-analyzer.php:1067
+#: inc/analyzer/seo-analyzer.php:1082
 msgid "When uploading or editing images in WordPress, you’ll see an “ALT text” field in the media settings. Fill this out for each image on your homepage."
 msgstr "При загрузке или редактировании изображений в WordPress вы увидите поле «ALT текст» в настройках медиа. Заполните его для каждого изображения на вашей главной странице."
 
-#: inc/api/analyzer.php:1539
-#: inc/api/analyzer.php:1562
+#: inc/api/analyzer.php:1714
+#: inc/api/analyzer.php:1737
 msgid "Type of check to delete. Can be \"post\" or \"taxonomy\"."
 msgstr "Тип проверки для удаления. Может быть «пост» или «таксономия»."
 
-#: inc/api/analyzer.php:208
+#: inc/api/analyzer.php:222
 msgid "Checks ignored."
 msgstr "Проверки проигнорированы."
 
-#: inc/api/analyzer.php:245
+#: inc/api/analyzer.php:259
 msgid "Checks unignored."
 msgstr "Проверки не проигнорированы."
 
-#: inc/api/analyzer.php:330
+#: inc/api/analyzer.php:344
 msgid "Check ignored for post."
 msgstr "Проверка проигнорирована для поста."
 
-#: inc/api/analyzer.php:358
+#: inc/api/analyzer.php:372
 msgid "Check unignored for post."
 msgstr "Проверка не проигнорирована для поста."
 
-#: inc/api/analyzer.php:381
+#: inc/api/analyzer.php:395
 msgid "Ignored checks retrieved."
 msgstr "Получены проигнорированные проверки."
 
-#: inc/api/analyzer.php:439
+#: inc/api/analyzer.php:452
 msgid "Google Search Console is a free tool that shows how your site is doing in Google search — how many people are finding it, what they’re searching for, and which pages are getting the most attention."
 msgstr "Google Search Console — это бесплатный инструмент, который показывает, как ваш сайт работает в поиске Google — сколько людей его находит, что они ищут и какие страницы получают наибольшее внимание."
 
-#: inc/api/analyzer.php:440
+#: inc/api/analyzer.php:453
 msgid "Connecting Search Console to your site doesn’t change anything on the front end — but it gives you a behind-the-scenes view of what’s working. SureRank uses this connection to show useful insights directly in your dashboard."
 msgstr "Подключение Search Console к вашему сайту ничего не меняет на фронт-энде — но дает вам закулисный взгляд на то, что работает. SureRank использует это соединение, чтобы показывать полезные данные прямо на вашей панели управления."
 
-#: inc/api/analyzer.php:524
-msgid "SEO plugins help manage how your site appears in search engines. They control important things like titles, meta descriptions, canonical tags, and structured data. "
-msgstr "Плагины SEO помогают управлять тем, как ваш сайт отображается в поисковых системах. Они контролируют важные вещи, такие как заголовки, метаописания, канонические теги и структурированные данные."
-
 #. translators: %s is the list of active plugins
-#: inc/api/analyzer.php:547
+#: inc/api/analyzer.php:565
 #, php-format
 msgid "Currently active plugins : %s"
 msgstr "В настоящее время активные плагины: %s"
 
-#: inc/api/analyzer.php:548
-msgid "But here’s something many site owners don’t realize — using more than one SEO plugin at the same time can lead to issues."
-msgstr "Но вот что многие владельцы сайтов не осознают — использование более одного плагина SEO одновременно может привести к проблемам."
-
-#: inc/api/analyzer.php:552
-msgid "Most SEO plugins try to manage the same parts of your site. When two plugins do this together, they can send mixed signals to search engines. This might affect how your content is indexed or shown in results. It also makes it harder to know which tool is changing what."
-msgstr "Большинство плагинов SEO пытаются управлять одними и теми же частями вашего сайта. Когда два плагина делают это одновременно, они могут отправлять смешанные сигналы поисковым системам. Это может повлиять на то, как ваш контент индексируется или отображается в результатах. Это также усложняет понимание того, какой инструмент изменяет что."
-
-#: inc/api/analyzer.php:554
-msgid "What to keep in mind:"
-msgstr "Что нужно иметь в виду:"
-
-#: inc/api/analyzer.php:555
-msgid "Keeping just one SEO plugin active ensures your settings stay clean and consistent. It’s easier to manage, avoids conflicts, and helps search engines read your site clearly."
-msgstr "Сохранение только одного активного SEO плагина гарантирует, что ваши настройки останутся чистыми и последовательными. Это проще в управлении, избегает конфликтов и помогает поисковым системам четко читать ваш сайт."
-
-#: inc/api/analyzer.php:557
-msgid "SureRank is designed to handle everything you need in one place — so there’s no need for multiple plugins doing the same job."
-msgstr "SureRank разработан для того, чтобы справляться со всем необходимым в одном месте — поэтому нет необходимости в нескольких плагинах, выполняющих одну и ту же работу."
-
-#: inc/api/analyzer.php:578
+#: inc/api/analyzer.php:619
 msgid "Your site tagline is a simple line that helps explain what your website is about. It often shows up in the browser tab, homepage, or in search snippets — depending on your theme or SEO settings."
 msgstr "Ваш слоган сайта — это простая строка, которая помогает объяснить, о чем ваш веб-сайт. Он часто отображается на вкладке браузера, главной странице или в фрагментах поиска — в зависимости от вашей темы или настроек SEO."
 
-#: inc/api/analyzer.php:579
+#: inc/api/analyzer.php:620
 msgid "Leaving it blank, using a default message like “Just another WordPress site,” or writing something unclear doesn’t help people or search engines understand your site."
 msgstr "Оставление его пустым, использование стандартного сообщения, такого как «Просто еще один сайт WordPress», или написание чего-то неясного не помогает людям или поисковым системам понять ваш сайт."
 
-#: inc/api/analyzer.php:582
+#: inc/api/analyzer.php:623
 msgid "A good tagline can instantly tell visitors what your site offers — and make it more appealing in search results. Think of it like a mini pitch that follows your site name."
 msgstr "Хороший слоган может мгновенно сообщить посетителям, что предлагает ваш сайт — и сделать его более привлекательным в результатах поиска. Подумайте об этом как о мини-презентации, которая следует за названием вашего сайта."
 
-#: inc/api/analyzer.php:585
+#: inc/api/analyzer.php:626
 msgid "Write one short sentence that describes your site’s purpose or audience. For example: "
 msgstr "Напишите одно короткое предложение, которое описывает цель или аудиторию вашего сайта. Например:"
 
-#: inc/api/analyzer.php:586
+#: inc/api/analyzer.php:627
 msgid "“Simple budgeting tools for everyday people”"
 msgstr "«Простые инструменты для бюджета для обычных людей»"
 
-#: inc/api/analyzer.php:587
+#: inc/api/analyzer.php:628
 msgid "“Home workouts and fitness tips that fit your schedule”"
 msgstr "«Домашние тренировки и советы по фитнесу, которые подходят вашему расписанию»"
 
-#: inc/api/analyzer.php:588
+#: inc/api/analyzer.php:629
 msgid "Keep it short, specific, and friendly. You can change it from the WordPress settings."
 msgstr "Держите его коротким, конкретным и дружелюбным. Вы можете изменить его в настройках WordPress."
 
-#: inc/api/analyzer.php:615
-msgid "Your site uses a small file called robots.txt to guide search engines on where they can and can’t go. It’s like a set of instructions that says, “You’re welcome to look here — but please don’t touch this part.”"
-msgstr "Ваш сайт использует небольшой файл под названием robots.txt, чтобы направлять поисковые системы о том, где они могут и не могут заходить. Это как набор инструкций, который говорит: «Вы можете смотреть здесь — но, пожалуйста, не трогайте эту часть.»"
-
-#: inc/api/analyzer.php:617
-msgid "Most of the time, WordPress creates this automatically. But if the file is missing or misconfigured, search engines might avoid pages they’re actually allowed to visit — or worse, miss important content altogether."
-msgstr "Чаще всего WordPress создает это автоматически. Но если файл отсутствует или неправильно настроен, поисковые системы могут избегать страниц, которые им на самом деле разрешено посещать — или, что еще хуже, пропустить важный контент полностью."
-
-#: inc/api/analyzer.php:620
-msgid "Without a robots.txt file, search engines may not crawl your site properly, or they might spend too much time on pages that don’t matter. With a working file, your site can be explored more efficiently."
-msgstr "Без файла robots.txt поисковые системы могут неправильно индексировать ваш сайт или тратить слишком много времени на страницы, которые не имеют значения. С работающим файлом ваш сайт может быть исследован более эффективно."
-
-#: inc/api/analyzer.php:623
-msgid "Check if your robots.txt file is available by visiting yourdomain.com/robots.txt in your browser. If it opens and lists some basic rules (even if you don’t understand them), that means it’s active. "
-msgstr "Проверьте, доступен ли ваш файл robots.txt, посетив yourdomain.com/robots.txt в вашем браузере. Если он открывается и перечисляет некоторые основные правила (даже если вы их не понимаете), это означает, что он активен."
-
-#: inc/api/analyzer.php:625
-msgid "SureRank takes care of this by default — so if it’s missing, we’ll help you fix it easily."
-msgstr "SureRank заботится об этом по умолчанию — поэтому, если он отсутствует, мы поможем вам легко это исправить."
-
-#: inc/api/analyzer.php:703
-msgid "A sitemap is like a guide or map that helps search engines explore your website more efficiently. It lists out the important pages on your site and gives search engines a clear path to follow — like a floor plan showing where everything is. This way, nothing important gets missed."
-msgstr "Карта сайта — это как путеводитель или карта, которая помогает поисковым системам более эффективно исследовать ваш веб-сайт. Она перечисляет важные страницы вашего сайта и дает поисковым системам четкий путь для следования — как план этажа, показывающий, где что находится. Таким образом, ничего важного не будет упущено."
-
-#: inc/api/analyzer.php:705
+#: inc/api/analyzer.php:806
 msgid "Think of it like this: if your website was a story, the sitemap would be the chapter list — helping Google and other search engines jump to the right sections. It doesn’t change how your site looks to visitors, but it makes a big difference in how your site is discovered and understood behind the scenes."
 msgstr "Представьте это так: если ваш веб-сайт был бы историей, карта сайта была бы списком глав — помогая Google и другим поисковым системам перейти к нужным разделам. Это не меняет того, как ваш сайт выглядит для посетителей, но это имеет большое значение для того, как ваш сайт обнаруживается и понимается за кулисами."
 
-#: inc/api/analyzer.php:708
-msgid "Without a sitemap, search engines might miss some of your pages or take longer to find new ones. That can slow down how quickly your updates appear in search results. With a sitemap, they get a clear overview of your content and can index it faster and more accurately — which can help improve visibility."
-msgstr "Без карты сайта поисковые системы могут пропустить некоторые ваши страницы или дольше находить новые. Это может замедлить скорость появления ваших обновлений в результатах поиска. С картой сайта они получают четкий обзор вашего контента и могут индексировать его быстрее и точнее — что может помочь улучшить видимость."
-
-#: inc/api/analyzer.php:711
-msgid "Check that your sitemap is active and accessible. You can usually visit it at a link like yourdomain.com/sitemap.xml. If it opens and shows a list of links (even if it looks a bit technical), that means it’s working."
-msgstr "Проверьте, что ваша карта сайта активна и доступна. Обычно вы можете посетить ее по ссылке вроде yourdomain.com/sitemap.xml. Если она открывается и показывает список ссылок (даже если это выглядит немного технически), это означает, что она работает."
-
-#: inc/api/analyzer.php:713
-msgid "If you’ve connected tools like Google Search Console, you can also submit the sitemap there — but that’s optional. The key is to make sure it’s available and up to date so search engines can do their job properly."
-msgstr "Если вы подключили такие инструменты, как Google Search Console, вы также можете отправить карту сайта туда — но это необязательно. Главное — убедиться, что она доступна и актуальна, чтобы поисковые системы могли выполнять свою работу должным образом."
-
-#: inc/api/onboarding.php:88
+#: inc/api/onboarding.php:89
 msgid "Type of the website."
 msgstr "Тип веб-сайта."
 
-#: inc/api/onboarding.php:97
+#: inc/api/onboarding.php:98
 msgid "Name of the website."
 msgstr "Название веб-сайта."
 
-#: inc/api/onboarding.php:106
+#: inc/api/onboarding.php:116
 msgid "Name of the website owner."
 msgstr "Имя владельца веб-сайта."
 
-#: inc/api/onboarding.php:115
+#: inc/api/onboarding.php:125
 msgid "Phone number of the website owner."
 msgstr "Номер телефона владельца веб-сайта."
 
-#: inc/api/onboarding.php:124
+#: inc/api/onboarding.php:134
 msgid "Type of the organization."
 msgstr "Тип организации."
 
-#: inc/api/onboarding.php:144
+#: inc/api/onboarding.php:154
 msgid "Social profiles URLs."
 msgstr "URL социальных профилей."
 
@@ -5032,10 +4790,6 @@ msgstr "Нет SEO производительности для отображе�
 #: build/seo-popup/index.js:1
 msgid "Help Me Fix"
 msgstr "Помогите мне исправить"
-
-#: build/admin-dashboard/index.js:1
-msgid "Re-run Checks"
-msgstr "Повторить проверки"
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-seo-bar/index.js:1
@@ -5064,7 +4818,7 @@ msgstr "Шаблоны метаданных"
 msgid "Suggestion"
 msgstr "Предложение"
 
-#: inc/admin/dashboard.php:276
+#: inc/admin/dashboard.php:285
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Search Console"
@@ -5094,7 +4848,7 @@ msgstr "Игнорировать эту проверку"
 msgid "Restore this check"
 msgstr "Восстановить эту проверку"
 
-#: inc/analyzer/post-analyzer.php:229
+#: inc/analyzer/post-analyzer.php:264
 msgid "The page does not contain any subheadings."
 msgstr "Страница не содержит подзаголовков."
 
@@ -5108,12 +4862,12 @@ msgid "Site does not correctly redirect between www and non-www versions."
 msgstr "Сайт некорректно перенаправляет между версиями с www и без www."
 
 #. translators: %s is the list of active plugins
-#: inc/api/analyzer.php:543
+#: inc/api/analyzer.php:561
 #, php-format
 msgid "Another SEO plugin, %s, detected on the site."
 msgstr "На сайте обнаружен другой SEO плагин, %s."
 
-#: inc/admin/dashboard.php:281
+#: inc/admin/dashboard.php:296
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Tools"
@@ -5484,11 +5238,13 @@ msgid "Error importing Yoast SEO global settings: %s"
 msgstr "Ошибка при импорте глобальных настроек Yoast SEO: %s"
 
 #: build/admin-dashboard/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No data available"
 msgstr "Данные недоступны"
 
 #: build/admin-dashboard/index.js:1
+#: build/search-console-widget/index.js:1
 msgid "Search Console data might take up to 30 days to appear for newly added sites. Please check back later."
 msgstr "Данные Search Console могут появиться до 30 дней для недавно добавленных сайтов. Пожалуйста, проверьте позже."
 
@@ -5738,7 +5494,7 @@ msgid "Done"
 msgstr "Готово"
 
 #: inc/analyzer/utils.php:252
-#: inc/api/analyzer.php:1312
+#: inc/api/analyzer.php:1479
 msgid "The link is broken."
 msgstr "Сломанная ссылка."
 
@@ -5789,36 +5545,36 @@ msgstr "Статус:"
 msgid "Failed to check link"
 msgstr "Не удалось проверить ссылку"
 
-#: inc/admin/bulk-actions.php:218
+#: inc/admin/bulk-actions.php:231
 msgid "SureRank Settings"
 msgstr "SureRank Настройки"
 
-#: inc/admin/bulk-actions.php:219
+#: inc/admin/bulk-actions.php:232
 msgid "Set to index"
 msgstr "Установить на index"
 
-#: inc/admin/bulk-actions.php:220
+#: inc/admin/bulk-actions.php:233
 msgid "Set to noindex"
 msgstr "Установить на noindex"
 
-#: inc/admin/bulk-actions.php:221
+#: inc/admin/bulk-actions.php:234
 msgid "Set to follow"
 msgstr "Установить на follow"
 
-#: inc/admin/bulk-actions.php:222
+#: inc/admin/bulk-actions.php:235
 msgid "Set to nofollow"
 msgstr "Установить на nofollow"
 
-#: inc/admin/bulk-actions.php:223
+#: inc/admin/bulk-actions.php:236
 msgid "Set to archive"
 msgstr "Установить на archive"
 
-#: inc/admin/bulk-actions.php:224
+#: inc/admin/bulk-actions.php:237
 msgid "Set to noarchive"
 msgstr "Установить на noarchive"
 
 #. translators: %1$d: number of items updated, %2$s: action performed
-#: inc/admin/bulk-actions.php:177
+#: inc/admin/bulk-actions.php:190
 #, php-format
 msgid "%1$d item %2$s."
 msgid_plural "%1$d items %2$s."
@@ -6013,16 +5769,16 @@ msgstr "atec Cache APCu"
 msgid "Detected via %1$s: %2$s"
 msgstr "Обнаружено через %1$s: %2$s"
 
-#: inc/api/sitemap.php:155
+#: inc/api/sitemap.php:156
 msgid "Sitemap cache generation has started."
 msgstr "Началось создание кеша карты сайта."
 
-#: inc/api/sitemap.php:156
+#: inc/api/sitemap.php:157
 msgid "This may take up to 5 minutes, please wait before checking the sitemap."
 msgstr "Это может занять до 5 минут, пожалуйста, подождите перед проверкой карты сайта."
 
 #. translators: %s: Error message
-#: inc/api/sitemap.php:172
+#: inc/api/sitemap.php:173
 #, php-format
 msgid "Failed to start cache generation: %s"
 msgstr "Не удалось начать создание кеша: %s"
@@ -6051,7 +5807,7 @@ msgstr "Для обработки не найдено терминов."
 msgid "JSON generation completed for %d terms."
 msgstr "Генерация JSON завершена для %d терминов."
 
-#: inc/cli/cli.php:47
+#: inc/cli/cli.php:46
 msgid "SureRank Cache generated successfully"
 msgstr "Кеш SureRank успешно создан"
 
@@ -6241,11 +5997,11 @@ msgstr "Не удалось получить URL вложения"
 msgid "Image downloaded and saved successfully."
 msgstr "Изображение успешно загружено и сохранено"
 
-#: inc/meta-variables/post.php:92
+#: inc/meta-variables/post.php:93
 msgid "Archive Title"
 msgstr "Заголовок архива"
 
-#: inc/meta-variables/post.php:93
+#: inc/meta-variables/post.php:94
 msgid "The title of the current archive. Example \"Day/Month/Year Archives: \" or \"Author Archives: \""
 msgstr "Заголовок текущего архива. Например, \"Архив по дню/месяцу/году\" или \"Архив по автору\""
 
@@ -6259,6 +6015,7 @@ msgstr "Плагин"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "SEO is Optimized"
 msgstr "SEO оптимизировано"
@@ -6280,11 +6037,6 @@ msgstr "Произошла непредвиденная ошибка при об
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
-msgid "The contents are locked because a robots.txt file exists in the root folder. If you want to edit the contents, please delete the existing robots.txt file from your server."
-msgstr "Содержимое заблокировано, потому что в корневой папке существует файл robots.txt. Если вы хотите редактировать содержимое, пожалуйста, удалите существующий файл robots.txt с вашего сервера."
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
 msgid "Warning:"
 msgstr "Предупреждение:"
 
@@ -6302,11 +6054,6 @@ msgstr "Настройки > Чтение"
 #: build/admin-onboarding/index.js:1
 msgid ". Any changes made here will not be applied until you set the search engine visibility to Public. This is required to update the robots.txt content."
 msgstr ". Любые изменения, внесённые здесь, не будут применены, пока вы не сделаете видимость поисковой системы Общедоступной. Это необходимо для обновления содержимого robots.txt."
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "Changes to your robots.txt file can affect how search engines crawl and index your site. Editing this file incorrectly may block important pages from search results or impact your site’s SEO. Please proceed with caution. Leave empty to let WordPress manage it. If a robots.txt file exists, delete it to use this setting. Verify the robots.txt content "
-msgstr "Изменения в файле robots.txt могут повлиять на то, как поисковые системы сканируют и индексируют ваш сайт. Неправильное редактирование этого файла может заблокировать важные страницы в результатах поиска или повлиять на SEO вашего сайта. Пожалуйста, действуйте осторожно. Оставьте пустым, чтобы WordPress мог управлять им. Если файл robots.txt существует, удалите его, чтобы использовать эти настройки. Проверьте содержимое robots.txt"
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
@@ -6342,10 +6089,6 @@ msgstr "Управление функциями"
 #: build/admin-onboarding/index.js:1
 msgid "Error generating sitemap cache. Please try again."
 msgstr "Ошибка при генерации кеша карты сайта. Пожалуйста, попробуйте снова."
-
-#: build/admin-dashboard/index.js:1
-msgid "Let’s connect to Search Console to Optimize further!"
-msgstr "Давайте подключимся к Search Console для дальнейшей оптимизации!"
 
 #: build/admin-dashboard/index.js:1
 msgid "Learn More about Google Search Console."
@@ -6407,14 +6150,6 @@ msgstr "Миграция завершена"
 #: build/admin-dashboard/index.js:1
 msgid "Your SEO settings have been successfully migrated to SureRank. However, we noticed your previous SEO plugin is still active. Would you like us to deactivate it to avoid conflicts?"
 msgstr "Ваши настройки SEO успешно перенесены в SureRank. Однако мы заметили, что ваш предыдущий SEO-плагин всё ещё активен. Хотите, чтобы мы его деактивировали, чтобы избежать конфликтов?"
-
-#: build/admin-dashboard/index.js:1
-msgid "SureRank Is Ready — Clean Setup with Migration Support Built In"
-msgstr "SureRank готов — чистая установка с встроенной поддержкой миграции"
-
-#: build/admin-dashboard/index.js:1
-msgid "SureRank supports migration from many popular SEO plugins. Since none are currently active, there’s nothing to import — giving you a clean start with everything you need to optimize your site."
-msgstr "SureRank поддерживает миграцию с многих популярных SEO-плагинов. Так как сейчас активных плагинов нет, импортировать нечего — вы получаете чистый старт со всем необходимым для оптимизации вашего сайта."
 
 #: build/admin-onboarding/index.js:1
 msgid "E-commerce Store"
@@ -6524,6 +6259,7 @@ msgstr "Ошибка при импорте глобальных настроек
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 #, js-format
 msgid "%1$d %2$s need attention."
@@ -6534,6 +6270,7 @@ msgstr "%1$d %2$s требуют внимания."
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "All SEO checks passed."
 msgstr "Все проверки SEO пройдены успешно."
@@ -6567,22 +6304,6 @@ msgstr "От"
 #: build/admin-onboarding/index.js:1
 msgid "Import/Export"
 msgstr "Импорт/Экспорт"
-
-#: build/admin-dashboard/index.js:1
-msgid "Transfer SEO settings or backup configurations with ease."
-msgstr "Легко переносите настройки SEO или создавайте резервные копии конфигураций."
-
-#: build/admin-dashboard/index.js:1
-msgid "Planned"
-msgstr "Запланировано"
-
-#: build/admin-dashboard/index.js:1
-msgid "Ultimate Addons for Elementor"
-msgstr "Ultimate Addons for Elementor"
-
-#: build/admin-dashboard/index.js:1
-msgid "Build modern websites with elementor addons."
-msgstr "Создавайте современные сайты с дополнениями для Elementor."
 
 #: build/admin-dashboard/index.js:1
 msgid "Are you sure you want to leave this page? The import process will be interrupted."
@@ -6640,10 +6361,6 @@ msgstr "Экспорт не удался"
 msgid "Export failed. Please try again."
 msgstr "Экспорт не удался. Пожалуйста, попробуйте снова."
 
-#: build/admin-dashboard/index.js:1
-msgid "You can use this option to move your SureRank settings between sites. It’s helpful if you’re setting up multiple websites and want to reuse the same configuration. Just export from one site and import to another—easy and consistent."
-msgstr "Вы можете использовать эту опцию для переноса настроек SureRank между сайтами. Это удобно, если вы настраиваете несколько сайтов и хотите использовать одну и ту же конфигурацию. Просто экспортируйте с одного сайта и импортируйте на другой — легко и последовательно."
-
 #: build/seo-popup/index.js:1
 msgid "Analyze"
 msgstr "Анализировать"
@@ -6660,187 +6377,187 @@ msgstr "Анализ SEO для этой страницы недоступен."
 msgid "Open SureRank Meta Box"
 msgstr "Открыть мета-блок SureRank"
 
-#: inc/analyzer/post-analyzer.php:373
+#: inc/analyzer/post-analyzer.php:408
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "One or more images are missing alt text attributes."
 msgstr "Одна или несколько изображений не имеют атрибутов alt текста."
 
-#: inc/analyzer/post-analyzer.php:376
+#: inc/analyzer/post-analyzer.php:411
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "But don't worry, we will add them automatically for you."
 msgstr "Но не волнуйтесь, мы добавим их автоматически для вас."
 
-#: inc/analyzer/post-analyzer.php:379
+#: inc/analyzer/post-analyzer.php:414
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "You can add them manually or turn on auto-set image title and alt in the settings."
 msgstr "Вы можете добавить их вручную или включить автоматическую установку заголовка и alt для изображений в настройках."
 
-#: inc/analyzer/utils.php:314
+#: inc/analyzer/utils.php:300
 #: build/seo-popup/index.js:1
 msgid "No focus keyword set to analyze title."
 msgstr "Не установлен фокусный ключевик для анализа заголовка."
 
-#: inc/analyzer/utils.php:322
+#: inc/analyzer/utils.php:308
 #: build/seo-popup/index.js:1
 msgid "No SEO title found to analyze."
 msgstr "Не найден SEO-заголовок для анализа."
 
 #. translators: %s is the focus keyword.
-#: inc/analyzer/utils.php:331
+#: inc/analyzer/utils.php:317
 #: build/seo-popup/index.js:1
 #, php-format,js-format
 msgid "Focus keyword \"%s\" found in SEO title."
 msgstr "Фокусный ключевик \"%s\" найден в SEO-заголовке."
 
 #. translators: %s is the focus keyword.
-#: inc/analyzer/utils.php:339
+#: inc/analyzer/utils.php:325
 #: build/seo-popup/index.js:1
 #, php-format,js-format
 msgid "Focus keyword \"%s\" not found in SEO title."
 msgstr "Фокусный ключевик \"%s\" не найден в SEO-заголовке."
 
-#: inc/analyzer/utils.php:355
+#: inc/analyzer/utils.php:341
 #: build/seo-popup/index.js:1
 msgid "No focus keyword set to analyze meta description."
 msgstr "Не установлен фокусный ключевик для анализа мета-описания."
 
-#: inc/analyzer/utils.php:363
+#: inc/analyzer/utils.php:349
 #: build/seo-popup/index.js:1
 msgid "No meta description found to analyze."
 msgstr "Не найдено мета-описание для анализа."
 
 #. translators: %s is the focus keyword.
-#: inc/analyzer/utils.php:372
+#: inc/analyzer/utils.php:358
 #: build/seo-popup/index.js:1
 #, php-format,js-format
 msgid "Focus keyword \"%s\" found in meta description."
 msgstr "Фокусный ключевик \"%s\" найден в мета-описании."
 
 #. translators: %s is the focus keyword.
-#: inc/analyzer/utils.php:380
+#: inc/analyzer/utils.php:366
 #: build/seo-popup/index.js:1
 #, php-format,js-format
 msgid "Focus keyword \"%s\" not found in meta description."
 msgstr "Фокусный ключевик \"%s\" не найден в мета-описании."
 
-#: inc/analyzer/utils.php:396
+#: inc/analyzer/utils.php:382
 #: build/seo-popup/index.js:1
 msgid "No focus keyword set to analyze URL."
 msgstr "Не установлен фокусный ключевик для анализа URL."
 
-#: inc/analyzer/utils.php:404
+#: inc/analyzer/utils.php:390
 #: build/seo-popup/index.js:1
 msgid "No URL found to analyze."
 msgstr "Не найден URL для анализа."
 
 #. translators: %s is the focus keyword.
-#: inc/analyzer/utils.php:417
+#: inc/analyzer/utils.php:403
 #: build/seo-popup/index.js:1
 #, php-format,js-format
 msgid "Focus keyword \"%s\" found in URL."
 msgstr "Фокусный ключевик \"%s\" найден в URL."
 
 #. translators: %s is the focus keyword.
-#: inc/analyzer/utils.php:425
+#: inc/analyzer/utils.php:411
 #: build/seo-popup/index.js:1
 #, php-format,js-format
 msgid "Focus keyword \"%s\" not found in URL."
 msgstr "Фокусный ключевик \"%s\" не найден в URL."
 
-#: inc/analyzer/utils.php:441
+#: inc/analyzer/utils.php:427
 #: build/seo-popup/index.js:1
 msgid "No focus keyword set to analyze content."
 msgstr "Не установлен фокусный ключевик для анализа содержимого."
 
-#: inc/analyzer/utils.php:449
+#: inc/analyzer/utils.php:435
 #: build/seo-popup/index.js:1
 msgid "No content found to analyze."
 msgstr "Не найдено содержимое для анализа."
 
 #. translators: %s is the focus keyword.
-#: inc/analyzer/utils.php:463
+#: inc/analyzer/utils.php:449
 #: build/seo-popup/index.js:1
 #, php-format,js-format
 msgid "Focus keyword \"%s\" found in content."
 msgstr "Фокусный ключевик \"%s\" найден в содержимом."
 
 #. translators: %s is the focus keyword.
-#: inc/analyzer/utils.php:471
+#: inc/analyzer/utils.php:457
 #: build/seo-popup/index.js:1
 #, php-format,js-format
 msgid "Focus keyword \"%s\" not found in content."
 msgstr "Фокусный ключевик \"%s\" не найден в содержимом."
 
-#: inc/google-search-console/site-verification.php:68
+#: inc/google-search-console/site-verification.php:67
 msgid "This site is already verified with Google."
 msgstr "Этот сайт уже подтвержден через Google."
 
-#: inc/google-search-console/site-verification.php:70
+#: inc/google-search-console/site-verification.php:69
 msgid "Invalid site URL format for verification. Please check the URL."
 msgstr "Недопустимый формат URL сайта для подтверждения. Пожалуйста, проверьте URL."
 
-#: inc/google-search-console/site-verification.php:74
+#: inc/google-search-console/site-verification.php:73
 msgid "Authentication expired. Please disconnect and reconnect your Google account."
 msgstr "Истек срок действия аутентификации. Пожалуйста, отключите и повторно подключите свою учетную запись Google."
 
-#: inc/google-search-console/site-verification.php:77
+#: inc/google-search-console/site-verification.php:76
 msgid "Access denied. Please disconnect and reconnect your Google account with the necessary permissions."
 msgstr "Доступ запрещен. Пожалуйста, отключите и повторно подключите свою учетную запись Google с необходимыми разрешениями."
 
-#: inc/google-search-console/site-verification.php:80
+#: inc/google-search-console/site-verification.php:79
 msgid "Verification resource not found. Please try again."
 msgstr "Ресурс подтверждения не найден. Попробуйте еще раз."
 
-#: inc/google-search-console/site-verification.php:83
+#: inc/google-search-console/site-verification.php:82
 msgid "Site verification conflict. This site may already be verified by another user."
 msgstr "Конфликт подтверждения сайта. Этот сайт может уже быть подтвержден другим пользователем."
 
-#: inc/google-search-console/site-verification.php:86
+#: inc/google-search-console/site-verification.php:85
 msgid "Too many verification requests. Please wait a moment and try again."
 msgstr "Слишком много запросов на подтверждение. Пожалуйста, подождите немного и попробуйте снова."
 
-#: inc/google-search-console/site-verification.php:91
+#: inc/google-search-console/site-verification.php:90
 msgid "Google Site Verification service is temporarily unavailable. Please try again later."
 msgstr "Сервис подтверждения сайта Google временно недоступен. Пожалуйста, попробуйте позже."
 
 #. translators: %d: HTTP status code
-#: inc/google-search-console/site-verification.php:97
+#: inc/google-search-console/site-verification.php:96
 #, php-format
 msgid "Site verification error (Code: %d). Please try again."
 msgstr "Ошибка подтверждения сайта (Код: %d). Пожалуйста, попробуйте еще раз."
 
-#: inc/google-search-console/site-verification.php:144
+#: inc/google-search-console/site-verification.php:143
 msgid "No verification token received"
 msgstr "Токен подтверждения не получен"
 
-#: inc/google-search-console/site-verification.php:229
+#: inc/google-search-console/site-verification.php:228
 msgid "Site verification is pending. Google needs time to crawl and verify your site. This may take 1-2 hours or up to 2 days."
 msgstr "Подтверждение сайта ожидает. Google нужно время, чтобы просканировать и подтвердить ваш сайт. Это может занять 1-2 часа или до 2 дней."
 
-#: inc/google-search-console/site-verification.php:240
+#: inc/google-search-console/site-verification.php:239
 msgid "Site verified successfully"
 msgstr "Сайт успешно подтвержден"
 
-#: inc/google-search-console/site-verification.php:263
+#: inc/google-search-console/site-verification.php:262
 msgid "Site added successfully"
 msgstr "Сайт успешно добавлен"
 
-#: inc/google-search-console/site-verification.php:332
+#: inc/google-search-console/site-verification.php:331
 msgid "Property created successfully. Verification is pending and may take 1-2 hours or up to 2 days."
 msgstr "Объект успешно создан. Подтверждение ожидает и может занять 1-2 часа или до 2 дней."
 
-#: inc/google-search-console/site-verification.php:333
+#: inc/google-search-console/site-verification.php:332
 msgid "Verification is pending and may take 1-2 hours or up to 2 days."
 msgstr "Подтверждение ожидает и может занять 1-2 часа или до 2 дней."
 
-#: inc/google-search-console/site-verification.php:343
+#: inc/google-search-console/site-verification.php:342
 msgid "Property created and verified successfully"
 msgstr "Объект создан и подтвержден успешно"
 
-#: inc/google-search-console/site-verification.php:344
+#: inc/google-search-console/site-verification.php:343
 msgid "Property verified successfully"
 msgstr "Объект подтвержден успешно"
 
@@ -6884,11 +6601,11 @@ msgstr "Ошибка проверки nonce"
 msgid "No user email found in the decrypted data."
 msgstr "В расшифрованных данных не найден адрес электронной почты пользователя"
 
-#: inc/modules/ai-auth/controller.php:151
+#: inc/modules/content-generation/utils.php:159
 msgid "No authentication data found."
 msgstr "Данные аутентификации не найдены"
 
-#: inc/modules/ai-auth/controller.php:155
+#: inc/modules/content-generation/utils.php:163
 msgid "No data found for the provided key."
 msgstr "Данные для указанного ключа не найдены"
 
@@ -6912,7 +6629,7 @@ msgid "Invalid post ID"
 msgstr "Недопустимый ID поста"
 
 #. translators: %s is response code
-#: inc/modules/content-generation/controller.php:98
+#: inc/modules/content-generation/controller.php:74
 #, php-format
 msgid "Failed to generate content with error code %s."
 msgstr "Не удалось сгенерировать содержимое с кодом ошибки %s"
@@ -6967,16 +6684,6 @@ msgstr "Проверка ожидает и может занять 1-2 часа 
 msgid "The changes will take effect after a page refresh. Reloading in 2 seconds…"
 msgstr "Изменения вступят в силу после обновления страницы. Перезагрузка через 2 секунды…"
 
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "Enabling this creates author archive pages that list all posts by each author, helping showcase contributions and strengthen SEO signals. If disabled, author archive pages redirect to the homepage."
-msgstr "Включение этого создает страницы архива авторов, которые перечисляют все посты каждого автора, помогая демонстрировать вклад и укреплять SEO-сигналы. Если отключить, страницы архива авторов перенаправляются на главную страницу."
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "Enabling this creates date archive pages that group posts by month or year, making it easier for visitors to browse content chronologically and for search engines to index time-based posts. If disabled, date archive pages redirect to the homepage."
-msgstr "Включение этого создает страницы архива по дате, группирующие посты по месяцам или годам, что облегчает посетителям просмотр контента по хронологии и поисковым системам индексировать посты по времени. Если отключить, страницы архива по дате перенаправляются на главную страницу."
-
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 #, js-format
@@ -6992,14 +6699,6 @@ msgid "%s Warning Detected"
 msgid_plural "%s Warnings Detected"
 msgstr[0] "%s Обнаружено предупреждение"
 msgstr[1] ""
-
-#: build/seo-popup/index.js:1
-msgid "To see keyword-specific SEO checks, first set a focus keyword under the Optimize tab."
-msgstr "Чтобы увидеть SEO-проверки по ключевым словам, сначала установите фокусное ключевое слово в разделе Оптимизация"
-
-#: build/seo-popup/index.js:1
-msgid "Enter a focus keyword to see keyword-specific SEO checks."
-msgstr "Введите фокусное ключевое слово, чтобы увидеть SEO-проверки по ключевым словам"
 
 #: build/seo-popup/index.js:1
 msgid "Keyword Checks"
@@ -7025,87 +6724,87 @@ msgstr "Недопустимый ID термина"
 msgid "Invalid term ID provided"
 msgstr "Указан недопустимый ID термина"
 
-#: inc/modules/content-generation/controller.php:131
+#: inc/modules/content-generation/utils.php:196
 msgid "No authentication token found. Please connect your account."
 msgstr "Токен аутентификации не найден. Пожалуйста, подключите ваш аккаунт."
 
-#: inc/third-party-plugins/angie.php:234
+#: inc/third-party-integrations/angie.php:224
 msgid "XML Sitemap turned on successfully."
 msgstr "XML-карта сайта успешно включена."
 
-#: inc/third-party-plugins/angie.php:235
+#: inc/third-party-integrations/angie.php:225
 msgid "XML Sitemap turned off successfully."
 msgstr "XML-карта сайта успешно отключена."
 
-#: inc/third-party-plugins/angie.php:256
+#: inc/third-party-integrations/angie.php:246
 msgid "Missing required parameters: type, action and name are required."
 msgstr "Отсутствуют обязательные параметры: требуются type, action и name."
 
-#: inc/third-party-plugins/angie.php:268
+#: inc/third-party-integrations/angie.php:257
 msgid "Invalid type. Must be a valid post type or taxonomy."
 msgstr "Недопустимый тип. Должен быть действительным типом записи или таксономией."
 
 #. translators: %s: object type
-#: inc/third-party-plugins/angie.php:286
+#: inc/third-party-integrations/angie.php:275
 #, php-format
 msgid "No %s found for the specified type."
 msgstr "Для указанного типа не найдено %s."
 
 #. translators: %1$s: action performed, %2$d: number of objects_ids updated, %3$s: type
-#: inc/third-party-plugins/angie.php:302
+#: inc/third-party-integrations/angie.php:291
 #, php-format
 msgid "Applied %1$s to %2$d %3$s."
 msgstr "Применено %1$s к %2$d %3$s."
 
-#: inc/third-party-plugins/angie.php:477
+#: inc/third-party-integrations/angie.php:595
 msgid "noindex"
 msgstr "noindex"
 
-#: inc/third-party-plugins/angie.php:478
+#: inc/third-party-integrations/angie.php:596
 msgid "index"
 msgstr "index"
 
-#: inc/third-party-plugins/angie.php:479
+#: inc/third-party-integrations/angie.php:597
 msgid "nofollow"
 msgstr "nofollow"
 
-#: inc/third-party-plugins/angie.php:480
+#: inc/third-party-integrations/angie.php:598
 msgid "follow"
 msgstr "follow"
 
-#: inc/third-party-plugins/angie.php:481
+#: inc/third-party-integrations/angie.php:599
 msgid "noarchive"
 msgstr "noarchive"
 
-#: inc/third-party-plugins/angie.php:482
+#: inc/third-party-integrations/angie.php:600
 msgid "archive"
 msgstr "archive"
 
-#: inc/third-party-plugins/angie.php:501
+#: inc/third-party-integrations/angie.php:318
 msgid "Post is indexable"
 msgstr "Запись индексируется"
 
-#: inc/third-party-plugins/angie.php:503
+#: inc/third-party-integrations/angie.php:320
 msgid "This post is set to noindex by SureRank settings from SEO popup."
 msgstr "Эта запись установлена как noindex в настройках SureRank из SEO всплывающего окна."
 
-#: inc/third-party-plugins/angie.php:511
+#: inc/third-party-integrations/angie.php:328
 msgid "This post is set to noindex by SureRank Global Robots Settings."
 msgstr "Эта запись установлена как noindex в глобальных настройках роботов SureRank."
 
-#: inc/third-party-plugins/angie.php:546
+#: inc/third-party-integrations/angie.php:363
 msgid "Title or meta description is empty."
 msgstr "Заголовок или мета-описание пусты."
 
-#: inc/third-party-plugins/angie.php:558
+#: inc/third-party-integrations/angie.php:375
 msgid "Title and meta description updated successfully."
 msgstr "Заголовок и мета-описание успешно обновлены."
 
-#: inc/third-party-plugins/angie.php:575
+#: inc/third-party-integrations/angie.php:392
 msgid "No valid settings provided."
 msgstr "Не предоставлены действительные настройки."
 
-#: inc/third-party-plugins/angie.php:583
+#: inc/third-party-integrations/angie.php:400
 msgid "Settings updated successfully."
 msgstr "Настройки успешно обновлены."
 
@@ -7120,12 +6819,6 @@ msgid "Apply"
 msgstr "Применить"
 
 #: build/admin-dashboard/index.js:1
-#: build/admin-seo-bar/index.js:1
-#: build/seo-popup/index.js:1
-msgid "Join the Beta Program"
-msgstr "Присоединиться к бета-программе"
-
-#: build/admin-dashboard/index.js:1
 msgid "Authentication successful"
 msgstr "Аутентификация успешна"
 
@@ -7137,14 +6830,6 @@ msgstr "Аутентификация успешно завершена. Закр
 #: build/seo-popup/index.js:1
 msgid "Authentication failed"
 msgstr "Аутентификация не удалась"
-
-#: build/admin-dashboard/index.js:1
-msgid "OttoKit"
-msgstr "OttoKit"
-
-#: build/admin-dashboard/index.js:1
-msgid "All-in-One Automation Platform."
-msgstr "Все-в-одном платформа автоматизации."
 
 #: build/angie/index.js:1
 msgid "Enable/Disable the Sitemap from SureRank Settings"
@@ -7198,14 +6883,10 @@ msgstr "Наш помощник на базе ИИ помогает быстро
 msgid "Here are a few suggestions"
 msgstr "Вот несколько предложений"
 
-#: build/seo-popup/index.js:1
-msgid "AI Credits Exhausted"
-msgstr "Кредиты ИИ исчерпаны"
-
-#: build/seo-popup/index.js:1
-msgid "You've used all your available AI credits. To keep generating titles, descriptions, and more with AI, please purchase additional credits."
-msgstr "Вы использовали все доступные кредиты ИИ. Чтобы продолжать создавать заголовки, описания и другое с помощью ИИ, пожалуйста, приобретите дополнительные кредиты."
-
+#: build/admin-dashboard/index.js:1
+#: build/admin-notice/index.js:1
+#: build/admin-onboarding/index.js:1
+#: build/admin-seo-bar/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Upgrade Now"
 msgstr "Обновить сейчас"
@@ -7287,19 +6968,15 @@ msgstr "Всплывающее окно заблокировано. Перена
 msgid "Connect SureRank AI"
 msgstr "Подключить SureRank AI"
 
-#: inc/modules/content-generation/controller.php:92
+#: inc/modules/content-generation/controller.php:68
 msgid "Unable to generate content at this time. Please check your input and try again, or contact support if you need help."
 msgstr "Не удалось сгенерировать контент в данный момент. Пожалуйста, проверьте введённые данные и попробуйте снова или обратитесь в службу поддержки, если нужна помощь."
 
-#: inc/modules/content-generation/controller.php:101
+#: inc/modules/content-generation/utils.php:177
 msgid "Something went wrong on our end. Please try again in a moment, or contact support if you need help."
 msgstr "Что-то пошло не так с нашей стороны. Пожалуйста, попробуйте снова через некоторое время или обратитесь в службу поддержки, если нужна помощь."
 
-#: inc/modules/content-generation/controller.php:102
-msgid "You've reached your free usage limit. Upgrade to Pro for additional credits to continue generating content."
-msgstr "Вы достигли лимита бесплатного использования. Перейдите на Pro, чтобы получить дополнительные кредиты и продолжить генерацию контента."
-
-#: inc/modules/content-generation/controller.php:114
+#: inc/modules/content-generation/controller.php:86
 msgid "Unable to generate content at this time. Please try again, or contact support if you need help."
 msgstr "Не удалось сгенерировать контент в данный момент. Пожалуйста, попробуйте снова или обратитесь в службу поддержки, если нужна помощь."
 
@@ -7307,32 +6984,34 @@ msgstr "Не удалось сгенерировать контент в дан�
 msgid "Click here to contact support."
 msgstr "Нажмите здесь, чтобы связаться со службой поддержки."
 
-#: inc/api/analyzer.php:452
+#: inc/api/analyzer.php:465
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 msgid "Connect Now"
 msgstr "Подключиться сейчас"
 
-#: inc/api/sitemap.php:163
+#: inc/api/sitemap.php:164
 msgid "CRONs are disabled on this website. Please enable the CRON functionality to use this feature."
 msgstr "CRON отключены на этом сайте. Пожалуйста, включите функцию CRON для использования этой функции."
 
-#: inc/api/sitemap.php:195
+#: inc/api/sitemap.php:196
 msgid "Sitemap classes not found."
 msgstr "Классы Sitemap не найдены."
 
-#: inc/api/sitemap.php:207
-#: inc/api/sitemap.php:212
+#: inc/api/sitemap.php:208
+#: inc/api/sitemap.php:213
 msgid "Sitemap class not found."
 msgstr "Класс Sitemap не найден."
 
-#: inc/api/sitemap.php:216
+#: inc/api/sitemap.php:217
 msgid "Sitemap class information not found."
 msgstr "Информация о классе Sitemap не найдена."
 
-#: inc/api/sitemap.php:221
+#: inc/api/sitemap.php:222
 msgid "Sitemap class does not exist."
 msgstr "Класс Sitemap не существует."
 
-#: inc/api/sitemap.php:226
+#: inc/api/sitemap.php:227
 msgid "Import method not found in sitemap class."
 msgstr "Метод импорта не найден в классе sitemap."
 
@@ -7511,3 +7190,937 @@ msgstr "Данные о производительности контента о
 #: build/admin-dashboard/index.js:1
 msgid "Once connected to Google Search Console, you'll see how your content is performing in search engines here."
 msgstr "После подключения к Google Search Console вы увидите, как ваш контент показывает себя в поисковых системах здесь."
+
+#: inc/admin/dashboard.php:291
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Redirections"
+msgstr "Перенаправления"
+
+#: inc/admin/dashboard.php:302
+msgid "Get Pro ↗"
+msgstr "Получить Pro ↗"
+
+#: inc/admin/search-console-widget.php:56
+msgid "SureRank Website Insights"
+msgstr "Аналитика сайта SureRank"
+
+#: inc/api/onboarding.php:107
+msgid "Business description of the website."
+msgstr "Описание бизнеса сайта."
+
+#: inc/frontend/robots.php:51
+msgid "# SureRank will generate robots.txt automatically."
+msgstr "# SureRank автоматически создаст robots.txt."
+
+#: inc/modules/content-generation/utils.php:178
+msgid "You've reached your free usage limit. Upgrade to Pro for additional credits to continue generating content. require_pro"
+msgstr "Вы достигли лимита бесплатного использования. Обновите до Pro для получения дополнительных кредитов и продолжения создания контента. require_pro"
+
+#: inc/modules/content-generation/utils.php:179
+#: build/seo-popup/index.js:1
+msgid "You've used all your AI credits for today. Your credits will refresh automatically tomorrow, so you can continue creating content."
+msgstr "Вы использовали все свои кредиты AI на сегодня. Ваши кредиты обновятся автоматически завтра, и вы сможете продолжить создание контента."
+
+#: inc/modules/content-generation/utils.php:204
+msgid "Failed to encode request data to JSON."
+msgstr "Не удалось закодировать данные запроса в JSON."
+
+#: inc/modules/nudges/api.php:72
+msgid "Invalid type provided."
+msgstr "Предоставлен неверный тип."
+
+#: inc/modules/nudges/api.php:93
+msgid "Could not disable the nudge. Please try again."
+msgstr "Не удалось отключить напоминание. Пожалуйста, попробуйте снова."
+
+#. translators: %s: nudge type
+#: inc/modules/nudges/api.php:99
+#, php-format
+msgid "\"%s\" has been disabled."
+msgstr "\"%s\" был отключен."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Wants to unlock advanced SEO features?"
+msgstr "Хотите разблокировать расширенные функции SEO?"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Upgrade to unlock Video / News Sitemaps, Instant Indexing, Redirect Manager, and more."
+msgstr "Обновите, чтобы разблокировать Video / News Sitemaps, мгновенную индексацию, менеджер перенаправлений и многое другое."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+#: build/seo-popup/index.js:1
+msgid "Upgrade now"
+msgstr "Обновить сейчас"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "This is your site's default social sharing image (Open Graph). It shows up when your pages are shared on social platforms - unless a custom image is set on that page."
+msgstr "Это изображение для общего использования в соцсетях (Open Graph). Оно отображается при распространении страниц в соцсетях — если на странице не установлено пользовательское изображение."
+
+#: build/admin-dashboard/index.js:1
+#: build/seo-popup/index.js:1
+msgid "SureRank Schema Disabled"
+msgstr "SureRank Schema отключена"
+
+#: build/admin-dashboard/index.js:1
+#: build/seo-popup/index.js:1
+msgid "We detected that WP Schema Pro is active on your website. To avoid schema conflicts, SureRank Schema functionality has been automatically disabled. Please continue using WP Schema Pro for your schema markup needs."
+msgstr "Мы обнаружили, что на вашем сайте активен WP Schema Pro. Чтобы избежать конфликтов схем, функция SureRank Schema была автоматически отключена. Продолжайте использовать WP Schema Pro для ваших нужд разметки схем."
+
+#: build/admin-dashboard/index.js:1
+#: build/seo-popup/index.js:1
+msgid "Looking for more schemas?"
+msgstr "Ищете больше схем?"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-seo-bar/index.js:1
+#: build/seo-popup/index.js:1
+msgid "Upgrade to SureRank Pro and let AI help you fix critical SEO issues and warnings, so your website stays fully optimized and ready to perform better in search results."
+msgstr "Обновите до SureRank Pro и позвольте AI помочь вам исправить критические проблемы и предупреждения SEO, чтобы ваш сайт оставался полностью оптимизированным и лучше показывался в поиске."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "This field is disabled when a physical robots.txt file exists."
+msgstr "Это поле отключено, если существует физический файл robots.txt."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "We found a physical robots.txt file on your server. To use this feature in SureRank, you'll need to delete that file first."
+msgstr "Мы обнаружили на вашем сервере физический файл robots.txt. Чтобы использовать эту функцию в SureRank, вам нужно сначала удалить этот файл."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+#, js-format
+msgid "Open %1$s on your website. If you want to verify the contents of robots.txt, click %2$s"
+msgstr "Откройте %1$s на вашем сайте. Если хотите проверить содержимое robots.txt, нажмите %2$s"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "robots.txt"
+msgstr "robots.txt"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Remove Author Pages & Redirect to Home"
+msgstr "Удалить страницы авторов и перенаправить на главную"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Author pages list all posts written by a specific author. On single-author sites, these pages duplicate your main blog and can confuse search engines. Enable this to redirect them to your homepage."
+msgstr "Страницы авторов содержат все посты, написанные конкретным автором. На сайтах с одним автором эти страницы дублируют ваш основной блог и могут сбивать с толку поисковые системы. Включите это, чтобы перенаправлять их на главную страницу."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Remove Date Archive Pages & Redirect to Home"
+msgstr "Удалить страницы архива по дате и перенаправить на главную"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "WordPress creates archive pages for each month or year of your posts. These pages often add no real value and can lead to duplicate content. Enable this to redirect them to your homepage."
+msgstr "WordPress создает страницы архива за каждый месяц или год ваших постов. Эти страницы часто не приносят реальной пользы и могут привести к дублированию контента. Включите это, чтобы перенаправлять их на главную страницу."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Image SEO"
+msgstr "SEO изображений"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Optimize Image SEO with AI"
+msgstr "Оптимизация SEO изображений с помощью ИИ"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Generate authentic, context-aware image descriptions that truly optimize your image SEO."
+msgstr "Генерируйте аутентичные, контекстно-зависимые описания изображений, которые действительно улучшают SEO ваших изображений."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Looking for options to set meta by post type or taxonomy?"
+msgstr "Ищете варианты настройки мета-тегов по типу поста или таксономии?"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Upgrade to unlock meta template editing for specific post types and taxonomies."
+msgstr "Обновите версию, чтобы разблокировать редактирование шаблонов мета для конкретных типов постов и таксономий."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Instant Indexing"
+msgstr "Мгновенная индексация"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Logs"
+msgstr "Журналы"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Create a sitemap that helps search engines discover and index your pages faster."
+msgstr "Создайте карту сайта, которая помогает поисковым системам быстрее обнаруживать и индексировать ваши страницы."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "View Sitemap"
+msgstr "Просмотр карты сайта"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Include images so search engines can index them and show them in image results."
+msgstr "Включите изображения, чтобы поисковые системы могли индексировать их и показывать в результатах поиска по изображениям."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Generates a sitemap to help search engines find and index your content more efficiently."
+msgstr "Генерирует карту сайта, которая помогает поисковым системам быстрее находить и индексировать ваш контент."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "It seems CRON is not enabled on your site. You can use the \"Regenerate\" button to generate the sitemap cache manually."
+msgstr "Похоже, CRON не включен на вашем сайте. Вы можете использовать кнопку \"Восстановить\" для ручного обновления кеша карты сайта."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Want to unlock advanced sitemap types?"
+msgstr "Хотите разблокировать расширенные типы карт сайта?"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Upgrade to generate Video, News, HTML, and Author Sitemaps for better search visibility."
+msgstr "Обновите версию, чтобы создавать карты видео, новостей, HTML и авторов для лучшей видимости в поиске."
+
+#: build/admin-dashboard/index.js:1
+msgid "Run Checks"
+msgstr "Проверки"
+
+#: build/admin-dashboard/index.js:1
+msgid "Core"
+msgstr "Ядро"
+
+#: build/admin-dashboard/index.js:1
+#: build/search-console-widget/index.js:1
+msgid "Upgrade"
+msgstr "Обновление"
+
+#: build/admin-dashboard/index.js:1
+msgid "AI Assistant: Instantly correct technical SEO issues."
+msgstr "Ассистент ИИ: мгновенно исправляйте технические SEO-проблемы."
+
+#: build/admin-dashboard/index.js:1
+msgid "Redirection Manager: Keep every link clean."
+msgstr "Менеджер перенаправлений: держите все ссылки чистыми."
+
+#: build/admin-dashboard/index.js:1
+msgid "Advanced Schema: Add markup without code."
+msgstr "Расширенная схема: добавляйте разметку без кода."
+
+#: build/admin-dashboard/index.js:1
+msgid "Instant Indexing: Get your content indexed instantly."
+msgstr "Мгновенная индексация: мгновенно индексируйте ваш контент."
+
+#: build/admin-dashboard/index.js:1
+msgid "…and everything else you need to rank smarter!"
+msgstr "…и все остальное, что нужно для более умного ранжирования!"
+
+#: build/admin-dashboard/index.js:1
+msgid "Upgrade to Pro Illustration"
+msgstr "Обновление до Pro Illustration"
+
+#: build/admin-dashboard/index.js:1
+msgid "Optimize Smarter with SureRank Pro"
+msgstr "Оптимизируйте умнее с SureRank Pro"
+
+#: build/admin-dashboard/index.js:1
+msgid "Supercharge your workflow. Automate SEO tasks, get powerful insights, and rank smarter."
+msgstr "Ускорьте ваш рабочий процесс. Автоматизируйте задачи SEO, получайте мощные инсайты и ранжируйтесь умнее."
+
+#: build/admin-dashboard/index.js:1
+msgid "Enjoying SureRank? Leave a Review"
+msgstr "Нравится SureRank? Оставьте отзыв"
+
+#: build/admin-dashboard/index.js:1
+msgid "Connect Your Site to Google Search Console"
+msgstr "Подключите ваш сайт к Google Search Console"
+
+#: build/admin-dashboard/index.js:1
+#: build/search-console-widget/index.js:1
+#, js-format
+msgid "Site: %s"
+msgstr "Сайт: %s"
+
+#: build/admin-dashboard/index.js:1
+msgid "WP Schema Pro is active. SureRank Schema has been disabled to avoid conflicts."
+msgstr "WP Schema Pro активен. SureRank Schema отключен, чтобы избежать конфликтов."
+
+#: build/admin-dashboard/index.js:1
+msgid "Clear selection"
+msgstr "Очистить выбор"
+
+#: build/admin-dashboard/index.js:1
+msgid "Didn't find the schema you're looking for?"
+msgstr "Не нашли нужную схему?"
+
+#: build/admin-dashboard/index.js:1
+msgid "Upgrade to Pro to unlock FAQ, How-To, and many more powerful schema types."
+msgstr "Обновите до Pro, чтобы разблокировать FAQ, How-To и многие другие мощные типы схем."
+
+#: build/admin-dashboard/index.js:1
+msgid "Instantly Index Your Content with SureRank"
+msgstr "Мгновенно индексируйте ваш контент с SureRank"
+
+#: build/admin-dashboard/index.js:1
+msgid "Get your new and updated pages discovered faster with Instant Indexing in SureRank Pro."
+msgstr "Быстрее обнаруживайте новые и обновленные страницы с помощью мгновенной индексации в SureRank Pro."
+
+#: build/admin-dashboard/index.js:1
+msgid "Instantly notify Google of new or updated pages"
+msgstr "Мгновенно уведомляйте Google о новых или обновленных страницах"
+
+#: build/admin-dashboard/index.js:1
+msgid "Improve visibility and keep search results fresh"
+msgstr "Улучшайте видимость и поддерживайте актуальность результатов поиска"
+
+#: build/admin-dashboard/index.js:1
+msgid "Automate indexing for posts, products, and pages"
+msgstr "Автоматизируйте индексирование для постов, товаров и страниц"
+
+#: build/admin-dashboard/index.js:1
+msgid "Automatically notify search engines like Bing and Yandex when your content is published. Improve indexing speed and ensure your latest content appears in search results faster with IndexNow integration."
+msgstr "Автоматически уведомляйте поисковые системы, такие как Bing и Yandex, о публикации вашего контента. Улучшайте скорость индексирования и быстрее отображайте ваш последний контент в результатах поиска с помощью интеграции IndexNow."
+
+#: build/admin-dashboard/index.js:1
+msgid "Unlock IndexNow for instant indexing"
+msgstr "Разблокируйте IndexNow для мгновенного индексирования"
+
+#: build/admin-dashboard/index.js:1
+msgid "Upgrade to SureRank Pro and let search engines know about your new or updated content instantly."
+msgstr "Обновите до SureRank Pro и сообщайте поисковым системам о вашем новом или обновленном контенте мгновенно."
+
+#: build/admin-dashboard/index.js:1
+msgid "Smart Redirection Manager"
+msgstr "Умный менеджер перенаправлений"
+
+#: build/admin-dashboard/index.js:1
+msgid "Never lose visitors or rankings when your URLs change. The Redirection Manager makes sure old links still lead to the right place, keeping your traffic safe."
+msgstr "Никогда не теряйте посетителей или позиции при изменении URL. Менеджер перенаправлений гарантирует, что старые ссылки ведут туда, куда нужно, сохраняя ваш трафик."
+
+#: build/admin-dashboard/index.js:1
+msgid "Create 301 redirects instantly for smooth user experience"
+msgstr "Создавайте 301 редиректы мгновенно для плавного пользовательского опыта"
+
+#: build/admin-dashboard/index.js:1
+msgid "Automatically capture old and new permalinks whenever you update URLs"
+msgstr "Автоматически сохраняйте старые и новые постоянные ссылки при обновлении URL"
+
+#: build/admin-dashboard/index.js:1
+msgid "Choose and manage redirects with full control inside the plugin"
+msgstr "Выбирайте и управляйте редиректами с полным контролем внутри плагина"
+
+#: build/admin-dashboard/index.js:1
+msgid "You can use this option to move your SureRank settings between sites. It's helpful if you're setting up multiple websites and want to reuse the same configuration. Just export from one site and import to another."
+msgstr "Вы можете использовать эту опцию для переноса настроек SureRank между сайтами. Это удобно, если вы настраиваете несколько сайтов и хотите использовать одну и ту же конфигурацию. Просто экспортируйте из одного сайта и импортируйте в другой."
+
+#: build/admin-dashboard/index.js:1
+msgid "No Other SEO Plugin Found"
+msgstr "Другой SEO-плагин не найден"
+
+#: build/admin-dashboard/index.js:1
+msgid "SureRank can migrate settings from many popular SEO plugins. Since no supported plugin is currently installed, there's nothing to migrate."
+msgstr "SureRank может переносить настройки из многих популярных SEO-плагинов. Так как поддерживаемый плагин в данный момент не установлен, переносить нечего."
+
+#: build/admin-notice/index.js:1
+msgid "Changed a permalink? SureRank Pro automatically redirects old URLs to keep your SEO intact."
+msgstr "Изменили постоянную ссылку? SureRank Pro автоматически перенаправляет старые URL, чтобы сохранить ваш SEO."
+
+#: build/admin-onboarding/index.js:1
+msgid "Describe what you do"
+msgstr "Опишите, чем вы занимаетесь"
+
+#: build/admin-onboarding/index.js:1
+msgid "Please describe what you do in a few sentences. This description will be used for content generation and other purposes."
+msgstr "Пожалуйста, опишите, чем вы занимаетесь, в нескольких предложениях. Это описание будет использоваться для генерации контента и других целей."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+#, js-format
+msgid "%s is required"
+msgstr "%s обязательно"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+#, js-format
+msgid "%1$s must be a %2$s"
+msgstr "%1$s должно быть %2$s"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Please enter a valid email address"
+msgstr "Пожалуйста, введите действительный адрес электронной почты"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Please enter a valid URL"
+msgstr "Пожалуйста, введите действительный URL"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "This field is required"
+msgstr "Это поле обязательно"
+
+#: build/search-console-widget/index.js:1
+msgid "Unlock SEO Insights with Google Search Console"
+msgstr "Разблокируйте SEO-аналитику с помощью Google Search Console"
+
+#: build/search-console-widget/index.js:1
+msgid "Connect Google Search Console to unlock search insights and track your growth."
+msgstr "Подключите Google Search Console, чтобы разблокировать поисковые инсайты и отслеживать рост."
+
+#: build/search-console-widget/index.js:1
+msgid "Connect to Google Search Console"
+msgstr "Подключиться к Google Search Console"
+
+#: build/search-console-widget/index.js:1
+msgid "View More"
+msgstr "Показать больше"
+
+#: build/search-console-widget/index.js:1
+msgid "Create a site index visitors actually use"
+msgstr "Создайте индекс сайта, который действительно используют посетители"
+
+#: build/search-console-widget/index.js:1
+msgid "Stay ahead with Instant Indexing support"
+msgstr "Оставайтесь впереди с поддержкой мгновенного индексирования"
+
+#: build/search-console-widget/index.js:1
+msgid "Build smarter Meta Templates for all post content"
+msgstr "Создавайте умнее шаблоны Meta для всего контента постов"
+
+#: build/search-console-widget/index.js:1
+msgid "Detect and Fix Issues before they hurt SEO"
+msgstr "Обнаруживайте и исправляйте проблемы, прежде чем они повлияют на SEO"
+
+#: build/search-console-widget/index.js:1
+msgid "Redirect old URLs instantly, no setup needed"
+msgstr "Мгновенно перенаправляйте старые URL, без настройки"
+
+#: build/search-console-widget/index.js:1
+msgid "Failed to fetch clicks and impressions"
+msgstr "Не удалось получить клики и показы"
+
+#: build/seo-popup/index.js:1
+msgid "Generate with AI"
+msgstr "Генерировать с помощью ИИ"
+
+#: build/seo-popup/index.js:1
+msgid "Free Plan Limit Reached"
+msgstr "Достигнут лимит бесплатного плана"
+
+#: build/seo-popup/index.js:1
+msgid "You've used all available AI requests in your Free Plan. Upgrade to SureRank Pro to keep using AI features."
+msgstr "Вы использовали все доступные запросы ИИ в вашем бесплатном плане. Обновите до SureRank Pro, чтобы продолжить использовать функции ИИ."
+
+#: build/seo-popup/index.js:1
+msgid "Daily Limit Reached"
+msgstr "Достигнут дневной лимит"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Site SEO Audit"
+msgstr "Аудит SEO сайта"
+
+#: build/admin-dashboard/index.js:1
+msgid "Checkpoints"
+msgstr "Контрольные точки"
+
+#: build/admin-dashboard/index.js:1
+msgid "View All Results"
+msgstr "Просмотреть все результаты"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Without AI, meta tags will be added to images using the file name and post title. However, this data is often repetitive or too generic and doesn't describe the image accurately. Search engines may even treat such tags as spammy."
+msgstr "Без ИИ мета-теги будут добавляться к изображениям с помощью имени файла и заголовка поста. Однако эти данные часто повторяются или слишком общие и не описывают изображение точно. Поисковые системы могут даже считать такие теги спамом."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "For the best results, we strongly recommend using AI to generate authentic, context-aware image descriptions that truly optimize your image SEO."
+msgstr "Для достижения лучших результатов настоятельно рекомендуем использовать ИИ для генерации аутентичных, контекстуальных описаний изображений, которые действительно оптимизируют ваш SEO изображений."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+#, js-format
+msgid "%1$s to use AI image SEO"
+msgstr "%1$s для использования ИИ SEO изображений"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Upgrade to pro"
+msgstr "Обновить до Pro"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Redirect Attachment Pages to Parent Post"
+msgstr "Перенаправить страницы вложений на родительский пост"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Enable this to redirect all attachment pages to their parent post or to the homepage. This avoids low-content pages and improves SEO."
+msgstr "Включите это, чтобы перенаправлять все страницы вложений на их родительский пост или на главную страницу. Это избегает страниц с низким содержанием и улучшает SEO."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Optimize Image SEO without AI"
+msgstr "Оптимизация SEO изображений без ИИ"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Auto-add basic alt text for images that don’t have one, using the file name or post title."
+msgstr "Автоматически добавлять базовый alt-текст к изображениям без него, используя имя файла или заголовок поста."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Generate SEO-friendly image alt text automatically with SureRank AI to improve accessibility and boost your image search visibility."
+msgstr "Автоматически генерировать SEO-дружественный alt-текст для изображений с помощью SureRank AI, чтобы улучшить доступность и повысить видимость в поиске изображений."
+
+#: inc/api/analyzer.php:134
+#: inc/api/analyzer.php:167
+msgid "SEO checks retrieved."
+msgstr "Получены проверки SEO."
+
+#: inc/api/analyzer.php:150
+msgid "Invalid Term ID."
+msgstr "Недопустимый ID Термина."
+
+#: inc/api/analyzer.php:537
+msgid "Other SEO Plugin Banner"
+msgstr "Баннер другого SEO-плагина"
+
+#: inc/api/analyzer.php:540
+msgid "SEO Plugin Conflicts"
+msgstr "Конфликты SEO-плагинов"
+
+#: inc/api/analyzer.php:542
+msgid "SEO plugins decide how your site appears in search results by managing titles, descriptions, and structured information. They help search engines understand your content, but also make your site easier for people to find."
+msgstr "SEO-плагины определяют, как ваш сайт отображается в поисковых результатах, управляя заголовками, описаниями и структурированной информацией. Они помогают поисковым системам понять ваш контент, но также делают ваш сайт более доступным для поиска."
+
+#: inc/api/analyzer.php:569
+msgid "Having more than one SEO plugin active can create confusion. Each plugin might try to change the same things, sending mixed signals to search engines. This can affect how clearly your site appears in search results and make it harder for visitors to find what they’re looking for."
+msgstr "Наличие более одного активного SEO-плагина может вызвать путаницу. Каждый плагин может пытаться изменить одни и те же элементы, посылая поисковым системам противоречивые сигналы. Это может повлиять на четкость отображения вашего сайта в поисковых результатах и усложнить посетителям поиск нужной информации."
+
+#: inc/api/analyzer.php:571
+msgid "How to keep things smooth:"
+msgstr "Как сохранить все гладко:"
+
+#: inc/api/analyzer.php:573
+msgid "Use only one SEO plugin at a time to keep your settings clean and consistent."
+msgstr "Используйте только один SEO-плагин одновременно, чтобы ваши настройки оставались чистыми и последовательными."
+
+#: inc/api/analyzer.php:574
+msgid "Let that plugin handle everything in one place, so there’s no overlap or conflict."
+msgstr "Пусть этот плагин управляет всем в одном месте, чтобы избежать пересечений и конфликтов."
+
+#: inc/api/analyzer.php:575
+msgid "Check your plugin settings regularly to make sure nothing is accidentally duplicated."
+msgstr "Регулярно проверяйте настройки плагина, чтобы убедиться, что ничего не дублируется случайно."
+
+#: inc/api/analyzer.php:580
+#: inc/api/analyzer.php:693
+#: inc/api/analyzer.php:818
+msgid "Example"
+msgstr "Пример"
+
+#: inc/api/analyzer.php:582
+msgid "If two plugins try to set your homepage description differently, search engines may receive mixed information, resulting in inconsistent search results or snippets."
+msgstr "Если два плагина попытаются установить описание вашей главной страницы по-разному, поисковые системы могут получить противоречивую информацию, что приведет к несогласованным результатам поиска или сниппетам."
+
+#: inc/api/analyzer.php:586
+#: inc/api/analyzer.php:702
+#: inc/api/analyzer.php:821
+msgid "Where to update it"
+msgstr "Где обновлять"
+
+#: inc/api/analyzer.php:592
+msgid "You can review your active plugins from your WordPress plugins page and deactivate extras. Then manage all your SEO settings from your main SEO plugin for a clear and single source of truth."
+msgstr "Вы можете просмотреть активные плагины на странице плагинов WordPress и отключить лишние. Затем управляйте всеми настройками SEO через ваш основной SEO-плагин для ясной и единой базы данных."
+
+#: inc/api/analyzer.php:596
+#: inc/api/analyzer.php:705
+#: inc/api/analyzer.php:824
+msgid "How SureRank helps"
+msgstr "Как помогает SureRank"
+
+#: inc/api/analyzer.php:598
+msgid "SureRank keeps your SEO setup simple and reliable. It explains why using a single plugin matters, helping you maintain clarity for both search engines and your visitors, without unnecessary confusion."
+msgstr "SureRank делает настройку SEO простой и надежной. Он объясняет, почему важно использовать один плагин, помогая вам сохранять ясность как для поисковых систем, так и для посетителей, без лишней путаницы."
+
+#: inc/api/analyzer.php:663
+msgid "Robots.txt File"
+msgstr "Файл robots.txt"
+
+#: inc/api/analyzer.php:665
+msgid "Your site has a small file called robots.txt that acts like a guide for search engines, showing them where they’re welcome to explore and where they should stay away. Think of it as a polite set of instructions for visitors who want to browse your site."
+msgstr "Ваш сайт содержит небольшой файл под названием robots.txt, который действует как руководство для поисковых систем, показывая им, где их приветствуют, а где лучше не заходить. Представьте его как вежливые инструкции для посетителей, желающих просматривать ваш сайт."
+
+#: inc/api/analyzer.php:676
+msgid "If the robots.txt file is missing or set up incorrectly, search engines might skip pages they should see, or spend time on pages that aren’t important. A proper file helps your site get noticed efficiently and ensures the content that matters most is visible to both search engines and people."
+msgstr "Если файл robots.txt отсутствует или настроен неправильно, поисковые системы могут пропустить страницы, которые должны быть видны, или тратить время на неважные страницы. Правильный файл помогает вашему сайту эффективно привлекать внимание и обеспечивает видимость важного контента как для поисковых систем, так и для людей."
+
+#: inc/api/analyzer.php:680
+#: inc/api/analyzer.php:808
+msgid "How to keep things smooth"
+msgstr "Как поддерживать всё в порядке"
+
+#: inc/api/analyzer.php:684
+msgid "Check your robots.txt by visiting yoursite.com/robots.txt , if it opens with some rules, it’s active."
+msgstr "Проверьте файл robots.txt, перейдя по адресу yoursite.com/robots.txt — если он откроется с правилами, он активен."
+
+#: inc/api/analyzer.php:685
+msgid "Make sure it doesn’t block pages you want visitors to find."
+msgstr "Убедитесь, что он не блокирует страницы, которые вы хотите, чтобы посетители нашли."
+
+#: inc/api/analyzer.php:686
+msgid "Even if the rules look complicated, having the file is better than not having one."
+msgstr "Даже если правила кажутся сложными, наличие файла лучше, чем его отсутствие."
+
+#: inc/api/analyzer.php:687
+msgid "Use the built-in robots.txt editor in SureRank to view or adjust the file safely."
+msgstr "Используйте встроенный редактор robots.txt в SureRank для безопасного просмотра или настройки файла."
+
+#: inc/api/analyzer.php:700
+msgid "If your robots.txt accidentally blocks your “Shop” or “Pricing” pages, search engines won’t see them, and people searching for your products or services might never find them."
+msgstr "Если ваш robots.txt случайно блокирует страницы «Магазин» или «Цены», поисковые системы их не увидят, и люди, ищущие ваши товары или услуги, могут их так и не найти."
+
+#: inc/api/analyzer.php:703
+msgid "The robots.txt file can be edited directly from the SureRank settings using the built-in editor."
+msgstr "Файл robots.txt можно редактировать прямо из настроек SureRank с помощью встроенного редактора."
+
+#: inc/api/analyzer.php:706
+msgid "SureRank automatically creates a working robots.txt file and lets you manage it directly within the plugin. This keeps your site clear for search engines and ensures important pages are always discoverable."
+msgstr "SureRank автоматически создает рабочий файл robots.txt и позволяет управлять им прямо в плагине. Это помогает сделать ваш сайт понятным для поисковых систем и гарантирует, что важные страницы всегда будут доступны для поиска."
+
+#: inc/api/analyzer.php:791
+msgid "Sitemap"
+msgstr "Карта сайта"
+
+#: inc/api/analyzer.php:793
+msgid "A sitemap is like a guide or floor plan for your website that helps search engines explore it efficiently. It lists your important pages and shows search engines the path to follow, making sure nothing essential gets missed. Think of it as a chapter list in a book — it doesn’t change how your site looks to visitors, but it helps search engines understand your content quickly and clearly."
+msgstr "Карта сайта — это как путеводитель или план вашего сайта, который помогает поисковым системам эффективно его исследовать. Она перечисляет важные страницы и показывает путь для поиска, чтобы ничего важного не было пропущено. Представьте это как список глав в книге — он не меняет внешний вид сайта для посетителей, но помогает поисковым системам быстро и ясно понять ваш контент."
+
+#: inc/api/analyzer.php:802
+msgid "why this matters"
+msgstr "Почему это важно"
+
+#: inc/api/analyzer.php:804
+msgid "Without a sitemap, search engines might overlook some pages or take longer to notice updates. This can slow down how quickly your new content appears in search results. A well-maintained sitemap gives search engines a clear overview of your site, helping your content get indexed faster and more accurately, which improves visibility."
+msgstr "Без карты сайта поисковые системы могут пропустить некоторые страницы или дольше замечать обновления. Это может замедлить появление вашего нового контента в результатах поиска. Хорошо подготовленная карта сайта дает поисковым системам четкое представление о вашем сайте, помогая быстрее и точнее индексировать ваш контент, что повышает видимость."
+
+#: inc/api/analyzer.php:811
+msgid "Make sure your sitemap is active and accessible by visiting yoursite.com/sitemap.xml."
+msgstr "Убедитесь, что ваша карта сайта активна и доступна, перейдя по адресу yoursite.com/sitemap.xml."
+
+#: inc/api/analyzer.php:812
+msgid "Even if it looks technical, having a list of your pages means search engines know where to go."
+msgstr "Даже если это кажется техническим, наличие списка страниц означает, что поисковые системы знают, куда идти."
+
+#: inc/api/analyzer.php:813
+msgid "Keep the sitemap up to date whenever you add new pages or make major changes"
+msgstr "Обновляйте карту сайта при добавлении новых страниц или внесении крупных изменений."
+
+#: inc/api/analyzer.php:814
+msgid "Use the built-in sitemap management in SureRank to create and maintain it automatically."
+msgstr "Используйте встроенное управление картой сайта в SureRank для автоматического создания и поддержки."
+
+#: inc/api/analyzer.php:819
+msgid "If you add a new blog post but don’t have a sitemap, search engines might take longer to find it. With a sitemap, your new post appears in search results more quickly, helping readers discover your content sooner."
+msgstr "Если вы добавите новый блог-пост, но у вас нет карты сайта, поисковые системы могут дольше его найти. С картой сайта ваш новый пост быстрее появится в результатах поиска, помогая читателям быстрее открыть ваш контент."
+
+#: inc/api/analyzer.php:822
+msgid "You can manage and update your sitemap directly from the SureRank settings using the built-in sitemap tool."
+msgstr "Вы можете управлять и обновлять свою карту сайта прямо из настроек SureRank с помощью встроенного инструмента карты сайта."
+
+#: inc/api/analyzer.php:825
+msgid "SureRank automatically generates and updates your sitemap, so search engines always have a clear path to your important content. This keeps your site organized and ensures nothing valuable gets overlooked, without requiring extra work from you."
+msgstr "SureRank автоматически генерирует и обновляет вашу карту сайта, чтобы поисковые системы всегда имели четкий путь к вашему важному контенту. Это помогает держать ваш сайт организованным и не пропускать ничего ценного, без дополнительной работы с вашей стороны."
+
+#: inc/api/analyzer.php:1788
+#: inc/api/analyzer.php:1822
+msgid "No cached checks found."
+msgstr "Кэшированные проверки не найдены."
+
+#: inc/modules/email-reports/api.php:130
+msgid "Recipient email is required when enabled."
+msgstr "Требуется указать адрес электронной почты получателя при включении."
+
+#: inc/modules/email-reports/api.php:149
+msgid "Email summary settings saved successfully."
+msgstr "Настройки отправки по электронной почте успешно сохранены."
+
+#: inc/modules/email-reports/api.php:172
+msgid "Please provide a valid email address."
+msgstr "Пожалуйста, укажите действительный адрес электронной почты."
+
+#: inc/modules/email-reports/api.php:183
+msgid "Failed to send test email. Please check your email configuration."
+msgstr "Не удалось отправить тестовое письмо. Проверьте настройки электронной почты."
+
+#. translators: %s: Recipient email address
+#: inc/modules/email-reports/api.php:192
+#, php-format
+msgid "Test email sent successfully to %s."
+msgstr "Тестовое письмо успешно отправлено на %s."
+
+#: inc/modules/email-reports/controller.php:102
+msgid "Once Weekly"
+msgstr "Раз в неделю"
+
+#. translators: 1: Start date, 2: End date
+#: inc/modules/email-reports/controller.php:328
+#, php-format
+msgid "SEO Summary of last week - %1$s to %2$s"
+msgstr "SEO-отчет за прошлую неделю - %1$s по %2$s"
+
+#. translators: %s: Site name
+#: inc/modules/email-reports/controller.php:429
+#: inc/modules/email-reports/controller.php:692
+#, php-format
+msgid "%s Logo"
+msgstr "%s Логотип"
+
+#: inc/modules/email-reports/controller.php:436
+msgid "SEO Weekly Summary of Your Website"
+msgstr "Еженедельный SEO-отчет вашего сайта"
+
+#: inc/modules/email-reports/controller.php:463
+msgid "Your Website Performance (Last 7 Days)"
+msgstr "Производительность вашего сайта (за последние 7 дней)"
+
+#: inc/modules/email-reports/controller.php:488
+msgid "Site Clicks"
+msgstr "Клики по сайту"
+
+#: inc/modules/email-reports/controller.php:489
+msgid "Total Impressions"
+msgstr "Общее количество показов"
+
+#: inc/modules/email-reports/controller.php:490
+msgid "Average Position"
+msgstr "Средняя позиция"
+
+#: inc/modules/email-reports/controller.php:561
+msgid "Top Ranked Posts"
+msgstr "Лучшие посты по рейтингу"
+
+#: inc/modules/email-reports/controller.php:565
+msgid "Posts"
+msgstr "Посты"
+
+#: inc/modules/email-reports/controller.php:610
+msgid "View Full Analysis"
+msgstr "Посмотреть полный анализ"
+
+#: inc/modules/email-reports/controller.php:626
+msgid "Want to see SEO + traffic + sales in one dashboard?"
+msgstr "Хотите видеть SEO + трафик + продажи на одной панели?"
+
+#: inc/modules/email-reports/controller.php:627
+msgid "See the data that matters, all in one clean, customizable dashboard. Track your site's traffic, sales, and form activity without the clutter."
+msgstr "Смотрите важные данные, все в одном чистом, настраиваемом дашборде. Отслеживайте трафик сайта, продажи и активность форм без лишнего шума."
+
+#: inc/modules/email-reports/controller.php:629
+msgid "Explore"
+msgstr "Исследовать"
+
+#: inc/modules/email-reports/controller.php:890
+msgid "Home"
+msgstr "Главная"
+
+#: inc/modules/email-reports/utils.php:70
+msgid "Settings must be an array."
+msgstr "Настройки должны быть массивом."
+
+#: inc/modules/email-reports/utils.php:74
+msgid "Enabled must be a boolean."
+msgstr "Включено должно быть логическим значением."
+
+#: inc/modules/email-reports/utils.php:78
+msgid "Recipient email must be a valid email address."
+msgstr "Адрес электронной почты получателя должен быть действительным."
+
+#: inc/modules/email-reports/utils.php:82
+msgid "Day of week must be a valid day."
+msgstr "День недели должен быть допустимым днем."
+
+#. translators: %s is replaced with the custom field label.
+#: inc/schema/custom-fields.php:107
+#, php-format
+msgid "Custom Field: %s"
+msgstr "Пользовательское поле: %s"
+
+#: inc/schema/variables.php:219
+msgid "Website Type"
+msgstr "Тип сайта"
+
+#: inc/schema/variables.php:221
+msgid "Business Description"
+msgstr "Описание бизнеса"
+
+#: inc/schema/variables.php:224
+msgid "Website Owner Phone"
+msgstr "Телефон владельца сайта"
+
+#: inc/schema/variables.php:226
+msgid "About Page ID"
+msgstr "ID страницы \"О нас\""
+
+#: inc/schema/variables.php:227
+msgid "Contact Page ID"
+msgstr "ID страницы \"Контакты\""
+
+#. translators: %s is replaced with the custom field label.
+#: inc/traits/custom-field.php:59
+#, php-format
+msgid "Custom field: %s"
+msgstr "Пользовательское поле: %s"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Google Indexing"
+msgstr "Индексация Google"
+
+#: build/admin-dashboard/index.js:1
+msgid "Automatically notify Google when your content is published or updated. Get your pages indexed faster with Google Indexing API integration and ensure your latest content appears in search results."
+msgstr "Автоматически уведомляйте Google, когда ваш контент публикуется или обновляется. Получайте ваши страницы быстрее в индексе с помощью интеграции API индексации Google и убедитесь, что ваш последний контент появляется в результатах поиска."
+
+#: build/admin-dashboard/index.js:1
+msgid "Unlock Google Indexing API for faster indexing"
+msgstr "Разблокируйте API индексации Google для более быстрой индексации"
+
+#: build/admin-dashboard/index.js:1
+msgid "Upgrade to SureRank Pro or Business and let Google know about your new or updated content instantly."
+msgstr "Обновите до SureRank Pro или Business и сообщите Google о вашем новом или обновленном контенте мгновенно."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Email Summary"
+msgstr "Отчет по SEO по электронной почте"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Send Email To"
+msgstr "Отправить письмо на"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "You have unsaved changes. Are you sure you want to leave?"
+msgstr "У вас есть несохраненные изменения. Вы уверены, что хотите покинуть страницу?"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Failed to save email reports settings."
+msgstr "Не удалось сохранить настройки отчетов по электронной почте."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Settings saved successfully!"
+msgstr "Настройки успешно сохранены!"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "An unexpected error occurred while saving the settings. Please try again later."
+msgstr "Произошла непредвиденная ошибка при сохранении настроек. Пожалуйста, попробуйте позже."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Email SEO performance reports for your website, helping you track rankings and improvements without manual work."
+msgstr "Отправляйте отчеты о SEO-показателях вашего сайта по электронной почте, чтобы отслеживать рейтинги и улучшения без ручной работы."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Failed to send test email."
+msgstr "Не удалось отправить тестовое письмо."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Test email sent successfully"
+msgstr "Тестовое письмо успешно отправлено"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Test email sent successfully!"
+msgstr "Тестовое письмо успешно отправлено!"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Please check your email configuration and try again."
+msgstr "Пожалуйста, проверьте настройки электронной почты и попробуйте снова."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Schedule Summary"
+msgstr "Обзор расписания"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Connect Google Search Console to Enable Email Summary"
+msgstr "Подключите Google Search Console для включения обзора электронной почты"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Email summary uses GSC data to show your site’s search performance. Connect now to unlock and configure report settings."
+msgstr "Обзор по электронной почте использует данные GSC для отображения поисковой эффективности вашего сайта. Подключите сейчас, чтобы разблокировать и настроить параметры отчета."
+
+#: build/search-console-widget/index.js:1
+msgid "Traffic from last few days"
+msgstr "Трафик за последние несколько дней"
+
+#: build/seo-popup/index.js:1
+#, js-format
+msgid "Enter a custom field variable like %custom_field.field_name% or a direct image URL."
+msgstr "Введите переменную пользовательского поля, например %custom_field.field_name% или прямой URL изображения."
+
+#: build/seo-popup/index.js:1
+msgid "Custom Field"
+msgstr "Пользовательское поле"
+
+#: build/seo-popup/index.js:1
+#, js-format
+msgid "Enter image URL or %custom_field.field_name%"
+msgstr "Введите URL изображения или %custom_field.field_name%"
+
+#: build/seo-popup/index.js:1
+msgid "Type @ to view variable suggestions or enter a direct URL"
+msgstr "Введите @ для просмотра предложений переменных или введите прямой URL"
+
+#: build/seo-popup/index.js:1
+msgid "These settings help search engines understand how to treat your page in search results. Enabling \"No Index\" will prevent the page from appearing in search results. \"No Follow\" tells search engines not to follow any links on the page, and \"No Archive\" prevents search engines from storing a cached version of the page."
+msgstr "Эти настройки помогают поисковым системам понять, как обрабатывать вашу страницу в результатах поиска. Включение \"Исключить из индекса\" предотвратит отображение страницы в результатах поиска. \"НетFollow\" сообщает поисковым системам не следовать по ссылкам на странице, а \"НетАрхива\" предотвращает сохранение кешированной версии страницы."
+
+#: build/seo-popup/index.js:1
+msgid "Toggle general SEO settings"
+msgstr "Переключить общие настройки SEO"
+
+#: build/seo-popup/index.js:1
+msgid "Toggle social media settings"
+msgstr "Переключить настройки социальных сетей"
+
+#: build/seo-popup/index.js:1
+msgid "Toggle advanced SEO settings"
+msgstr "Переключить расширенные настройки SEO"
+
+#: build/seo-popup/index.js:1
+msgid "Toggle schema markup settings"
+msgstr "Переключить настройки разметки схемы"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Test Email"
+msgstr "Тестовое письмо"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Sending…"
+msgstr "Отправка…"

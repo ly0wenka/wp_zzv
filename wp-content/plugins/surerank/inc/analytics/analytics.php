@@ -7,6 +7,7 @@
 
 namespace SureRank\Inc\Analytics;
 
+use SureRank\Inc\Functions\Defaults;
 use SureRank\Inc\Functions\Get;
 use SureRank\Inc\Functions\Settings;
 use SureRank\Inc\GoogleSearchConsole\Controller;
@@ -77,6 +78,7 @@ class Analytics {
 			'plugin_version'    => SURERANK_VERSION,
 			'php_version'       => phpversion(),
 			'wordpress_version' => get_bloginfo( 'version' ),
+			'is_active'         => $this->is_active(),
 		];
 		$stats                     = array_merge(
 			$other_stats,
@@ -87,6 +89,48 @@ class Analytics {
 			'surerank' => $stats,
 		];
 		return $stats_data;
+	}
+
+	/**
+	 * Compare top-level and one-level nested settings with defaults.
+	 *
+	 * @param array<string, mixed> $settings Current settings.
+	 * @param array<string, mixed> $defaults Default settings.
+	 * @return array<string, mixed> Changed settings (top-level + one-level deep).
+	 */
+	public static function shallow_two_level_diff( array $settings, array $defaults ) {
+		$difference = [];
+
+		if ( isset( $defaults['surerank_analytics_optin'] ) ) {
+			unset( $defaults['surerank_analytics_optin'] );
+		}
+
+		foreach ( $settings as $key => $value ) {
+
+			// Key missing in defaults = changed.
+			if ( ! array_key_exists( $key, $defaults ) ) {
+				$difference[ $key ] = $value;
+				continue;
+			}
+
+			// If value is an array, only check one level deep.
+			if ( is_array( $value ) && is_array( $defaults[ $key ] ) ) {
+				$nested_diff = [];
+				foreach ( $value as $sub_key => $sub_value ) {
+					if ( ! array_key_exists( $sub_key, $defaults[ $key ] ) || $sub_value !== $defaults[ $key ][ $sub_key ] ) {
+						$nested_diff[ $sub_key ] = $sub_value;
+					}
+				}
+				if ( ! empty( $nested_diff ) ) {
+					$difference[ $key ] = $nested_diff;
+				}
+			} elseif ( $value !== $defaults[ $key ] ) {
+				// Compare scalar values directly.
+				$difference[ $key ] = $value;
+			}
+		}
+
+		return $difference;
 	}
 
 	/**
@@ -127,5 +171,48 @@ class Analytics {
 	 */
 	private function get_gsc_connected() {
 		return Controller::get_instance()->get_auth_status();
+	}
+
+	/**
+	 * Check if SureRank is active (has settings different from defaults).
+	 *
+	 * @return bool
+	 * @since 1.5.0
+	 */
+	private function is_active() {
+
+		$surerank_defaults = Defaults::get_instance()->get_global_defaults();
+
+		$surerank_settings = get_option( SURERANK_SETTINGS, [] );
+
+		if ( is_array( $surerank_settings ) && is_array( $surerank_defaults ) ) {
+				$changed_settings = self::shallow_two_level_diff( $surerank_settings, $surerank_defaults );
+			if ( count( $changed_settings ) >= 1 ) {
+				return true;
+			}
+		}
+
+		global $wpdb;
+			$like = $wpdb->esc_like( 'surerank_settings_' ) . '%';
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$posts = $wpdb->get_col(
+				$wpdb->prepare(
+					"
+						SELECT DISTINCT pm.post_id
+						FROM {$wpdb->postmeta} pm
+						INNER JOIN {$wpdb->posts} p ON pm.post_id = p.ID
+						WHERE pm.meta_key LIKE %s
+						AND p.post_status = 'publish'
+						LIMIT 1
+					",
+					$like
+				)
+			);
+
+		if ( ! empty( $posts ) && is_array( $posts ) ) {
+			return true;
+		}
+
+		return false;
 	}
 }

@@ -19,6 +19,7 @@ use SureRank\Inc\Functions\Helper;
 use SureRank\Inc\Functions\Settings;
 use SureRank\Inc\Functions\Update;
 use SureRank\Inc\Import_Export\Settings_Exporter;
+use SureRank\Inc\Modules\Nudges\Utils;
 use SureRank\Inc\Sitemap\Xml_Sitemap;
 use SureRank\Inc\Traits\Enqueue;
 use SureRank\Inc\Traits\Get_Instance;
@@ -54,7 +55,7 @@ class Dashboard {
 	 *
 	 * @return void
 	 */
-	public function common_js() {       ?>
+	public function common_js() {    ?>
 		<script type="text/javascript">
 			// This is a common JS file for admin pages.
 			// You can add your custom JS code here.
@@ -88,6 +89,15 @@ class Dashboard {
 				});
 				sidebarMenu.append(badge);
 			});
+
+// Handle Upgrade menu item click - redirect to pricing page
+			jQuery(document).on('click', '#toplevel_page_surerank a[href*="surerank#/upgrade"]', function (e) {
+				e.preventDefault();
+				const pricingLink = window?.surerank_globals?.pricing_link + '?utm_medium=surerank_upgrade_menu';
+				if (pricingLink && !pricingLink.includes('undefined')) {
+					window.open(pricingLink, '_blank', 'noopener,noreferrer');
+				}
+			});
 		</script>
 		<?php
 	}
@@ -120,7 +130,7 @@ class Dashboard {
 
 	/**
 	 * Get plugin sequence for dashboard.
-	 * 
+	 *
 	 * @return array<int,string> $sequence Plugin sequence.
 	 * @since 1.4.2
 	 */
@@ -194,7 +204,6 @@ class Dashboard {
 			update_option( 'surerank_onboarding_skipped', true );
 			$this->redirect_to_page( 'surerank', '#/dashboard' );
 		}
-		
 
 		$do_redirect = apply_filters( 'surerank_enable_redirect_on_activation', get_option( 'surerank_redirect_on_activation' ) );
 
@@ -276,14 +285,35 @@ class Dashboard {
 				'page_title' => __( 'Search Console', 'surerank' ),
 			];
 		}
+
+		$submenus[] = [
+			'id'         => 'surerank#/link-manager',
+			'page_title' => __( 'Redirections', 'surerank' ),
+		];
+
 		$submenus[] = [
 			'id'         => 'surerank#/tools',
 			'page_title' => __( 'Tools', 'surerank' ),
 		];
-		$submenus   = apply_filters( 'surerank_wp_admin_submenus', $submenus );
+
+		if ( ! Utils::get_instance()->is_pro_active() ) {
+			$submenus[] = [
+				'id'         => 'surerank#/upgrade',
+				'page_title' => __( 'Get Pro ↗', 'surerank' ),
+			];
+		}
+
+		$submenus = apply_filters( 'surerank_wp_admin_submenus', $submenus );
 
 		// Register the submenus.
+		$submenu_map = [];
+
 		foreach ( $submenus as $submenu ) {
+			$submenu_map[ $submenu['id'] ] = $submenu;
+		}
+
+		// Register the submenus.
+		foreach ( $submenu_map as $submenu ) {
 			add_submenu_page(
 				$menu_slug,
 				$submenu['page_title'],
@@ -413,6 +443,8 @@ class Dashboard {
 				'title_length'               => Get::title_length(),
 				'open_graph_tags'            => apply_filters( 'surerank_disable_open_graph_tags', false ),
 				'input_variable_suggestions' => $this->get_input_variable_suggestions(),
+				'nudges'                     => Utils::get_instance()->get_nudges(),
+				'wp_schema_pro_active'       => Helper::is_wp_schema_pro_active(),
 			]
 		);
 	}
@@ -478,6 +510,20 @@ class Dashboard {
 
 			#toplevel_page_surerank.wp-menu-open .wp-menu-image:before {
 				background-image: url('<?php echo $logo_uri_active; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>');
+			}
+
+			/* Upgrade menu item styling */
+			#toplevel_page_surerank .wp-submenu li a[href*="surerank#/upgrade"] {
+				color: #fff !important;
+				font-size: 13px !important;
+				font-weight: 500 !important;
+				line-height: 20px !important;
+				padding-right: 12px !important;
+				padding-left: 12px !important;
+			}
+
+			#toplevel_page_surerank .wp-submenu li a[href*="surerank#/upgrade"]:hover {
+				color: #fff !important;
 			}
 		</style>
 		<?php

@@ -117,6 +117,7 @@ const UserDetails = () => {
 					website_type: websiteDetails.website_type || '',
 					website_name: websiteDetails.website_name || '',
 					website_owner_name: websiteDetails.website_owner_name || '',
+					business_description: websiteDetails.business_description || '',
 					organization_type:
 						websiteDetails.organization_type || 'Organization',
 					website_owner_phone:

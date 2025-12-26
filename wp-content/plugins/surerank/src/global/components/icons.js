@@ -46,7 +46,7 @@ export const SureRankFullLogo = ( props ) => (
 	</svg>
 );
 
-export const SureRankLogo = ( props ) => (
+export const SureRankLogo = ( { enableFill = true, ...props } ) => (
 	<svg
 		width="128"
 		height="128"
@@ -55,7 +55,7 @@ export const SureRankLogo = ( props ) => (
 		xmlns="http://www.w3.org/2000/svg"
 		{ ...props }
 	>
-		<rect width="128" height="128" fill="white" />
+		{ enableFill && <rect width="128" height="128" fill="white" /> }
 		<path
 			d="M73.4731 0C99.6321 6.3594e-05 120.838 21.2062 120.838 47.3652C120.838 66.1146 109.944 82.3181 94.1401 89.9941H120.838V128H101.114C81.7276 128 65.7331 113.485 63.4018 94.7305H63.4008L63.4125 74.8838C81.2408 74.7673 94.685 60.2785 94.685 42.4229V33.9307H94.6879V27.6074C77.0272 27.6075 62.1389 39.4779 57.5649 55.6748C52.7868 48.9672 44.9453 44.5928 36.0825 44.5928H29.7495V50.915H29.7719C30.1453 64.2164 41.0453 74.8848 54.437 74.8848H56.1166L56.0356 94.7305H56.0073C53.6177 113.422 37.6508 127.868 18.31 127.868H7.16156V0H73.4731Z"
 			fill="#4338CA"

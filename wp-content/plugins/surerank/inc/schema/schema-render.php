@@ -65,7 +65,7 @@ class Schema_Render {
 		}
 
 		$this->flatten_cloneable_fields();
-		
+
 		$final_type = $this->type;
 		/**
 		 * Combine @type and @sub_type if @sub_type is set.
@@ -77,7 +77,7 @@ class Schema_Render {
 			}
 			unset( $this->fields['@sub_type'] );
 		}
-		
+
 		$this->fields['@type'] = $final_type;
 		$schema                = array_merge( [ '@type' => $final_type ], $this->fields );
 
@@ -114,7 +114,7 @@ class Schema_Render {
 	private function flatten_cloneable_fields() {
 		$schema_types = Utils::get_schema_types();
 		$schema_class = $schema_types[ $this->type ] ?? null;
-		
+
 		if ( ! $schema_class || ! class_exists( $schema_class ) ) {
 			return;
 		}
@@ -125,7 +125,7 @@ class Schema_Render {
 		foreach ( $field_definitions as $field ) {
 			if ( ! empty( $field['cloneable'] ) && ! empty( $field['flatten'] ) && isset( $field['id'] ) ) {
 				$field_id = $field['id'];
-				
+
 				if ( isset( $this->fields[ $field_id ] ) && is_array( $this->fields[ $field_id ] ) ) {
 					$this->fields[ $field_id ] = array_values( $this->fields[ $field_id ] );
 				}

@@ -1,8 +1,4 @@
-import {
-	useLayoutEffect,
-	useRef,
-	useCallback,
-} from '@wordpress/element';
+import { useLayoutEffect, useRef, useCallback } from '@wordpress/element';
 import { useDispatch, useSuspenseSelect, subscribe } from '@wordpress/data';
 import { debounce, isEqual } from 'lodash';
 import { STORE_NAME } from '@Store/constants';
@@ -93,7 +89,9 @@ export const useKeywordChecks = () => {
 				checkKeywordInDescription( resolvedDescription, keyword )
 			);
 			keywordChecks.push( checkKeywordInUrl( resolvedUrl, keyword ) );
-			keywordChecks.push( checkKeywordInContent( resolvedContent, keyword ) );
+			keywordChecks.push(
+				checkKeywordInContent( resolvedContent, keyword )
+			);
 
 			// Filter out falsy values and dispatch keyword checks
 			const validKeywordChecks = keywordChecks.filter( Boolean );

@@ -219,6 +219,17 @@ export const stringValueToFormatJSON = (
 					...mentionObjectStructure,
 					data: { ...option },
 				} );
+			} else {
+				// If option not found, render as plain text (e.g., %custom_field.field_name%)
+				value.root.children[ 0 ].children.push( {
+					detail: 0,
+					format: 0,
+					mode: 'normal',
+					style: '',
+					text: item,
+					type: 'text',
+					version: 1,
+				} );
 			}
 		} else {
 			value.root.children[ 0 ].children.push( {
@@ -768,15 +779,15 @@ export const getSeoCheckLabel = ( type, counts ) => {
 	if ( type === 'error' ) {
 		return sprintf(
 			// translators: %1$s is the number of issues detected, %2$s is the word "Issue".
-			'%1$s %2$s Detected',
+			'%1$s %2$s',
 			counts,
 			_n( 'Issue', 'Issues', counts, 'surerank' )
 		);
 	}
 	if ( type === 'warning' ) {
 		return sprintf(
-			// translators: %1$s is the number of issues detected, %2$s is the word "Issue".
-			'%1$s %2$s Detected',
+			// translators: %1$s is the number of warnings detected, %2$s is the word "Warning".
+			'%1$s %2$s',
 			counts,
 			_n( 'Warning', 'Warnings', counts, 'surerank' )
 		);
@@ -926,4 +937,69 @@ export const getCheckTypeKey = ( type ) => {
 			type.charAt( 0 ).toUpperCase() + type.slice( 1 )
 		}Checks`,
 	};
+};
+
+/**
+ * Prepare URL by ensuring it has the correct protocol and removing unwanted prefixes.
+ *
+ * @param {string} siteURL
+ * @return {string} prepared URL
+ */
+export const prepareURL = ( siteURL ) => {
+	let url = siteURL ?? '';
+	if ( url.includes( 'sc-domain:' ) ) {
+		url = url.replace( /sc-domain:/, '' );
+	}
+	if ( ! url.includes( 'https://' ) && ! url.includes( 'http://' ) ) {
+		url = `https://${ url }`;
+	}
+	return url;
+};
+
+/**
+ * Get style classes for click/impression metrics based on data state
+ *
+ * @param {Object} item - The metric item containing value, previous, and percentageType
+ * @return {Object} Object containing differenceClassName and fallbackClassName
+ */
+export const getMetricStyles = ( item ) => {
+	let differenceClassName = '';
+	switch ( item.percentageType ) {
+		case 'danger':
+			differenceClassName = 'text-support-error [&>*]:text-support-error';
+			break;
+		case 'success':
+			differenceClassName =
+				'text-support-success [&>*]:text-support-success';
+			break;
+		default:
+			differenceClassName = '';
+	}
+
+	let fallbackClassName = '';
+	// Render N/A and null for difference and icon when both value and previous are null.
+	if ( item.value === null && item.previous === null ) {
+		fallbackClassName = 'text-text-tertiary [&>*]:text-text-tertiary';
+	}
+
+	return { differenceClassName, fallbackClassName };
+};
+
+/**
+ * Get formatted value and difference for click/impression metrics
+ *
+ * @param {Object} item - The metric item containing value and previous
+ * @return {Object} Object containing renderValue and renderDifference
+ */
+export const getMetricValues = ( item ) => {
+	const renderValue =
+		item.value === null && item.previous === null
+			? 'N/A'
+			: formatNumber( item.value );
+	const renderDifference =
+		item.value === null && item.previous === null
+			? 'N/A'
+			: formatNumber( Math.abs( item?.value - item?.previous ) );
+
+	return { renderValue, renderDifference };
 };

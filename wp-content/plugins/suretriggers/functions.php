@@ -82,6 +82,57 @@ function suretrigger_capture_login_time( $user_login, $user ) {
 }
 
 /**
+ * Add 5-star rating display to plugin row.
+ */
+add_filter( 'plugin_row_meta', 'suretriggers_add_plugin_rating', 10, 2 );
+
+/**
+ * Add 5-star rating to plugin meta row.
+ *
+ * @param array  $links An array of the plugin's metadata.
+ * @param string $file Path to the plugin file relative to the plugins directory.
+ * @return array Modified array of plugin metadata.
+ */
+function suretriggers_add_plugin_rating( $links, $file ) {
+	if ( plugin_basename( SURE_TRIGGERS_FILE ) === $file ) {
+		$rating_html  = '<a href="https://wordpress.org/support/plugin/suretriggers/reviews/" target="_blank" class="suretriggers-rating-link" title="Rate this plugin" aria-label="Rate SureTriggers 5 stars on WordPress.org">';
+		$rating_html .= '<span class="star-rating" role="img" aria-label="5 out of 5 stars">';
+		for ( $i = 1; $i <= 5; $i++ ) {
+			$rating_html .= '<span class="star star-full" aria-hidden="true"></span>';
+		}
+		$rating_html .= '</span>';
+		$rating_html .= '<span class="screen-reader-text">Rate this plugin</span>';
+		$rating_html .= '</a>';
+		$links[]      = $rating_html;
+	}
+	return $links;
+}
+
+/**
+ * Enqueue rating styles for plugin meta row.
+ */
+add_action( 'admin_enqueue_scripts', 'suretriggers_enqueue_rating_styles' );
+
+/**
+ * Enqueue CSS styles for 5-star rating display.
+ * Following modular CSS organization best practices.
+ *
+ * @return void
+ */
+function suretriggers_enqueue_rating_styles() {
+	// Only enqueue on plugins page where rating is displayed.
+	$screen = get_current_screen();
+	if ( $screen && 'plugins' === $screen->id ) {
+		wp_enqueue_style(
+			'suretriggers-rating',
+			plugin_dir_url( SURE_TRIGGERS_FILE ) . 'assets/css/st-rating.css',
+			[],
+			defined( 'SURE_TRIGGERS_VER' ) ? SURE_TRIGGERS_VER : '1.0.0'
+		);
+	}
+}
+
+/**
  * SureTrigger Trigger Button shortcode.
  *
  * @param array $atts Attributes.

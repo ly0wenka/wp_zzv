@@ -7,7 +7,7 @@ import {
 	toast,
 } from '@bsf/force-ui';
 import { __, sprintf } from '@wordpress/i18n';
-import { ArrowRight, ArrowUpRight, Search, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, Search, X } from 'lucide-react';
 import SiteSeoChecksFixButton from './site-seo-checks-fix-button';
 import { useSuspenseSiteSeoAnalysis } from './site-seo-checks-main';
 import {
@@ -20,6 +20,7 @@ import { useState, useCallback, useMemo } from '@wordpress/element';
 import { Link } from '@tanstack/react-router';
 import apiFetch from '@wordpress/api-fetch';
 import { Tooltip } from '@/apps/admin-components/tooltip';
+import { cn } from '@/functions/utils';
 
 const ITEMS_PER_PAGE = 20;
 const SUMMARY_ITEMS_COUNT = 5;
@@ -99,6 +100,7 @@ const SiteSeoChecksActionButtons = ( {
 				<SiteSeoChecksFixButton
 					selectedItem={ item }
 					size="xs"
+					variant="outline"
 					runBeforeOnClick={ handleSelectOnly }
 				/>
 			) }
@@ -127,8 +129,18 @@ const SiteSeoChecksActionButtons = ( {
 				>
 					<Button
 						size="xs"
+						className={ cn(
+							item.status === 'success' &&
+								'bg-badge-background-green text-badge-color-green hover:bg-badge-hover-green'
+						) }
 						variant="outline"
-						icon={ <ArrowRight /> }
+						icon={
+							item.status === 'success' ? (
+								<Check />
+							) : (
+								<ArrowRight />
+							)
+						}
 						iconPosition="right"
 						onClick={ onViewItem }
 					/>
@@ -155,9 +167,9 @@ const SiteSeoChecksTableRow = ( { item, onIgnore } ) => {
 
 	return (
 		<Table.Row>
-			<Table.Cell>
-				<Container gap="xl" align="center">
-					<Container.Item>
+			<Table.Cell className="max-w-none">
+				<Container gap="xs" align="center" className="flex-nowrap">
+					<Container.Item className="flex-shrink-0">
 						<Badge
 							label={ getSeverityLabel(
 								item?.status,
@@ -167,10 +179,12 @@ const SiteSeoChecksTableRow = ( { item, onIgnore } ) => {
 							disabled={ item?.ignore }
 						/>
 					</Container.Item>
-					<Container.Item>{ item?.message }</Container.Item>
+					<Container.Item className="flex-1">
+						{ item?.message }
+					</Container.Item>
 				</Container>
 			</Table.Cell>
-			<Table.Cell>
+			<Table.Cell className="w-1 whitespace-nowrap">
 				<SiteSeoChecksActionButtons
 					onViewItem={ handleViewItem }
 					showFixButton={ item?.status !== 'success' }
@@ -283,52 +297,57 @@ const SiteSeoChecksTable = ( { limit, showViewAll = false } ) => {
 	}
 
 	return (
-		<Table>
-			<Table.Head>
-				<Table.HeadCell>{ __( 'Issue', 'surerank' ) }</Table.HeadCell>
-				<Table.HeadCell className="w-72 text-center">
-					{ __( 'Action', 'surerank' ) }
-				</Table.HeadCell>
-			</Table.Head>
-			<Table.Body>
-				{ filteredPaginatedContent.map( ( item, index ) => (
-					<SiteSeoChecksTableRow
-						key={ `row-${ index }-${ currentPage }` }
-						item={ item }
-						onIgnore={ handleIgnoreCheck }
-					/>
-				) ) }
-			</Table.Body>
-			{ showViewAll && (
-				<Table.Footer>
-					<Button
-						tag={ Link }
-						size="md"
-						variant="link"
-						icon={ <ArrowUpRight /> }
-						iconPosition="right"
-						className="w-fit mx-auto no-underline hover:no-underline"
-						to="/site-seo-analysis"
-					>
-						{ __( 'View Full Report', 'surerank' ) }
-					</Button>
-				</Table.Footer>
-			) }
-			{ showPagination && filteredContent?.length > itemsPerPage && (
-				<Table.Footer>
-					<SiteSeoChecksPagination
-						pages={ pages }
-						validCurrentPage={ validCurrentPage }
-						totalPages={ totalPages }
-						isPreviousDisabled={ isPreviousDisabled }
-						isNextDisabled={ isNextDisabled }
-						handlePageChange={ handlePageChange }
-						goToPreviousPage={ goToPreviousPage }
-						goToNextPage={ goToNextPage }
-					/>
-				</Table.Footer>
-			) }
-		</Table>
+		<div className="overflow-x-auto -mx-3 px-3 sm:mx-0 sm:px-0">
+			<Table>
+				<Table.Head>
+					<Table.HeadCell>
+						{ __( 'Checkpoints', 'surerank' ) }
+					</Table.HeadCell>
+					<Table.HeadCell className="w-1 text-center whitespace-nowrap"></Table.HeadCell>
+				</Table.Head>
+				<Table.Body>
+					{ filteredPaginatedContent.map( ( item, index ) => (
+						<SiteSeoChecksTableRow
+							key={ `row-${ index }-${ currentPage }` }
+							item={ item }
+							onIgnore={ handleIgnoreCheck }
+						/>
+					) ) }
+				</Table.Body>
+				{ showViewAll && (
+					<Table.Footer className="bg-brand-background-50 p-0 cursor-pointer group/link">
+						<Link
+							to="/site-seo-analysis"
+							className="flex justify-center items-center w-full p-3 no-underline focus:outline-none active:outline-none focus:[box-shadow:none]"
+						>
+							<Button
+								tag="span"
+								size="md"
+								variant="link"
+								icon={ <ArrowUpRight /> }
+								iconPosition="right"
+							>
+								{ __( 'View All Results', 'surerank' ) }
+							</Button>
+						</Link>
+					</Table.Footer>
+				) }
+				{ showPagination && filteredContent?.length > itemsPerPage && (
+					<Table.Footer>
+						<SiteSeoChecksPagination
+							pages={ pages }
+							validCurrentPage={ validCurrentPage }
+							totalPages={ totalPages }
+							isPreviousDisabled={ isPreviousDisabled }
+							isNextDisabled={ isNextDisabled }
+							handlePageChange={ handlePageChange }
+							goToPreviousPage={ goToPreviousPage }
+							goToNextPage={ goToNextPage }
+						/>
+					</Table.Footer>
+				) }
+			</Table>
+		</div>
 	);
 };
 

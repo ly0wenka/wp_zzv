@@ -299,9 +299,9 @@ class Loader {
 		}
 		$links[] = $settings_link;
 		
-		// Add Upgrade link for free and pro users.
+		// Add Get OttoKit Pro link for free and pro users.
 		if ( $this->should_show_upgrade_button() ) {
-			$upgrade_link = '<a href="https://ottokit.com/pricing/?utm_source=wpplugin&utm_medium=plugin+list&utm_campaign=plugin+list" target="_blank" style="color: #28a745; font-weight: bold;">' . __( 'Upgrade', 'suretriggers' ) . '</a>';
+			$upgrade_link = '<a href="https://ottokit.com/pricing/?utm_source=wpplugin&utm_medium=plugin+list&utm_campaign=plugin+list" target="_blank" style="color: #28a745; font-weight: bold;">' . __( 'Get OttoKit Pro', 'suretriggers' ) . '</a>';
 			$links[]      = $upgrade_link;
 		}
 		
@@ -322,8 +322,8 @@ class Loader {
 		define( 'SURE_TRIGGERS_BASE', plugin_basename( SURE_TRIGGERS_FILE ) );
 		define( 'SURE_TRIGGERS_DIR', plugin_dir_path( SURE_TRIGGERS_FILE ) );
 		define( 'SURE_TRIGGERS_URL', plugins_url( '/', SURE_TRIGGERS_FILE ) );
-		define( 'SURE_TRIGGERS_VER', '1.1.13' );
-		define( 'SURE_TRIGGERS_DB_VER', '1.1.13' );
+		define( 'SURE_TRIGGERS_VER', '1.1.16' );
+		define( 'SURE_TRIGGERS_DB_VER', '1.1.16' );
 		define( 'SURE_TRIGGERS_REST_NAMESPACE', 'sure-triggers/v1' );
 		define( 'SURE_TRIGGERS_SASS_URL', $sass_url . '/wp-json/wp-plugs/v1/' );
 		define( 'SURE_TRIGGERS_SITE_URL', $sass_url );
@@ -405,12 +405,12 @@ class Loader {
 				[ $this, 'suretriggers_status_menu_callback' ]
 			);
 
-			// Add Upgrade menu for free and pro users.
+			// Add Get OttoKit Pro menu for free and pro users.
 			if ( $this->should_show_upgrade_button() ) {
 				add_submenu_page(
 					'suretriggers',
-					__( 'Upgrade', 'suretriggers' ),
-					'<span class="ottokit-upgrade-btn">' . __( 'Upgrade', 'suretriggers' ) . '</span>',
+					__( 'Get OttoKit Pro', 'suretriggers' ),
+					'<span class="ottokit-upgrade-btn">' . __( 'Get OttoKit Pro', 'suretriggers' ) . '</span>',
 					'read',
 					'suretriggers-upgrade-plan',
 					[ $this, 'suretriggers_upgrade_plan_callback' ]
@@ -734,7 +734,7 @@ class Loader {
 	}
 
 	/**
-	 * Upgrade Menu callback.
+	 * Get OttoKit Pro Menu callback.
 	 *
 	 * @since x.x.x
 	 *

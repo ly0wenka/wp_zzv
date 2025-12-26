@@ -9,10 +9,11 @@
 
 namespace SureRank\Inc\API;
 
+use SureRank\Inc\Admin\Sync;
+use SureRank\Inc\Functions\Cache;
 use SureRank\Inc\Functions\Cron;
 use SureRank\Inc\Functions\Helper;
 use SureRank\Inc\Functions\Send_Json;
-use SureRank\Inc\Admin\Sync;
 use SureRank\Inc\Traits\Get_Instance;
 use WP_REST_Request;
 use WP_REST_Server;
@@ -43,7 +44,6 @@ class Sitemap extends Api_Base {
 	 * Route for getting cachable items
 	 */
 	protected const GET_CACHABLE_ITEMS = '/sitemap/get-cachable-items';
-
 
 	/**
 	 * Register API routes.
@@ -90,6 +90,7 @@ class Sitemap extends Api_Base {
 	 * @return void
 	 */
 	public function prepare_cache( $request ) {
+		Cache::clear_all();
 		$classes    = Sync::get_instance()->generate_classes();
 		$chunk_size = apply_filters( 'surerank_sitemap_json_chunk_size', 20 );
 		$items      = [];
@@ -118,12 +119,12 @@ class Sitemap extends Api_Base {
 					$type         = 'post';
 				}
 				if ( false !== strpos( $key, 'taxonomy' ) ) {
-					$item['slug'] = $value; 
+					$item['slug'] = $value;
 					$item['type'] = 'taxonomy';
 					$type         = 'taxonomy';
 				}
 				if ( false !== strpos( $key, 'offset' ) ) {
-					$page         = ( $value != 0 ) ? ( $value / $chunk_size ) + 1 : 1;
+					$page         = $value !== 0 ? ( $value / $chunk_size ) + 1 : 1;
 					$item['page'] = $page;
 				}
 			}
@@ -134,7 +135,7 @@ class Sitemap extends Api_Base {
 		}
 		update_option( 'surerank_sitemap_classes', $categories );
 		Send_Json::success(
-			[ 'data' => $items ]       
+			[ 'data' => $items ]
 		);
 	}
 
@@ -163,7 +164,7 @@ class Sitemap extends Api_Base {
 						'message' => __( 'CRONs are disabled on this website. Please enable the CRON functionality to use this feature.', 'surerank' ),
 					]
 				);
-			}       
+			}
 		} catch ( \Exception $e ) {
 			Send_Json::error(
 				[
@@ -198,9 +199,9 @@ class Sitemap extends Api_Base {
 		$class = $classes[ $type ];
 		$class = array_filter(
 			$class,
-			function( $item ) use ( $page, $slug ) {
-				return $item['page'] == $page && $item['slug'] == $slug;
-			} 
+			static function( $item ) use ( $page, $slug ) {
+				return $item['page'] === $page && $item['slug'] === $slug;
+			}
 		);
 
 		if ( ! is_array( $class ) || empty( $class ) ) {

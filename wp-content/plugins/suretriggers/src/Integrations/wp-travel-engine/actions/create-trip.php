@@ -135,7 +135,11 @@ class CreateTrip extends AutomateAction {
 						'overview_section_title' => 'Overview',
 						'tab_content'            => [ '1_wpeditor' => $trip_description ],
 						'trip_highlights_title'  => 'Trip Highlights',
-						'trip_highlights'        => array_map( fn( $h ) => [ 'highlight_text' => $h ], $trip_highlights ),
+						'trip_highlights'        => array_map(
+							function( $h ) {
+								return [ 'highlight_text' => $h ]; },
+							$trip_highlights 
+						),
 						'cost_tab_sec_title'     => 'Includes/Excludes',
 						'cost'                   => [
 							'includes_title' => 'Cost Includes',
