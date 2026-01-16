@@ -128,6 +128,25 @@ class Controller {
 			return new WP_Error( 'no_user_email', __( 'No user email found in the decrypted data.', 'surerank' ) );
 		}
 
+		// Extract is_subscribed value if present.
+		$is_subscribed = false;
+		if ( isset( $decrypted_data_array['is_subscribed'] ) ) {
+			// Convert string 'true'/'false' to boolean if needed.
+			if ( is_string( $decrypted_data_array['is_subscribed'] ) ) {
+				$is_subscribed = 'true' === $decrypted_data_array['is_subscribed'];
+			} else {
+				$is_subscribed = (bool) $decrypted_data_array['is_subscribed'];
+			}
+
+			// Update the analytics option based on the preference.
+			// Set 'yes' if opted in, empty string if not.
+			$enable_contribution = $is_subscribed ? 'yes' : '';
+			update_option( 'surerank_analytics_optin', $enable_contribution );
+
+			// Remove is_subscribed from the decrypted data.
+			unset( $decrypted_data_array['is_subscribed'] );
+		}
+
 		// remove the nonce from the decrypted data before saving it to the options.
 		unset( $decrypted_data_array['nonce'] );
 

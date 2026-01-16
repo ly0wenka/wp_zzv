@@ -6,6 +6,15 @@
  */
 
 /* ===== 5-Star Rating Plugin Meta Row ===== */
+.suretriggers-rating-wrapper {
+    display: inline-block;
+    transition: opacity 0.3s ease;
+}
+
+.suretriggers-rating-wrapper.hide {
+    opacity: 0;
+}
+
 .suretriggers-rating-link {
     text-decoration: none !important;
     display: inline-flex;

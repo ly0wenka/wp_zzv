@@ -61,6 +61,7 @@ class Utils {
 	public function prepare_content_inputs( $id = null, $is_taxonomy = false ) {
 		$title   = '';
 		$content = '';
+		$type    = '';
 
 		if ( ! empty( $id ) ) {
 			if ( $is_taxonomy ) {
@@ -68,12 +69,24 @@ class Utils {
 				if ( $term && ! is_wp_error( $term ) ) {
 					$title   = $term->name;
 					$content = $term->description;
+
+					$taxonomy_obj = get_taxonomy( $term->taxonomy );
+					if ( $taxonomy_obj ) {
+						$readable_name = $taxonomy_obj->labels->singular_name ?? $taxonomy_obj->label;
+						$type          = sprintf( 'Taxonomy - %s - %s', $readable_name, $term->taxonomy );
+					}
 				}
 			} else {
 				$post = get_post( $id );
 				if ( $post ) {
 					$title   = get_the_title( $id );
 					$content = $post->post_content;
+
+					$post_type_obj = get_post_type_object( $post->post_type );
+					if ( $post_type_obj ) {
+						$readable_name = $post_type_obj->labels->singular_name ?? $post_type_obj->label;
+						$type          = sprintf( 'Post Type - %s - %s', $readable_name, $post->post_type );
+					}
 				}
 			}
 		}
@@ -90,6 +103,7 @@ class Utils {
 				'page_title'    => $title,
 				'page_content'  => $content,
 				'focus_keyword' => $this->get_focus_keyword( $id, $is_taxonomy ),
+				'type'          => $type,
 			]
 		);
 	}

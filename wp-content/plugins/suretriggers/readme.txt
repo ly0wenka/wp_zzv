@@ -3,7 +3,7 @@ Contributors: sujaypawar, wpcrafter
 Tags: automation, google sheets, webhooks, schedule, SureCart
 Requires at least: 5.4
 Tested up to: 6.9
-Stable tag: 1.1.16
+Stable tag: 1.1.18
 Requires PHP: 5.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -334,6 +334,18 @@ You can report the issue through our [Bug Bounty Program](https://brainstormforc
 8. Workspace Notification Settings.
 
 == Changelog ==
+= Version 1.1.18 - Thursday, 15th January 2026 =
+* New: Added "Jet Appointments Booking" Integration
+* Improvement: "Jetpack CRM" – Added new "Create Company" Action
+* Improvement: "LatePoint" - Added new "Add Booking to Existing Order" Action
+* Improvement: "SureDash" – Added new "Create Post in Discussion Space" Action
+
+= Version 1.1.17 - Tuesday, 6th January 2026 =
+* New: Added "Thrive Ovation" Integration
+* Improvement: "EDD" – Added new Triggers
+* Improvement: "FluentCommunity" - Added new Trigger and Actions
+* Improvement: "WooCommerce" – Added new "Create Bundle Product Order" Action
+
 = Version 1.1.16 - Thursday, 25th December 2025 =
 * New: Added "Thrive Apprentice" Integration
 * Improvement: "Amelia" – Added new Triggers

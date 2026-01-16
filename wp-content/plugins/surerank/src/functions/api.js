@@ -6,22 +6,23 @@ import { isCurrentPage } from '@/functions/utils';
 const API_BASE_URL = '/surerank/v1';
 
 export const fetchMetaSettings = async () => {
-	const queryParams = new URLSearchParams();
-	if ( isCurrentPage( 'term.php' ) ) {
-		queryParams.append( 'term_id', surerank_seo_popup?.term_id );
+	const queryParams = {};
+	const isTerm =
+		isCurrentPage( 'term.php' ) || !! surerank_seo_popup.is_taxonomy;
+	if ( isTerm ) {
+		queryParams.term_id = surerank_seo_popup?.term_id;
 	} else {
-		queryParams.append( 'post_id', surerank_seo_popup?.post_id );
+		queryParams.post_id = surerank_seo_popup?.post_id;
 	}
-	queryParams.append( 'post_type', surerank_seo_popup?.post_type );
-	queryParams.append( 'is_taxonomy', surerank_seo_popup?.is_taxonomy );
+	queryParams.post_type = surerank_seo_popup?.post_type;
+	queryParams.is_taxonomy = surerank_seo_popup?.is_taxonomy;
 
 	try {
 		const response = await apiFetch( {
-			path: `${
-				isCurrentPage( 'term.php' )
-					? TERM_SEO_DATA_URL
-					: POST_SEO_DATA_URL
-			}?${ queryParams.toString() }`,
+			path: addQueryArgs(
+				isTerm ? TERM_SEO_DATA_URL : POST_SEO_DATA_URL,
+				queryParams
+			),
 			method: 'GET',
 		} );
 		if ( ! response.success ) {

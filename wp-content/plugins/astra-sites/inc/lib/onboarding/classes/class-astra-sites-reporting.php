@@ -121,6 +121,7 @@ class Astra_Sites_Reporting {
         $failure_reason    = isset( $data['failure_reason'] ) ? sanitize_text_field( $data['failure_reason'] ) : '';
         $secondary_text    = isset( $data['secondary_text'] ) ? sanitize_text_field( $data['secondary_text'] ) : '';
         $error_text        = isset( $data['error_text'] ) ? sanitize_text_field( $data['error_text'] ) : '';
+        $spectra_blocks_ver = isset( $data['spectra_blocks_ver'] ) ? sanitize_text_field( $data['spectra_blocks_ver'] ) : '';
 
         // If secondary text is not empty, append it to failure reason.
         if ( ! empty( $secondary_text ) && is_string( $secondary_text ) ) {
@@ -145,6 +146,7 @@ class Astra_Sites_Reporting {
                     'template_type'  => $template_type,
                     'failure_reason' => $failure_reason,
                     'error_text'     => $error_text,
+                    'spectra_blocks_ver' => $spectra_blocks_ver,
                 ),
             ),
         );

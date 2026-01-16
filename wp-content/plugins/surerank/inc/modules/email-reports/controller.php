@@ -10,10 +10,13 @@
 
 namespace SureRank\Inc\Modules\EmailReports;
 
+use Exception;
 use SureRank\Inc\Frontend\Image;
 use SureRank\Inc\Traits\Get_Instance;
+use SureRank\Inc\Traits\Logger;
 use SureRank\Inc\GoogleSearchConsole\Controller as  GSC_Controller;
 use SureRank\Inc\GoogleSearchConsole\Auth as GSC_Auth;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -29,6 +32,7 @@ class Controller {
 
 
 	use Get_Instance;
+	use Logger;
 
 	/**
 	 * Cron event name for email reports.
@@ -55,154 +59,66 @@ class Controller {
 	public function init() {
 		add_action( self::EMAIL_REPORTS_CRON_EVENT, [ $this, 'send_email_report' ] );
 		add_action( 'init', [ $this, 'maybe_send_email_fallback' ] );
-		add_action( 'update_option_surerank_email_reports_settings', [ $this, 'on_settings_updated' ], 10, 2 );
-		add_filter( 'cron_schedules', [ $this, 'cron_schedules' ] );
-		add_action( 'wp_loaded', [ $this, 'check_and_schedule' ] );
+
+		$this->cleanup_old_cron_schedules();
+
+		// Schedule daily cron if not already scheduled (uses WordPress built-in 'daily' schedule).
+		if ( ! wp_next_scheduled( self::EMAIL_REPORTS_CRON_EVENT ) ) {
+			wp_schedule_event( time(), 'daily', self::EMAIL_REPORTS_CRON_EVENT );
+		}
 	}
 
 	/**
-	 * Check if scheduling is needed and run it.
-	 * This runs on every wp_loaded but exits early if cron exists.
+	 * Clean up old weekly cron schedules from previous version.
 	 *
-	 * @since 1.6.0
+	 * In previous versions, we used a custom 'weekly' schedule. Now we use 'daily'.
+	 * This method unschedules any old weekly crons and ensures only daily cron exists.
+	 *
+	 * @since 1.6.2
 	 * @return void
 	 */
-	public function check_and_schedule() {
-		// If cron is already scheduled, no need to check further.
-		if ( wp_next_scheduled( self::EMAIL_REPORTS_CRON_EVENT ) ) {
+	private function cleanup_old_cron_schedules() {
+		$cleanup_done = get_option( 'surerank_email_reports_cron_cleanup_done' );
+		if ( $cleanup_done ) {
 			return;
 		}
 
-		// Cron doesn't exist - try to schedule it.
-		$this->maybe_schedule_email_report();
-	}
+		try {
 
-	/**
-	 * Check if email report cron is already scheduled.
-	 * 
-	 * @since 1.6.0
-	 * @return bool True if scheduled, false otherwise.
-	 */
-	private function has_scheduled() {
-		$timestamp = wp_next_scheduled( self::EMAIL_REPORTS_CRON_EVENT );
-		return $timestamp !== false;
-	}
+			$crons = _get_cron_array();
+			if ( empty( $crons ) ) {
+				update_option( 'surerank_email_reports_cron_cleanup_done', true, false );
+				return;
+			}
 
-	/**
-	 * Add custom cron schedules.
-	 *
-	 * @since 1.6.0
-	 * @param array<string,array<string,int|string>> $schedules Array of cron schedules.
-	 * @return array<string,array<string,int|string>> Modified array of cron schedules.
-	 */
-	public function cron_schedules( $schedules ) {
-		if ( ! isset( $schedules['weekly'] ) ) {
-			$schedules['weekly'] = [
-				'interval' => 604800, // 7 days
-				'display'  => __( 'Once Weekly', 'surerank' ),
-			];
+			foreach ( $crons as $timestamp => $cron ) {
+				if ( isset( $cron[ self::EMAIL_REPORTS_CRON_EVENT ] ) ) {
+					foreach ( $cron[ self::EMAIL_REPORTS_CRON_EVENT ] as $event ) {
+						if ( isset( $event['schedule'] ) && 'weekly' === $event['schedule'] ) {
+							wp_unschedule_event( $timestamp, self::EMAIL_REPORTS_CRON_EVENT, $event['args'] ?? [] );
+						}
+					}
+				}
+			}
+
+			update_option( 'surerank_email_reports_cron_cleanup_done', true, false );
+		} catch ( Exception $e ) {
+
+			Logger::log( 'Error cleaning up old email reports cron schedules: ' . $e->getMessage() );
+			update_option( 'surerank_email_reports_cron_cleanup_done', true, false );
 		}
-		return $schedules;
 	}
 
 	/**
-	 * Schedule email report based on settings.
+	 * Get email reports frequency setting.
 	 *
-	 * @since 1.6.0
-	 * @return void
+	 * @since 1.6.2
+	 * @return string Frequency setting ('weekly' or 'monthly').
 	 */
-	public function maybe_schedule_email_report() {
+	private function get_email_reports_frequency() {
 		$utils    = Utils::get_instance();
 		$settings = $utils->get_settings();
-
-		// If email reports are disabled, unschedule any existing cron.
-		if ( empty( $settings['enabled'] ) ) {
-			$this->unschedule_email_report();
-			return;
-		}
-
-		// Validate recipient email.
-		if ( empty( $settings['recipientEmail'] ) ) {
-			return;
-		}
-
-		// Check if cron is available.
-		if ( ! $this->is_cron_available() ) {
-			return;
-		}
-
-		// Return if not connected to search console.
-		if ( ! $this->is_gsc_ready() ) {
-			if ( $this->has_scheduled() ) {
-				$this->unschedule_email_report();
-			}
-			return;
-		}
-
-		// Schedule the cron if not already scheduled.
-		$this->schedule_email_report( $settings['scheduledOn'] );
-	}
-
-	/**
-	 * Schedule the email report cron job.
-	 *
-	 * @since 1.6.0
-	 * @param string $day_of_week Day of the week to send the report.
-	 * @return void
-	 */
-	private function schedule_email_report( $day_of_week ) {
-		// Check if already scheduled.
-		if ( $this->has_scheduled() ) {
-			return;
-		}
-
-		// Get the next occurrence of the scheduled day.
-		$next_run = $this->get_next_scheduled_time( $day_of_week );
-
-
-		// Schedule new event using wp_schedule_event.
-		wp_schedule_event( $next_run, 'weekly', self::EMAIL_REPORTS_CRON_EVENT );
-	}
-
-	/**
-	 * Unschedule the email report cron job.
-	 *
-	 * @since 1.6.0
-	 * @return void
-	 */
-	private function unschedule_email_report() {
-		$timestamp = wp_next_scheduled( self::EMAIL_REPORTS_CRON_EVENT );
-		if ( $timestamp === false ) {
-			return;
-		}
-		wp_unschedule_event( $timestamp, self::EMAIL_REPORTS_CRON_EVENT );
-	}
-
-	/**
-	 * Get the next scheduled time for a given day of the week.
-	 *
-	 * @since 1.6.0
-	 * @param string $day_of_week Day of the week (e.g., 'monday', 'sunday').
-	 * @return int Timestamp of the next occurrence.
-	 */
-	private function get_next_scheduled_time( $day_of_week ) {
-		// Get current time in UTC (WordPress cron uses UTC).
-		$current_time = time();
-		$target_day   = ucfirst( strtolower( $day_of_week ) );
-
-		// Get current day name in UTC.
-		$current_day  = gmdate( 'l', $current_time );
-		$current_hour = (int) gmdate( 'H', $current_time );
-
-		// If today is the target day and it's before 9 AM UTC, schedule for today at 9 AM.
-		if ( $current_day === $target_day && $current_hour < 9 ) {
-			$next_run = strtotime( gmdate( 'Y-m-d', $current_time ) . ' 09:00:00 UTC' );
-		} else {
-			// Otherwise, schedule for next occurrence of the target day at 9 AM UTC.
-			$next_run = strtotime( "next {$target_day} 09:00:00 UTC" );
-		}
-
-		return $next_run !== false ? $next_run : time();
+		return $settings['frequency'] ?? 'weekly';
 	}
 
 	/**
@@ -233,41 +149,20 @@ class Controller {
 	 * @return void
 	 */
 	public function maybe_send_email_fallback() {
-		// Only run if cron is not available and if GSC is not ready.
-		if ( $this->is_cron_available() || ! $this->is_gsc_ready() ) {
+		// Only run if cron is not available.
+		if ( $this->is_cron_available() ) {
 			return;
 		}
 
-		$utils    = Utils::get_instance();
-		$settings = $utils->get_settings();
-
-		// Check if email reports are enabled.
-		if ( empty( $settings['enabled'] ) ) {
-			return;
-		}
-
-		// Check if today is the scheduled day.
-		$current_day = strtolower( gmdate( 'l' ) );
-		if ( $current_day !== $settings['scheduledOn'] ) {
-			return;
-		}
-
-		// Check if email was already sent today.
-		$last_sent = get_option( 'surerank_email_report_last_sent' );
-		$today     = gmdate( 'Y-m-d' );
-
-		if ( $last_sent === $today ) {
-			return;
-		}
-
-		// Send the email.
+		// Use the same logic as the cron job.
 		$this->send_email_report();
 	}
 
 	/**
 	 * Send the email report.
+	 * This method is called daily by cron and checks if today is the day to send.
 	 *
-	 * @since 1.6.0
+	 * @since 1.6.2
 	 * @return void
 	 */
 	public function send_email_report() {
@@ -284,11 +179,54 @@ class Controller {
 			return;
 		}
 
+		// Check if today is the scheduled day/date.
+		if ( ! $this->should_send_today( $settings ) ) {
+			return;
+		}
+
+		// Check if we already sent today.
+		$last_sent = get_option( 'surerank_email_report_last_sent' );
+		$today     = gmdate( 'Y-m-d' );
+		if ( $last_sent === $today ) {
+			return;
+		}
+
 		// Send email to configured recipient.
 		$sent = $this->send_email_to( $settings['recipientEmail'] );
 
 		if ( $sent ) {
 			update_option( 'surerank_email_report_last_sent', gmdate( 'Y-m-d' ), false );
+		}
+	}
+
+	/**
+	 * Check if email should be sent today based on frequency and schedule settings.
+	 *
+	 * @since 1.6.0
+	 * @param array<string, mixed> $settings Email reports settings.
+	 * @return bool True if should send today, false otherwise.
+	 */
+	private function should_send_today( $settings ) {
+		$frequency = $this->get_email_reports_frequency();
+
+		if ( 'monthly' === $frequency ) {
+			// For monthly, check if today's date matches the scheduled date.
+			$current_date   = (int) gmdate( 'd' );
+			$scheduled_date = (int) ( $settings['monthlyDate'] ?? 1 );
+
+			// Handle edge case: if scheduled date is beyond current month's days (e.g., 31st in February).
+			$days_in_month = (int) gmdate( 't' );
+			if ( $scheduled_date > $days_in_month ) {
+				// Send on the last day of the month instead.
+				return $current_date === $days_in_month;
+			}
+
+			return $current_date === $scheduled_date;
+		} else {
+			// For weekly, check if today's day matches the scheduled day.
+			$current_day   = strtolower( gmdate( 'l' ) );
+			$scheduled_day = $settings['scheduledOn'] ?? 'sunday';
+			return $current_day === $scheduled_day;
 		}
 	}
 
@@ -321,11 +259,18 @@ class Controller {
 	 * @return string Email subject.
 	 */
 	public function get_email_subject() {
-		$end_date   = gmdate( 'M j, Y', strtotime( '-2 days' ) );
-		$start_date = gmdate( 'M j, Y', strtotime( '-9 days' ) );
+		$frequency = $this->get_email_reports_frequency();
+		$end_date  = gmdate( 'M j, Y', strtotime( '-2 days' ) );
 
-		/* translators: 1: Start date, 2: End date */
-		return sprintf( __( 'SEO Summary of last week - %1$s to %2$s', 'surerank' ), $start_date, $end_date );
+		if ( 'monthly' === $frequency ) {
+			$start_date = gmdate( 'M j, Y', strtotime( '-32 days' ) );
+			/* translators: 1: Start date, 2: End date */
+			return sprintf( __( 'SEO Summary of last month - %1$s to %2$s', 'surerank' ), $start_date, $end_date );
+		} else {
+			$start_date = gmdate( 'M j, Y', strtotime( '-9 days' ) );
+			/* translators: 1: Start date, 2: End date */
+			return sprintf( __( 'SEO Summary of last week - %1$s to %2$s', 'surerank' ), $start_date, $end_date );
+		}
 	}
 
 	/**
@@ -351,8 +296,9 @@ class Controller {
 		$site_url         = GSC_Auth::get_instance()->get_credentials( 'site_url' );
 		$admin_url        = admin_url( 'admin.php?page=surerank#/search-console' );
 		$default_logo_url = 'https://surerank.com/wp-content/uploads/2025/11/surerank-logo.png';
+		$frequency        = $this->get_email_reports_frequency();
 		$end_date         = gmdate( 'jS F Y', strtotime( '-2 days' ) );
-		$start_date       = gmdate( 'jS F Y', strtotime( '-9 days' ) );
+		$start_date       = 'monthly' === $frequency ? gmdate( 'jS F Y', strtotime( '-32 days' ) ) : gmdate( 'jS F Y', strtotime( '-9 days' ) );
 		$date_range       = $start_date . ' to ' . $end_date;
 		$gsc_data         = $this->get_gsc_data();
 
@@ -424,6 +370,9 @@ class Controller {
 		$default_logo_style = 'display: block; width: 139px; height: 22px; margin: 0 auto 16px auto;';
 		$logo_style         = apply_filters( 'surerank_email_reports_header_logo_style', $default_logo_style, $logo_url );
 
+		$frequency = $this->get_email_reports_frequency();
+		$period    = 'monthly' === $frequency ? __( 'Monthly', 'surerank' ) : __( 'Weekly', 'surerank' );
+
 		$site_name = get_bloginfo( 'name' );
 		/* translators: %s: Site name */
 		$logo_alt = sprintf( __( '%s Logo', 'surerank' ), $site_name );
@@ -433,7 +382,12 @@ class Controller {
 			<tr>
 				<td style="text-align: center; background: <?php echo esc_attr( $header_bg ); ?>; padding: 20px 24px;">
 					<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $logo_alt ); ?>" style="<?php echo esc_attr( $logo_style ); ?>" width="139" height="22" />
-					<h1 style="margin: 0 0 0 0; font-size: 24px; font-weight: 600; line-height: 1.33; letter-spacing: -0.006em; color: #0A0A0A;"><?php esc_html_e( 'SEO Weekly Summary of Your Website', 'surerank' ); ?></h1>
+					<h1 style="margin: 0 0 0 0; font-size: 24px; font-weight: 600; line-height: 1.33; letter-spacing: -0.006em; color: #0A0A0A;">
+						<?php
+						/* translators: %s: Frequency (Weekly or Monthly) */
+						echo esc_html( sprintf( __( 'SEO %s Summary of Your Website', 'surerank' ), $period ) );
+						?>
+					</h1>
 					<p class="site-url" style="margin: 12px 0 12px 0; font-size: 14px; line-height: 1.43; color: <?php echo esc_attr( $site_url_color ); ?>; font-weight: 400; text-decoration: none;"><?php echo esc_url( $site_url ); ?></p>
 					<p style="margin: 0; font-size: 14px; line-height: 1.43; color: #4B5563; font-weight: 500;"><?php echo esc_html( $date_range ); ?></p>
 				</td>
@@ -454,13 +408,21 @@ class Controller {
 	 * @return string Body HTML.
 	 */
 	private function get_email_body( $gsc_data, $admin_url, $brand_color ) {
+		$frequency = $this->get_email_reports_frequency();
+		$period    = 'monthly' === $frequency ? __( 'Last 30 Days', 'surerank' ) : __( 'Last 7 Days', 'surerank' );
+
 		ob_start();
 		?>
 		<table role="presentation" style="width: 100%; max-width: 660px; margin: 32px auto 0; border-collapse: collapse;">
 			<tr>
 				<td>
 					<div style="margin-bottom: 20px;">
-						<h2 style="margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; color: #111827;"><?php esc_html_e( 'Your Website Performance (Last 7 Days)', 'surerank' ); ?></h2>
+						<h2 style="margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; color: #111827;">
+							<?php
+							/* translators: %s: Period (Last 7 Days or Last 30 Days) */
+							echo esc_html( sprintf( __( 'Your Website Performance (%s)', 'surerank' ), $period ) );
+							?>
+						</h2>
 					</div>
 					<?php echo $this->get_metrics_section( $gsc_data ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					<?php echo $this->get_top_pages_section( $gsc_data ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -702,20 +664,6 @@ class Controller {
 	}
 
 	/**
-	 * Handle settings update to reschedule cron.
-	 *
-	 * @since 1.6.0
-	 * @param mixed $old_value Old settings value.
-	 * @param mixed $new_value New settings value.
-	 * @return void
-	 */
-	public function on_settings_updated( $old_value, $new_value ) {
-		// Unschedule and reschedule based on new settings.
-		$this->unschedule_email_report();
-		$this->maybe_schedule_email_report();
-	}
-
-	/**
 	 * Get GSC performance data for email report.
 	 *
 	 * @since 1.6.0
@@ -724,9 +672,11 @@ class Controller {
 	private function get_gsc_data() {
 		try {
 			$gsc_controller = GSC_Controller::get_instance();
-
-			$start_date = gmdate( 'Y-m-d', strtotime( '-9 days' ) );
-			$end_date   = gmdate( 'Y-m-d', strtotime( '-2 days' ) );
+			$frequency      = $this->get_email_reports_frequency();
+			$end_date       = gmdate( 'Y-m-d', strtotime( '-2 days' ) );
+			$start_date     = 'monthly' === $frequency
+				? gmdate( 'Y-m-d', strtotime( '-32 days' ) )
+				: gmdate( 'Y-m-d', strtotime( '-9 days' ) );
 
 			// Get clicks and impressions data using the new method.
 			$clicks_impressions_data = $gsc_controller->get_clicks_and_impressions_data( $start_date, $end_date );

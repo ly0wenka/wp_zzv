@@ -154,13 +154,22 @@ const SiteSeoAnalysisBadge = () => {
 
 const SubmenuAccordion = ( { label, icon: Icon, submenu } ) => {
 	const navigate = useNavigate();
+	const matchRoute = useMatchRoute();
+
+	const isActive = submenu?.some( ( { path: subPath } ) =>
+		matchRoute( { to: subPath } )
+	);
 
 	return (
 		<Accordion defaultValue="item1" iconType="arrow" type="simple">
 			<Accordion.Item value="item1">
 				<Accordion.Trigger
 					iconType="arrow"
-					className="p-2 pl-2.5 text-base font-normal [&_svg]:text-icon-secondary hover:bg-background-primary rounded-md no-underline cursor-pointer focus:outline-none focus:shadow-none transition ease-in-out duration-150 [&_svg]:size-5 [&_div]:font-normal [&_div]:text-text-primary"
+					className={ cn(
+						'p-2 pl-2.5 text-base font-normal [&_svg]:text-icon-secondary hover:bg-background-primary rounded-md no-underline cursor-pointer focus:outline-none focus:shadow-none transition ease-in-out duration-150 [&_svg]:size-5 [&_div]:font-normal [&_div]:text-text-primary',
+						isActive &&
+							'bg-background-secondary text-text-primary [&_svg]:text-brand-800'
+					) }
 					aria-label={ `${ label } submenu` }
 					onClick={ ( event ) => {
 						event.preventDefault();

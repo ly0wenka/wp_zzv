@@ -729,16 +729,18 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 			}
 
 			$error = isset( $_POST['error'] ) ? json_decode( stripslashes( sanitize_text_field( $_POST['error'] ) ), true ) : array();
-			$data  = array(
-				'id' => $id,
-				'import_attempts' => isset( $_POST['try-again-count'] ) ? absint( $_POST['try-again-count'] ) : 0,
-				'import_status'   => isset( $_POST['status'] ) ? sanitize_text_field( $_POST['status'] ) : 'true',
-				'type'            => isset( $_POST['type'] ) ? sanitize_text_field( $_POST['type'] ) : 'astra-sites',
-				'page_builder'    => isset( $_POST['page_builder'] ) ? sanitize_text_field( $_POST['page_builder'] ) : 'gutenberg',
-				'template_type'   => isset( $_POST['template_type'] ) ? sanitize_text_field( $_POST['template_type'] ) : '',
-				'failure_reason'  => is_array( $error ) && isset( $error['primaryText'] ) ? sanitize_text_field( $error['primaryText'] ) : '',
-				'secondary_text'  => is_array( $error ) && isset( $error['secondaryText'] ) ? sanitize_text_field( $error['secondaryText'] ) : '',
-				'error_text'      => is_array( $error ) && isset( $error['errorText'] ) ? sanitize_text_field( $error['errorText'] ) : '',
+			
+			$data = array(
+				'id'                 => $id,
+				'import_attempts'    => isset( $_POST['try-again-count'] ) ? absint( $_POST['try-again-count'] ) : 0,
+				'import_status'      => isset( $_POST['status'] ) ? sanitize_text_field( $_POST['status'] ) : 'true',
+				'type'               => isset( $_POST['type'] ) ? sanitize_text_field( $_POST['type'] ) : 'astra-sites',
+				'page_builder'       => isset( $_POST['page_builder'] ) ? sanitize_text_field( $_POST['page_builder'] ) : 'gutenberg',
+				'template_type'      => isset( $_POST['template_type'] ) ? sanitize_text_field( $_POST['template_type'] ) : '',
+				'failure_reason'     => is_array( $error ) && isset( $error['primaryText'] ) ? sanitize_text_field( $error['primaryText'] ) : '',
+				'secondary_text'     => is_array( $error ) && isset( $error['secondaryText'] ) ? sanitize_text_field( $error['secondaryText'] ) : '',
+				'error_text'         => is_array( $error ) && isset( $error['errorText'] ) ? sanitize_text_field( $error['errorText'] ) : '',
+				'spectra_blocks_ver' => get_option( 'astra_sites_current_spectra_blocks_ver' ),
 			);
 
 			$result = Astra_Sites_Reporting::get_instance()->report( $data );
@@ -943,6 +945,16 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 			if ( 200 === $code ) {
 				Astra_Sites_File_System::get_instance()->update_json_file( 'astra_sites_import_data.json', $demo_data );
 				update_option( 'astra_sites_current_import_template_type', 'classic' );
+
+				$class_list = isset( $demo_data['class_list'] ) ? $demo_data['class_list'] : array();
+				if ( in_array( 'astra-site-page-builder-gutenberg', $class_list, true ) ) {
+					$spectra_blocks_version = isset( $demo_data['spectra-blocks-ver'] ) ? $demo_data['spectra-blocks-ver'] : array();
+					$spectra_blocks_ver     = empty( $spectra_blocks_version ) || ! in_array( 'spectra-blocks-ver-v3', $class_list, true ) ? 'v2' : 'v3';
+					update_option( 'astra_sites_current_spectra_blocks_ver', $spectra_blocks_ver );
+				} else {
+					delete_option( 'astra_sites_current_spectra_blocks_ver' );
+				}
+
 				wp_send_json_success( $demo_data );
 			}
 
@@ -1954,10 +1966,60 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 							'version'         => self::get_spectra_blocks_version(),
 						)
 					),
+					'isWPFreshSite'        => $this->is_wp_fresh_site(),
 				)
 			);
 
 			return $data;
+		}
+
+		/**
+		 * Check if the site is a fresh WordPress installation.
+		 * Detects if only default WordPress content exists (Hello World post, Sample Page, etc.).
+		 *
+		 * @since 4.4.46
+		 * @return bool True if site is fresh, false otherwise.
+		 */
+		public function is_wp_fresh_site() {
+			// Check if first import has already been completed.
+			if ( get_option( 'astra_sites_import_complete', false ) ) {
+				return false;
+			}
+
+			// Count published posts (excluding auto-drafts).
+			$post_count      = wp_count_posts( 'post' );
+			$published_posts = isset( $post_count->publish ) ? $post_count->publish : 0;
+
+			// Count published pages.
+			$page_count      = wp_count_posts( 'page' );
+			$published_pages = isset( $page_count->publish ) ? $page_count->publish : 0;
+
+			// Check if there are only default posts/pages (1 post "Hello World", 1-2 pages like "Sample Page", "Privacy Policy").
+			$has_default_content_only = $published_posts <= 1 && $published_pages <= 2;
+
+			// Check for media attachments (fresh site typically has 0-1 media items).
+			$media_count       = wp_count_posts( 'attachment' );
+			$total_media       = isset( $media_count->inherit ) ? $media_count->inherit : 0;
+			$has_minimal_media = $total_media <= 1;
+
+			// Check if any custom post types exist (excluding built-in ones).
+			$args                  = array(
+				'public'   => true,
+				'_builtin' => false,
+			);
+			$custom_post_types     = get_post_types( $args, 'names' );
+			$has_no_custom_content = true;
+
+			foreach ( $custom_post_types as $post_type ) {
+				$cpt_count = wp_count_posts( $post_type );
+				if ( isset( $cpt_count->publish ) && $cpt_count->publish > 0 ) {
+					$has_no_custom_content = false;
+					break;
+				}
+			}
+
+			// Site is considered fresh if it has default content, minimal media, and no custom content.
+			return $has_default_content_only && $has_minimal_media && $has_no_custom_content;
 		}
 
 		/**
@@ -2275,7 +2337,10 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 		 */
 		public function get_original_memory_limit() {
 			// This will fetch the original memory_limit from the server (php.ini).
-			$memory_limit = get_cfg_var( 'memory_limit' );
+			$memory_limit = false;
+			if ( function_exists( 'get_cfg_var' ) ) {
+				$memory_limit = get_cfg_var( 'memory_limit' );
+			}
 		
 			// If get_cfg_var() fails, try accessing PHP configuration directly.
 			if ( ! $memory_limit ) {

@@ -11,7 +11,6 @@ namespace SureRank\Inc\API;
 
 use SureRank\Inc\Admin\Helper;
 use SureRank\Inc\Admin\Update_Timestamp;
-use SureRank\Inc\Functions\Requests;
 use SureRank\Inc\Functions\Send_Json;
 use SureRank\Inc\Functions\Settings;
 use SureRank\Inc\Functions\Update;
@@ -22,14 +21,6 @@ use WP_REST_Server;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
-const DEFAULT_USER_DETAILS = [
-	'first_name' => '',
-	'last_name'  => '',
-	'email'      => '',
-	'skip'       => 'no',
-	'lead'       => false,
-];
 
 /**
  * Class Onboarding
@@ -43,6 +34,11 @@ class Onboarding extends Api_Base {
 	 * Route Onboarding
 	 */
 	protected const ONBOARDING = '/onboarding';
+
+	/**
+	 * Route Improve Description
+	 */
+	protected const IMPROVE_DESCRIPTION = '/onboarding/improve-description';
 
 	/**
 	 * Register API routes.
@@ -59,30 +55,6 @@ class Onboarding extends Api_Base {
 				'callback'            => [ $this, 'save_website_details' ],
 				'permission_callback' => [ $this, 'validate_permission' ],
 				'args'                => [
-					'first_name'           => [
-						'type'              => 'string',
-						'sanitize_callback' => 'sanitize_text_field',
-						'required'          => false,
-						'validate_callback' => static function( $value ) {
-							return is_string( $value );
-						},
-					],
-					'last_name'            => [
-						'type'              => 'string',
-						'sanitize_callback' => 'sanitize_text_field',
-						'required'          => false,
-						'validate_callback' => static function( $value ) {
-							return is_string( $value );
-						},
-					],
-					'email'                => [
-						'type'              => 'string',
-						'sanitize_callback' => 'sanitize_email',
-						'required'          => false,
-						'validate_callback' => static function( $value ) {
-							return filter_var( $value, FILTER_VALIDATE_EMAIL ) !== false;
-						},
-					],
 					'website_type'         => [
 						'type'              => 'string',
 						'required'          => false,
@@ -170,6 +142,39 @@ class Onboarding extends Api_Base {
 				],
 			]
 		);
+
+		register_rest_route(
+			$this->get_api_namespace(),
+			self::IMPROVE_DESCRIPTION,
+			[
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => [ $this, 'improve_description' ],
+				'permission_callback' => [ $this, 'validate_permission' ],
+				'args'                => [
+					'business_name'     => [
+						'type'              => 'string',
+						'required'          => false,
+						'sanitize_callback' => 'sanitize_text_field',
+					],
+					'business_desc'     => [
+						'type'              => 'string',
+						'required'          => true,
+						'sanitize_callback' => 'sanitize_textarea_field',
+					],
+					'business_category' => [
+						'type'              => 'string',
+						'required'          => false,
+						'sanitize_callback' => 'sanitize_text_field',
+					],
+					'language'          => [
+						'type'              => 'string',
+						'required'          => false,
+						'default'           => 'en',
+						'sanitize_callback' => 'sanitize_text_field',
+					],
+				],
+			]
+		);
 	}
 
 	/**
@@ -186,6 +191,8 @@ class Onboarding extends Api_Base {
 
 		$instance = self::get_instance();
 
+		$auth_data = get_option( 'surerank_auth', [] );
+
 		$defaults = [
 			'website_type'         => '',
 			'website_name'         => '',
@@ -194,12 +201,10 @@ class Onboarding extends Api_Base {
 			'organization_type'    => 'Organization',
 			'website_owner_phone'  => '',
 			'website_logo'         => '',
-			'first_name'           => '',
-			'last_name'            => '',
-			'email'                => '',
 			'about_page'           => 0,
 			'contact_page'         => 0,
 			'social_profiles'      => [],
+			'email'                => $auth_data['user_email'] ?? '',
 		];
 
 		$data = wp_parse_args(
@@ -243,6 +248,77 @@ class Onboarding extends Api_Base {
 		Update::option( 'surerank_onboarding_completed', true );
 
 		Send_Json::error( [ 'message' => __( 'Failed to update settings', 'surerank' ) ] );
+	}
+
+	/**
+	 * Improve business description using AI
+	 *
+	 * @since 1.6.2
+	 * @param WP_REST_Request<array<string, mixed>> $request Request object.
+	 * @return void
+	 */
+	public function improve_description( $request ) {
+		$params = $request->get_params();
+
+		$body = [
+			'business_name'     => $params['business_name'] ?? '',
+			'business_desc'     => $params['business_desc'] ?? '',
+			'business_category' => $params['business_category'] ?? '',
+			'language'          => $params['language'] ?? 'en',
+		];
+
+		$json_body = wp_json_encode( $body );
+
+		if ( false === $json_body ) {
+			Send_Json::error( [ 'message' => __( 'Failed to encode request data', 'surerank' ) ] );
+		}
+
+		$response = wp_safe_remote_post(
+			'https://api.zipwp.com/api/v1/sites/suggest-description',
+			[
+				'headers' => [
+					'Content-Type'     => 'application/json',
+					'Accept'           => 'application/json, text/plain, */*',
+					'X-Requested-With' => 'XMLHttpRequest',
+				],
+				'body'    => (string) $json_body,
+				'timeout' => 30, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout
+			]
+		);
+
+		if ( is_wp_error( $response ) ) {
+			Send_Json::error(
+				[
+					'message' => __( 'Failed to improve description', 'surerank' ),
+					'error'   => $response->get_error_message(),
+				]
+			);
+		}
+
+		$response_code = wp_remote_retrieve_response_code( $response );
+		$response_body = wp_remote_retrieve_body( $response );
+
+		if ( $response_code !== 200 ) {
+			Send_Json::error(
+				[
+					'message' => __( 'Failed to improve description', 'surerank' ),
+					'code'    => $response_code,
+				]
+			);
+		}
+
+		$data = json_decode( $response_body, true );
+
+		if ( isset( $data['description'] ) ) {
+			Send_Json::success(
+				[
+					'message'     => __( 'Description improved successfully', 'surerank' ),
+					'description' => sanitize_textarea_field( $data['description'] ),
+				]
+			);
+		}
+
+		Send_Json::error( [ 'message' => __( 'Invalid response from AI service', 'surerank' ) ] );
 	}
 
 	/**
@@ -334,7 +410,11 @@ class Onboarding extends Api_Base {
 		$this->update_schema_field( $settings, 'Organization', '@type', $data['organization_type'] );
 		$this->update_schema_field( $settings, 'Organization', 'logo', $data['website_logo'] );
 		$this->update_schema_field( $settings, 'Organization', 'telephone', $data['website_owner_phone'] );
-		$this->update_schema_field( $settings, 'Organization', 'email', $data['email'] );
+
+		if ( ! empty( $data['email'] ) ) {
+			$this->update_schema_field( $settings, 'Organization', 'email', $data['email'] );
+		}
+
 		$this->update_schema_field( $settings, 'Person', 'name', $data['website_owner_name'] );
 		$this->update_schema_field( $settings, 'Person', 'image', $data['website_logo'] );
 		$sanitized_name = sanitize_text_field( $data['website_name'] );
@@ -495,39 +575,6 @@ class Onboarding extends Api_Base {
 	}
 
 	/**
-	 * Retrieves the value of a specific key from the 'surerank_onboarding_user_details' option.
-	 *
-	 * @param string $key The key to retrieve from the settings.
-	 * @param mixed  $default The default value to return if the key does not exist.
-	 * @since 1.0.0
-	 * @return mixed The value of the specified key or the default value.
-	 */
-	public function get_user_details( ?string $key = null, $default = null ) {
-		$settings = wp_parse_args( get_option( 'surerank_onboarding_user_details', [] ), DEFAULT_USER_DETAILS );
-
-		if ( $key === null ) {
-			return $settings;
-		}
-
-		if ( is_array( $settings ) && array_key_exists( $key, $settings ) ) {
-			return $settings[ $key ];
-		}
-
-		return $default;
-	}
-
-	/**
-	 * Sets the value of the 'surerank_onboarding_user_details' option.
-	 *
-	 * @param mixed $details The value to save.
-	 * @since 1.0.0
-	 * @return void
-	 */
-	public function set_user_details( $details ) {
-		update_option( 'surerank_onboarding_user_details', wp_parse_args( $details, DEFAULT_USER_DETAILS ) );
-	}
-
-	/**
 	 * Set Onboarding Data
 	 *
 	 * We need to store the facebook page url and twitter profile username in the settings array as per the new requirement.
@@ -554,12 +601,6 @@ class Onboarding extends Api_Base {
 		$this->set_website_details( $data, $settings );
 		$this->set_social_schema( $data, $settings );
 		$this->set_social_profiles( $data, $settings );
-		$lead = [
-			'email'      => $data['email'] ?? '',
-			'first_name' => $data['first_name'] ?? '',
-			'last_name'  => $data['last_name'] ?? '',
-		];
-		$this->generate_lead( $lead );
 		$this->set_person_or_organization( $data, $settings );
 
 		return $this->save_onboarding_data( $data );
@@ -601,42 +642,4 @@ class Onboarding extends Api_Base {
 		unset( $data['social_profiles'] );
 	}
 
-	/**
-	 * Generate Lead
-	 *
-	 * @since 1.0.0
-	 * @param array<string,string> $lead Website data.
-	 * @return void
-	 */
-	private function generate_lead( $lead ) {
-		$subscription_status = $this->get_user_details( 'lead', false );
-
-		if ( $subscription_status ) {
-			return;
-		}
-
-		if ( empty( $lead['email'] ) || empty( $lead['first_name'] ) ) {
-			return;
-		}
-
-		$url = 'https://websitedemos.net/wp-json/surerank/v1/subscribe/';
-
-		$args = [
-			'body' => [
-				'EMAIL'     => $lead['email'],
-				'FIRSTNAME' => $lead['first_name'],
-				'LASTNAME'  => $lead['last_name'] ?? '',
-			],
-		];
-
-		$response = Requests::post( $url, $args );
-
-		if ( ! is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) === 200 ) {
-			$response = json_decode( wp_remote_retrieve_body( $response ), true );
-
-			$lead['lead'] = true;
-
-			$this->set_user_details( $lead );
-		}
-	}
 }

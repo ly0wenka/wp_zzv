@@ -6,48 +6,40 @@ import { toast } from '@bsf/force-ui';
 /**
  * Custom hook for handling authentication polling across tabs
  *
- * @param {Function} onAuthSuccess           - Callback when authentication succeeds
- * @param {Object}   options                 - Configuration options
- * @param {number}   options.pollingInterval - Polling interval in ms (default: 2000)
- * @param {number}   options.maxPollingTime  - Max polling time in ms (default: 300000)
- *
- * @return {Object} - { startPolling, stopPolling, isPolling }
+ * @param {Function} onAuthSuccess           Callback when authentication succeeds
+ * @param {Function} onAuthFailure           Optional callback when authentication fails or is cancelled
+ * @param {Object}   options                 Configuration options
+ * @param {number}   options.pollingInterval Polling interval in ms (default: 2000)
+ * @param {number}   options.maxPollingTime  Max polling time in ms (default: 300000)
+ * @return {Object}                          { startPolling, stopPolling, openAuthPopup, isPolling }
  */
-const useAuthPolling = ( onAuthSuccess, options = {} ) => {
+const useAuthPolling = (
+	onAuthSuccess,
+	onAuthFailure = null,
+	options = {}
+) => {
 	const { pollingInterval = 2000, maxPollingTime = 300000 } = options;
 
 	const pollingIntervalRef = useRef( null );
 	const popupWindowRef = useRef( null );
 	const pollingStartTimeRef = useRef( null );
-	const requestCountRef = useRef( 0 );
 	const popupClosedRef = useRef( false );
+	const checkClosedIntervalRef = useRef( null );
 
-	// Clean up polling interval on unmount
+	// Clean up intervals on unmount
 	useEffect( () => {
 		return () => {
 			if ( pollingIntervalRef.current ) {
 				clearInterval( pollingIntervalRef.current );
+			}
+			if ( checkClosedIntervalRef.current ) {
+				clearInterval( checkClosedIntervalRef.current );
 			}
 		};
 	}, [] );
 
 	const checkAuthStatus = async () => {
 		try {
-			if ( popupClosedRef.current ) {
-				requestCountRef.current += 1;
-
-				if ( requestCountRef.current > 10 ) {
-					stopPolling();
-					toast.error(
-						__(
-							'Authentication timeout. Please try again.',
-							'surerank'
-						)
-					);
-					return;
-				}
-			}
-
 			// Check if polling has exceeded max time
 			const currentTime = Date.now();
 			const elapsedTime = currentTime - pollingStartTimeRef.current;
@@ -60,6 +52,9 @@ const useAuthPolling = ( onAuthSuccess, options = {} ) => {
 						'surerank'
 					)
 				);
+				if ( onAuthFailure ) {
+					onAuthFailure();
+				}
 				return;
 			}
 
@@ -102,7 +97,6 @@ const useAuthPolling = ( onAuthSuccess, options = {} ) => {
 	const startPolling = ( popupWindow = null ) => {
 		stopPolling();
 
-		requestCountRef.current = 0;
 		popupClosedRef.current = false;
 
 		if ( popupWindow ) {
@@ -117,10 +111,21 @@ const useAuthPolling = ( onAuthSuccess, options = {} ) => {
 		);
 
 		if ( popupWindowRef.current ) {
-			const checkClosed = setInterval( () => {
+			checkClosedIntervalRef.current = setInterval( () => {
 				if ( popupWindowRef.current?.closed ) {
 					popupClosedRef.current = true;
-					clearInterval( checkClosed );
+
+					// Stop polling immediately when popup is closed
+					stopPolling();
+					toast.error(
+						__(
+							'Authentication cancelled. Please try again.',
+							'surerank'
+						)
+					);
+					if ( onAuthFailure ) {
+						onAuthFailure();
+					}
 				}
 			}, 1000 );
 		}
@@ -153,8 +158,11 @@ const useAuthPolling = ( onAuthSuccess, options = {} ) => {
 			clearInterval( pollingIntervalRef.current );
 			pollingIntervalRef.current = null;
 		}
+		if ( checkClosedIntervalRef.current ) {
+			clearInterval( checkClosedIntervalRef.current );
+			checkClosedIntervalRef.current = null;
+		}
 		pollingStartTimeRef.current = null;
-		requestCountRef.current = 0;
 		popupClosedRef.current = false;
 	};
 

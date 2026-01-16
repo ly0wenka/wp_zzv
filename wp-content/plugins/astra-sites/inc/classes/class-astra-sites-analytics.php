@@ -50,6 +50,7 @@ if ( ! class_exists( 'Astra_Sites_Analytics' ) ) {
 			add_action( 'admin_init', array( $this, 'maybe_update_finish_setup_banner_clicked' ) );
 			add_action( 'wp_ajax_astra_sites_set_woopayments_analytics', array( $this, 'set_woopayments_analytics' ) );
 			add_filter( 'bsf_core_stats', array( $this, 'add_astra_sites_analytics_data' ), 10, 1 );
+			add_action( 'customize_save_after', array( $this, 'track_astra_customizer_update' ) );
 		}
 
 		/**
@@ -166,6 +167,43 @@ if ( ! class_exists( 'Astra_Sites_Analytics' ) ) {
 
 			wp_send_json_success( array( 'message' => 'WooPayments analytics updated!' ) );
 			exit;
+		}
+
+		/**
+		 * Track Astra Customizer updates after template import.
+		 *
+		 * This method tracks when users modify Astra Customizer settings after
+		 * a successful template import. It only tracks once per user to avoid
+		 * repeated logging on every save.
+		 *
+		 * @since 4.4.47
+		 * @return void
+		 */
+		public function track_astra_customizer_update() {
+			// Only track if import has been completed.
+			$import_complete = get_option( 'astra_sites_import_complete', 'no' );
+			if ( 'yes' !== $import_complete ) {
+				return;
+			}
+
+			// Check if we've already tracked this (one-time tracking).
+			$already_tracked = Astra_Sites_Page::get_instance()->get_setting( 'astra_customizer_updated', false );
+			if ( $already_tracked ) {
+				return;
+			}
+
+			// Get the current theme to ensure this is Astra-related.
+			$current_theme = get_stylesheet();
+			if ( 0 !== strpos( $current_theme, 'astra' ) ) {
+				return;
+			}
+
+			// Mark as tracked to ensure one-time logging.
+			Astra_Sites_Page::get_instance()->update_settings(
+				array(
+					'astra_customizer_updated' => true,
+				)
+			);
 		}
 
 		/**
@@ -314,6 +352,32 @@ if ( ! class_exists( 'Astra_Sites_Analytics' ) ) {
 			wp_reset_postdata();
 
 			return $found;
+		}
+
+		/**
+		 * Checks if Astra Customizer has been updated after template import.
+		 *
+		 * ACTIVE CONDITION:
+		 * - Astra theme is active.
+		 * - User modified Astra Customizer settings after template import.
+		 *
+		 * @since 4.4.47
+		 * @return bool True if Astra Customizer was updated post-import, false otherwise.
+		 */
+		public static function is_astra_customizer_updated() {
+			// Verify Astra theme is still active.
+			$current_theme = get_stylesheet();
+			if ( 0 !== strpos( $current_theme, 'astra' ) ) {
+				return false;
+			}
+
+			// Check if the setting has been tracked.
+			$customizer_updated = (bool) Astra_Sites_Page::get_instance()->get_setting( 'astra_customizer_updated', false );
+			if ( ! $customizer_updated ) {
+				return false;
+			}
+
+			return true;
 		}
 
 		/**
@@ -467,7 +531,7 @@ if ( ! class_exists( 'Astra_Sites_Analytics' ) ) {
 
 		/**
 		 * Checks if a Presto Player video is embedded on the site.
-		 * 
+		 *
 		 * ACTIVE CONDITION: Presto Player block/shortcode used on any post/page
 		 *
 		 * @since 4.4.27
@@ -613,6 +677,7 @@ if ( ! class_exists( 'Astra_Sites_Analytics' ) ) {
 			$stats = array_merge(
 				$stats,
 				array(
+					'astra_customizer_updated'    => self::is_astra_customizer_updated(),
 					'spectra_blocks_used'         => self::is_spectra_blocks_used(),
 					'uae_widgets_used'            => self::is_uae_widgets_used(),
 					'sureforms_form_published'    => self::is_sureforms_form_published(),

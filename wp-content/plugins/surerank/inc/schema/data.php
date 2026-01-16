@@ -322,12 +322,16 @@ class Data {
 	 * @return array<string, mixed>The site data.
 	 */
 	private function get_site_data() {
+		$default_search_url = esc_url( home_url( '/' ) ) . '?s={search_term_string}';
+		$search_url         = apply_filters( 'surerank_search_action_target_url', $default_search_url );
+
 		return [
 			'title'       => get_bloginfo( 'name' ),
 			'description' => get_bloginfo( 'description' ),
 			'url'         => home_url( '/' ),
 			'language'    => get_locale(),
 			'icon'        => get_site_icon_url(),
+			'search_url'  => $search_url,
 		];
 	}
 

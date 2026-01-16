@@ -271,8 +271,8 @@ if ( ! class_exists( 'Astra_Sites_Importer' ) ) {
 				$result = new stdClass();
 			}
 
-			$result->version       = '3.0.0-beta.1';
-			$result->download_link = 'https://downloads.wordpress.org/plugin/ultimate-addons-for-gutenberg.3.0.0-beta.1.zip';
+			$result->version       = '3.0.0-beta.2';
+			$result->download_link = 'https://downloads.wordpress.org/plugin/ultimate-addons-for-gutenberg.3.0.0-beta.2.zip';
 
 			return $result;
 		}
@@ -543,21 +543,18 @@ if ( ! class_exists( 'Astra_Sites_Importer' ) ) {
 					return;
 				}
 
-				// Check WPForms plugin availability.
-				if ( ! function_exists( 'wpforms_encode' ) ) {
-					// Try to load the plugin if it's installed but not loaded yet.
-					$plugin_file = WP_PLUGIN_DIR . '/wpforms-lite/wpforms.php';
-					if ( file_exists( $plugin_file ) ) {
-						require_once $plugin_file;
+				// Ensure WPForms plugin is loaded.
+				$result = $this->ensure_plugin_loaded(
+					'wpforms-lite/wpforms.php',
+					'WPForms',
+					function() {
+						return function_exists( 'wpforms_encode' );
 					}
+				);
 
-					// Check again after attempting to load.
-					if ( ! function_exists( 'wpforms_encode' ) ) {
-						Astra_Sites_Helper::error_response(
-							__( 'WPForms import failed: WPForms plugin is not installed or not active. Please install/activate WPForms to continue.', 'astra-sites' )
-						);
-						return;
-					}
+				if ( is_wp_error( $result ) ) {
+					Astra_Sites_Helper::error_response( $result->get_error_message() );
+					return;
 				}
 
 				// Process forms with error handling.
@@ -713,19 +710,18 @@ if ( ! class_exists( 'Astra_Sites_Importer' ) ) {
 					return;
 				}
 
-				// Check if the CartFlows_Importer class exists.
-				if ( ! class_exists( 'CartFlows_Importer' ) ) {
-					// Try to load the plugin if it's installed but not loaded yet.
-					$plugin_file = WP_PLUGIN_DIR . '/cartflows/cartflows.php';
-					if ( file_exists( $plugin_file ) ) {
-						require_once $plugin_file;
+				// Ensure CartFlows plugin is loaded.
+				$result = $this->ensure_plugin_loaded(
+					'cartflows/cartflows.php',
+					'CartFlows',
+					function() {
+						return class_exists( 'CartFlows_Importer' );
 					}
+				);
 
-					// Check again after attempting to load.
-					if ( ! class_exists( 'CartFlows_Importer' ) ) {
-						Astra_Sites_Helper::error_response( __( 'CartFlows import failed: Importer not found. Please ensure the CartFlows plugin is active and try again.', 'astra-sites' ) );
-						return;
-					}
+				if ( is_wp_error( $result ) ) {
+					Astra_Sites_Helper::error_response( $result->get_error_message() );
+					return;
 				}
 
 				// Import CartFlows flows.
@@ -735,8 +731,8 @@ if ( ! class_exists( 'Astra_Sites_Importer' ) ) {
 					Astra_Sites_Helper::error_response(
 						sprintf(
 							// translators: Sending cartflows import failed.
-							__( 'CartFlows import failed: %s', 'astra-sites' ), 
-							$import_result->get_error_message() 
+							__( 'CartFlows import failed: %s', 'astra-sites' ),
+							$import_result->get_error_message()
 						)
 					);
 				}
@@ -802,21 +798,20 @@ if ( ! class_exists( 'Astra_Sites_Importer' ) ) {
 					return;
 				}
 
-				// Check if the class exists and is callable.
-				if ( ! class_exists( 'Cartflows_CA_Email_Template_Importer_Exporter' ) ) {
-					// Try to load the class file directly if plugin is active but class isn't loaded.
-					$class_file = WP_PLUGIN_DIR . '/woo-cart-abandonment-recovery/modules/cart-abandonment/classes/class-cartflows-ca-email-template-importer-exporter.php';
-					if ( file_exists( $class_file ) ) {
-						require_once $class_file;
-					}
+				// Ensure Cart Abandonment Recovery plugin is loaded.
+				$class_file = WP_PLUGIN_DIR . '/woo-cart-abandonment-recovery/modules/cart-abandonment/classes/class-cartflows-ca-email-template-importer-exporter.php';
+				$loaded     = $this->ensure_plugin_loaded(
+					'woo-cart-abandonment-recovery/woo-cart-abandonment-recovery.php',
+					'Cart Abandonment Recovery',
+					function() {
+						return class_exists( 'Cartflows_CA_Email_Template_Importer_Exporter' );
+					},
+					$class_file
+				);
 
-					// Check again after attempting to load.
-					if ( ! class_exists( 'Cartflows_CA_Email_Template_Importer_Exporter' ) ) {
-						Astra_Sites_Helper::error_response(
-							__( 'Cart Abandonment Recovery import failed: Importer not found. Please ensure the plugin is active.', 'astra-sites' )
-						);
-						return;
-					}
+				if ( is_wp_error( $loaded ) ) {
+					Astra_Sites_Helper::error_response( $loaded->get_error_message() );
+					return;
 				}
 
 				Cartflows_CA_Email_Template_Importer_Exporter::get_instance()->insert_templates( $data );
@@ -871,21 +866,18 @@ if ( ! class_exists( 'Astra_Sites_Importer' ) ) {
 					return;
 				}
 
-				// Check if LatePoint class exists.
-				if ( ! class_exists( 'OsSettingsHelper' ) ) {
-					// Try to load the plugin if it's installed but not loaded yet.
-					$plugin_file = WP_PLUGIN_DIR . '/latepoint/latepoint.php';
-					if ( file_exists( $plugin_file ) ) {
-						require_once $plugin_file;
+				// Ensure LatePoint plugin is loaded and ready.
+				$loaded = $this->ensure_plugin_loaded(
+					'latepoint/latepoint.php',
+					'LatePoint',
+					function() {
+						return class_exists( 'OsSettingsHelper' );
 					}
+				);
 
-					// Check again after attempting to load.
-					if ( ! class_exists( 'OsSettingsHelper' ) ) {
-						Astra_Sites_Helper::error_response(
-							__( 'LatePoint import failed: LatePoint class not found. Please ensure the LatePoint plugin is active.', 'astra-sites' )
-						);
-						return;
-					}
+				if ( is_wp_error( $loaded ) ) {
+					Astra_Sites_Helper::error_response( $loaded->get_error_message() );
+					return;
 				}
 
 				try {
@@ -1013,6 +1005,120 @@ if ( ! class_exists( 'Astra_Sites_Importer' ) ) {
 
 			// Merge remote demo and defaults.
 			return wp_parse_args( $remote_args, $defaults );
+		}
+
+		/**
+		 * Clear PHP opcode cache for a specific file or entire cache.
+		 *
+		 * This helps prevent issues where PHP opcode cache serves stale bytecode
+		 * after a plugin is freshly installed or updated.
+		 *
+		 * @since 4.4.47
+		 *
+		 * @param string $file_path Optional. Specific file path to invalidate. Default empty (clears entire cache).
+		 * @return bool True if cache was cleared, false otherwise.
+		 */
+		private function clear_opcode_cache( $file_path = '' ) {
+			$cleared = false;
+
+			// Try to reset entire opcode cache if no specific file provided.
+			if ( empty( $file_path ) && function_exists( 'opcache_reset' ) ) {
+				// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.opcache_opcache_reset, PHPCompatibility.FunctionUse.NewFunctions.opcache_resetFound -- Needed to clear entire opcode cache.
+				$cleared = opcache_reset();
+			} elseif ( ! empty( $file_path ) && function_exists( 'opcache_invalidate' ) ) {
+				// Invalidate specific file from opcode cache.
+				// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.opcache_opcache_invalidate, PHPCompatibility.FunctionUse.NewFunctions.opcache_invalidateFound -- Needed to clear specific file from opcode cache.
+				$cleared = opcache_invalidate( $file_path, true );
+			}
+
+			return $cleared;
+		}
+
+		/**
+		 * Ensure a plugin is properly loaded and its classes/functions are available.
+		 *
+		 * This method handles the complete plugin loading process including verification,
+		 * cache clearing, and initialization to prevent timing/race condition issues.
+		 *
+		 * @since 4.4.47
+		 *
+		 * @param string   $plugin_file        Relative path to plugin file (e.g., 'wpforms-lite/wpforms.php').
+		 * @param string   $plugin_name        Human-readable plugin name for error messages.
+		 * @param callable $is_loaded_callback Callback that returns true if plugin is loaded, false otherwise.
+		 * @param string   $plugin_main_file   Optional. Full path to the main plugin file. If empty, it will be constructed.
+		 *
+		 * @return bool|WP_Error True if plugin loaded successfully, WP_Error on failure.
+		 */
+		private function ensure_plugin_loaded( $plugin_file, $plugin_name, $is_loaded_callback, $plugin_main_file = '' ) {
+			// Initial verification if plugin is already loaded.
+			if ( call_user_func( $is_loaded_callback ) ) {
+				return true;
+			}
+
+			// Include plugin.php for is_plugin_active check.
+			if ( ! function_exists( 'is_plugin_active' ) ) {
+				include_once ABSPATH . 'wp-admin/includes/plugin.php';
+			}
+
+			// Construct full plugin main file path if not provided.
+			if ( empty( $plugin_main_file ) ) {
+				$plugin_main_file = WP_PLUGIN_DIR . '/' . $plugin_file;
+			}
+
+			// Verify plugin file exists.
+			if ( ! file_exists( $plugin_main_file ) ) {
+				return new WP_Error(
+					'plugin_files_not_found',
+					sprintf(
+						/* translators: %1$s: Plugin name */
+						__( '%1$s import failed: Plugin files not found. Please ensure %1$s is properly installed.', 'astra-sites' ),
+						$plugin_name
+					)
+				);
+			}
+
+			// Verify plugin is actually activated.
+			if ( ! is_plugin_active( $plugin_file ) ) {
+				return new WP_Error(
+					'plugin_not_activated',
+					sprintf(
+						/* translators: %1$s: Plugin name */
+						__( '%1$s import failed: Plugin is installed but not activated. Please activate %1$s and try again.', 'astra-sites' ),
+						$plugin_name
+					)
+				);
+			}
+
+			// Clear opcode cache to prevent stale bytecode.
+			$this->clear_opcode_cache( $plugin_main_file );
+
+			// Force load the plugin.
+			require_once $plugin_main_file;
+
+			// Trigger WordPress plugin loaded hooks to initialize autoloaders.
+			if ( ! did_action( 'plugins_loaded' ) ) {
+				do_action( 'plugins_loaded' );
+			}
+
+			// Wait a moment for autoloaders to register.
+			usleep( 500000 ); // 0.5 second
+
+			// Final verification that plugin is ready.
+			if ( ! call_user_func( $is_loaded_callback ) ) {
+				return new WP_Error(
+					'plugin_not_ready',
+					sprintf(
+						/* translators: %s: Plugin name */
+						__( '%s import failed: Plugin class/functions not available after loading. Please try again or contact support.', 'astra-sites' ),
+						$plugin_name
+					)
+				);
+			}
+
+			// Log success for debugging.
+			astra_sites_error_log( sprintf( '%s successfully loaded after manual initialization.', $plugin_name ) );
+
+			return true;
 		}
 
 		/**

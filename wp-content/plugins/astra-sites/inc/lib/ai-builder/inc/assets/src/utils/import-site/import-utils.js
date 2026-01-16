@@ -284,12 +284,12 @@ export const getFeaturePluginList = (
 					init: 'surecart/surecart.php',
 				} );
 				break;
-			case 'automation-integrations':
+			case 'suretriggers':
 				requiredPlugins.push( {
 					name: 'OttoKit',
 					slug: 'suretriggers',
 					compulsory: siteFeatures?.find(
-						( f ) => f.id === 'automation-integrations'
+						( f ) => f.id === 'suretriggers'
 					)?.compulsory,
 					init: 'suretriggers/suretriggers.php',
 				} );

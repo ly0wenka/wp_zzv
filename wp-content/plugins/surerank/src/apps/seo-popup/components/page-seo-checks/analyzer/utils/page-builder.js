@@ -200,6 +200,17 @@ export const refreshPageChecks = async (
 	}
 };
 
+/**
+ * Check if the page is in frontend.
+ *
+ * @return {boolean} True if the page is in frontend
+ */
+export const isFrontend = () => {
+	return (
+		!! surerank_seo_popup?.is_frontend && ! surerank_seo_popup?.is_taxonomy
+	);
+};
+
 export const isElementorBuilder = () => {
 	return (
 		typeof window !== 'undefined' &&
@@ -224,7 +235,13 @@ export const isAvadaBuilder = () => {
 };
 
 export const isPageBuilderActive = () => {
-	return isBricksBuilder() || isElementorBuilder() || isAvadaBuilder();
+	return (
+		isBricksBuilder() ||
+		isElementorBuilder() ||
+		isAvadaBuilder() ||
+		// Consider frontend as page builder active as page requires refresh.
+		isFrontend()
+	);
 };
 
 /**

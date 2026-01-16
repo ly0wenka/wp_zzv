@@ -44,6 +44,7 @@ class Controller {
 				'site_name'     => '',
 				'page_content'  => '',
 				'focus_keyword' => '',
+				'type'          => '',
 			]
 		);
 

@@ -106,8 +106,8 @@ class Constants {
 	private const SOCIAL_MAPPING = [
 		'rank_math_facebook_title'       => [ '', 'facebook_title' ],
 		'rank_math_facebook_description' => [ '', 'facebook_description' ],
-		'rank_math_facebook_image'       => [ 'open_graph_image', 'facebook_image_url' ],
-		'rank_math_facebook_image_id'    => [ 'open_graph_image_id', 'facebook_image_id' ],
+		'rank_math_facebook_image'       => [ '', 'facebook_image_url' ],
+		'rank_math_facebook_image_id'    => [ '', 'facebook_image_id' ],
 		'rank_math_twitter_title'        => [ '', 'twitter_title' ],
 		'rank_math_twitter_description'  => [ '', 'twitter_description' ],
 		'rank_math_twitter_image'        => [ '', 'twitter_image_url' ],

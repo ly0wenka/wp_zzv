@@ -45,6 +45,13 @@ class Sync_Library {
 		// To force sync library after Spectra plugin installation, update or deletion for switching between v2 and v3.
 		add_action( 'upgrader_process_complete', array( $this, 'handle_spectra_install_update' ), 10, 2 );
 		add_action( 'deleted_plugin', array( $this, 'handle_spectra_deletion' ), 10, 1 );
+
+		// To force sync library after Spectra v3 update and legacy design library option change.
+		add_action( 'uagb_update_after', array( __CLASS__, 'enable_force_sync' ) );
+		add_action( 'add_option_register-v2-blocks', array( $this, 'handle_spectra_options_add' ) );
+		add_action( 'update_option_register-v2-blocks', array( $this, 'handle_spectra_options_update' ), 10, 2 );
+		add_action( 'add_option_uag_enable_legacy_design_library', array( $this, 'handle_spectra_options_add' ) );
+		add_action( 'update_option_uag_enable_legacy_design_library', array( $this, 'handle_spectra_options_update' ), 10, 2 );
 	}
 
 	/**
@@ -940,6 +947,36 @@ class Sync_Library {
 		}
 	}
 
+	/**
+	 * Handle Spectra plugin options add.
+	 *
+	 * Sets the force sync flag when Spectra plugin options are added for the first time.
+	 *
+	 * @since 2.4.18
+	 * @return void
+	 */
+	public function handle_spectra_options_add() {
+		self::enable_force_sync();
+	}
+
+	/**
+	 * Handle Spectra plugin options update.
+	 *
+	 * Sets the force sync flag when Spectra plugin options are updated.
+	 *
+	 * @since 2.4.18
+	 * @param mixed $old_value The old value of the option.
+	 * @param mixed $new_value The new value of the option.
+	 * @return void
+	 */
+	public function handle_spectra_options_update( $old_value, $new_value ) {
+		// Run only if value actually changed (optional but recommended).
+		if ( $old_value === $new_value ) {
+			return;
+		}
+
+		self::enable_force_sync();
+	}
 
 	/**
 	 * Handle Spectra plugin installation or update.

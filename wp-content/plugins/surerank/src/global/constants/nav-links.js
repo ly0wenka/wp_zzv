@@ -16,6 +16,7 @@ import {
 	Waypoints,
 	Mail,
 	Image,
+	Ellipsis,
 } from 'lucide-react';
 import { applyFilters } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
@@ -179,6 +180,12 @@ export const getNavLinks = () => {
 					migratable: false,
 				},
 				{
+					path: '/advanced/breadcrumbs',
+					label: __( 'Breadcrumbs', 'surerank' ),
+					icon: Ellipsis,
+					migratable: false,
+				},
+				{
 					path: '/advanced/image-seo',
 					label: __( 'Image SEO', 'surerank' ),
 					icon: Image,
@@ -248,13 +255,19 @@ export const getNavLinks = () => {
 			  ]
 			: [] ),
 		{
-			section: __( 'Redirections', 'surerank' ),
+			section: __( 'Link Manager', 'surerank' ),
 			sectionId: 'link-manager',
 			links: [
 				{
 					path: '/link-manager/redirection-manager',
 					label: __( 'Redirections', 'surerank' ),
 					icon: ExternalLink,
+					migratable: false,
+				},
+				{
+					path: '/link-manager/link-suggestion',
+					label: __( 'Link Suggestions', 'surerank' ),
+					icon: Paperclip,
 					migratable: false,
 				},
 			],

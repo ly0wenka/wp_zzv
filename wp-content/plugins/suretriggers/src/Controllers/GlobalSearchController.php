@@ -413,6 +413,50 @@ class GlobalSearchController {
 	}
 
 	/**
+	 * Search SureDash Discussion Spaces.
+	 *
+	 * @param array $data query params.
+	 *
+	 * @return array
+	 * @since 1.0.0
+	 */
+	public function search_suredash_discussion_spaces( $data ) {
+		if ( ! defined( 'SUREDASHBOARD_POST_TYPE' ) ) {
+			return [
+				'options' => [],
+				'hasMore' => false,
+			];
+		}
+		
+		$spaces = get_posts(
+			[
+				'post_type'   => SUREDASHBOARD_POST_TYPE,
+				'post_status' => 'publish',
+				'meta_query'  => [
+					[
+						'key'   => 'integration',
+						'value' => 'posts_discussion',
+					],
+				],
+				'numberposts' => -1,
+			] 
+		);
+		
+		$options = [];
+		foreach ( $spaces as $space ) {
+			$options[] = [
+				'label' => $space->post_title,
+				'value' => $space->ID,
+			];
+		}
+		
+		return [
+			'options' => $options,
+			'hasMore' => false,
+		];
+	}
+
+	/**
 	 * Search Course.
 	 *
 	 * @param array $data quesry params.

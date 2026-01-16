@@ -1,4 +1,4 @@
-import { memo, useMemo } from '@wordpress/element';
+import { memo, useMemo, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Button, Select as RuleSelectInput } from '@bsf/force-ui';
 import { Trash, X } from 'lucide-react';
@@ -15,14 +15,22 @@ const ConditionSelect = ( {
 } ) => {
 	const formattedOptions = useMemo( () => {
 		return groupedOptions.flatMap( ( group ) => group.options );
-	}, [ groupedOptions ] );
+	}, [ groupedOptions, conditionsList ] );
+
+	const conditionsListRef = useRef( conditionsList );
+	conditionsListRef.current = conditionsList;
 
 	const handleConditionUpdate = ( updatedConditions ) => {
 		setConditionsList( updatedConditions );
+
+		const validConditions = updatedConditions.filter(
+			( cond ) => cond.condition
+		);
+
 		updateSchema(
 			viewKey,
-			updatedConditions.map( ( cond ) => cond.condition ),
-			updatedConditions
+			validConditions.map( ( cond ) => cond.condition ),
+			validConditions
 				.filter( ( cond ) => cond.condition === 'specifics' )
 				.flatMap( ( cond ) => cond.specificPosts )
 		);
@@ -35,8 +43,11 @@ const ConditionSelect = ( {
 					<RuleSelectInput
 						combobox
 						onChange={ ( value ) => {
-							const updated = [ ...conditionsList ];
-							updated[ index ].condition = value;
+							const updated = [ ...conditionsListRef.current ];
+							updated[ index ] = {
+								...updated[ index ],
+								condition: value,
+							};
 							handleConditionUpdate( updated );
 						} }
 						size="md"
@@ -69,14 +80,13 @@ const ConditionSelect = ( {
 														event.preventDefault();
 														event.stopPropagation();
 														const updated = [
-															...conditionsList,
+															...conditionsListRef.current,
 														];
-														updated[
-															index
-														].condition = '';
-														updated[
-															index
-														].specificPosts = [];
+														updated[ index ] = {
+															...updated[ index ],
+															condition: '',
+															specificPosts: [],
+														};
 														handleConditionUpdate(
 															updated
 														);
@@ -147,8 +157,11 @@ const ConditionSelect = ( {
 						}
 					} }
 					onChange={ ( values ) => {
-						const updated = [ ...conditionsList ];
-						updated[ index ].specificPosts = values;
+						const updated = [ ...conditionsListRef.current ];
+						updated[ index ] = {
+							...updated[ index ],
+							specificPosts: values,
+						};
 						handleConditionUpdate( updated );
 					} }
 					placeholder={ __(

@@ -1,3 +1,13 @@
+v.2.4.19 - 10-January-2026
+Fix: Fixed cache conflicts in lazy-loaded chunks during the base plugin version rollbacks.
+
+v.2.4.18 - 07-January-2026
+Improvement: Enhanced Design Library sync to ensure proper compatibility with Spectra v2 legacy options.
+Fix: Resolved an issue where some Spectra v3 Premium patterns were not appearing in the Design Library.
+
+v.2.4.17 - 30-December-2025
+Improvement: Added Astra Color Palette reorganize compatibility.
+
 v.2.4.16 - 05-December-2025
 Improvement: Added automatic library sync when Spectra plugin is installed, updated, or deleted to ensure proper version switching between v2 and v3.
 

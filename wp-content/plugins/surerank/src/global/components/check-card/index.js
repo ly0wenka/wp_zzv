@@ -273,7 +273,7 @@ export const CheckCard = ( {
 					descriptionData.length > 0 && (
 						<ul
 							className={ cn(
-								'list-disc list-inside ml-3 mr-0 mt-0 mb-0.5',
+								'list-disc list-inside ml-3 mr-0 mt-0 mb-0.5 p-0',
 								listStyleClassName
 							) }
 						>

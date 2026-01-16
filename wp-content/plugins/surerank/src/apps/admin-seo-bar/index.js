@@ -24,8 +24,8 @@ import { useDispatch, useSuspenseSelect, resolveSelect } from '@wordpress/data';
 import PageChecksListSkeleton from '@/apps/seo-popup/components/page-seo-checks/page-checks-list-skeleton';
 import RenderQueue from '@Functions/render-queue';
 import { STORE_NAME } from '@Store/constants';
-import '@Store/store';
 import { cn } from '@/functions/utils';
+import '@Store/store';
 import './style.scss';
 
 // Initialize a global RenderQueue for sequential badge rendering

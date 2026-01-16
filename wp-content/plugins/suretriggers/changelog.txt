@@ -1,3 +1,15 @@
+Version 1.1.18 - Thursday, 15th January 2026
+- New: Added "Jet Appointments Booking" Integration
+- Improvement: "Jetpack CRM" – Added new "Create Company" Action
+- Improvement: "LatePoint" - Added new "Add Booking to Existing Order" Action
+- Improvement: "SureDash" – Added new "Create Post in Discussion Space" Action
+
+Version 1.1.17 - Tuesday, 6th January 2026
+- New: Added "Thrive Ovation" Integration
+- Improvement: "EDD" – Added new Triggers
+- Improvement: "FluentCommunity" - Added new Trigger and Actions
+- Improvement: "WooCommerce" – Added new "Create Bundle Product Order" Action
+
 Version 1.1.16 - Thursday, 25th December 2025
 - New: Added "Thrive Apprentice" Integration
 - Improvement: "Amelia" – Added new Triggers

@@ -95,7 +95,17 @@ add_filter( 'plugin_row_meta', 'suretriggers_add_plugin_rating', 10, 2 );
  */
 function suretriggers_add_plugin_rating( $links, $file ) {
 	if ( plugin_basename( SURE_TRIGGERS_FILE ) === $file ) {
-		$rating_html  = '<a href="https://wordpress.org/support/plugin/suretriggers/reviews/" target="_blank" class="suretriggers-rating-link" title="Rate this plugin" aria-label="Rate SureTriggers 5 stars on WordPress.org">';
+		// Check if user has already clicked the rating (stored in user meta).
+		$user_id        = get_current_user_id();
+		$rating_clicked = get_user_meta( $user_id, 'suretriggers_rating_clicked', true );
+		
+		// If rating has been clicked, don't show it.
+		if ( $rating_clicked ) {
+			return $links;
+		}
+		
+		$rating_html  = '<span class="suretriggers-rating-wrapper" id="suretriggers-rating-wrapper">';
+		$rating_html .= '<a href="https://wordpress.org/support/plugin/suretriggers/reviews/" target="_blank" class="suretriggers-rating-link" title="Rate this plugin" aria-label="Rate SureTriggers 5 stars on WordPress.org">';
 		$rating_html .= '<span class="star-rating" role="img" aria-label="5 out of 5 stars">';
 		for ( $i = 1; $i <= 5; $i++ ) {
 			$rating_html .= '<span class="star star-full" aria-hidden="true"></span>';
@@ -103,6 +113,7 @@ function suretriggers_add_plugin_rating( $links, $file ) {
 		$rating_html .= '</span>';
 		$rating_html .= '<span class="screen-reader-text">Rate this plugin</span>';
 		$rating_html .= '</a>';
+		$rating_html .= '</span>';
 		$links[]      = $rating_html;
 	}
 	return $links;
@@ -129,6 +140,50 @@ function suretriggers_enqueue_rating_styles() {
 			[],
 			defined( 'SURE_TRIGGERS_VER' ) ? SURE_TRIGGERS_VER : '1.0.0'
 		);
+		
+		wp_enqueue_script(
+			'suretriggers-rating-js',
+			plugin_dir_url( SURE_TRIGGERS_FILE ) . 'assets/js/st-rating.js',
+			[ 'jquery' ],
+			defined( 'SURE_TRIGGERS_VER' ) ? SURE_TRIGGERS_VER : '1.0.0',
+			true
+		);
+		
+		// Localize script with AJAX URL and nonce.
+		wp_localize_script(
+			'suretriggers-rating-js',
+			'suretriggers_rating_ajax',
+			[
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce'    => wp_create_nonce( 'suretriggers_rating_nonce' ),
+			]
+		);
+	}
+}
+
+/**
+ * Handle AJAX request to mark rating as clicked.
+ */
+add_action( 'wp_ajax_suretriggers_rating_clicked', 'suretriggers_handle_rating_clicked' );
+
+/**
+ * Mark rating as clicked for current user.
+ *
+ * @return void
+ */
+function suretriggers_handle_rating_clicked() {
+	// Check if nonce is set and verify it.
+	if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'suretriggers_rating_nonce' ) ) {
+		wp_die( 'Security check failed' );
+	}
+	
+	// Mark rating as clicked for current user.
+	$user_id = get_current_user_id();
+	if ( $user_id ) {
+		update_user_meta( $user_id, 'suretriggers_rating_clicked', true );
+		wp_send_json_success( 'Rating marked as clicked' );
+	} else {
+		wp_send_json_error( 'User not logged in' );
 	}
 }
 

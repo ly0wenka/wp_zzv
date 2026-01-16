@@ -66,11 +66,25 @@ class Api extends Api_Base {
 								'sanitize_callback' => 'sanitize_email',
 								'validate_callback' => 'is_email',
 							],
+							'frequency'      => [
+								'required'          => false,
+								'type'              => 'string',
+								'sanitize_callback' => 'sanitize_text_field',
+								'enum'              => [ 'weekly', 'monthly' ],
+							],
 							'scheduledOn'    => [
 								'required'          => false,
 								'type'              => 'string',
 								'sanitize_callback' => 'sanitize_text_field',
 								'enum'              => array_keys( Utils::get_instance()->get_schedule_on_values() ),
+							],
+							'monthlyDate'    => [
+								'required'          => false,
+								'type'              => 'integer',
+								'validate_callback' => function( $param ) {
+									$date = (int) $param;
+									return $date >= 1 && $date <= 31;
+								},
 							],
 						]
 					),
@@ -115,7 +129,7 @@ class Api extends Api_Base {
 
 	/**
 	 * Save email reports settings.
-	 * 
+	 *
 	 * @since 1.6.0
 	 * @param WP_REST_Request<array<string, mixed>> $request The REST request object.
 	 * @return void
@@ -123,7 +137,9 @@ class Api extends Api_Base {
 	public function save_settings( $request ) {
 		$enabled         = (bool) $request->get_param( 'enabled' );
 		$recipient_email = Sanitize::email( $request->get_param( 'recipientEmail' ) );
+		$frequency       = Sanitize::text( $request->get_param( 'frequency' ) );
 		$day_of_week     = Sanitize::text( $request->get_param( 'scheduledOn' ) );
+		$monthly_date    = $request->get_param( 'monthlyDate' );
 
 		// If enabled, require recipientEmail.
 		if ( $enabled && empty( $recipient_email ) ) {
@@ -135,14 +151,16 @@ class Api extends Api_Base {
 			[
 				'enabled'        => $enabled,
 				'recipientEmail' => $recipient_email,
+				'frequency'      => $frequency,
 				'scheduledOn'    => $day_of_week,
+				'monthlyDate'    => $monthly_date !== null ? (int) $monthly_date : 1,
 			],
 			Utils::get_instance()->get_settings()
 		);
 
 		$settings = apply_filters( 'surerank_email_reports_save_settings', $settings, $request );
 
-		update_option( 'surerank_email_reports_settings', $settings, false ); 
+		update_option( 'surerank_email_reports_settings', $settings, false );
 
 		Send_Json::success(
 			[

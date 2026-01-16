@@ -64,7 +64,7 @@ const getPluginProps = ( id ) => {
 };
 
 const EcommerceOptions = ( { ecomSupported, selectedEcom, onChange } ) => {
-	const { setSiteFeaturesData } = useDispatch( STORE_KEY );
+	const { setSiteFeaturesData, setEcommerceType } = useDispatch( STORE_KEY );
 	const [ open, setOpen ] = useState( false );
 
 	const isOnlyOneEcom = ecomSupported.length === 1;
@@ -76,6 +76,7 @@ const EcommerceOptions = ( { ecomSupported, selectedEcom, onChange } ) => {
 		event.stopPropagation();
 		onChange( id );
 		setOpen( false );
+		setEcommerceType( id );
 		setSiteFeaturesData( { ecommerce_type: id } );
 	};
 	return (
@@ -208,7 +209,16 @@ const Features = ( {
 			selectedTemplateData?.features_data?.ecommerce_type,
 		];
 	}, [] );
-	const [ selectedEcom, setSelectedEcom ] = useState( defaultEcom );
+	const selectedEcom = useSelect( ( select ) => {
+		const { getAIStepData } = select( STORE_KEY );
+		const aiStepData = getAIStepData();
+		return aiStepData.siteFeaturesData?.ecommerce_type || defaultEcom;
+	} );
+
+	const { setEcommerceType } = useDispatch( STORE_KEY );
+	const handleEcomChange = ( id ) => {
+		setEcommerceType( id );
+	};
 
 	const [ isFetchingStatus, setIsFetchingStatus ] = useState(
 		fetchStatus.fetching
@@ -248,10 +258,37 @@ const Features = ( {
 						enabled: ! f.enabled,
 					};
 				}
+				if (
+					f.id === 'sales-funnels' &&
+					f.enabled &&
+					feature.id === 'ecommerce'
+				) {
+					return {
+						...f,
+						enabled: false,
+					};
+				}
 				return f;
 			} )
 		);
 	};
+
+	useEffect( () => {
+		if ( selectedEcom !== 'woocommerce' ) {
+			setSiteFeatures( 'sales-funnels' );
+			storeSiteFeatures(
+				siteFeatures.map( ( f ) => {
+					if ( f.id === 'sales-funnels' && f.enabled ) {
+						return {
+							...f,
+							enabled: false,
+						};
+					}
+					return f;
+				} )
+			);
+		}
+	}, [ selectedEcom ] );
 
 	useEffect( () => {
 		if ( siteFeatures?.length > 0 ) {
@@ -264,13 +301,28 @@ const Features = ( {
 	}, [] );
 
 	const listOfFeatures = useMemo( () => {
+		const isEcommerceEnabled = siteFeatures.some(
+			( feat ) => feat.id === 'ecommerce' && feat.enabled
+		);
 		// Exclude disabled features from UI only when site features have been fetched.
 		return isFetchingStatus === fetchStatus.fetched
-			? siteFeatures?.filter(
-					( feat ) => ! disabledFeatures?.includes( feat.id )
-			  )
+			? siteFeatures?.filter( ( feat ) => {
+					// If feature is not sales-funnels, return it if it's not disabled
+					if ( feat.id !== 'sales-funnels' ) {
+						return ! disabledFeatures?.includes( feat.id );
+					}
+
+					// For sales-funnels, only show if e-commerce is enabled and selected ecom is woocommerce
+					const shouldShowSalesFunnels =
+						isEcommerceEnabled && selectedEcom === 'woocommerce';
+
+					return (
+						! disabledFeatures?.includes( feat.id ) &&
+						shouldShowSalesFunnels
+					);
+			  } )
 			: [];
-	}, [ siteFeatures, disabledFeatures, isFetchingStatus ] );
+	}, [ siteFeatures, disabledFeatures, isFetchingStatus, selectedEcom ] );
 
 	// State for tracking if we're checking multisite permissions
 	const [ isCheckingMultisite, setIsCheckingMultisite ] = useState( false );
@@ -454,7 +506,7 @@ const Features = ( {
 																selectedEcom
 															}
 															onChange={
-																setSelectedEcom
+																handleEcomChange
 															}
 														/>
 													) }

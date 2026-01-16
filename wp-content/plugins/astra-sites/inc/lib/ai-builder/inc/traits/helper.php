@@ -160,6 +160,8 @@ class Helper {
 			'cartflows/cartflows.php',
 			'woo-cart-abandonment-recovery',
 			'woo-cart-abandonment-recovery/woo-cart-abandonment-recovery.php',
+			'modern-cart',
+			'modern-cart/modern-cart.php',
 		);
 
 		return in_array( $plugin, $wc_plugins, true );
@@ -990,7 +992,7 @@ class Helper {
 		}
 
 		if ( wp_doing_ajax() ) {
-			$response = empty( $data ) ? null : $data;
+			$response = empty( $data ) ? array() : $data;
 			wp_send_json_success( $response );
 		}
 	}

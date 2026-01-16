@@ -35,10 +35,19 @@ class Utils {
 	 * @return array<string, mixed> The settings array.
 	 */
 	public function get_settings() {
-		return get_option(
+		$settings = get_option(
 			'surerank_email_reports_settings',
 			$this->get_default_settings()
 		);
+
+		// Migration: Add frequency field for existing users who don't have it.
+		// This ensures backward compatibility - existing users default to 'weekly'.
+		if ( ! isset( $settings['frequency'] ) ) {
+			$settings['frequency'] = 'weekly';
+			update_option( 'surerank_email_reports_settings', $settings, false );
+		}
+
+		return $settings;
 	}
 
 	/**
@@ -51,7 +60,9 @@ class Utils {
 		$defaults = [
 			'enabled'        => false,
 			'recipientEmail' => '',
+			'frequency'      => 'weekly',
 			'scheduledOn'    => 'sunday',
+			'monthlyDate'    => 1, // Day of month (1-31) for monthly reports.
 		];
 
 		// Allow Pro to extend defaults with additional fields.
@@ -78,8 +89,19 @@ class Utils {
 			return new WP_Error( 'invalid_email', __( 'Recipient email must be a valid email address.', 'surerank' ) );
 		}
 
+		if ( isset( $settings['frequency'] ) && ! in_array( $settings['frequency'], [ 'weekly', 'monthly' ], true ) ) {
+			return new WP_Error( 'invalid_frequency', __( 'Frequency must be either weekly or monthly.', 'surerank' ) );
+		}
+
 		if ( isset( $settings['scheduledOn'] ) && ! in_array( $settings['scheduledOn'], array_keys( $this->get_schedule_on_values() ), true ) ) {
 			return new WP_Error( 'invalid_day_of_week', __( 'Day of week must be a valid day.', 'surerank' ) );
+		}
+
+		if ( isset( $settings['monthlyDate'] ) ) {
+			$monthly_date = (int) $settings['monthlyDate'];
+			if ( $monthly_date < 1 || $monthly_date > 31 ) {
+				return new WP_Error( 'invalid_monthly_date', __( 'Monthly date must be between 1 and 31.', 'surerank' ) );
+			}
 		}
 
 		return true;

@@ -33,14 +33,17 @@ import SiteSeoChecksRoute from '@AdminDashboard/site-seo-checks/site-seo-checks-
 import MigrationRoute from '@AdminGeneral/advanced/tools/migration';
 import MiscellaneousRoute from '@AdminGeneral/advanced/tools/miscellaneous';
 import RobotsTxtEditorRoute from '@AdminGeneral/advanced/tools/robots-txt-editor/robots-txt-editor';
+import BreadcrumbsRoute from '@AdminDashboard/breadcrumbs/settings';
 import SchemaRoute from '@AdminGeneral/schema/schema';
 import ImportExportSettingsRoute from '@AdminGeneral/advanced/tools/import-export-settings';
 import RedirectionManager from '@AdminDashboard/link-manager/redirection-manager';
+import LinkSuggestion from '@AdminDashboard/link-suggestion/link-suggestion';
 import InstantIndexingSettings from '@AdminDashboard/instant-indexing/settings';
 import InstantIndexingLogs from '@AdminDashboard/instant-indexing/logs';
 import EmailReportsRoute from '@AdminGeneral/advanced/email-reports';
 import GoogleIndexingSettings from '@AdminDashboard/google-indexing/settings';
 import GoogleIndexingLogs from '@AdminDashboard/google-indexing/logs';
+import { isProActive } from '@/functions/nudges';
 
 // Define toast globally for PRO plugin.
 if ( window && ! window?.toast ) {
@@ -88,6 +91,7 @@ const generalAndAdvancedRoutes = [
 			? [ createChildRoute( '/schema', SchemaRoute ) ]
 			: [] ),
 		createChildRoute( '/robots-txt-editor', RobotsTxtEditorRoute ),
+		createChildRoute( '/breadcrumbs', BreadcrumbsRoute ),
 	] ),
 ];
 
@@ -109,7 +113,11 @@ const linkManagerRoutes = [
 	createRoute( '/link-manager', null, [
 		createChildRoute( '/redirection-manager', RedirectionManager, {
 			fullWidth: true,
-			navbarOnly: true,
+			navbarOnly: false,
+		} ),
+		createChildRoute( '/link-suggestion', LinkSuggestion, {
+			fullWidth: isProActive( 'pro' ) ? false : true,
+			navbarOnly: false,
 		} ),
 	] ),
 ];

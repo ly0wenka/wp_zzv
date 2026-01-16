@@ -29,6 +29,7 @@ const GenerateContent = ( props ) => {
 		onProgress,
 		onUseThis,
 		previousScreen,
+		currentFieldType,
 	} = useSelect( ( select ) => {
 		const seoChecks = select( STORE_NAME ).getPageSeoChecks();
 		const appSettings = select( STORE_NAME ).getAppSettings();
@@ -46,6 +47,7 @@ const GenerateContent = ( props ) => {
 			onError: appSettings?.onError,
 			onProgress: appSettings?.onProgress,
 			onUseThis: appSettings?.onUseThis,
+			currentFieldType: appSettings?.currentFieldType,
 		};
 	}, [] );
 
@@ -75,6 +77,11 @@ const GenerateContent = ( props ) => {
 			const mappedType = CONTENT_GENERATION_MAPPING[ contentType ]
 				? CONTENT_GENERATION_MAPPING[ contentType ]
 				: '';
+
+			// Store mapped type for passing to UI components
+			updateAppSettings( {
+				currentFieldType: mappedType,
+			} );
 
 			if ( ! mappedType ) {
 				throw {
@@ -223,6 +230,7 @@ const GenerateContent = ( props ) => {
 				onRegenerate={ handleRegenerate }
 				onUseThis={ handleUseContent }
 				fixing={ isFixing }
+				fieldType={ currentFieldType }
 			/>
 		);
 	}
@@ -240,6 +248,7 @@ const GenerateContent = ( props ) => {
 			}
 			error={ status === PROCESS_STATUSES.FAILED ? genError : null }
 			fixing={ isFixing }
+			fieldType={ currentFieldType }
 		/>
 	);
 };

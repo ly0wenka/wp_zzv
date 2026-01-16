@@ -33,8 +33,15 @@ class Init {
 	 * @since 1.6.0
 	 */
 	public function __construct() {
-		Controller::get_instance();
+
 		add_filter( 'surerank_api_controllers', [ $this, 'register_api_controller' ], 20 );
+		$utils    = Utils::get_instance();
+		$settings = $utils->get_settings();
+
+		if ( empty( $settings['enabled'] ) ) {
+			return;
+		}
+		Controller::get_instance();
 	}
 
 	/**

@@ -9,8 +9,10 @@ namespace SureRank\Inc\Analytics;
 
 use SureRank\Inc\Functions\Defaults;
 use SureRank\Inc\Functions\Get;
+use SureRank\Inc\Functions\Helper;
 use SureRank\Inc\Functions\Settings;
 use SureRank\Inc\GoogleSearchConsole\Controller;
+use SureRank\Inc\Modules\EmailReports\Utils as EmailReportsUtil;
 use SureRank\Inc\Traits\Get_Instance;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -72,13 +74,26 @@ class Analytics {
 	 * @return array<string, mixed>
 	 */
 	public function add_surerank_analytics_data( $stats_data ) {
+		$settings    = Settings::get();
+		$pro_enabled = defined( 'SURERANK_PRO_VERSION' );
+
 		$other_stats               = [
-			'site_language'     => get_locale(),
-			'gsc_connected'     => $this->get_gsc_connected(),
-			'plugin_version'    => SURERANK_VERSION,
-			'php_version'       => phpversion(),
-			'wordpress_version' => get_bloginfo( 'version' ),
-			'is_active'         => $this->is_active(),
+			'site_language'                            => get_locale(),
+			'gsc_connected'                            => $this->get_gsc_connected(),
+			'plugin_version'                           => SURERANK_VERSION,
+			'php_version'                              => phpversion(),
+			'wordpress_version'                        => get_bloginfo( 'version' ),
+			'is_active'                                => $this->is_active(),
+			'enable_xml_sitemap'                       => $settings['enable_xml_sitemap'] ?? true,
+			'enable_xml_image_sitemap'                 => $settings['enable_xml_image_sitemap'] ?? true,
+			'enable_xml_news_sitemap'                  => $pro_enabled ? $settings['enable_xml_news_sitemap'] ?? false : false,
+			'robots_data'                              => Helper::get_robots_data(),
+			'author_archive'                           => $settings['author_archive'] ?? true,
+			'date_archive'                             => $settings['date_archive'] ?? true,
+			'cron_available'                           => Helper::are_crons_available(),
+			'redirect_attachment_pages_to_post_parent' => $settings['redirect_attachment_pages_to_post_parent'] ?? true,
+			'auto_set_image_alt'                       => $settings['auto_set_image_alt'] ?? true,
+			'email_reports'                            => EmailReportsUtil::get_instance()->get_settings(),
 		];
 		$stats                     = array_merge(
 			$other_stats,

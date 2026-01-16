@@ -67,6 +67,7 @@ export const initialState = {
 			enabled: false,
 			compulsory: false,
 			icon: 'ecommerce',
+			plugins: [ 'woocommerce', 'surecart' ],
 		},
 		{
 			title: __( 'SEO & Search Visibility', 'astra-sites' ),
@@ -78,6 +79,7 @@ export const initialState = {
 			enabled: true,
 			compulsory: false,
 			icon: 'arrow-trending-up',
+			plugins: [ 'surerank' ],
 		},
 		// Will be added back.
 		// {
@@ -87,6 +89,7 @@ export const initialState = {
 		// 	enabled: false,
 		// 	compulsory: false,
 		// 	icon: 'squares-plus',
+		// 	plugins: [ 'suretriggers' ],
 		// },
 		// Removing
 		// {
@@ -99,6 +102,7 @@ export const initialState = {
 		// 	enabled: false,
 		// 	compulsory: false,
 		// 	icon: 'calendar',
+		// 	plugins: [ 'latepoint' ],
 		// },
 		{
 			title: __( 'Website Emails & SMTP', 'astra-sites' ),
@@ -110,6 +114,7 @@ export const initialState = {
 			enabled: false,
 			compulsory: false,
 			icon: 'envelope',
+			plugins: [ 'suremail' ],
 		},
 		{
 			title: __( 'Free Live Chat', 'astra-sites' ),
@@ -121,13 +126,12 @@ export const initialState = {
 			enabled: false,
 			compulsory: false,
 			icon: 'live-chat',
+			plugins: [ 'wp-live-chat-support' ],
 		},
 	],
 	formDetails: {
-		first_name: astraSitesVars?.userDetails?.first_name || '',
+		first_name: '',
 		email: astraSitesVars?.userDetails?.email || '',
-		wp_user_type: '',
-		build_website_for: '',
 		opt_in: true,
 	},
 	selectedEcommercePlugin: '',
@@ -170,7 +174,7 @@ export const initialState = {
 
 	// Import statuses.
 	reset: 'yes' === starterTemplates.firstImportStatus ? true : false,
-	allowResetSite: false,
+	allowResetSite: true,
 	themeStatus: false,
 	importStatusLog: '',
 	importStatus: '',

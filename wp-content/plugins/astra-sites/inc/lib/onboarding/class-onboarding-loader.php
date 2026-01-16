@@ -269,6 +269,7 @@ class Intelligent_Starter_Templates_Loader {
 			'isMultisite' => is_multisite(),
 			'canInstallPlugins' => current_user_can( 'install_plugins' ),
 			'canActivatePlugins' => current_user_can( 'activate_plugins' ),
+			'isWPFreshSite' => Astra_Sites::get_instance()->is_wp_fresh_site(),
 		);
 
 		return apply_filters( 'starter_templates_onboarding_localize_vars', $data );

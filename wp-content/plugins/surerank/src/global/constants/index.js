@@ -102,3 +102,32 @@ export * from './process-status';
 // Page SEO Checks
 export const LEARN_MORE_AI_AUTH =
 	'https://surerank.com/surerank-ai/?utm_medium=surerank_plugin';
+
+/**
+ * Get the appropriate max length based on the field type.
+ * @param {string} fieldType - The field type (e.g., 'page_title', 'page_description', 'page_url_slug')
+ * @return {number} The max length for the field
+ */
+export const getMaxLengthForField = ( fieldType ) => {
+	if ( ! fieldType ) {
+		return DESCRIPTION_LENGTH; // Default fallback
+	}
+
+	// Title fields
+	if ( fieldType.includes( 'title' ) ) {
+		return TITLE_LENGTH;
+	}
+
+	// URL fields
+	if ( fieldType.includes( 'url' ) || fieldType.includes( 'slug' ) ) {
+		return URL_LENGTH;
+	}
+
+	// Description fields
+	if ( fieldType.includes( 'description' ) ) {
+		return DESCRIPTION_LENGTH;
+	}
+
+	// Default fallback
+	return DESCRIPTION_LENGTH;
+};

@@ -103,6 +103,8 @@ class Loader {
 		register_deactivation_hook( SURERANK_FILE, [ $this, 'deactivation' ] );
 
 		add_filter( 'plugin_row_meta', [ $this, 'add_meta_links' ], 10, 2 );
+
+		add_filter( 'body_class', [ $this, 'add_body_class' ] );
 	}
 
 	/**
@@ -303,6 +305,18 @@ class Loader {
 	}
 
 	/**
+	 * Add body class - Assign version class for reference.
+	 *
+	 * @param array<int, string> $classes body classes.
+	 * @since 1.6.2
+	 * @return array<int, string>
+	 */
+	public function add_body_class( $classes ) {
+		$classes[] = 'surerank-' . SURERANK_VERSION;
+		return $classes;
+	}
+
+	/**
 	 * Load core components that are always needed.
 	 *
 	 * @return void
@@ -397,6 +411,11 @@ class Loader {
 			Xml_Sitemap::class,
 			Archives::class,
 		];
+
+		// Add SEO metabox on the frontend for logged in users.
+		if ( is_user_logged_in() ) {
+			$frontend_components[] = Seo_Popup::class;
+		}
 
 		$this->load_components( $frontend_components );
 	}

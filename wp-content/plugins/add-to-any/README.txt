@@ -5,7 +5,7 @@ License: GPLv2 or later
 Requires at least: 4.5
 Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 1.8.15
+Stable tag: 1.8.16
 
 Share buttons for WordPress including the AddToAny button, Facebook, Bluesky, Mastodon, WhatsApp, Pinterest, Reddit, many more, and follow icons too.
 
@@ -335,7 +335,8 @@ Upload (or move) the `add-to-any` plugin directory into the `/wp-content/mu-plug
 
 == Changelog ==
 
-= 1.8.15 =
-* Fix PHP notice when used with the Complianz plugin
+= 1.8.16 =
+* Resolve conflict with WPBakery
+* Add `in_the_loop()` and `is_main_query()` context checks for standard placement in content
 
 See `changelog.txt` in the plugin's directory for the full changelog.

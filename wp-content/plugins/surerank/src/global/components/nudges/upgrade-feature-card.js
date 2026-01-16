@@ -19,6 +19,7 @@ import UpgradeButton from './upgrade-button';
  * @param {string}   props.imageName        - Image filename (will be combined with assets URL)
  * @param {boolean}  props.showHeader       - Whether to show the header section (default: true)
  * @param {string}   props.headerBackground - Header background color class (default: brand-background-50)
+ * @param {string}   props.plan             - Plan name (default: 'starter')
  * @param {string}   props.utmMedium        - UTM medium parameter for tracking (e.g., 'surerank_instant_indexing')
  * @return {JSX.Element} UpgradeFeatureCard component
  */
@@ -41,6 +42,7 @@ const UpgradeFeatureCard = ( {
 	showHeader = true,
 	headerBackground = 'bg-brand-background-50',
 	utmMedium,
+	plan,
 	...props
 } ) => {
 	// Generate image URL if imageName is provided
@@ -49,8 +51,8 @@ const UpgradeFeatureCard = ( {
 			? `${ window.surerank_globals.admin_assets_url }/images/${ imageName }`
 			: null;
 
-	// Don't render if Pro is active
-	if ( isProActive() ) {
+	// Don't render if the required plan is already active
+	if ( plan && isProActive( plan ) ) {
 		return null;
 	}
 

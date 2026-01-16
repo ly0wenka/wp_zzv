@@ -5,7 +5,7 @@ Tags: seo, wordpress seo, xml sitemap, schema, google search console
 Requires at least: 6.8
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -294,6 +294,18 @@ Brainstorm Force
 
 
 == Changelog ==
+
+### 1.6.2 - 14-January-2026 ###
+
+* New: Introduced an option to get Email Reports on Monthly basis.
+* New: Ability to add or remove Schema field with a better control.
+* Improvement: Onboarding flow has been improved for a better user experience.
+* Improvement: UI sets of multiple fields has been improved with better user experience for edit Schema.
+* Improvement: Edit support added for the AI content suggestions in meta & social SEO.
+* Improvement: Generating sitemap as soon as any migration gets completed.
+* Improvement: Displaying an indicator and a notice in the Schema editor if any Display Rule is not being set, to avoid blank schemas without any rulesets.
+* Fix: Resolved a few issues in Rankmath migration like - global image gets set to featured image of every post, validations of search engine title and description for a social title and description.
+
 ### 1.6.1 - 23-December-2025 ###
 * Improvement: Removed default title prefixes from taxonomy, archive, and post type archive pages.
 * Fix: Fixed an issue where onboarding settings were not updated correctly in an edge case.

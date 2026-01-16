@@ -288,7 +288,7 @@ class Dashboard {
 
 		$submenus[] = [
 			'id'         => 'surerank#/link-manager',
-			'page_title' => __( 'Redirections', 'surerank' ),
+			'page_title' => __( 'Link Manager', 'surerank' ),
 		];
 
 		$submenus[] = [
@@ -428,7 +428,7 @@ class Dashboard {
 				'admin_assets_url'           => SURERANK_URL . 'inc/admin/assets',
 				'version'                    => SURERANK_VERSION,
 				'help_link'                  => esc_url( 'https://surerank.com/docs/' ),
-				'support_link'               => esc_url( 'https://surerank.com/support/' ),
+				'support_link'               => esc_url( 'https://surerank.com/contact/' ),
 				'rating_link'                => esc_url( 'https://wordpress.org/support/plugin/surerank/reviews/#new-post' ),
 				'community_link'             => esc_url( 'https://www.facebook.com/groups/surecrafted' ),
 				'pricing_link'               => esc_url( 'https://surerank.com/pricing/' ),

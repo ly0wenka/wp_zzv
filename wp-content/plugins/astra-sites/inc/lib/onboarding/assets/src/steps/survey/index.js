@@ -280,8 +280,6 @@ const Survey = () => {
 				EMAIL: formDetails.email,
 				FIRSTNAME: formDetails.first_name,
 				PAGE_BUILDER: builder,
-				WP_USER_TYPE: formDetails.wp_user_type,
-				BUILD_WEBSITE_FOR: formDetails.build_website_for,
 				OPT_IN: formDetails.opt_in,
 				FEATURES: uniqueFeatures,
 			};

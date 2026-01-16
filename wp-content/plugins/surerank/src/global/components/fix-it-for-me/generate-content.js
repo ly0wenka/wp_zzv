@@ -1,13 +1,32 @@
 import { Button, Text, Skeleton, Loader } from '@bsf/force-ui';
 import { __, sprintf } from '@wordpress/i18n';
 import { RefreshCw } from 'lucide-react';
-import { useState } from '@wordpress/element';
+import { useState, useRef, useEffect } from '@wordpress/element';
 import EmptyState from '@GlobalComponents/empty-state';
 import { cn } from '@Functions/utils';
+import { getMaxLengthForField } from '@Global/constants';
+
+const SAVE_TEXT = __( 'Save', 'surerank' );
+const EDIT_TEXT = __( 'Edit', 'surerank' );
+const USE_THIS_TEXT = __( 'Use This', 'surerank' );
+const FIXING_TEXT = __( 'Fixing…', 'surerank' );
+const GENERATE_TEXT = __( 'Generate', 'surerank' );
+const RETRY_TEXT = __( 'Retry', 'surerank' );
+const GENERATING_TEXT = __( 'Generating…', 'surerank' );
+const SHOW_MORE_TEXT = __( 'Regenerate', 'surerank' );
 
 // Separate component for individual generated content items
-const GeneratedContentItem = ( { item, onUseThis, globalFixing } ) => {
+const GeneratedContentItem = ( {
+	item,
+	onUseThis,
+	globalFixing,
+	fieldType,
+} ) => {
+	const maxLength = getMaxLengthForField( fieldType );
 	const [ isFixing, setIsFixing ] = useState( false );
+	const [ editedText, setEditedText ] = useState( item.text );
+	const [ isEditing, setIsEditing ] = useState( false );
+	const textareaRef = useRef( null );
 
 	const handleUseThis = async ( content ) => {
 		if ( isFixing || globalFixing ) {
@@ -24,40 +43,132 @@ const GeneratedContentItem = ( { item, onUseThis, globalFixing } ) => {
 		}
 	};
 
-	let buttonText = __( 'Use This', 'surerank' );
-	if ( isFixing ) {
-		buttonText = __( 'Fixing…', 'surerank' );
-	}
+	const handleTextChange = ( e ) => {
+		setEditedText( e.target.value );
+	};
+
+	const handleEditClick = () => {
+		if ( isEditing ) {
+			// Save - just toggle off editing mode
+			setIsEditing( false );
+			if ( textareaRef?.current ) {
+				textareaRef.current.blur();
+				// Reset scroll position to top
+				textareaRef.current.scrollTop = 0;
+			}
+		} else {
+			// Edit - enable editing mode
+			setIsEditing( true );
+			// Focus the textarea after state update
+			setTimeout( () => {
+				if ( textareaRef?.current ) {
+					textareaRef.current.focus();
+					const length = textareaRef.current.value.length;
+					textareaRef.current.setSelectionRange( length, length );
+				}
+			}, 0 );
+		}
+	};
+
+	// Auto-adjust textarea height on mount and when text changes
+	useEffect( () => {
+		if ( textareaRef?.current ) {
+			const textarea = textareaRef.current;
+			// Reset height to auto to get proper scrollHeight calculation
+			textarea.style.height = 'auto';
+			const scrollHeight = textarea.scrollHeight;
+			// Set new height with max of 120px
+			const newHeight = Math.min( scrollHeight, 120 );
+			textarea.style.height = newHeight + 'px';
+		}
+	}, [ editedText ] );
+
+	const charCount = editedText.length;
+	const editButtonText = isEditing ? SAVE_TEXT : EDIT_TEXT;
+
+	// Hide character count for site tagline
+	const showCharCount = fieldType !== 'site_tag_line';
+
+	const buttonText = isFixing ? FIXING_TEXT : USE_THIS_TEXT;
 
 	return (
-		<div className="flex flex-row self-stretch gap-1 p-2 bg-white rounded-md shadow-sm">
+		<div className="flex flex-col self-stretch gap-1.5 p-2 bg-white rounded-md shadow-sm">
 			{ /* Text Content */ }
-			<div className="flex flex-row items-center gap-1 p-1 flex-1">
-				<div className="flex flex-row justify-stretch items-stretch gap-2 flex-1">
-					<Text
-						size={ 14 }
-						weight={ 500 }
-						color="secondary"
-						className="flex-1"
-					>
-						{ item.text }
-					</Text>
-				</div>
+			<div className="flex flex-row items-start gap-2">
+				<textarea
+					ref={ textareaRef }
+					value={ editedText }
+					onChange={ handleTextChange }
+					rows={ 1 }
+					readOnly={ ! isEditing }
+					className={ cn(
+						'flex-1 bg-transparent border-none outline-none resize-none',
+						'text-sm font-medium text-text-secondary',
+						'py-[2px] px-[4px] rounded',
+						'overflow-y-auto',
+						'transition-[height] duration-150',
+						'min-h-[20px] leading-[1.4]',
+						isEditing ? 'cursor-text' : 'cursor-default'
+					) }
+					disabled={ isFixing || globalFixing }
+					onInput={ ( e ) => {
+						e.target.style.height = '0px';
+						const scrollHeight = e.target.scrollHeight;
+						e.target.style.height =
+							Math.min( scrollHeight, 120 ) + 'px';
+					} }
+				/>
 			</div>
 
-			{ /* Use This Button */ }
-			<div className="flex flex-row items-start gap-2">
-				<Button
-					variant="link"
-					size="xs"
-					tag="button"
-					className="mt-2"
-					onClick={ () => handleUseThis( item.text ) }
-					disabled={ isFixing || globalFixing }
-					icon={ isFixing && <Loader size="sm" /> }
-				>
-					{ buttonText }
-				</Button>
+			{ /* Action Buttons */ }
+			<div
+				className={ cn(
+					'flex flex-row items-center self-stretch gap-2 p-1',
+					showCharCount ? 'justify-between' : 'justify-end'
+				) }
+			>
+				{ /* Character Count - Left Side */ }
+				{ showCharCount && (
+					<Text
+						size={ 12 }
+						weight={ 400 }
+						color="tertiary"
+						className="whitespace-nowrap"
+					>
+						{ sprintf(
+							/* translators: 1: current character count, 2: maximum character count */
+							__( '%1$d/%2$d', 'surerank' ),
+							charCount,
+							maxLength
+						) }
+					</Text>
+				) }
+
+				{ /* Right Side Buttons */ }
+				<div className="flex flex-row items-center gap-2">
+					{ /* Edit/Save Button */ }
+					<Button
+						variant="link"
+						size="xs"
+						tag="button"
+						onClick={ handleEditClick }
+						disabled={ isFixing || globalFixing }
+					>
+						{ editButtonText }
+					</Button>
+
+					{ /* Use This Button */ }
+					<Button
+						variant="link"
+						size="xs"
+						tag="button"
+						onClick={ () => handleUseThis( editedText ) }
+						disabled={ isFixing || globalFixing }
+						icon={ isFixing && <Loader size="sm" /> }
+					>
+						{ buttonText }
+					</Button>
+				</div>
 			</div>
 		</div>
 	);
@@ -70,6 +181,7 @@ const GenerateContent = ( {
 	generating = false,
 	fixing = false,
 	error = null,
+	fieldType = null,
 } ) => {
 	const handleRegenerate = () => {
 		if ( generating ) {
@@ -86,17 +198,16 @@ const GenerateContent = ( {
 
 	// Determine button text based on state
 	const getButtonText = () => {
-		let buttonText = __( 'Generate', 'surerank' );
-		if ( ! hasAnyContent && hasError ) {
-			buttonText = __( 'Retry', 'surerank' );
+		if ( hasAnyContent ) {
+			return SHOW_MORE_TEXT;
 		}
 		if ( generating ) {
-			buttonText = __( 'Generating…', 'surerank' );
+			return GENERATING_TEXT;
 		}
-		if ( hasAnyContent ) {
-			return __( 'Regenerate', 'surerank' );
+		if ( ! hasAnyContent && hasError ) {
+			return RETRY_TEXT;
 		}
-		return buttonText;
+		return GENERATE_TEXT;
 	};
 
 	// Determine empty state message
@@ -162,6 +273,7 @@ const GenerateContent = ( {
 				item={ item }
 				onUseThis={ onUseThis }
 				globalFixing={ fixing }
+				fieldType={ fieldType }
 			/>
 		) );
 

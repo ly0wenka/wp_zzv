@@ -5,7 +5,7 @@ Tags: seo, WordPress SEO, google search console, schema, redirection,
 Tested up to: 6.9
 Requires at least: 6.3
 Requires PHP: 7.4
-Stable tag: 1.0.260
+Stable tag: 1.0.262
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -233,7 +233,7 @@ and many more
 ✔ PREMIUM 24x7x365 Dedicated Support Managers
 ✔ MOST COMPETITIVE PRICING EVER!
 
-**<a href="https://rankmath.com/pricing/" target="_blank">CHEK ALL THE PREMIUM FEATURES AND PRICING HERE</a>**
+**<a href="https://rankmath.com/pricing/" target="_blank">CHECK ALL THE PREMIUM FEATURES AND PRICING HERE</a>**
 
 
 ## CONNECT WITH THE TEAM AND SEO EXPERTS ##
@@ -339,17 +339,14 @@ Please drop us an email at support@rankmath.com, and we will be more than happy 
 
 == Changelog ==
 
-= 1.0.260 [Dec 17, 2025] =
-- Improved: Multiple [Focus keywords](https://rankmath.com/kb/what-is-a-focus-keyword/) are now allowed on taxonomy pages
-- Fixed: Missing TinyMCE editor on taxonomy pages after the last update
-- Fixed: [Keyword Density test](https://rankmath.com/kb/score-100-in-tests/#keyword-density-primary-and-secondary-focus-keywords) was not working properly on non-English sites
-- Fixed: [Selecting Primary category](https://rankmath.com/kb/how-to-choose-a-primary-category/#how-to-choose-a-primary-category) was not working in Classic Editor after the last update
-- Fixed: Missing SEO metabox on the User Profile page
-- Fixed: Word limit added to the [Schema headline & description preview shown in the Titles & Meta settings](https://rankmath.com/kb/titles-and-meta/#headline)
-- Fixed: Untranslated strings on the [Setup Wizard page](https://rankmath.com/kb/how-to-setup/)
-- Fixed: [Power word in SEO Title test](https://rankmath.com/kb/fix-seo-tests-with-content-ai/#power-word) was not working properly when the plural form of the word was used in the title
-- Fixed: UI issue in the [FAQ block](https://rankmath.com/kb/faq-schema-block/) action buttons on responsive devices
-- Fixed: Compatibility issue with Colibri Page Builder PRO, causing the Rank Math SEO metabox to not display
-- Removed: `mythemeshop/wordpress-helpers` package as it's no longer used in the plugin
+= 1.0.262 [Jan 14, 2026] =
+- Updated: Twitter logo in the [Social Media Options](https://rankmath.com/kb/meta-box-social-tab/#twitter-options)
+- Fixed: [Content AI Write tool](https://rankmath.com/kb/how-to-use-content-ai/#write-with-content-ai) was not working in the Elementor editor
+- Fixed: [Keyword density test](https://rankmath.com/kb/score-100-in-tests/#keyword-density-primary-and-secondary-focus-keywords) was not working properly when a dash `-` was used in the keyword
+- Fixed: Removed deprecated packages used in the Post & Site editor that were causing the browser to show deprecated warnings
+- Fixed: [Instant Indexing](https://rankmath.com/kb/how-to-use-indexnow/) was not working properly with the secondary language posts created using the WPML plugin
+- Fixed: Update SEO Scores tool was recalculating score of posts where the score was already set, even when option to `Include posts/pages where the score is already set` was not selected
+- Fixed: SEO Desc column in the Posts lists was not showing the default SEO description
+- Fixed: PHP error on some setups using the WooCommerce version 9.7 or lower
 
 Full changelog can be found here - **[Rank Math changelog](https://rankmath.com/changelog/?utm_source=Plugin&utm_medium=Changelog&utm_campaign=WP)**

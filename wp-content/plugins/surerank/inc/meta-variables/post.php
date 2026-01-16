@@ -256,6 +256,13 @@ class Post extends Variables {
 			}
 		}
 
+		if ( is_post_type_archive() ) {
+			$post_type_object = get_queried_object();
+			if ( $post_type_object && ! empty( $post_type_object->labels->name ) ) {
+				return $post_type_object->labels->name;
+			}
+		}
+
 		return '';
 	}
 

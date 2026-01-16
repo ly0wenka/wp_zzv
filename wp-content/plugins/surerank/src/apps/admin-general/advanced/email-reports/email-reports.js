@@ -25,6 +25,8 @@ import { applyFilters } from '@wordpress/hooks';
 
 const TEST_EMAIL_BUTTON_TEXT = __( 'Test Email', 'surerank' );
 const SENDING_TEXT = __( 'Sending…', 'surerank' );
+const WEEKLY_LABEL = __( 'Weekly', 'surerank' );
+const MONTHLY_LABEL = __( 'Monthly', 'surerank' );
 
 const inputFields = [
 	{
@@ -77,8 +79,19 @@ const EmailReportsSettings = () => {
 		setEmailReportsSettings( { recipientEmail: value } );
 	};
 
+	const handleFrequencyChange = ( value ) => {
+		setEmailReportsSettings( { frequency: value } );
+	};
+
 	const handleScheduleChange = ( value ) => {
 		setEmailReportsSettings( { scheduledOn: value } );
+	};
+
+	const handleMonthlyDateChange = ( value ) => {
+		const numValue = parseInt( value, 10 );
+		// Clamp value between 1 and 31
+		const clampedValue = Math.min( Math.max( numValue, 1 ), 31 );
+		setEmailReportsSettings( { monthlyDate: clampedValue } );
 	};
 
 	const handleTestEmail = async () => {
@@ -153,11 +166,8 @@ const EmailReportsSettings = () => {
 					resetInitialSettings();
 				}, 100 );
 			} catch ( error ) {
-				toast.error( error.message, {
-					description: __(
-						'An unexpected error occurred while saving the settings. Please try again later.',
-						'surerank'
-					),
+				toast.error( __( 'Failed to save settings', 'surerank' ), {
+					description: error.message,
 				} );
 			} finally {
 				setIsUpdating( false );
@@ -230,45 +240,125 @@ const EmailReportsSettings = () => {
 						</div>
 					</div>
 
-					<div className="flex flex-col gap-1.5 p-2">
-						<Text
-							as="label"
-							htmlFor="schedule"
-							size={ 14 }
-							weight={ 500 }
-							color="primary"
-							className="w-fit"
-						>
-							{ __( 'Schedule Summary', 'surerank' ) }
-						</Text>
-						<Select
-							size="md"
-							value={ emailReportsSettings.scheduledOn }
-							onChange={ handleScheduleChange }
-						>
-							<Select.Button
-								type="button"
-								id="schedule"
-								render={ ( value ) =>
-									WEEK_DAYS[ value ?? 'sunday' ]
+					<div className="flex gap-4 p-2">
+						<div className="flex flex-col gap-1.5 flex-1">
+							<Text
+								as="label"
+								htmlFor="frequency"
+								size={ 14 }
+								weight={ 500 }
+								color="primary"
+								className="w-fit"
+							>
+								{ __( 'Frequency', 'surerank' ) }
+							</Text>
+							<Select
+								size="md"
+								value={
+									emailReportsSettings.frequency ?? 'weekly'
 								}
-							/>
-							<Select.Portal id="surerank-root">
-								<Select.Options>
-									{ Object.entries( WEEK_DAYS ).map(
-										( [ value, label ] ) => (
-											<Select.Option
-												key={ value }
-												value={ value }
-											>
-												{ label }
-											</Select.Option>
-										)
-									) }
-								</Select.Options>
-							</Select.Portal>
-						</Select>
+								onChange={ handleFrequencyChange }
+							>
+								<Select.Button
+									type="button"
+									id="frequency"
+									render={ ( value ) =>
+										value === 'monthly'
+											? MONTHLY_LABEL
+											: WEEKLY_LABEL
+									}
+								/>
+								<Select.Portal id="surerank-root">
+									<Select.Options>
+										<Select.Option value="weekly">
+											{ WEEKLY_LABEL }
+										</Select.Option>
+										<Select.Option value="monthly">
+											{ MONTHLY_LABEL }
+										</Select.Option>
+									</Select.Options>
+								</Select.Portal>
+							</Select>
+						</div>
+
+						{ emailReportsSettings.frequency === 'weekly' ? (
+							<div className="flex flex-col gap-1.5 flex-1">
+								<Text
+									as="label"
+									htmlFor="schedule"
+									size={ 14 }
+									weight={ 500 }
+									color="primary"
+									className="w-fit"
+								>
+									{ __( 'Schedule Summary', 'surerank' ) }
+								</Text>
+								<Select
+									size="md"
+									value={ emailReportsSettings.scheduledOn }
+									onChange={ handleScheduleChange }
+								>
+									<Select.Button
+										type="button"
+										id="schedule"
+										render={ ( value ) =>
+											WEEK_DAYS[ value ?? 'sunday' ]
+										}
+									/>
+									<Select.Portal id="surerank-root">
+										<Select.Options>
+											{ Object.entries( WEEK_DAYS ).map(
+												( [ value, label ] ) => (
+													<Select.Option
+														key={ value }
+														value={ value }
+													>
+														{ label }
+													</Select.Option>
+												)
+											) }
+										</Select.Options>
+									</Select.Portal>
+								</Select>
+							</div>
+						) : (
+							<div className="flex flex-col gap-1.5 flex-1">
+								<Text
+									as="label"
+									htmlFor="monthlyDate"
+									size={ 14 }
+									weight={ 500 }
+									color="primary"
+									className="w-fit"
+								>
+									{ __( 'Day of Month', 'surerank' ) }
+								</Text>
+								<Input
+									id="monthlyDate"
+									name="monthlyDate"
+									type="number"
+									size="md"
+									min={ 1 }
+									max={ 31 }
+									value={
+										emailReportsSettings.monthlyDate ?? 1
+									}
+									onChange={ handleMonthlyDateChange }
+								/>
+							</div>
+						) }
 					</div>
+
+					{ emailReportsSettings.frequency === 'monthly' && (
+						<div className="flex flex-col gap-1.5 px-2 pb-2">
+							<Text size={ 12 } weight={ 400 } color="tertiary">
+								{ __(
+									'If the selected day does not exist in a month (e.g., 31st in February), the email will be sent on the last day of that month.',
+									'surerank'
+								) }
+							</Text>
+						</div>
+					) }
 
 					{ /* Pro Extension Point: Additional Fields */ }
 					{ applyFilters(

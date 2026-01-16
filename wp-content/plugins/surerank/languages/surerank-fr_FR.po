@@ -38,7 +38,7 @@ msgid "Dashboard"
 msgstr "Tableau de bord"
 
 #: inc/admin/dashboard.php:274
-#: inc/schema/types/organization.php:178
+#: inc/schema/types/organization.php:196
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 #: build/seo-popup/index.js:1
@@ -387,53 +387,53 @@ msgstr "Le nonce est invalide."
 msgid "Sample Post"
 msgstr "Publication d'exemple"
 
-#: inc/api/onboarding.php:236
+#: inc/api/onboarding.php:241
 msgid "Invalid data provided"
 msgstr "Données invalides fournies"
 
-#: inc/api/onboarding.php:240
+#: inc/api/onboarding.php:245
 msgid "Settings updated successfully"
 msgstr "Paramètres mis à jour avec succès"
 
-#: inc/api/onboarding.php:245
+#: inc/api/onboarding.php:250
 msgid "Failed to update settings"
 msgstr "Échec de la mise à jour des paramètres"
 
-#: inc/api/post.php:113
-#: inc/api/term.php:111
+#: inc/api/post.php:118
+#: inc/api/term.php:113
 msgid "Error while running SEO Checks."
 msgstr "Erreur lors de l'exécution des vérifications SEO."
 
-#: inc/api/post.php:116
-#: inc/api/term.php:114
+#: inc/api/post.php:121
+#: inc/api/term.php:116
 msgid "Data updated"
 msgstr "Données mises à jour"
 
-#: inc/api/post.php:312
+#: inc/api/post.php:319
 msgid "Author pages"
 msgstr "Pages d'auteur"
 
-#: inc/api/post.php:316
+#: inc/api/post.php:323
 msgid "Date archives"
 msgstr "Archives par date"
 
-#: inc/api/post.php:319
+#: inc/api/post.php:326
 msgid "Search pages"
 msgstr "Pages de recherche"
 
-#: inc/api/post.php:165
+#: inc/api/post.php:172
 msgid "No post ID provided."
 msgstr "Aucun ID de publication fourni."
 
-#: inc/api/post.php:171
+#: inc/api/post.php:178
 msgid "No post found."
 msgstr "Aucune publication trouvée."
 
-#: inc/api/term.php:147
+#: inc/api/term.php:151
 msgid "No term ID provided."
 msgstr "Aucun ID de terme fourni."
 
-#: inc/api/term.php:153
+#: inc/api/term.php:157
 msgid "No term found."
 msgstr "Aucun terme trouvé."
 
@@ -633,11 +633,11 @@ msgid "The name of the term."
 msgstr "Le nom du terme."
 
 #: inc/meta-variables/term.php:66
-#: inc/schema/helper.php:170
-#: inc/schema/helper.php:225
-#: inc/schema/types/thing.php:82
-#: inc/schema/types/web-page.php:144
-#: inc/schema/types/web-site.php:95
+#: inc/schema/properties.php:223
+#: inc/schema/properties.php:304
+#: inc/schema/types/thing.php:88
+#: inc/schema/types/web-page.php:162
+#: inc/schema/types/web-site.php:104
 msgid "Description"
 msgstr "Description"
 
@@ -682,403 +682,391 @@ msgstr "Nous apprécions votre avis. Comment pouvons-nous améliorer votre expé
 msgid "Rate SureRank"
 msgstr "Évaluer SureRank"
 
-#: inc/schema/helper.php:101
-#: inc/schema/types/person.php:131
-#: inc/schema/types/thing.php:92
+#: inc/schema/properties.php:91
+#: inc/schema/types/person.php:152
+#: inc/schema/types/thing.php:102
 msgid "Image"
 msgstr "Image"
 
-#: inc/schema/helper.php:109
 #: inc/schema/products.php:158
-#: inc/schema/types/product.php:135
+#: inc/schema/properties.php:108
+#: inc/schema/types/product.php:147
 msgid "Product Image"
 msgstr "Image du produit"
 
-#: inc/schema/helper.php:116
-#: inc/schema/helper.php:218
-#: inc/schema/helper.php:281
-#: inc/schema/types/offer.php:162
-#: inc/schema/types/person.php:79
-#: inc/schema/types/product.php:111
-#: inc/schema/types/thing.php:71
+#: inc/schema/properties.php:124
+#: inc/schema/properties.php:297
+#: inc/schema/properties.php:360
+#: inc/schema/types/offer.php:185
+#: inc/schema/types/person.php:83
+#: inc/schema/types/product.php:118
+#: inc/schema/types/thing.php:73
 msgid "Name"
 msgstr "Nom"
 
-#: inc/schema/helper.php:132
+#: inc/schema/properties.php:150
 msgid "Text"
 msgstr "Texte"
 
-#: inc/schema/helper.php:134
+#: inc/schema/properties.php:152
 msgid "The full instruction text of this step"
 msgstr "Le texte complet des instructions de cette étape"
 
-#: inc/schema/helper.php:139
+#: inc/schema/properties.php:157
 msgid "Upvote count"
 msgstr "Nombre de votes positifs"
 
-#: inc/schema/helper.php:140
+#: inc/schema/properties.php:158
 msgid "The total number of votes that this question has received. If the page supports upvotes and downvotes, then set the upvoteCount value to a single aggregate value that represents both upvotes and downvotes."
 msgstr "Le nombre total de votes que cette question a reçus. Si la page prend en charge les votes positifs et négatifs, alors définissez la valeur upvoteCount sur une seule valeur agrégée qui représente à la fois les votes positifs et négatifs."
 
-#: inc/schema/helper.php:144
-#: inc/schema/helper.php:178
-#: inc/schema/helper.php:291
-#: inc/schema/types/offer.php:177
-#: inc/schema/types/person.php:85
-#: inc/schema/types/thing.php:109
+#: inc/schema/properties.php:162
+#: inc/schema/properties.php:239
+#: inc/schema/properties.php:370
+#: inc/schema/types/offer.php:200
+#: inc/schema/types/person.php:92
+#: inc/schema/types/thing.php:123
 msgid "URL"
 msgstr "URL"
 
-#: inc/schema/helper.php:145
+#: inc/schema/properties.php:163
 msgid "A URL that links directly to this answer."
 msgstr "Une URL qui renvoie directement à cette réponse."
 
-#: inc/schema/helper.php:152
+#: inc/schema/properties.php:178
 msgid "Created date"
 msgstr "Date de création"
 
-#: inc/schema/helper.php:158
+#: inc/schema/properties.php:193
 msgid "Published date"
 msgstr "Date de publication"
 
-#: inc/schema/helper.php:164
+#: inc/schema/properties.php:208
 msgid "Modified date"
 msgstr "Date de modification"
 
-#: inc/schema/helper.php:183
+#: inc/schema/properties.php:253
 msgid "Aggregate rating"
 msgstr "Évaluation agrégée"
 
-#: inc/schema/helper.php:186
-msgid "Include an overall rating based on customer reviews. This rating is used in structured data to reflect the product’s average performance or satisfaction level."
-msgstr "Inclure une évaluation globale basée sur les avis des clients. Cette évaluation est utilisée dans les données structurées pour refléter la performance moyenne ou le niveau de satisfaction du produit."
-
-#: inc/schema/helper.php:190
-#: inc/schema/helper.php:545
-#: inc/schema/helper.php:583
+#: inc/schema/properties.php:261
+#: inc/schema/properties.php:669
+#: inc/schema/properties.php:716
 msgid "Value"
 msgstr "Valeur"
 
-#: inc/schema/helper.php:192
-msgid "Specify the actual score given to the product, such as ‘4’, ‘60%’, or ‘6/10’. This numeric value contributes to the aggregate rating in structured data."
-msgstr "Spécifiez le score réel attribué au produit, tel que '4', '60%' ou '6/10'. Cette valeur numérique contribue à l'évaluation agrégée dans les données structurées."
-
-#: inc/schema/helper.php:197
+#: inc/schema/properties.php:268
 msgid "Review count"
 msgstr "Nombre d'avis"
 
-#: inc/schema/helper.php:199
-msgid "Enter the total number of reviews the product has received. This helps search engines understand the product’s popularity and display review count in rich results."
-msgstr "Entrez le nombre total d'avis que le produit a reçus. Cela aide les moteurs de recherche à comprendre la popularité du produit et à afficher le nombre d'avis dans les résultats enrichis."
-
-#: inc/schema/helper.php:208
+#: inc/schema/properties.php:286
 msgid "Video"
 msgstr "Vidéo"
 
-#: inc/schema/helper.php:232
-#: inc/schema/types/web-page.php:162
-#: inc/schema/types/web-site.php:121
+#: inc/schema/properties.php:311
+#: inc/schema/types/web-page.php:186
+#: inc/schema/types/web-site.php:138
 msgid "Thumbnail URL"
 msgstr "URL de la miniature"
 
-#: inc/schema/helper.php:233
+#: inc/schema/properties.php:312
 msgid "A URL pointing to the video thumbnail image file"
 msgstr "Une URL pointant vers le fichier image de la miniature de la vidéo"
 
-#: inc/schema/helper.php:239
+#: inc/schema/properties.php:318
 msgid "Upload Date"
 msgstr "Date de téléchargement"
 
-#: inc/schema/helper.php:240
+#: inc/schema/properties.php:319
 msgid "The date the video was first published, in ISO 8601 format."
 msgstr "La date à laquelle la vidéo a été publiée pour la première fois, au format ISO 8601."
 
-#: inc/schema/helper.php:247
+#: inc/schema/properties.php:326
 msgid "Content URL"
 msgstr "URL du contenu"
 
-#: inc/schema/helper.php:248
+#: inc/schema/properties.php:327
 msgid "A URL pointing to the actual video media file"
 msgstr "Une URL pointant vers le fichier média vidéo réel"
 
-#: inc/schema/helper.php:253
+#: inc/schema/properties.php:332
 msgid "Embed URL"
 msgstr "URL d'intégration"
 
-#: inc/schema/helper.php:254
+#: inc/schema/properties.php:333
 msgid "A URL pointing to a player for the specific video. Don't link to the page where the video lives; this must be the URL of the video player itself. Usually this is the information in the src element of an <embed> tag."
 msgstr "Une URL pointant vers un lecteur pour la vidéo spécifique. Ne liez pas à la page où se trouve la vidéo ; cela doit être l'URL du lecteur vidéo lui-même. En général, il s'agit des informations dans l'élément src d'une balise <embed>."
 
-#: inc/schema/helper.php:258
+#: inc/schema/properties.php:337
 msgid "Duration (min)"
 msgstr "Durée (min)"
 
-#: inc/schema/helper.php:259
+#: inc/schema/properties.php:338
 msgid "The duration of the video in ISO 8601 format. For example, PT00H30M5S represents a duration of \"thirty minutes and five seconds\"."
 msgstr "La durée de la vidéo au format ISO 8601. Par exemple, PT00H30M5S représente une durée de \"trente minutes et cinq secondes\"."
 
-#: inc/schema/helper.php:263
+#: inc/schema/properties.php:342
 msgid "Expires"
 msgstr "Expire"
 
-#: inc/schema/helper.php:264
+#: inc/schema/properties.php:343
 msgid "If applicable, the date after which the video will no longer be available, in ISO 8601 format. Don't supply this information if your video does not expire."
 msgstr "Si applicable, la date après laquelle la vidéo ne sera plus disponible, au format ISO 8601. Ne fournissez pas cette information si votre vidéo n'expire pas."
 
-#: inc/schema/helper.php:268
+#: inc/schema/properties.php:347
 msgid "Has part"
 msgstr "A une partie"
 
-#: inc/schema/helper.php:269
+#: inc/schema/properties.php:348
 msgid "If your video has important segments, specify them here"
 msgstr "Si votre vidéo a des segments importants, spécifiez-les ici"
 
-#: inc/schema/helper.php:272
-#: inc/schema/types/article.php:179
+#: inc/schema/properties.php:351
+#: inc/schema/types/article.php:199
 msgid "Part"
 msgstr "Partie"
 
-#: inc/schema/helper.php:287
+#: inc/schema/properties.php:366
 msgid "Start offset"
 msgstr "Décalage de début"
 
-#: inc/schema/helper.php:322
+#: inc/schema/properties.php:401
 msgid "Interaction statistic"
 msgstr "Statistique d'interaction"
 
-#: inc/schema/helper.php:323
+#: inc/schema/properties.php:402
 msgid "The number of times the video has been watched"
 msgstr "Le nombre de fois que la vidéo a été regardée"
 
-#: inc/schema/helper.php:333
+#: inc/schema/properties.php:420
 msgid "Address"
 msgstr "Adresse"
 
-#: inc/schema/helper.php:344
+#: inc/schema/properties.php:432
 msgid "Street address"
 msgstr "Adresse de rue"
 
-#: inc/schema/helper.php:345
+#: inc/schema/properties.php:433
 msgid "The detailed street address."
 msgstr "L'adresse de rue détaillée."
 
-#: inc/schema/helper.php:350
+#: inc/schema/properties.php:438
 msgid "Locality"
 msgstr "Localité"
 
-#: inc/schema/helper.php:351
+#: inc/schema/properties.php:439
 msgid "The locality in which the street address is, and which is in the region."
 msgstr "La localité dans laquelle se trouve l'adresse de rue, et qui est dans la région."
 
-#: inc/schema/helper.php:356
+#: inc/schema/properties.php:444
 msgid "Region"
 msgstr "Région"
 
-#: inc/schema/helper.php:357
+#: inc/schema/properties.php:445
 msgid "The region in which the locality is, and which is in the country."
 msgstr "La région dans laquelle se trouve la localité, et qui est dans le pays."
 
-#: inc/schema/helper.php:362
+#: inc/schema/properties.php:450
 msgid "Country"
 msgstr "Pays"
 
-#: inc/schema/helper.php:363
+#: inc/schema/properties.php:451
 msgid "The country. You can also provide the two-letter ISO 3166-1 alpha-2 country code."
 msgstr "Le pays. Vous pouvez également fournir le code de pays à deux lettres ISO 3166-1 alpha-2."
 
-#: inc/schema/helper.php:369
+#: inc/schema/properties.php:457
 msgid "Postal code"
 msgstr "Code postal"
 
-#: inc/schema/helper.php:400
+#: inc/schema/properties.php:504
 msgid "Day of week"
 msgstr "Jour de la semaine"
 
-#: inc/schema/helper.php:401
+#: inc/schema/properties.php:505
 msgid "The day of the week for which these opening hours are valid"
 msgstr "Le jour de la semaine pour lequel ces heures d'ouverture sont valables"
 
-#: inc/modules/email-reports/utils.php:97
-#: inc/schema/helper.php:405
+#: inc/modules/email-reports/utils.php:119
+#: inc/schema/properties.php:509
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Monday"
 msgstr "Lundi"
 
-#: inc/modules/email-reports/utils.php:98
-#: inc/schema/helper.php:406
+#: inc/modules/email-reports/utils.php:120
+#: inc/schema/properties.php:510
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Tuesday"
 msgstr "Mardi"
 
-#: inc/modules/email-reports/utils.php:99
-#: inc/schema/helper.php:407
+#: inc/modules/email-reports/utils.php:121
+#: inc/schema/properties.php:511
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: inc/modules/email-reports/utils.php:100
-#: inc/schema/helper.php:408
+#: inc/modules/email-reports/utils.php:122
+#: inc/schema/properties.php:512
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Thursday"
 msgstr "Jeudi"
 
-#: inc/modules/email-reports/utils.php:101
-#: inc/schema/helper.php:409
+#: inc/modules/email-reports/utils.php:123
+#: inc/schema/properties.php:513
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Friday"
 msgstr "Vendredi"
 
-#: inc/modules/email-reports/utils.php:102
-#: inc/schema/helper.php:410
+#: inc/modules/email-reports/utils.php:124
+#: inc/schema/properties.php:514
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Saturday"
 msgstr "Samedi"
 
-#: inc/modules/email-reports/utils.php:96
-#: inc/schema/helper.php:411
+#: inc/modules/email-reports/utils.php:118
+#: inc/schema/properties.php:515
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Sunday"
 msgstr "Dimanche"
 
-#: inc/schema/helper.php:416
+#: inc/schema/properties.php:520
 msgid "Opens"
 msgstr "Ouvre"
 
-#: inc/schema/helper.php:417
+#: inc/schema/properties.php:521
 msgid "The opening hour of the place or service on the given day(s) of the week, in hh:mm:ss format"
 msgstr "L'heure d'ouverture du lieu ou du service le(s) jour(s) donné(s) de la semaine, au format hh:mm:ss"
 
-#: inc/schema/helper.php:422
+#: inc/schema/properties.php:527
 msgid "Closes"
 msgstr "Ferme"
 
-#: inc/schema/helper.php:423
+#: inc/schema/properties.php:528
 msgid "The closing hour of the place or service on the given day(s) of the week, in hh:mm:ss format"
 msgstr "L'heure de fermeture du lieu ou du service le(s) jour(s) donné(s) de la semaine, au format hh:mm:ss"
 
-#: inc/schema/helper.php:428
-#: inc/schema/types/offer.php:512
+#: inc/schema/properties.php:534
+#: inc/schema/types/offer.php:620
 msgid "Valid from"
 msgstr "Valide à partir de"
 
-#: inc/schema/helper.php:429
+#: inc/schema/properties.php:535
 msgid "The date when the item becomes valid, in YYYY-MM-DD format"
 msgstr "La date à laquelle l'élément devient valide, au format AAAA-MM-JJ"
 
-#: inc/schema/helper.php:433
-#: inc/schema/types/offer.php:518
+#: inc/schema/properties.php:540
+#: inc/schema/types/offer.php:629
 msgid "Valid through"
 msgstr "Valide jusqu'à"
 
-#: inc/schema/helper.php:434
+#: inc/schema/properties.php:541
 msgid "The date after when the item is not valid, in YYYY-MM-DD format"
 msgstr "La date après laquelle l'élément n'est plus valide, au format AAAA-MM-JJ"
 
-#: inc/schema/helper.php:443
+#: inc/schema/properties.php:558
 msgid "Reviews"
 msgstr "Avis"
 
-#: inc/schema/helper.php:445
+#: inc/schema/properties.php:560
 msgid "Review"
 msgstr "Avis"
 
-#: inc/schema/helper.php:446
+#: inc/schema/properties.php:561
 msgid "Reviews of the item"
 msgstr "Avis sur l'élément"
 
-#: inc/schema/helper.php:467
-#: inc/schema/types/article.php:167
-#: inc/schema/types/web-page.php:89
-#: inc/schema/types/web-site.php:81
+#: inc/schema/properties.php:582
+#: inc/schema/types/article.php:182
+#: inc/schema/types/web-page.php:95
+#: inc/schema/types/web-site.php:85
 msgid "Author"
 msgstr "Auteur"
 
-#: inc/schema/helper.php:476
+#: inc/schema/properties.php:591
 msgid "Rating"
 msgstr "Évaluation"
 
-#: inc/schema/helper.php:487
+#: inc/schema/properties.php:602
 msgid "Rating value"
 msgstr "Valeur d'évaluation"
 
-#: inc/schema/helper.php:501
+#: inc/schema/properties.php:616
 msgid "Best rating"
 msgstr "Meilleure évaluation"
 
-#: inc/schema/helper.php:514
+#: inc/schema/properties.php:629
 msgid "Worst rating"
 msgstr "Pire évaluation"
 
-#: inc/schema/helper.php:529
+#: inc/schema/properties.php:644
 msgid "Date published"
 msgstr "Date de publication"
 
-#: inc/schema/helper.php:550
-#: inc/schema/helper.php:588
+#: inc/schema/properties.php:674
+#: inc/schema/properties.php:721
 msgid "Min value"
 msgstr "Valeur minimale"
 
-#: inc/schema/helper.php:554
-#: inc/schema/helper.php:592
+#: inc/schema/properties.php:678
+#: inc/schema/properties.php:725
 msgid "Max value"
 msgstr "Valeur maximale"
 
-#: inc/schema/helper.php:558
-#: inc/schema/helper.php:596
-#: inc/schema/types/offer.php:412
+#: inc/schema/properties.php:682
+#: inc/schema/properties.php:729
+#: inc/schema/types/offer.php:488
 msgid "Unit text"
 msgstr "Texte d'unité"
 
-#: inc/schema/helper.php:561
-#: inc/schema/helper.php:597
+#: inc/schema/properties.php:685
+#: inc/schema/properties.php:730
 msgid "A string or text indicating the unit of measurement."
 msgstr "Une chaîne ou un texte indiquant l'unité de mesure."
 
-#: inc/schema/helper.php:563
+#: inc/schema/properties.php:687
 msgid "Hour"
 msgstr "Heure"
 
-#: inc/schema/helper.php:564
+#: inc/schema/properties.php:688
 msgid "Day"
 msgstr "Jour"
 
-#: inc/schema/helper.php:565
+#: inc/schema/properties.php:689
 msgid "Week"
 msgstr "Semaine"
 
-#: inc/schema/helper.php:566
+#: inc/schema/properties.php:690
 msgid "Month"
 msgstr "Mois"
 
-#: inc/schema/helper.php:567
+#: inc/schema/properties.php:691
 msgid "Year"
 msgstr "Année"
 
-#: inc/schema/helper.php:605
+#: inc/schema/properties.php:746
 msgid "Main entity"
 msgstr "Entité principale"
 
-#: inc/schema/helper.php:606
+#: inc/schema/properties.php:747
 msgid "Indicates the primary entity described in some page or other CreativeWork."
 msgstr "Indique l'entité principale décrite dans une page ou un autre CreativeWork."
 
-#: inc/schema/helper.php:607
+#: inc/schema/properties.php:748
 msgid "Please create a schema and link to this property via a dynamic variable"
 msgstr "Veuillez créer un schéma et lier cette propriété via une variable dynamique"
 
-#: inc/schema/helper.php:612
-#: inc/schema/types/person.php:112
+#: inc/schema/properties.php:762
+#: inc/schema/types/person.php:127
 msgid "Main entity of page"
 msgstr "Entité principale de la page"
 
-#: inc/schema/helper.php:613
+#: inc/schema/properties.php:763
 msgid "Identify the main entity being described on the page, such as an article, product, or event. This helps search engines understand the primary focus of the page through structured data."
 msgstr "Identifiez l'entité principale décrite sur la page, comme un article, un produit ou un événement. Cela aide les moteurs de recherche à comprendre le focus principal de la page à travers des données structurées."
 
@@ -1261,1211 +1249,1180 @@ msgstr "Archive de tous les %s"
 #: inc/schema/types/article.php:66
 #: inc/schema/types/breadcrumb-list.php:65
 #: inc/schema/types/offer.php:57
-#: inc/schema/types/organization.php:72
-#: inc/schema/types/person.php:65
-#: inc/schema/types/product.php:68
-#: inc/schema/types/search-action.php:63
-#: inc/schema/types/thing.php:63
-#: inc/schema/types/web-page.php:65
-#: inc/schema/types/web-site.php:65
+#: inc/schema/types/organization.php:74
+#: inc/schema/types/person.php:66
+#: inc/schema/types/product.php:69
+#: inc/schema/types/search-action.php:59
+#: inc/schema/types/thing.php:64
+#: inc/schema/types/web-page.php:67
+#: inc/schema/types/web-site.php:67
 #: build/admin-dashboard/index.js:1
 msgid "Schema Title"
 msgstr "Titre du schéma"
 
-#: inc/schema/types/article.php:67
-#: inc/schema/types/breadcrumb-list.php:66
-#: inc/schema/types/offer.php:58
-#: inc/schema/types/organization.php:73
-#: inc/schema/types/person.php:66
-#: inc/schema/types/product.php:69
-#: inc/schema/types/search-action.php:64
-#: inc/schema/types/thing.php:64
-#: inc/schema/types/web-page.php:66
-#: inc/schema/types/web-site.php:66
+#: inc/schema/types/web-page.php:68
 msgid "Give your schema a name to help you identify it later. This title is for internal reference only and won’t be included in your site’s structured data."
 msgstr "Donnez un nom à votre schéma pour vous aider à l'identifier plus tard. Ce titre est uniquement pour référence interne et ne sera pas inclus dans les données structurées de votre site."
 
-#: inc/schema/types/article.php:79
+#: inc/schema/types/article.php:82
 #: build/admin-dashboard/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Schema Type"
 msgstr "Type de schéma"
 
-#: inc/schema/types/article.php:236
+#: inc/schema/types/article.php:268
 msgid "Article"
 msgstr "Article"
 
-#: inc/schema/types/article.php:90
+#: inc/schema/types/article.php:95
 msgid "The name of the article."
 msgstr "Le nom de l'article."
 
-#: inc/schema/types/article.php:101
+#: inc/schema/types/article.php:106
 msgid "Headline"
 msgstr "Titre"
 
-#: inc/schema/types/article.php:105
+#: inc/schema/types/article.php:112
 msgid "Enter a concise and descriptive headline for the article. This headline will be included in your site’s structured data and should not exceed 110 characters to ensure proper display in search and social platforms."
 msgstr "Entrez un titre concis et descriptif pour l'article. Ce titre sera inclus dans les données structurées de votre site et ne doit pas dépasser 110 caractères pour garantir un affichage correct sur les plateformes de recherche et sociales."
 
-#: inc/schema/types/article.php:111
+#: inc/schema/types/article.php:118
 msgid "Provide a short summary of the article’s content. This description is used in your site’s structured data to help search engines understand what the article is about."
 msgstr "Fournissez un bref résumé du contenu de l'article. Cette description est utilisée dans les données structurées de votre site pour aider les moteurs de recherche à comprendre de quoi parle l'article."
 
-#: inc/schema/types/article.php:118
+#: inc/schema/types/article.php:125
 msgid "Enter the date and time the article was first published, using the ISO 8601 format.  This value is used in your site’s structured data to show when the content was originally made public."
 msgstr "Entrez la date et l'heure de la première publication de l'article, en utilisant le format ISO 8601. Cette valeur est utilisée dans les données structurées de votre site pour montrer quand le contenu a été rendu public pour la première fois."
 
-#: inc/schema/types/article.php:125
+#: inc/schema/types/article.php:132
 msgid "The date and time the article was first published, in ISO 8601 format"
 msgstr "La date et l'heure de la première publication de l'article, au format ISO 8601"
 
-#: inc/schema/types/article.php:130
+#: inc/schema/types/article.php:137
 msgid "Comment count"
 msgstr "Nombre de commentaires"
 
-#: inc/schema/types/article.php:134
+#: inc/schema/types/article.php:143
 msgid "Add the total number of comments the article has received. This helps search engines understand the level of engagement and is included in the structured data."
 msgstr "Ajoutez le nombre total de commentaires que l'article a reçus. Cela aide les moteurs de recherche à comprendre le niveau d'engagement et est inclus dans les données structurées."
 
-#: inc/schema/types/article.php:138
+#: inc/schema/types/article.php:147
 msgid "Word count"
 msgstr "Nombre de mots"
 
-#: inc/schema/types/article.php:142
-msgid ""
-"Enter the total word count of the article’s main content. This information is used in structured data to provide search engines with content length details.\n"
-""
-msgstr "Entrez le nombre total de mots du contenu principal de l'article. Cette information est utilisée dans les données structurées pour fournir aux moteurs de recherche des détails sur la longueur du contenu."
-
-#: inc/schema/types/article.php:150
-#: inc/schema/types/organization.php:123
+#: inc/schema/types/article.php:161
+#: inc/schema/types/organization.php:134
 msgid "Keywords"
 msgstr "Mots-clés"
 
-#: inc/schema/types/article.php:154
+#: inc/schema/types/article.php:167
 msgid "List relevant tags or keywords that describe the article, separated by commas. These keywords are used in structured data to help categorize and improve content discoverability."
 msgstr "Listez les balises ou mots-clés pertinents qui décrivent l'article, séparés par des virgules. Ces mots-clés sont utilisés dans les données structurées pour aider à catégoriser et améliorer la découvrabilité du contenu."
 
-#: inc/schema/types/article.php:158
+#: inc/schema/types/article.php:171
 msgid "Sections"
 msgstr "Sections"
 
-#: inc/schema/types/article.php:162
+#: inc/schema/types/article.php:177
 msgid "Specify the section or category the article belongs to, such as Sports, Lifestyle, or Business. This is included in structured data to help search engines organize content by topic."
 msgstr "Spécifiez la section ou la catégorie à laquelle appartient l'article, comme Sports, Style de vie ou Affaires. Cela est inclus dans les données structurées pour aider les moteurs de recherche à organiser le contenu par sujet."
 
-#: inc/schema/types/article.php:168
+#: inc/schema/types/article.php:185
 msgid "Specify the name of the person who wrote the article. This author information will be included in the structured data to attribute the content correctly."
 msgstr "Spécifiez le nom de la personne qui a écrit l'article. Ces informations sur l'auteur seront incluses dans les données structurées pour attribuer correctement le contenu."
 
-#: inc/schema/types/article.php:175
+#: inc/schema/types/article.php:193
 msgid "Subscription and pay-walled content"
 msgstr "Contenu par abonnement et payant"
 
-#: inc/schema/types/article.php:177
+#: inc/schema/types/article.php:197
 msgid "Indicates the content that is part of this item."
 msgstr "Indique le contenu qui fait partie de cet élément."
 
-#: inc/schema/types/article.php:190
+#: inc/schema/types/article.php:212
 msgid "Is accessible for free?"
 msgstr "Est-il accessible gratuitement ?"
 
-#: inc/schema/types/article.php:191
+#: inc/schema/types/article.php:215
 msgid "Whether the dataset is accessible without payment."
 msgstr "Indique si le jeu de données est accessible sans paiement."
 
 #: inc/admin/bulk-edit.php:72
 #: inc/admin/bulk-edit.php:80
 #: inc/admin/bulk-edit.php:88
-#: inc/schema/types/article.php:195
+#: inc/schema/types/article.php:219
 msgid "Yes"
 msgstr "Oui"
 
 #: inc/admin/bulk-edit.php:73
 #: inc/admin/bulk-edit.php:81
 #: inc/admin/bulk-edit.php:89
-#: inc/schema/types/article.php:196
+#: inc/schema/types/article.php:220
 msgid "No"
 msgstr "Non"
 
-#: inc/schema/types/article.php:202
+#: inc/schema/types/article.php:227
 msgid "CSS selector"
 msgstr "Sélecteur CSS"
 
-#: inc/schema/types/article.php:203
+#: inc/schema/types/article.php:230
 msgid "Class name around each pay-walled section of your page."
 msgstr "Nom de la classe autour de chaque section payante de votre page."
 
-#: inc/schema/types/article.php:210
-#: inc/schema/types/web-page.php:148
+#: inc/schema/types/article.php:238
+#: inc/schema/types/web-page.php:168
 msgid "Is part of"
 msgstr "Fait partie de"
 
-#: inc/schema/types/article.php:217
-#: inc/schema/types/web-page.php:155
-#: inc/schema/types/web-site.php:114
+#: inc/schema/types/article.php:247
+#: inc/schema/types/web-page.php:177
+#: inc/schema/types/web-site.php:128
 msgid "Publisher"
 msgstr "Éditeur"
 
-#: inc/schema/types/article.php:218
+#: inc/schema/types/article.php:250
 msgid "Enter the name of the individual or organization that published the article. This is included in the structured data to credit the source of the content."
 msgstr "Entrez le nom de l'individu ou de l'organisation qui a publié l'article. Cela est inclus dans les données structurées pour créditer la source du contenu."
 
-#: inc/schema/types/breadcrumb-list.php:73
-#: inc/schema/types/web-page.php:108
+#: inc/schema/types/breadcrumb-list.php:74
+#: inc/schema/types/web-page.php:119
 msgid "BreadcrumbList"
 msgstr "Liste de fil d'Ariane"
 
-#: inc/schema/types/offer.php:68
+#: inc/schema/types/offer.php:69
 msgid "The name of the offer."
 msgstr "Le nom de l'offre."
 
-#: inc/schema/types/offer.php:73
+#: inc/schema/types/offer.php:74
 msgid "Accepted payment method"
 msgstr "Méthode de paiement acceptée"
 
-#: inc/schema/types/offer.php:74
+#: inc/schema/types/offer.php:77
 msgid "The payment method(s) accepted by seller for this offer."
 msgstr "Les méthodes de paiement acceptées par le vendeur pour cette offre."
 
-#: inc/schema/types/offer.php:79
+#: inc/schema/types/offer.php:82
 msgid "By bank transfer in advance"
 msgstr "Par virement bancaire à l'avance"
 
-#: inc/schema/types/offer.php:80
+#: inc/schema/types/offer.php:83
 msgid "By invoice"
 msgstr "Par facture"
 
-#: inc/schema/types/offer.php:81
+#: inc/schema/types/offer.php:84
 msgid "Cash"
 msgstr "Espèces"
 
-#: inc/schema/types/offer.php:82
+#: inc/schema/types/offer.php:85
 msgid "Check in advance"
 msgstr "Chèque à l'avance"
 
-#: inc/schema/types/offer.php:83
+#: inc/schema/types/offer.php:86
 msgid "COD"
 msgstr "Contre remboursement"
 
-#: inc/schema/types/offer.php:84
+#: inc/schema/types/offer.php:87
 msgid "Direct debit"
 msgstr "Prélèvement automatique"
 
-#: inc/schema/types/offer.php:85
+#: inc/schema/types/offer.php:88
 msgid "Google checkout"
 msgstr "Google Checkout"
 
-#: inc/schema/types/offer.php:86
+#: inc/schema/types/offer.php:89
 msgid "PayPal"
 msgstr "PayPal"
 
-#: inc/schema/types/offer.php:87
+#: inc/schema/types/offer.php:90
 msgid "PaySwarm"
 msgstr "PaySwarm"
 
-#: inc/schema/types/offer.php:92
+#: inc/schema/types/offer.php:95
 msgid "Add on"
 msgstr "Ajouter"
 
-#: inc/schema/types/offer.php:93
+#: inc/schema/types/offer.php:98
 msgid "An additional offer that can only be obtained in combination with the first base offer (e.g. supplements and extensions that are available for a surcharge)."
 msgstr "Une offre supplémentaire qui ne peut être obtenue qu'en combinaison avec la première offre de base (par exemple, des suppléments et des extensions disponibles moyennant un supplément)."
 
-#: inc/schema/types/offer.php:94
+#: inc/schema/types/offer.php:99
 msgid "Please create another Offer schema and link to this property via a dynamic variable"
 msgstr "Veuillez créer un autre schéma d'offre et lier cette propriété via une variable dynamique"
 
-#: inc/schema/types/offer.php:100
+#: inc/schema/types/offer.php:105
 msgid "Advance booking requirement"
 msgstr "Exigence de réservation à l'avance"
 
-#: inc/schema/types/offer.php:102
+#: inc/schema/types/offer.php:107
 msgid "The amount of time that is required between accepting the offer and the actual usage of the resource or service."
 msgstr "Le temps requis entre l'acceptation de l'offre et l'utilisation réelle de la ressource ou du service."
 
-#: inc/schema/types/offer.php:108
+#: inc/schema/types/offer.php:113
 msgid "The overall rating, based on a collection of reviews or ratings, of the offer."
 msgstr "La note globale, basée sur une collection d'avis ou de notes, de l'offre."
 
-#: inc/schema/types/offer.php:113
+#: inc/schema/types/offer.php:118
 msgid "Area served"
 msgstr "Zone desservie"
 
-#: inc/schema/types/offer.php:114
+#: inc/schema/types/offer.php:121
 msgid "The geographic area where a service or offered item is provided."
 msgstr "La zone géographique où un service ou un article proposé est fourni."
 
-#: inc/schema/types/offer.php:118
+#: inc/schema/types/offer.php:125
 msgid "Asin"
 msgstr "Asin"
 
-#: inc/schema/types/offer.php:119
+#: inc/schema/types/offer.php:128
 msgid "An Amazon Standard Identification Number (ASIN) is a 10-character alphanumeric unique identifier assigned by Amazon.com and its partners for product identification within the Amazon organization. See documentation from Amazon for authoritative details"
 msgstr "Un numéro d'identification standard Amazon (ASIN) est un identifiant unique alphanumérique de 10 caractères attribué par Amazon.com et ses partenaires pour l'identification des produits au sein de l'organisation Amazon. Consultez la documentation d'Amazon pour des détails autorisés."
 
-#: inc/schema/types/offer.php:123
-#: inc/schema/types/product.php:214
+#: inc/schema/types/offer.php:133
+#: inc/schema/types/product.php:253
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: inc/schema/types/offer.php:128
+#: inc/schema/types/offer.php:140
 msgid "In stock"
 msgstr "En stock"
 
-#: inc/schema/types/offer.php:129
+#: inc/schema/types/offer.php:141
 msgid "Sold out"
 msgstr "Épuisé"
 
-#: inc/schema/types/offer.php:130
+#: inc/schema/types/offer.php:142
 msgid "Pre order"
 msgstr "Précommande"
 
-#: inc/schema/types/offer.php:135
+#: inc/schema/types/offer.php:148
 msgid "Availability starts"
 msgstr "Disponibilité commence"
 
-#: inc/schema/types/offer.php:136
+#: inc/schema/types/offer.php:151
 msgid "The beginning of the availability of the product or service included in the offer."
 msgstr "Le début de la disponibilité du produit ou du service inclus dans l'offre."
 
-#: inc/schema/types/offer.php:141
+#: inc/schema/types/offer.php:157
 msgid "Availability ends"
 msgstr "Disponibilité se termine"
 
-#: inc/schema/types/offer.php:142
+#: inc/schema/types/offer.php:160
 msgid "The end of the availability of the product or service included in the offer."
 msgstr "La fin de la disponibilité du produit ou du service inclus dans l'offre."
 
-#: inc/schema/types/offer.php:147
+#: inc/schema/types/offer.php:166
 msgid "Available at or from"
 msgstr "Disponible à ou depuis"
 
-#: inc/schema/types/offer.php:149
+#: inc/schema/types/offer.php:170
 msgid "The place(s) from which the offer can be obtained (e.g. store locations)."
 msgstr "Les lieux d'où l'offre peut être obtenue (par exemple, emplacements de magasins)."
 
-#: inc/schema/types/offer.php:151
+#: inc/schema/types/offer.php:172
 msgid "Place"
 msgstr "Lieu"
 
-#: inc/schema/types/offer.php:163
+#: inc/schema/types/offer.php:186
 msgid "The name of the item."
 msgstr "Le nom de l'article."
 
-#: inc/schema/types/offer.php:172
+#: inc/schema/types/offer.php:195
 msgid "The physical address where students go to take the program."
 msgstr "L'adresse physique où les étudiants vont suivre le programme."
 
-#: inc/schema/types/offer.php:178
+#: inc/schema/types/offer.php:203
 msgid "URL of the item."
 msgstr "URL de l'article."
 
-#: inc/schema/types/offer.php:184
+#: inc/schema/types/offer.php:209
 msgid "Available delivery method"
 msgstr "Méthode de livraison disponible"
 
-#: inc/schema/types/offer.php:187
+#: inc/schema/types/offer.php:214
 msgid "Direct download"
 msgstr "Téléchargement direct"
 
-#: inc/schema/types/offer.php:188
+#: inc/schema/types/offer.php:215
 msgid "Freight"
 msgstr "Fret"
 
-#: inc/schema/types/offer.php:189
+#: inc/schema/types/offer.php:216
 msgid "Mail"
 msgstr "Courrier"
 
-#: inc/schema/types/offer.php:190
+#: inc/schema/types/offer.php:217
 msgid "Own fleet"
 msgstr "Flotte propre"
 
-#: inc/schema/types/offer.php:191
+#: inc/schema/types/offer.php:218
 msgid "Pick up"
 msgstr "Ramasser"
 
-#: inc/schema/types/offer.php:192
+#: inc/schema/types/offer.php:219
 msgid "DHL"
 msgstr "DHL"
 
-#: inc/schema/types/offer.php:193
+#: inc/schema/types/offer.php:220
 msgid "Federal express"
 msgstr "Federal Express"
 
-#: inc/schema/types/offer.php:194
+#: inc/schema/types/offer.php:221
 msgid "UPS"
 msgstr "UPS"
 
-#: inc/schema/types/offer.php:199
-#: inc/schema/types/offer.php:389
+#: inc/schema/types/offer.php:226
+#: inc/schema/types/offer.php:460
 msgid "Business function"
 msgstr "Fonction commerciale"
 
-#: inc/schema/types/offer.php:200
-#: inc/schema/types/offer.php:390
+#: inc/schema/types/offer.php:229
+#: inc/schema/types/offer.php:463
 msgid "The business function specifies the type of activity or access (i.e., the bundle of rights) offered by the organization or business person through the offer."
 msgstr "La fonction commerciale spécifie le type d'activité ou d'accès (c'est-à-dire le bundle de droits) offert par l'organisation ou la personne d'affaires à travers l'offre."
 
-#: inc/schema/types/offer.php:204
-#: inc/schema/types/offer.php:394
+#: inc/schema/types/offer.php:233
+#: inc/schema/types/offer.php:467
 msgid "Construction installation"
 msgstr "Installation de construction"
 
-#: inc/schema/types/offer.php:205
-#: inc/schema/types/offer.php:396
+#: inc/schema/types/offer.php:234
+#: inc/schema/types/offer.php:469
 msgid "Dispose"
 msgstr "Éliminer"
 
-#: inc/schema/types/offer.php:206
-#: inc/schema/types/offer.php:397
+#: inc/schema/types/offer.php:235
+#: inc/schema/types/offer.php:470
 msgid "Lease out"
 msgstr "Louer"
 
-#: inc/schema/types/offer.php:207
-#: inc/schema/types/offer.php:398
+#: inc/schema/types/offer.php:236
+#: inc/schema/types/offer.php:471
 msgid "Maintain"
 msgstr "Maintenir"
 
-#: inc/schema/types/offer.php:208
-#: inc/schema/types/offer.php:399
+#: inc/schema/types/offer.php:237
+#: inc/schema/types/offer.php:472
 msgid "Provide service"
 msgstr "Fournir un service"
 
-#: inc/schema/types/offer.php:209
-#: inc/schema/types/offer.php:400
+#: inc/schema/types/offer.php:238
+#: inc/schema/types/offer.php:473
 msgid "Repair"
 msgstr "Réparer"
 
-#: inc/schema/types/offer.php:210
-#: inc/schema/types/offer.php:401
+#: inc/schema/types/offer.php:239
+#: inc/schema/types/offer.php:474
 msgid "Sell"
 msgstr "Vendre"
 
-#: inc/schema/types/offer.php:211
-#: inc/schema/types/offer.php:402
+#: inc/schema/types/offer.php:240
+#: inc/schema/types/offer.php:475
 msgid "Buy"
 msgstr "Acheter"
 
-#: inc/schema/types/offer.php:215
+#: inc/schema/types/offer.php:244
 msgid "Category"
 msgstr "Catégorie"
 
-#: inc/schema/types/offer.php:217
+#: inc/schema/types/offer.php:248
 msgid "A category for the item. Greater signs or slashes can be used to informally indicate a category hierarchy."
 msgstr "Une catégorie pour l'article. Des signes plus grands ou des barres obliques peuvent être utilisés pour indiquer de manière informelle une hiérarchie de catégories."
 
-#: inc/schema/types/offer.php:220
+#: inc/schema/types/offer.php:251
 msgid "Checkout page URL template"
 msgstr "Modèle d'URL de page de paiement"
 
-#: inc/schema/types/offer.php:222
+#: inc/schema/types/offer.php:255
 msgid "A URL template (RFC 6570) for a checkout page for an offer."
 msgstr "Un modèle d'URL (RFC 6570) pour une page de paiement pour une offre."
 
-#: inc/schema/types/offer.php:228
+#: inc/schema/types/offer.php:261
 msgid "Delivery lead time"
 msgstr "Délai de livraison"
 
-#: inc/schema/types/offer.php:230
+#: inc/schema/types/offer.php:263
 msgid "The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup."
 msgstr "Le délai typique entre la réception de la commande et le départ des marchandises du dépôt ou leur préparation pour le ramassage, dans le cas où la méthode de livraison est le ramassage sur site."
 
-#: inc/schema/types/offer.php:236
+#: inc/schema/types/offer.php:269
 msgid "A description of the offer."
 msgstr "Une description de l'offre."
 
-#: inc/schema/types/offer.php:240
+#: inc/schema/types/offer.php:273
 msgid "Disambiguating description"
 msgstr "Description disambiguante"
 
-#: inc/schema/types/offer.php:242
+#: inc/schema/types/offer.php:277
 msgid "A sub property of description. A short description of the item used to disambiguate from other."
 msgstr "Une sous-propriété de description. Une courte description de l'article utilisée pour le disambiguation d'autres."
 
-#: inc/schema/types/offer.php:246
+#: inc/schema/types/offer.php:281
 msgid "Eligible customer type"
 msgstr "Type de client éligible"
 
-#: inc/schema/types/offer.php:247
+#: inc/schema/types/offer.php:284
 msgid "The type(s) of customers for which the given offer is valid."
 msgstr "Le(s) type(s) de clients pour lesquels l'offre donnée est valide."
 
-#: inc/schema/types/offer.php:251
+#: inc/schema/types/offer.php:288
 msgid "Business"
 msgstr "Entreprise"
 
-#: inc/schema/types/offer.php:252
+#: inc/schema/types/offer.php:289
 msgid "End-user"
 msgstr "Utilisateur final"
 
-#: inc/schema/types/offer.php:253
+#: inc/schema/types/offer.php:290
 msgid "Public institution"
 msgstr "Institution publique"
 
-#: inc/schema/types/offer.php:254
+#: inc/schema/types/offer.php:291
 msgid "Reseller"
 msgstr "Revendeur"
 
-#: inc/schema/types/offer.php:261
+#: inc/schema/types/offer.php:298
 msgid "Eligible duration"
 msgstr "Durée éligible"
 
-#: inc/schema/types/offer.php:263
+#: inc/schema/types/offer.php:300
 msgid "The duration for which the given offer is valid."
 msgstr "La durée pendant laquelle l'offre donnée est valide."
 
-#: inc/schema/types/offer.php:270
+#: inc/schema/types/offer.php:307
 msgid "Eligible quantity"
 msgstr "Quantité éligible"
 
-#: inc/schema/types/offer.php:272
+#: inc/schema/types/offer.php:309
 msgid "The interval and unit of measurement of ordering quantities for which the offer or price specification is valid. This allows e.g. specifying that a certain freight charge is valid only for a certain quantity."
 msgstr "L'intervalle et l'unité de mesure des quantités de commande pour lesquelles l'offre ou la spécification de prix est valide. Cela permet par exemple de spécifier qu'un certain frais de fret est valide uniquement pour une certaine quantité."
 
-#: inc/schema/types/offer.php:277
+#: inc/schema/types/offer.php:314
 msgid "Eligible region"
 msgstr "Région éligible"
 
-#: inc/schema/types/offer.php:278
+#: inc/schema/types/offer.php:317
 msgid "The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is valid."
 msgstr "Le code ISO 3166-1 (ISO 3166-1 alpha-2) ou ISO 3166-2, le lieu ou le GeoShape pour la ou les régions géopolitiques pour lesquelles l'offre ou la spécification de frais de livraison est valide."
 
-#: inc/schema/types/offer.php:283
+#: inc/schema/types/offer.php:322
 msgid "Eligible transaction volume"
 msgstr "Volume de transaction éligible"
 
-#: inc/schema/types/offer.php:284
+#: inc/schema/types/offer.php:325
 msgid "The transaction volume, in a monetary unit, for which the offer or price specification is valid."
 msgstr "Le volume de transaction, dans une unité monétaire, pour lequel l'offre ou la spécification de prix est valide."
 
-#: inc/schema/types/offer.php:295
-#: inc/schema/types/offer.php:476
-#: inc/schema/types/product.php:198
+#: inc/schema/types/offer.php:338
+#: inc/schema/types/offer.php:567
+#: inc/schema/types/product.php:229
 msgid "Price"
 msgstr "Prix"
 
-#: inc/schema/types/offer.php:296
+#: inc/schema/types/offer.php:341
 msgid "The price amount for the specified offer."
 msgstr "Le montant du prix pour l'offre spécifiée."
 
-#: inc/schema/types/offer.php:301
-#: inc/schema/types/offer.php:482
-#: inc/schema/types/product.php:207
+#: inc/schema/types/offer.php:347
+#: inc/schema/types/offer.php:576
+#: inc/schema/types/product.php:242
 msgid "Price currency"
 msgstr "Devise du prix"
 
-#: inc/schema/types/offer.php:302
+#: inc/schema/types/offer.php:350
 msgid "The currency of the price for the specified offer."
 msgstr "La devise du prix pour l'offre spécifiée."
 
-#: inc/schema/types/offer.php:308
+#: inc/schema/types/offer.php:357
 msgid "GTIN"
 msgstr "GTIN"
 
-#: inc/schema/types/offer.php:310
+#: inc/schema/types/offer.php:361
 msgid "A Global Trade Item Number (GTIN). GTINs identify trade items, including products and services, using numeric identification codes."
 msgstr "Un numéro d'article commercial mondial (GTIN). Les GTIN identifient les articles commerciaux, y compris les produits et services, à l'aide de codes d'identification numériques."
 
-#: inc/schema/types/offer.php:313
+#: inc/schema/types/offer.php:364
 msgid "GTIN-8"
 msgstr "GTIN-8"
 
-#: inc/schema/types/offer.php:315
+#: inc/schema/types/offer.php:368
 msgid "The GTIN-8 code of the product, or the product to which the offer refers. This code is also known as EAN/UCC-8 or 8-digit EAN."
 msgstr "Le code GTIN-8 du produit, ou du produit auquel l'offre se réfère. Ce code est également connu sous le nom de EAN/UCC-8 ou EAN à 8 chiffres."
 
-#: inc/schema/types/offer.php:318
+#: inc/schema/types/offer.php:372
 msgid "GTIN-12"
 msgstr "GTIN-12"
 
-#: inc/schema/types/offer.php:320
+#: inc/schema/types/offer.php:376
 msgid "The GTIN-12 code of the product, or the product to which the offer refers. The GTIN-12 is the 12-digit GS1 Identification Key composed of a U.P.C. Company Prefix, Item Reference, and Check Digit used to identify trade items."
 msgstr "Le code GTIN-12 du produit, ou du produit auquel l'offre se réfère. Le GTIN-12 est la clé d'identification GS1 à 12 chiffres composée d'un préfixe d'entreprise U.P.C., d'une référence d'article et d'un chiffre de contrôle utilisé pour identifier les articles commerciaux."
 
-#: inc/schema/types/offer.php:323
+#: inc/schema/types/offer.php:380
 msgid "GTIN-13"
 msgstr "GTIN-13"
 
-#: inc/schema/types/offer.php:325
+#: inc/schema/types/offer.php:384
 msgid "The GTIN-13 code of the product, or the product to which the offer refers. This is equivalent to 13-digit ISBN codes and EAN UCC-13. Former 12-digit UPC codes can be converted into a GTIN-13 code by simply adding a preceding zero."
 msgstr "Le code GTIN-13 du produit, ou du produit auquel l'offre fait référence. Cela équivaut aux codes ISBN à 13 chiffres et EAN UCC-13. Les anciens codes UPC à 12 chiffres peuvent être convertis en un code GTIN-13 en ajoutant simplement un zéro devant."
 
-#: inc/schema/types/offer.php:328
+#: inc/schema/types/offer.php:388
 msgid "GTIN-14"
 msgstr "GTIN-14"
 
-#: inc/schema/types/offer.php:330
+#: inc/schema/types/offer.php:392
 msgid "The GTIN-14 code of the product, or the product to which the offer refers."
 msgstr "Le code GTIN-14 du produit, ou du produit auquel l'offre fait référence."
 
-#: inc/schema/types/offer.php:334
+#: inc/schema/types/offer.php:397
 msgid "Has adult consideration"
 msgstr "Considération pour adultes"
 
-#: inc/schema/types/offer.php:335
+#: inc/schema/types/offer.php:400
 msgid "Used to tag an item to be intended or suitable for consumption or use by adults only."
 msgstr "Utilisé pour étiqueter un article destiné ou approprié à la consommation ou à l'utilisation par des adultes uniquement."
 
-#: inc/schema/types/offer.php:355
+#: inc/schema/types/offer.php:420
 msgid "Has measurement"
 msgstr "A une mesure"
 
-#: inc/schema/types/offer.php:357
+#: inc/schema/types/offer.php:422
 msgid "A product measurement, for example the inseam of pants, the wheel size of a bicycle, or the gauge of a screw. Usually an exact measurement, but can also be a range of measurements for adjustable products, for exp belts and ski bindings."
 msgstr "Une mesure de produit, par exemple l'entrejambe d'un pantalon, la taille de la roue d'un vélo ou le calibre d'une vis. Généralement une mesure exacte, mais peut également être une plage de mesures pour des produits ajustables, comme des ceintures et des fixations de ski."
 
-#: inc/schema/types/offer.php:362
+#: inc/schema/types/offer.php:427
 msgid "Includes object"
 msgstr "Inclut l'objet"
 
-#: inc/schema/types/offer.php:364
+#: inc/schema/types/offer.php:431
 msgid "This links to a node or nodes indicating the exact quantity of the products included in an Offer or ProductCollection."
 msgstr "Cela renvoie à un ou plusieurs nœuds indiquant la quantité exacte des produits inclus dans une offre ou une collection de produits."
 
-#: inc/schema/types/offer.php:366
+#: inc/schema/types/offer.php:433
 msgid "Object"
 msgstr "Objet"
 
-#: inc/schema/types/offer.php:376
+#: inc/schema/types/offer.php:445
 msgid "Amount of this good"
 msgstr "Montant de ce bien"
 
-#: inc/schema/types/offer.php:377
+#: inc/schema/types/offer.php:448
 msgid "The quantity of the goods included in the offer."
 msgstr "La quantité des biens inclus dans l'offre."
 
-#: inc/schema/types/offer.php:382
+#: inc/schema/types/offer.php:452
 msgid "Type of good"
 msgstr "Type de bien"
 
-#: inc/schema/types/offer.php:383
+#: inc/schema/types/offer.php:455
 msgid "The product or service that this is referring to."
 msgstr "Le produit ou service auquel cela fait référence."
 
-#: inc/schema/types/offer.php:384
+#: inc/schema/types/offer.php:456
 msgid "Please create a Product or Service and link to this property via a dynamic variable."
 msgstr "Veuillez créer un produit ou un service et le lier à cette propriété via une variable dynamique."
 
-#: inc/schema/types/offer.php:407
+#: inc/schema/types/offer.php:480
 msgid "Unit ode"
 msgstr "Code d'unité"
 
-#: inc/schema/types/offer.php:408
+#: inc/schema/types/offer.php:483
 msgid "The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes than the UN/CEFACT Common Code may be used with a prefix followed by a colon."
 msgstr "L'unité de mesure donnée en utilisant le code commun UN/CEFACT (3 caractères) ou une URL. D'autres codes que le code commun UN/CEFACT peuvent être utilisés avec un préfixe suivi d'un deux-points."
 
-#: inc/schema/types/offer.php:413
+#: inc/schema/types/offer.php:491
 msgid "A string or text indicating the unit of measurement. Useful if you cannot provide a standard unit code for unitCode."
 msgstr "Une chaîne ou un texte indiquant l'unité de mesure. Utile si vous ne pouvez pas fournir un code d'unité standard pour unitCode."
 
-#: inc/schema/types/offer.php:420
+#: inc/schema/types/offer.php:499
 msgid "An image of the offer."
 msgstr "Une image de l'offre."
 
-#: inc/schema/types/offer.php:425
+#: inc/schema/types/offer.php:504
 msgid "Ineligible region"
 msgstr "Région non éligible"
 
-#: inc/schema/types/offer.php:426
+#: inc/schema/types/offer.php:507
 msgid "The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed."
 msgstr "Le code ISO 3166-1 (ISO 3166-1 alpha-2) ou le code ISO 3166-2, le lieu ou la GeoShape pour la ou les régions géopolitiques pour lesquelles l'offre ou la spécification des frais de livraison n'est pas valide, par exemple une région où la transaction n'est pas autorisée."
 
-#: inc/schema/types/offer.php:433
+#: inc/schema/types/offer.php:514
 msgid "Inventory level"
 msgstr "Niveau d'inventaire"
 
-#: inc/schema/types/offer.php:435
+#: inc/schema/types/offer.php:516
 msgid "The current approximate inventory level for the item or items."
 msgstr "Le niveau d'inventaire approximatif actuel pour l'article ou les articles."
 
-#: inc/schema/types/offer.php:440
+#: inc/schema/types/offer.php:521
 msgid "Is family friendly"
 msgstr "Est adapté aux familles"
 
-#: inc/schema/types/offer.php:441
+#: inc/schema/types/offer.php:524
 msgid "Indicates whether this content is family friendly."
 msgstr "Indique si ce contenu est adapté aux familles."
 
-#: inc/schema/types/offer.php:445
+#: inc/schema/types/offer.php:528
 msgid "True"
 msgstr "Vrai"
 
-#: inc/schema/types/offer.php:446
+#: inc/schema/types/offer.php:529
 msgid "False"
 msgstr "Faux"
 
-#: inc/schema/types/offer.php:453
+#: inc/schema/types/offer.php:536
 msgid "Lease length"
 msgstr "Durée du bail"
 
-#: inc/schema/types/offer.php:455
+#: inc/schema/types/offer.php:538
 msgid "Length of the lease for some Accommodation, either particular to some Offer or in some cases intrinsic to the property."
 msgstr "Durée du bail pour un certain hébergement, soit propre à une offre particulière, soit dans certains cas intrinsèque à la propriété."
 
-#: inc/schema/types/offer.php:459
+#: inc/schema/types/offer.php:542
 msgid "Mobile URL"
 msgstr "URL mobile"
 
-#: inc/schema/types/offer.php:461
+#: inc/schema/types/offer.php:546
 msgid "Provided for specific situations in which data consumers need to determine whether one of several provided URLs is a dedicated 'mobile site'. The property is expected only on Product and Offer, rather than Thing."
 msgstr "Fournie pour des situations spécifiques dans lesquelles les consommateurs de données doivent déterminer si l'un des plusieurs URL fournies est un 'site mobile' dédié. La propriété est attendue uniquement sur Produit et Offre, plutôt que sur Chose."
 
-#: inc/schema/types/offer.php:464
+#: inc/schema/types/offer.php:550
 msgid "MPN"
 msgstr "MPN"
 
-#: inc/schema/types/offer.php:466
+#: inc/schema/types/offer.php:554
 msgid "The Manufacturer Part Number (MPN) of the product, or the product to which the offer refers"
 msgstr "Le numéro de pièce du fabricant (MPN) du produit, ou du produit auquel l'offre fait référence"
 
-#: inc/schema/types/offer.php:470
+#: inc/schema/types/offer.php:559
 msgid "Offered by"
 msgstr "Offert par"
 
-#: inc/schema/types/offer.php:471
+#: inc/schema/types/offer.php:562
 msgid "A pointer to the organization or person making the offer."
 msgstr "Un pointeur vers l'organisation ou la personne faisant l'offre."
 
-#: inc/schema/types/offer.php:472
-#: inc/schema/types/offer.php:498
-#: inc/schema/types/web-page.php:118
-#: inc/schema/types/web-page.php:125
-#: inc/schema/types/web-site.php:90
+#: inc/schema/types/offer.php:563
+#: inc/schema/types/offer.php:600
+#: inc/schema/types/web-page.php:134
+#: inc/schema/types/web-page.php:144
+#: inc/schema/types/web-site.php:100
 msgid "Please create a Person or an Organization schema and link to this property via a dynamic variable"
 msgstr "Veuillez créer un schéma de Personne ou d'Organisation et le lier à cette propriété via une variable dynamique"
 
-#: inc/schema/types/offer.php:477
+#: inc/schema/types/offer.php:570
 msgid "The offer price of a product, or of a price component when attached to PriceSpecification and its subtypes. Use the priceCurrency property (with standard formats: ISO 4217 currency format, e.g. \"USD\"; Ticker symbol for cryptocurrencies, e.g. \"BTC\"; well known names for Local Exchange Trading Systems (LETS) and other currency types, e.g. \"Ithaca HOUR\") instead of including ambiguous symbols such as '$' in the value."
 msgstr "Le prix d'offre d'un produit, ou d'un composant de prix lorsqu'il est attaché à PriceSpecification et ses sous-types. Utilisez la propriété priceCurrency (avec des formats standard : format de devise ISO 4217, par exemple \"USD\" ; symbole boursier pour les cryptomonnaies, par exemple \"BTC\" ; noms bien connus pour les systèmes d'échange local (LETS) et d'autres types de devises, par exemple \"Ithaca HOUR\") au lieu d'inclure des symboles ambigus tels que '$' dans la valeur."
 
-#: inc/schema/types/offer.php:483
+#: inc/schema/types/offer.php:579
 msgid "The currency of the price, or a price component when attached to PriceSpecification and its subtypes. Use standard formats: ISO 4217 currency format, e.g. \"USD\"; Ticker symbol for cryptocurrencies, e.g. \"BTC\"; well known names for Local Exchange Trading Systems (LETS) and other currency types, e.g. \"Ithaca HOUR\". "
 msgstr "La devise du prix, ou d'un composant de prix lorsqu'il est attaché à PriceSpecification et ses sous-types. Utilisez des formats standard : format de devise ISO 4217, par exemple \"USD\" ; symbole boursier pour les cryptomonnaies, par exemple \"BTC\" ; noms bien connus pour les systèmes d'échange local (LETS) et d'autres types de devises, par exemple \"Ithaca HOUR\"."
 
-#: inc/schema/types/offer.php:489
+#: inc/schema/types/offer.php:586
 msgid "Price valid until"
 msgstr "Prix valable jusqu'à"
 
-#: inc/schema/types/offer.php:491
+#: inc/schema/types/offer.php:590
 msgid "The date (in ISO 8601 date format) after which the price is no longer available."
 msgstr "La date (au format de date ISO 8601) après laquelle le prix n'est plus disponible."
 
-#: inc/schema/types/offer.php:496
+#: inc/schema/types/offer.php:596
 msgid "Seller"
 msgstr "Vendeur"
 
-#: inc/schema/types/offer.php:497
+#: inc/schema/types/offer.php:599
 msgid "An entity which offers (sells / leases / lends / loans) the services / goods. A seller may also be a provider."
 msgstr "Une entité qui offre (vend / loue / prête / emprunte) les services / biens. Un vendeur peut également être un fournisseur."
 
-#: inc/schema/types/offer.php:501
+#: inc/schema/types/offer.php:603
 msgid "Serial number"
 msgstr "Numéro de série"
 
-#: inc/schema/types/offer.php:503
+#: inc/schema/types/offer.php:607
 msgid "The serial number or any alphanumeric identifier of a particular product. When attached to an offer, it is a shortcut for the serial number of the product included in the offer."
 msgstr "Le numéro de série ou tout identifiant alphanumérique d'un produit particulier. Lorsqu'il est attaché à une offre, c'est un raccourci pour le numéro de série du produit inclus dans l'offre."
 
-#: inc/schema/types/offer.php:506
-#: inc/schema/types/product.php:127
+#: inc/schema/types/offer.php:611
+#: inc/schema/types/product.php:137
 msgid "SKU"
 msgstr "SKU"
 
-#: inc/schema/types/offer.php:508
+#: inc/schema/types/offer.php:615
 msgid "The Stock Keeping Unit (SKU), i.e. a merchant-specific identifier for a product or service, or the product to which the offer refers."
 msgstr "L'unité de gestion des stocks (SKU), c'est-à-dire un identifiant spécifique au commerçant pour un produit ou un service, ou le produit auquel l'offre fait référence."
 
-#: inc/schema/types/offer.php:514
+#: inc/schema/types/offer.php:624
 msgid "The date when the item becomes valid in ISO-8601 format"
 msgstr "La date à laquelle l'article devient valide au format ISO-8601"
 
-#: inc/schema/types/offer.php:519
+#: inc/schema/types/offer.php:632
 msgid "The date after when the item is not valid. For example the end of an offer, salary period, or a period of opening hours. "
 msgstr "La date après laquelle l'article n'est plus valide. Par exemple, la fin d'une offre, d'une période de salaire ou d'une période d'heures d'ouverture."
 
-#: inc/schema/types/organization.php:80
-#: inc/schema/types/product.php:186
-#: inc/schema/types/web-page.php:74
+#: inc/schema/types/organization.php:83
+#: inc/schema/types/product.php:215
+#: inc/schema/types/web-page.php:77
 msgid "Type"
 msgstr "Type"
 
-#: inc/schema/types/organization.php:81
+#: inc/schema/types/organization.php:84
 msgid "Select the type that best describes the organization, such as Corporation, NGO, or EducationalOrganization. This information is used in structured data to define the nature of the entity."
 msgstr "Sélectionnez le type qui décrit le mieux l'organisation, comme Corporation, ONG ou Organisation Éducative. Cette information est utilisée dans les données structurées pour définir la nature de l'entité."
 
-#: inc/schema/types/organization.php:91
+#: inc/schema/types/organization.php:95
 msgid "Enter the full name of the organization as it should appear in structured data. This helps identify the business or entity associated with your website."
 msgstr "Entrez le nom complet de l'organisation tel qu'il doit apparaître dans les données structurées. Cela aide à identifier l'entreprise ou l'entité associée à votre site Web."
 
-#: inc/schema/types/organization.php:97
-#: inc/schema/types/person.php:126
+#: inc/schema/types/organization.php:102
+#: inc/schema/types/person.php:143
 msgid "Email"
 msgstr "Email"
 
-#: inc/schema/types/organization.php:98
+#: inc/schema/types/organization.php:106
 msgid "Provide a valid email address for the organization. This contact detail will be included in your site's structured data."
 msgstr "Fournissez une adresse e-mail valide pour l'organisation. Ce détail de contact sera inclus dans les données structurées de votre site."
 
-#: inc/schema/types/organization.php:103
+#: inc/schema/types/organization.php:110
 msgid "Fax number"
 msgstr "Numéro de fax"
 
-#: inc/schema/types/organization.php:104
+#: inc/schema/types/organization.php:113
 msgid "The fax number of the organization"
 msgstr "Le numéro de fax de l'organisation"
 
-#: inc/schema/types/organization.php:110
+#: inc/schema/types/organization.php:119
 msgid "Founder"
 msgstr "Fondateur"
 
-#: inc/schema/types/organization.php:111
+#: inc/schema/types/organization.php:120
 msgid "A person who founded this organization."
 msgstr "Une personne qui a fondé cette organisation."
 
-#: inc/schema/types/organization.php:113
+#: inc/schema/types/organization.php:122
 msgid "Employee"
 msgstr "Employé"
 
-#: inc/schema/types/organization.php:118
+#: inc/schema/types/organization.php:127
 msgid "Founding date"
 msgstr "Date de fondation"
 
-#: inc/schema/types/organization.php:119
+#: inc/schema/types/organization.php:130
 msgid "The date that this organization was founded."
 msgstr "La date à laquelle cette organisation a été fondée."
 
-#: inc/schema/types/organization.php:125
+#: inc/schema/types/organization.php:138
 msgid "Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas."
 msgstr "Mots-clés ou étiquettes utilisés pour décrire un élément. Plusieurs entrées textuelles dans une liste de mots-clés sont généralement délimitées par des virgules."
 
-#: inc/schema/types/organization.php:129
+#: inc/schema/types/organization.php:142
 msgid "Logo URL"
 msgstr "URL du logo"
 
-#: inc/schema/types/organization.php:131
-msgid "Enter the direct URL to the organization’s official logo image. This logo will be used in structured data to visually represent the brand."
-msgstr "Entrez l'URL directe de l'image du logo officiel de l'organisation. Ce logo sera utilisé dans les données structurées pour représenter visuellement la marque."
-
-#: inc/schema/types/organization.php:137
-#: inc/schema/types/person.php:144
-#: inc/schema/types/thing.php:103
+#: inc/schema/types/organization.php:151
+#: inc/schema/types/person.php:168
+#: inc/schema/types/thing.php:115
 msgid "Same as"
 msgstr "Identique à"
 
-#: inc/schema/types/organization.php:138
-msgid "Add a URL that clearly identifies the organization, such as a Wikipedia page, Wikidata entry, social media profile, or official site. This helps search engines verify the organization’s identity."
-msgstr "Ajoutez une URL qui identifie clairement l'organisation, comme une page Wikipedia, une entrée Wikidata, un profil de réseau social ou un site officiel. Cela aide les moteurs de recherche à vérifier l'identité de l'organisation."
-
-#: inc/schema/types/organization.php:144
+#: inc/schema/types/organization.php:159
 msgid "Slogan"
 msgstr "Slogan"
 
-#: inc/schema/types/organization.php:147
+#: inc/schema/types/organization.php:163
 msgid "Provide the official slogan or motto associated with the organization or individual. This will be included in structured data for additional context."
 msgstr "Fournissez le slogan ou la devise officielle associée à l'organisation ou à l'individu. Cela sera inclus dans les données structurées pour un contexte supplémentaire."
 
-#: inc/schema/types/organization.php:152
-#: inc/schema/types/person.php:139
+#: inc/schema/types/organization.php:169
+#: inc/schema/types/person.php:161
 msgid "Telephone"
 msgstr "Téléphone"
 
-#: inc/schema/types/organization.php:153
+#: inc/schema/types/organization.php:172
 msgid "Enter a working phone number for the organization, including the country and area code. This detail helps complete your structured data profile."
 msgstr "Entrez un numéro de téléphone fonctionnel pour l'organisation, y compris l'indicatif du pays et de la région. Ce détail aide à compléter votre profil de données structurées."
 
-#: inc/schema/types/organization.php:160
+#: inc/schema/types/organization.php:178
 msgid "Provide the full URL of the specific business location. This should be a working link that represents the official page for that location."
 msgstr "Fournissez l'URL complète de l'emplacement commercial spécifique. Cela doit être un lien fonctionnel qui représente la page officielle pour cet emplacement."
 
-#: inc/schema/types/organization.php:180
+#: inc/schema/types/organization.php:198
 #: build/admin-onboarding/index.js:1
 msgid "Organization"
 msgstr "Organisation"
 
-#: inc/schema/types/organization.php:181
+#: inc/schema/types/organization.php:199
 msgid "Corporation"
 msgstr "Société"
 
-#: inc/schema/types/organization.php:182
+#: inc/schema/types/organization.php:200
 msgid "NGO"
 msgstr "ONG"
 
-#: inc/schema/types/organization.php:186
+#: inc/schema/types/organization.php:204
 msgid "Educational"
 msgstr "Éducatif"
 
-#: inc/schema/types/organization.php:188
+#: inc/schema/types/organization.php:206
 msgid "EducationalOrganization"
 msgstr "OrganisationÉducative"
 
-#: inc/schema/types/organization.php:189
+#: inc/schema/types/organization.php:207
 msgid "CollegeOrUniversity"
 msgstr "CollègeOuUniversité"
 
-#: inc/schema/types/organization.php:190
+#: inc/schema/types/organization.php:208
 msgid "ElementarySchool"
 msgstr "ÉcoleÉlémentaire"
 
-#: inc/schema/types/organization.php:191
+#: inc/schema/types/organization.php:209
 msgid "HighSchool"
 msgstr "Lycée"
 
-#: inc/schema/types/organization.php:192
+#: inc/schema/types/organization.php:210
 msgid "MiddleSchool"
 msgstr "Collège"
 
-#: inc/schema/types/organization.php:193
+#: inc/schema/types/organization.php:211
 msgid "Preschool"
 msgstr "ÉcoleMaternelle"
 
-#: inc/schema/types/organization.php:194
+#: inc/schema/types/organization.php:212
 msgid "School"
 msgstr "École"
 
-#: inc/schema/types/organization.php:198
+#: inc/schema/types/organization.php:216
 msgid "Government"
 msgstr "Gouvernement"
 
-#: inc/schema/types/organization.php:200
+#: inc/schema/types/organization.php:218
 msgid "GovernmentOrganization"
 msgstr "OrganisationGouvernementale"
 
-#: inc/schema/types/organization.php:201
+#: inc/schema/types/organization.php:219
 msgid "FundingAgency"
 msgstr "AgenceDeFinancement"
 
-#: inc/schema/types/organization.php:205
+#: inc/schema/types/organization.php:223
 msgid "Medical"
 msgstr "Médical"
 
-#: inc/schema/types/organization.php:207
+#: inc/schema/types/organization.php:225
 msgid "MedicalOrganization"
 msgstr "OrganisationMédicale"
 
-#: inc/schema/types/organization.php:208
+#: inc/schema/types/organization.php:226
 msgid "DiagnosticLab"
 msgstr "LaboratoireDeDiagnostic"
 
-#: inc/schema/types/organization.php:209
+#: inc/schema/types/organization.php:227
 msgid "VeterinaryCare"
 msgstr "SoinsVétérinaires"
 
-#: inc/schema/types/organization.php:213
+#: inc/schema/types/organization.php:231
 msgid "Arts & Performance"
 msgstr "Arts & Performance"
 
-#: inc/schema/types/organization.php:215
+#: inc/schema/types/organization.php:233
 msgid "PerformingGroup"
 msgstr "GroupeDePerformance"
 
-#: inc/schema/types/organization.php:216
+#: inc/schema/types/organization.php:234
 msgid "DanceGroup"
 msgstr "GroupeDeDanse"
 
-#: inc/schema/types/organization.php:217
+#: inc/schema/types/organization.php:235
 msgid "MusicGroup"
 msgstr "GroupeDeMusique"
 
-#: inc/schema/types/organization.php:218
+#: inc/schema/types/organization.php:236
 msgid "TheaterGroup"
 msgstr "GroupeDeThéâtre"
 
-#: inc/schema/types/organization.php:222
+#: inc/schema/types/organization.php:240
 msgid "Media"
 msgstr "Média"
 
-#: inc/schema/types/organization.php:224
+#: inc/schema/types/organization.php:242
 msgid "NewsMediaOrganization"
 msgstr "OrganisationMédia"
 
-#: inc/schema/types/organization.php:228
+#: inc/schema/types/organization.php:246
 msgid "Research"
 msgstr "Recherche"
 
-#: inc/schema/types/organization.php:230
+#: inc/schema/types/organization.php:248
 msgid "Project"
 msgstr "Projet"
 
-#: inc/schema/types/organization.php:231
+#: inc/schema/types/organization.php:249
 msgid "ResearchProject"
 msgstr "ProjetDeRecherche"
 
-#: inc/schema/types/organization.php:232
+#: inc/schema/types/organization.php:250
 msgid "Consortium"
 msgstr "Consortium"
 
-#: inc/schema/types/organization.php:236
+#: inc/schema/types/organization.php:254
 msgid "Sports"
 msgstr "Sports"
 
-#: inc/schema/types/organization.php:238
+#: inc/schema/types/organization.php:256
 msgid "SportsOrganization"
 msgstr "OrganisationSportive"
 
-#: inc/schema/types/organization.php:239
+#: inc/schema/types/organization.php:257
 msgid "SportsTeam"
 msgstr "ÉquipeSportive"
 
-#: inc/schema/types/organization.php:243
+#: inc/schema/types/organization.php:261
 msgid "Services"
 msgstr "Services"
 
-#: inc/schema/types/organization.php:245
+#: inc/schema/types/organization.php:263
 msgid "Airline"
 msgstr "CompagnieAérienne"
 
-#: inc/schema/types/organization.php:246
+#: inc/schema/types/organization.php:264
 msgid "LibrarySystem"
 msgstr "SystèmeDeBibliothèque"
 
-#: inc/schema/types/organization.php:247
+#: inc/schema/types/organization.php:265
 msgid "WorkersUnion"
 msgstr "SyndicatDesTravailleurs"
 
-#: inc/schema/types/person.php:91
+#: inc/schema/types/person.php:100
 msgid "Given name"
 msgstr "Prénom"
 
-#: inc/schema/types/person.php:92
+#: inc/schema/types/person.php:103
 msgid "Enter the given name (first name) of the person. This is used in structured data to identify individuals accurately."
 msgstr "Entrez le prénom (nom de naissance) de la personne. Cela est utilisé dans les données structurées pour identifier les individus avec précision."
 
-#: inc/schema/types/person.php:98
+#: inc/schema/types/person.php:109
 msgid "Family name"
 msgstr "Nom de famille"
 
-#: inc/schema/types/person.php:99
+#: inc/schema/types/person.php:112
 msgid "Enter the family name (last name) of the person. This helps provide a complete name in structured data for personal identification."
 msgstr "Entrez le nom de famille (dernier nom) de la personne. Cela aide à fournir un nom complet dans les données structurées pour l'identification personnelle."
 
-#: inc/schema/types/person.php:105
+#: inc/schema/types/person.php:118
 msgid "Brand"
 msgstr "Marque"
 
-#: inc/schema/types/person.php:106
+#: inc/schema/types/person.php:121
 msgid "List any brands linked to the person, product, service, or organization. This brand relationship will be reflected in your site's structured data."
 msgstr "Listez toutes les marques liées à la personne, au produit, au service ou à l'organisation. Cette relation de marque sera reflétée dans les données structurées de votre site."
 
-#: inc/schema/types/person.php:113
+#: inc/schema/types/person.php:130
 msgid "Identify the primary subject described on the page, such as a person, product, or article. This helps search engines understand what the content is mainly about."
 msgstr "Identifiez le sujet principal décrit sur la page, comme une personne, un produit ou un article. Cela aide les moteurs de recherche à comprendre de quoi traite principalement le contenu."
 
-#: inc/schema/types/person.php:120
+#: inc/schema/types/person.php:137
 msgid "Write a short description about the person. This bio or summary is used in structured data to give context about who they are."
 msgstr "Rédigez une courte description de la personne. Cette biographie ou résumé est utilisée dans les données structurées pour donner un contexte sur qui elle est."
 
-#: inc/schema/types/person.php:127
+#: inc/schema/types/person.php:146
 msgid "The email address of the person"
 msgstr "L'adresse e-mail de la personne"
 
-#: inc/schema/types/person.php:134
+#: inc/schema/types/person.php:157
 msgid "Enter the direct URL of an image representing the person. This image will appear in structured data to provide visual reference."
 msgstr "Entrez l'URL directe d'une image représentant la personne. Cette image apparaîtra dans les données structurées pour fournir une référence visuelle."
 
-#: inc/schema/types/person.php:140
+#: inc/schema/types/person.php:164
 msgid "The telephone number of the person. Be sure to include the country code and area code in the phone number."
 msgstr "Le numéro de téléphone de la personne. Assurez-vous d'inclure l'indicatif du pays et l'indicatif régional dans le numéro de téléphone."
 
-#: inc/schema/types/person.php:145
+#: inc/schema/types/person.php:171
 msgid "Provide a reliable link that clearly identifies the person, such as a Wikipedia page, Wikidata entry, or verified profile. This strengthens structured data accuracy."
 msgstr "Fournissez un lien fiable qui identifie clairement la personne, comme une page Wikipedia, une entrée Wikidata ou un profil vérifié. Cela renforce l'exactitude des données structurées."
 
-#: inc/schema/types/product.php:84
+#: inc/schema/types/product.php:88
 msgid "Enter the product’s official name as it should appear in search results. This will be included in your structured data to identify the product."
 msgstr "Entrez le nom officiel du produit tel qu'il doit apparaître dans les résultats de recherche. Cela sera inclus dans vos données structurées pour identifier le produit."
 
-#: inc/schema/types/product.php:91
+#: inc/schema/types/product.php:95
 msgid "Add a short description of the product’s features or purpose. This summary helps search engines understand what the product is about."
 msgstr "Ajoutez une courte description des caractéristiques ou de l'objectif du produit. Ce résumé aide les moteurs de recherche à comprendre de quoi il s'agit."
 
-#: inc/schema/types/product.php:95
+#: inc/schema/types/product.php:99
 msgid "Brand name"
 msgstr "Nom de la marque"
 
-#: inc/schema/types/product.php:98
+#: inc/schema/types/product.php:103
 msgid "Specify the brand associated with the product. This is used in structured data to highlight the brand relationship."
 msgstr "Spécifiez la marque associée au produit. Cela est utilisé dans les données structurées pour mettre en évidence la relation de marque."
 
-#: inc/schema/types/product.php:122
+#: inc/schema/types/product.php:131
 msgid "Enter the full URL where the product is available or described. This link is used in structured data to direct users and search engines to the product page."
 msgstr "Entrez l'URL complète où le produit est disponible ou décrit. Ce lien est utilisé dans les données structurées pour diriger les utilisateurs et les moteurs de recherche vers la page du produit."
 
-#: inc/schema/types/product.php:131
+#: inc/schema/types/product.php:142
 msgid "Provide the SKU (Stock Keeping Unit), a unique identifier used by merchants to track the product. This helps search engines associate the product with inventory systems."
 msgstr "Fournissez le SKU (Unité de Gestion des Stocks), un identifiant unique utilisé par les commerçants pour suivre le produit. Cela aide les moteurs de recherche à associer le produit aux systèmes d'inventaire."
 
-#: inc/schema/types/product.php:155
+#: inc/schema/types/product.php:170
 msgid "Image URL"
 msgstr "URL de l'image"
 
-#: inc/schema/types/product.php:162
+#: inc/schema/types/product.php:179
 msgid "Image Width"
 msgstr "Largeur de l'image"
 
-#: inc/schema/types/product.php:169
+#: inc/schema/types/product.php:189
 msgid "Image Height"
 msgstr "Hauteur de l'image"
 
-#: inc/schema/types/product.php:181
+#: inc/schema/types/product.php:209
 msgid "Offers"
 msgstr "Offres"
 
-#: inc/schema/types/product.php:191
+#: inc/schema/types/product.php:222
 msgid "Offer"
 msgstr "Offre"
 
-#: inc/schema/types/product.php:192
+#: inc/schema/types/product.php:223
 msgid "Aggregate Offer"
 msgstr "Offre agrégée"
 
-#: inc/schema/types/product.php:201
-msgid "Enter the product’s sale price. This price is included in structured data to reflect what users would pay."
-msgstr "Entrez le prix de vente du produit. Ce prix est inclus dans les données structurées pour refléter ce que les utilisateurs paieraient."
-
-#: inc/schema/types/product.php:221
+#: inc/schema/types/product.php:263
 msgid "Low price"
 msgstr "Prix bas"
 
-#: inc/schema/types/product.php:223
+#: inc/schema/types/product.php:267
 msgid "Shows the lowest price available for the product across different sellers. Use a decimal format (e.g., 199.99) for consistency in structured data."
 msgstr "Affiche le prix le plus bas disponible pour le produit chez différents vendeurs. Utilisez un format décimal (par exemple, 199,99) pour la cohérence dans les données structurées."
 
-#: inc/schema/types/product.php:229
+#: inc/schema/types/product.php:274
 msgid "High price"
 msgstr "Prix élevé"
 
-#: inc/schema/types/product.php:231
+#: inc/schema/types/product.php:278
 msgid "Show the highest listed price for the product across all offers. Use a decimal format to ensure proper display in structured data."
 msgstr "Affiche le prix le plus élevé listé pour le produit parmi toutes les offres. Utilisez un format décimal pour garantir un affichage correct dans les données structurées."
 
-#: inc/schema/types/product.php:237
+#: inc/schema/types/product.php:284
 msgid "Offer count"
 msgstr "Nombre d'offres"
 
-#: inc/schema/types/product.php:238
+#: inc/schema/types/product.php:287
 msgid "Shows the stock status of the product, such as In Stock or Out of Stock. This information helps search engines show real-time availability."
 msgstr "Affiche l'état des stocks du produit, comme En Stock ou Rupture de Stock. Cette information aide les moteurs de recherche à montrer la disponibilité en temps réel."
 
-#: inc/schema/types/thing.php:72
+#: inc/schema/types/thing.php:74
 msgid "The name of the item"
 msgstr "Le nom de l'élément"
 
-#: inc/schema/types/thing.php:77
+#: inc/schema/types/thing.php:81
 msgid "Alternate name"
 msgstr "Nom alternatif"
 
-#: inc/schema/types/thing.php:78
+#: inc/schema/types/thing.php:84
 msgid "An alias for the item"
 msgstr "Un alias pour l'élément"
 
-#: inc/schema/types/thing.php:83
+#: inc/schema/types/thing.php:91
 msgid "A description of the item"
 msgstr "Une description de l'élément"
 
-#: inc/schema/types/thing.php:87
+#: inc/schema/types/thing.php:95
 msgid "Identifier"
 msgstr "Identifiant"
 
-#: inc/schema/types/thing.php:88
+#: inc/schema/types/thing.php:98
 msgid "The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links."
 msgstr "La propriété d'identifiant représente tout type d'identifiant pour tout type de chose, tel que les ISBN, les codes GTIN, les UUID, etc. Schema.org fournit des propriétés dédiées pour représenter bon nombre de ceux-ci, soit sous forme de chaînes textuelles, soit sous forme de liens URL (URI)."
 
-#: inc/schema/types/thing.php:93
+#: inc/schema/types/thing.php:105
 msgid "An image of the item"
 msgstr "Une image de l'élément"
 
-#: inc/schema/types/thing.php:104
+#: inc/schema/types/thing.php:118
 msgid "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website."
 msgstr "URL d'une page Web de référence qui indique sans ambiguïté l'identité de l'élément. Par exemple, l'URL de la page Wikipedia de l'élément, de l'entrée Wikidata ou du site officiel."
 
-#: inc/schema/types/thing.php:110
+#: inc/schema/types/thing.php:126
 msgid "URL of the item"
 msgstr "URL de l'élément"
 
-#: inc/schema/types/web-page.php:84
+#: inc/schema/types/web-page.php:90
 msgid "Enter the title of the webpage as it should appear in search results. This name is included in structured data to describe the specific page."
 msgstr "Entrez le titre de la page Web tel qu'il doit apparaître dans les résultats de recherche. Ce nom est inclus dans les données structurées pour décrire la page spécifique."
 
-#: inc/schema/types/web-page.php:90
+#: inc/schema/types/web-page.php:96
 msgid "The author of the page."
 msgstr "L'auteur de la page."
 
-#: inc/schema/types/web-page.php:95
+#: inc/schema/types/web-page.php:104
 msgid "In language"
 msgstr "En langue"
 
-#: inc/schema/types/web-page.php:96
+#: inc/schema/types/web-page.php:105
 msgid "Specify the language used on the webpage using a standard IETF BCP 47 language code (e.g., en-US). This helps search engines serve content to the appropriate audience."
 msgstr "Spécifiez la langue utilisée sur la page Web en utilisant un code de langue standard IETF BCP 47 (par exemple, en-US). Cela aide les moteurs de recherche à servir le contenu au public approprié."
 
-#: inc/schema/types/web-page.php:115
+#: inc/schema/types/web-page.php:128
 msgid "Contributor"
 msgstr "Contributeur"
 
-#: inc/schema/types/web-page.php:117
+#: inc/schema/types/web-page.php:133
 msgid "A secondary contributor to the page"
 msgstr "Un contributeur secondaire à la page"
 
-#: inc/schema/types/web-page.php:122
-#: inc/schema/types/web-site.php:87
+#: inc/schema/types/web-page.php:138
+#: inc/schema/types/web-site.php:94
 msgid "Copyright holder"
 msgstr "Titulaire des droits d'auteur"
 
-#: inc/schema/types/web-page.php:124
-#: inc/schema/types/web-site.php:89
+#: inc/schema/types/web-page.php:143
+#: inc/schema/types/web-site.php:99
 msgid "The party holding the legal copyright to the page."
 msgstr "La partie détenant le droit d'auteur légal sur la page."
 
-#: inc/schema/types/web-page.php:130
+#: inc/schema/types/web-page.php:149
 msgid "Date the page was created."
 msgstr "Date de création de la page."
 
-#: inc/schema/types/web-page.php:137
+#: inc/schema/types/web-page.php:156
 msgid "Date of modification."
 msgstr "Date de modification."
 
-#: inc/schema/types/web-page.php:145
+#: inc/schema/types/web-page.php:165
 msgid "Write a short summary that describes the content of the webpage. This description is used in structured data to give search engines more context."
 msgstr "Rédigez un court résumé qui décrit le contenu de la page Web. Cette description est utilisée dans les données structurées pour donner aux moteurs de recherche plus de contexte."
 
-#: inc/schema/types/web-page.php:157
+#: inc/schema/types/web-page.php:182
 msgid "Provide the name of the publisher responsible for the content on the page. This information will appear in structured data to show content ownership."
 msgstr "Fournissez le nom de l'éditeur responsable du contenu de la page. Cette information apparaîtra dans les données structurées pour montrer la propriété du contenu."
 
-#: inc/schema/types/web-page.php:163
+#: inc/schema/types/web-page.php:189
 msgid "A thumbnail image relevant to the page."
 msgstr "Une image miniature pertinente pour la page."
 
-#: inc/schema/types/web-page.php:181
+#: inc/schema/types/web-page.php:208
 msgid "WebPage"
 msgstr "PageWeb"
 
-#: inc/schema/types/web-page.php:182
+#: inc/schema/types/web-page.php:209
 msgid "CollectionPage"
 msgstr "PageCollection"
 
-#: inc/schema/types/web-site.php:76
+#: inc/schema/types/web-site.php:80
 msgid "Enter the official name of your website. This name will be used in structured data to represent your site in search results."
 msgstr "Entrez le nom officiel de votre site Web. Ce nom sera utilisé dans les données structurées pour représenter votre site dans les résultats de recherche."
 
-#: inc/schema/types/web-site.php:82
+#: inc/schema/types/web-site.php:86
 msgid "The author of the website."
 msgstr "L'auteur du site Web."
 
-#: inc/schema/types/web-site.php:96
-msgid "Write a brief description of what your website is about. This summary helps search engines understand the site’s purpose and content."
-msgstr "Rédigez une brève description de ce dont parle votre site Web. Ce résumé aide les moteurs de recherche à comprendre le but et le contenu du site."
-
-#: inc/schema/types/web-site.php:108
+#: inc/schema/types/web-site.php:120
 msgid "Potential action"
 msgstr "Action potentielle"
 
-#: inc/schema/types/web-site.php:116
+#: inc/schema/types/web-site.php:132
 msgid "Specify the individual or organization that owns or publishes the website. This will be reflected in the structured data for clear attribution."
 msgstr "Spécifiez l'individu ou l'organisation qui possède ou publie le site Web. Cela sera reflété dans les données structurées pour une attribution claire."
 
-#: inc/schema/types/web-site.php:122
+#: inc/schema/types/web-site.php:141
 msgid "A thumbnail image relevant to the website."
 msgstr "Une image miniature pertinente pour le site Web."
 
@@ -2702,6 +2659,7 @@ msgstr "Titre de terme"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No index"
@@ -2712,6 +2670,7 @@ msgstr "Pas d'index"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Prevents search engines from listing your page in search results."
@@ -2722,6 +2681,7 @@ msgstr "Empêche les moteurs de recherche de lister votre page dans les résulta
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No follow"
@@ -2732,6 +2692,7 @@ msgstr "Pas de suivi"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Tells search engines not to follow any links on your page."
@@ -2742,6 +2703,7 @@ msgstr "Indique aux moteurs de recherche de ne pas suivre les liens sur votre pa
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No archive"
@@ -2752,6 +2714,7 @@ msgstr "Pas d'archive"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Blocks search engines from storing a cached version of your page."
@@ -2762,6 +2725,7 @@ msgstr "Bloque les moteurs de recherche de stocker une version mise en cache de 
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "This content will be set as the meta description tag and may appear in search results. Keep it short and clearly explain what the page is about."
@@ -2778,6 +2742,7 @@ msgstr "Aperçu du moteur de recherche"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "View a preview of how your page may appear in search engine results. This preview is for guidance only and might not exactly match how search engines display your content."
@@ -2953,28 +2918,31 @@ msgstr "Réussi"
 msgid "Settings"
 msgstr "Paramètres"
 
+#: inc/admin/seo-popup.php:140
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
 #: build/seo-popup/index.js:1
 msgid "SureRank Meta Box"
 msgstr "Boîte Meta SureRank"
 
-#: inc/schema/types/article.php:237
+#: inc/schema/types/article.php:269
 msgid "NewsArticle"
 msgstr "ArticleDeNouvelles"
 
-#: inc/schema/types/article.php:238
+#: inc/schema/types/article.php:270
 msgid "BlogPosting"
 msgstr "PublicationDeBlog"
 
 #: inc/analyzer/post-analyzer.php:271
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Page contains at least one subheading."
 msgstr "La page contient au moins un sous-titre."
 
 #: inc/analyzer/post-analyzer.php:405
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "All images on this page have alt text attributes."
 msgstr "Toutes les images de cette page ont des attributs alt."
@@ -2989,12 +2957,14 @@ msgstr "Les images sur le post/la page ont des attributs alt."
 
 #: inc/analyzer/post-analyzer.php:495
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "This page includes images or videos to enhance content."
 msgstr "Cette page inclut des images ou des vidéos pour enrichir le contenu."
 
 #: inc/analyzer/post-analyzer.php:495
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No images or videos found on this page."
 msgstr "Aucune image ou vidéo trouvée sur cette page."
@@ -3029,18 +2999,21 @@ msgstr "La description du moteur de recherche dépasse %s caractères."
 
 #: inc/analyzer/utils.php:157
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Canonical tag is not present on the page."
 msgstr "La balise canonique n'est pas présente sur la page."
 
 #: inc/analyzer/utils.php:164
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Canonical tag is present on the page."
 msgstr "La balise canonique est présente sur la page."
 
 #: inc/analyzer/utils.php:187
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Page URL is short and SEO-friendly."
 msgstr "L'URL de la page est courte et conviviale pour le SEO."
@@ -3048,6 +3021,7 @@ msgstr "L'URL de la page est courte et conviviale pour le SEO."
 #. translators: %s is the URL length.
 #: inc/analyzer/utils.php:190
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 #, php-format,js-format
 msgid "Page URL is longer than %s characters and may affect SEO and readability."
@@ -3059,6 +3033,7 @@ msgstr "Ces liens brisés ont été trouvés sur la page :"
 
 #: inc/api/analyzer.php:1504
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "One or more broken links found on the page."
 msgstr "Un ou plusieurs liens brisés trouvés sur la page."
@@ -3068,16 +3043,19 @@ msgid "This setting is managed by the SureRank plugin, so you don’t need to co
 msgstr "Ce paramètre est géré par le plugin SureRank, donc vous n'avez pas besoin de configurer les règles d'indexation pour les tunnels ici."
 
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "This page includes video(s) but no images."
 msgstr "Cette page inclut des vidéo(s) mais pas d'images."
 
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No links found on this page."
 msgstr "Aucun lien trouvé sur cette page."
 
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Links are present on this page."
 msgstr "Des liens sont présents sur cette page."
@@ -3104,6 +3082,7 @@ msgstr "Les balises Open Graph ne sont pas présentes sur la page."
 
 #: inc/analyzer/post-analyzer.php:564
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No broken links found on the page."
 msgstr "Aucun lien brisé trouvé sur la page."
@@ -3218,18 +3197,18 @@ msgstr "Une fois qu'un site est sélectionné, vous verrez comment votre contenu
 msgid "Status"
 msgstr "Statut"
 
-#: inc/modules/email-reports/controller.php:566
+#: inc/modules/email-reports/controller.php:528
 #: build/admin-dashboard/index.js:1
 #: build/search-console-widget/index.js:1
 msgid "Clicks"
 msgstr "Clics"
 
-#: inc/modules/email-reports/controller.php:567
+#: inc/modules/email-reports/controller.php:529
 #: build/admin-dashboard/index.js:1
 msgid "Avg. Position"
 msgstr "Position moyenne"
 
-#: inc/modules/email-reports/controller.php:568
+#: inc/modules/email-reports/controller.php:530
 #: build/admin-dashboard/index.js:1
 #: build/search-console-widget/index.js:1
 msgid "Impressions"
@@ -3432,6 +3411,7 @@ msgstr "Votre recherche n'a donné aucun résultat. Veuillez essayer un mot-clé
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Issue"
@@ -3532,6 +3512,7 @@ msgstr "Le nom du site utilisé dans les titres et descriptions méta est tiré 
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Site Icon: "
@@ -3542,6 +3523,7 @@ msgstr "Icône du site :"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "The site icon (favicon) appears in browser tabs, bookmarks, and mobile devices. To update it, go to General Settings → Site Icon and upload a new image under Site Identity."
@@ -3552,6 +3534,7 @@ msgstr "L'icône du site (favicon) apparaît dans les onglets de navigateur, les
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Change Here"
@@ -3674,6 +3657,7 @@ msgstr "X"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Invalid Date"
@@ -3684,6 +3668,7 @@ msgstr "Date invalide"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "No Date"
@@ -3752,10 +3737,6 @@ msgid "Properties"
 msgstr "Propriétés"
 
 #: build/admin-dashboard/index.js:1
-msgid "Display Conditions"
-msgstr "Conditions d'affichage"
-
-#: build/admin-dashboard/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Remove"
 msgstr "Supprimer"
@@ -3785,52 +3766,8 @@ msgid "Please enter your social media profiles. These links can appear in the kn
 msgstr "Veuillez entrer vos profils de médias sociaux. Ces liens peuvent apparaître dans le panneau de connaissances des résultats de recherche de votre site Web."
 
 #: build/admin-onboarding/index.js:1
-msgid "Add another profile"
-msgstr "Ajouter un autre profil"
-
-#: build/admin-onboarding/index.js:1
-msgid "You're Good to Go! 🚀"
-msgstr "Vous êtes prêt à partir ! 🚀"
-
-#: build/admin-onboarding/index.js:1
-msgid "Fix SEO issues, if any"
-msgstr "Corriger les problèmes SEO, le cas échéant"
-
-#: build/admin-onboarding/index.js:1
-msgid "Analyze your website"
-msgstr "Analyser votre site Web"
-
-#: build/admin-onboarding/index.js:1
-msgid "Optimize your content"
-msgstr "Optimiser votre contenu"
-
-#: build/admin-onboarding/index.js:1
-msgid "Solar system and a rocket"
-msgstr "Système solaire et une fusée"
-
-#: build/admin-onboarding/index.js:1
 msgid "Go To Dashboard"
 msgstr "Aller au tableau de bord"
-
-#: build/admin-onboarding/index.js:1
-msgid "First Name"
-msgstr "Prénom"
-
-#: build/admin-onboarding/index.js:1
-msgid "Last Name"
-msgstr "Nom de famille"
-
-#: build/admin-onboarding/index.js:1
-msgid "Email Address"
-msgstr "Adresse e-mail"
-
-#: build/admin-onboarding/index.js:1
-msgid "Okay, just one last step…"
-msgstr "D'accord, juste une dernière étape…"
-
-#: build/admin-onboarding/index.js:1
-msgid "Help us tailor your SureRank experience and keep you updated with SEO tips, feature improvements, and helpful recommendations."
-msgstr "Aidez-nous à personnaliser votre expérience SureRank et à vous tenir informé des conseils SEO, des améliorations de fonctionnalités et des recommandations utiles."
 
 #: build/admin-onboarding/index.js:1
 msgid "Finish"
@@ -3951,6 +3888,7 @@ msgid "Issues Detected"
 msgstr "Problèmes détectés"
 
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Page does not contain at least one subheading."
 msgstr "La page ne contient pas au moins un sous-titre."
@@ -3981,11 +3919,11 @@ msgstr "La description du moteur de recherche de la page d'accueil est présente
 msgid "Set the search engine visibility on <a href=\"%s\">WordPress Reading settings page</a>."
 msgstr "Définissez la visibilité du moteur de recherche sur la <a href=\"%s\">page des paramètres de lecture de WordPress</a>."
 
-#: inc/schema/types/web-page.php:183
+#: inc/schema/types/web-page.php:210
 msgid "AboutPage"
 msgstr "PageÀPropos"
 
-#: inc/schema/types/web-page.php:184
+#: inc/schema/types/web-page.php:211
 msgid "ContactPage"
 msgstr "PageContact"
 
@@ -4025,6 +3963,7 @@ msgstr "Critique"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Warning"
@@ -4033,6 +3972,7 @@ msgstr[0] "Avertissement"
 msgstr[1] ""
 
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "These broken links were found on the page:"
 msgstr "Ces liens brisés ont été trouvés sur la page :"
@@ -4190,22 +4130,13 @@ msgstr "Requête de recherche"
 msgid "Search query (only available on search results page)"
 msgstr "Requête de recherche (disponible uniquement sur la page de résultats de recherche)"
 
-#: loader.php:288
+#: loader.php:290
 msgid "Rate our plugin"
 msgstr "Évaluez notre plugin"
 
 #: build/admin-dashboard/index.js:1
 msgid "Learn about Google Search Console and how SureRank uses it for optimizing your website."
 msgstr "En savoir plus sur Google Search Console et comment SureRank l'utilise pour optimiser votre site web."
-
-#: build/admin-onboarding/index.js:1
-#, js-format
-msgid "Get notified about SEO issues on your website. Plus help improve SureRank by sharing how you use the plugin. %1$s"
-msgstr "Recevez des notifications sur les problèmes SEO de votre site web. De plus, aidez à améliorer SureRank en partageant comment vous utilisez le plugin. %1$s"
-
-#: build/admin-onboarding/index.js:1
-msgid "View our Privacy Policy"
-msgstr "Voir notre politique de confidentialité"
 
 #: build/admin-onboarding/index.js:1
 msgid "Phone Number (Optional)"
@@ -4251,6 +4182,7 @@ msgstr "Cliquez ici pour découvrir plus de détails sur cette vérification."
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "issue"
@@ -4757,27 +4689,27 @@ msgstr "Gardez-le court, précis et convivial. Vous pouvez le modifier depuis le
 msgid "Think of it like this: if your website was a story, the sitemap would be the chapter list — helping Google and other search engines jump to the right sections. It doesn’t change how your site looks to visitors, but it makes a big difference in how your site is discovered and understood behind the scenes."
 msgstr "Pensez-y ainsi : si votre site web était une histoire, le sitemap serait la liste des chapitres — aidant Google et les autres moteurs de recherche à accéder aux bonnes sections. Il ne change pas l'apparence de votre site pour les visiteurs, mais fait une grande différence dans la façon dont votre site est découvert et compris en coulisses."
 
-#: inc/api/onboarding.php:89
+#: inc/api/onboarding.php:61
 msgid "Type of the website."
 msgstr "Type de site web."
 
-#: inc/api/onboarding.php:98
+#: inc/api/onboarding.php:70
 msgid "Name of the website."
 msgstr "Nom du site web."
 
-#: inc/api/onboarding.php:116
+#: inc/api/onboarding.php:88
 msgid "Name of the website owner."
 msgstr "Nom du propriétaire du site web."
 
-#: inc/api/onboarding.php:125
+#: inc/api/onboarding.php:97
 msgid "Phone number of the website owner."
 msgstr "Numéro de téléphone du propriétaire du site web."
 
-#: inc/api/onboarding.php:134
+#: inc/api/onboarding.php:106
 msgid "Type of the organization."
 msgstr "Type d'organisation."
 
-#: inc/api/onboarding.php:154
+#: inc/api/onboarding.php:126
 msgid "Social profiles URLs."
 msgstr "URLs des profils sociaux."
 
@@ -4825,14 +4757,6 @@ msgid "Search Console"
 msgstr "Search Console"
 
 #: build/admin-onboarding/index.js:1
-msgid "You've successfully set up SureRank, the first step to SEO success and your site is ready. Now, let's optimize your website for search engines."
-msgstr "Vous avez configuré avec succès SureRank, la première étape vers le succès SEO et votre site est prêt. Maintenant, optimisons votre site web pour les moteurs de recherche."
-
-#: build/admin-onboarding/index.js:1
-msgid "Here's What You Can Do With SureRank:"
-msgstr "Voici ce que vous pouvez faire avec SureRank :"
-
-#: build/admin-onboarding/index.js:1
 msgid "This is required"
 msgstr "Ceci est requis"
 
@@ -4873,103 +4797,103 @@ msgstr "Un autre plugin SEO, %s, détecté sur le site."
 msgid "Tools"
 msgstr "Outils"
 
-#: inc/api/migrations.php:113
+#: inc/api/migrations.php:118
 msgid "Post IDs to migrate."
 msgstr "ID des articles à migrer."
 
-#: inc/api/migrations.php:120
-#: inc/api/migrations.php:175
+#: inc/api/migrations.php:125
+#: inc/api/migrations.php:180
 msgid "Whether to clean up source data after import."
 msgstr "Nettoyer les données source après l'importation."
 
-#: inc/api/migrations.php:133
-#: inc/api/migrations.php:188
+#: inc/api/migrations.php:138
+#: inc/api/migrations.php:193
 msgid "Page number for pagination."
 msgstr "Numéro de page pour la pagination."
 
-#: inc/api/migrations.php:168
+#: inc/api/migrations.php:173
 msgid "Term IDs to migrate."
 msgstr "ID des termes à migrer."
 
-#: inc/api/migrations.php:223
+#: inc/api/migrations.php:228
 msgid "Whether to clean up source global data after import."
 msgstr "Nettoyer les données globales source après l'importation."
 
-#: inc/api/migrations.php:241
+#: inc/api/migrations.php:246
 msgid "Plugin slug to deactivate."
 msgstr "Slug du plugin à désactiver."
 
-#: inc/api/migrations.php:310
-#: inc/api/migrations.php:336
+#: inc/api/migrations.php:315
+#: inc/api/migrations.php:341
 msgid "Invalid importer methods."
 msgstr "Méthodes d'importation invalides."
 
-#: inc/api/migrations.php:387
+#: inc/api/migrations.php:392
 msgid "Invalid response from importer."
 msgstr "Réponse invalide de l'importateur."
 
 #. translators: 1: import status, 2: plugin name
-#: inc/api/migrations.php:405
+#: inc/api/migrations.php:410
 #, php-format
 msgid "Global settings %1$s from %2$s."
 msgstr "Paramètres globaux %1$s de %2$s."
 
-#: inc/api/migrations.php:406
+#: inc/api/migrations.php:411
 msgid "imported successfully"
 msgstr "importé avec succès"
 
-#: inc/api/migrations.php:406
+#: inc/api/migrations.php:411
 msgid "failed to import"
 msgstr "échec de l'importation"
 
-#: inc/api/migrations.php:485
+#: inc/api/migrations.php:490
 msgid "No public taxonomies found."
 msgstr "Aucune taxonomie publique trouvée."
 
-#: inc/api/migrations.php:610
+#: inc/api/migrations.php:615
 msgid "You do not have permission to deactivate plugins."
 msgstr "Vous n'avez pas la permission de désactiver les plugins."
 
-#: inc/api/migrations.php:616
+#: inc/api/migrations.php:621
 msgid "Plugin not found."
 msgstr "Plugin non trouvé."
 
-#: inc/api/migrations.php:620
+#: inc/api/migrations.php:625
 msgid "Plugin is already inactive."
 msgstr "Le plugin est déjà inactif."
 
-#: inc/api/migrations.php:628
+#: inc/api/migrations.php:633
 msgid "Plugin deactivated successfully."
 msgstr "Plugin désactivé avec succès."
 
-#: inc/api/migrations.php:1031
+#: inc/api/migrations.php:1039
 msgid "Invalid plugin slug specified."
 msgstr "Slug de plugin spécifié invalide."
 
-#: inc/api/migrations.php:1132
+#: inc/api/migrations.php:1140
 msgid "No data found for this item."
 msgstr "Aucune donnée trouvée pour cet élément."
 
-#: inc/api/migrations.php:1138
+#: inc/api/migrations.php:1146
 msgid "Detection failed."
 msgstr "Échec de la détection."
 
-#: inc/api/migrations.php:1145
+#: inc/api/migrations.php:1153
 msgid "Invalid import response."
 msgstr "Réponse d'importation invalide."
 
-#: inc/api/migrations.php:1154
+#: inc/api/migrations.php:1162
 msgid "Import failed."
 msgstr "Échec de l'importation."
 
 #. translators: %s: error message.
-#: inc/api/migrations.php:1159
+#: inc/api/migrations.php:1167
 #, php-format
 msgid "Error: %s"
 msgstr "Erreur : %s"
 
 #. translators: 1: imported count, 2: total count, 3: item type, 4: plugin name.
-#: inc/api/migrations.php:1202
+#: inc/api/migrations.php:1210
 #, php-format
 msgid "Imported %1$d of %2$d %3$s from %4$s."
 msgstr "Importé %1$d sur %2$d %3$s de %4$s."
@@ -5109,13 +5033,13 @@ msgid "No general settings to import for %1$s %2$d."
 msgstr "Aucun paramètre général à importer pour %1$s %2$d."
 
 #. translators: %d: ID, %s: type.
-#: inc/importers/rankmath/rank-math.php:381
+#: inc/importers/rankmath/rank-math.php:396
 #, php-format
 msgid "Social metadata imported for %1$s %2$d."
 msgstr "Métadonnées sociales importées pour %1$s %2$d."
 
 #. translators: %d: ID, %s: type.
-#: inc/importers/rankmath/rank-math.php:392
+#: inc/importers/rankmath/rank-math.php:407
 #, php-format
 msgid "No social metadata to import for %1$s %2$d."
 msgstr "Aucune métadonnée sociale à importer pour %1$s %2$d."
@@ -5541,6 +5465,7 @@ msgid "Status:"
 msgstr "Statut :"
 
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Failed to check link"
 msgstr "Échec de la vérification du lien"
@@ -5625,146 +5550,146 @@ msgstr "Échec de l'exportation : %s"
 msgid "Import failed: %s"
 msgstr "Échec de l'importation : %s"
 
-#: inc/api/migrations.php:260
+#: inc/api/migrations.php:265
 msgid "Plugin slug that was migrated from."
 msgstr "Slug du plugin qui a été migré."
 
 #. translators: %s: importer class name
 #. translators: %s: importer class name.
-#: inc/api/migrations.php:371
-#: inc/api/migrations.php:1048
+#: inc/api/migrations.php:376
+#: inc/api/migrations.php:1056
 #, php-format
 msgid "Invalid importer class: %s does not implement Importer."
 msgstr "Classe d'importeur invalide : %s ne met pas en œuvre Importer."
 
-#: inc/api/migrations.php:642
+#: inc/api/migrations.php:647
 msgid "Invalid plugin slug."
 msgstr "Slug du plugin invalide."
 
 #. translators: %s: plugin slug.
-#: inc/api/migrations.php:652
+#: inc/api/migrations.php:660
 #, php-format
 msgid "Migration from %s marked as completed successfully."
 msgstr "Migration depuis %s marquée comme terminée avec succès."
 
-#: inc/api/migrations.php:752
+#: inc/api/migrations.php:760
 msgid "WP Rocket"
 msgstr "WP Rocket"
 
-#: inc/api/migrations.php:758
+#: inc/api/migrations.php:766
 msgid "FlyingPress"
 msgstr "FlyingPress"
 
-#: inc/api/migrations.php:764
+#: inc/api/migrations.php:772
 msgid "NitroPack"
 msgstr "NitroPack"
 
-#: inc/api/migrations.php:770
+#: inc/api/migrations.php:778
 msgid "WP-Optimize Premium"
 msgstr "WP-Optimize Premium"
 
-#: inc/api/migrations.php:776
+#: inc/api/migrations.php:784
 msgid "Swift Performance"
 msgstr "Swift Performance"
 
-#: inc/api/migrations.php:784
+#: inc/api/migrations.php:792
 msgid "LiteSpeed Cache"
 msgstr "LiteSpeed Cache"
 
-#: inc/api/migrations.php:790
+#: inc/api/migrations.php:798
 msgid "W3 Total Cache"
 msgstr "W3 Total Cache"
 
-#: inc/api/migrations.php:796
+#: inc/api/migrations.php:804
 msgid "WP Super Cache"
 msgstr "WP Super Cache"
 
-#: inc/api/migrations.php:802
+#: inc/api/migrations.php:810
 msgid "WP Fastest Cache"
 msgstr "WP Fastest Cache"
 
-#: inc/api/migrations.php:808
+#: inc/api/migrations.php:816
 msgid "WP-Optimize"
 msgstr "WP-Optimize"
 
-#: inc/api/migrations.php:814
+#: inc/api/migrations.php:822
 msgid "Breeze"
 msgstr "Breeze"
 
-#: inc/api/migrations.php:820
+#: inc/api/migrations.php:828
 msgid "Cache Enabler"
 msgstr "Cache Enabler"
 
-#: inc/api/migrations.php:826
+#: inc/api/migrations.php:834
 msgid "Comet Cache"
 msgstr "Comet Cache"
 
-#: inc/api/migrations.php:832
+#: inc/api/migrations.php:840
 msgid "Swift Performance Lite"
 msgstr "Swift Performance Lite"
 
-#: inc/api/migrations.php:840
+#: inc/api/migrations.php:848
 msgid "Redis Object Cache"
 msgstr "Redis Object Cache"
 
-#: inc/api/migrations.php:848
+#: inc/api/migrations.php:856
 msgid "Hummingbird Performance"
 msgstr "Hummingbird Performance"
 
-#: inc/api/migrations.php:854
+#: inc/api/migrations.php:862
 msgid "Autoptimize"
 msgstr "Autoptimize"
 
-#: inc/api/migrations.php:860
+#: inc/api/migrations.php:868
 msgid "SiteGround Speed Optimizer"
 msgstr "SiteGround Speed Optimizer"
 
-#: inc/api/migrations.php:866
+#: inc/api/migrations.php:874
 msgid "Cloudflare"
 msgstr "Cloudflare"
 
-#: inc/api/migrations.php:872
+#: inc/api/migrations.php:880
 msgid "Hyper Cache"
 msgstr "Hyper Cache"
 
-#: inc/api/migrations.php:878
+#: inc/api/migrations.php:886
 msgid "Perfmatters"
 msgstr "Perfmatters"
 
-#: inc/api/migrations.php:886
+#: inc/api/migrations.php:894
 msgid "SpeedyCache"
 msgstr "SpeedyCache"
 
-#: inc/api/migrations.php:892
+#: inc/api/migrations.php:900
 msgid "Docket Cache"
 msgstr "Docket Cache"
 
-#: inc/api/migrations.php:898
+#: inc/api/migrations.php:906
 msgid "10Web Booster"
 msgstr "10Web Booster"
 
-#: inc/api/migrations.php:904
+#: inc/api/migrations.php:912
 msgid "Super Page Cache"
 msgstr "Super Page Cache"
 
-#: inc/api/migrations.php:910
+#: inc/api/migrations.php:918
 msgid "WP REST Cache"
 msgstr "WP REST Cache"
 
-#: inc/api/migrations.php:916
+#: inc/api/migrations.php:924
 msgid "Cache Control"
 msgstr "Contrôle du cache"
 
-#: inc/api/migrations.php:924
+#: inc/api/migrations.php:932
 msgid "Aruba HiSpeed Cache"
 msgstr "Aruba HiSpeed Cache"
 
-#: inc/api/migrations.php:930
+#: inc/api/migrations.php:938
 msgid "atec Cache APCu"
 msgstr "atec Cache APCu"
 
 #. translators: 1: detection method, 2: detection value
-#: inc/api/migrations.php:966
+#: inc/api/migrations.php:974
 #, php-format
 msgid "Detected via %1$s: %2$s"
 msgstr "Détecté via %1$s : %2$s"
@@ -6015,6 +5940,7 @@ msgstr "Le plugin"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "SEO is Optimized"
@@ -6177,26 +6103,26 @@ msgid "SureRank SEO"
 msgstr "SureRank SEO"
 
 #. translators: %s: list of plugin slugs
-#: inc/api/migrations.php:107
-#: inc/api/migrations.php:162
+#: inc/api/migrations.php:112
+#: inc/api/migrations.php:167
 #, php-format
 msgid "Plugin slug to migrate from (e.g. %s)."
 msgstr "Slug du plugin à migrer depuis (par ex. %s)."
 
 #. translators: %s: list of plugin slugs
-#: inc/api/migrations.php:139
+#: inc/api/migrations.php:144
 #, php-format
 msgid "Plugin slug to filter posts by (e.g. %s)."
 msgstr "Slug du plugin pour filtrer les publications (par ex. %s)."
 
 #. translators: %s: list of plugin slugs
-#: inc/api/migrations.php:195
+#: inc/api/migrations.php:200
 #, php-format
 msgid "Plugin slug to filter terms by (e.g. %s)."
 msgstr "Slug du plugin pour filtrer les termes (par ex. %s)."
 
 #. translators: %s: list of plugin slugs
-#: inc/api/migrations.php:216
+#: inc/api/migrations.php:221
 #, php-format
 msgid "Plugin slug to migrate global settings from (e.g. %s)."
 msgstr "Slug du plugin pour migrer les paramètres globaux (par ex. %s)."
@@ -6259,6 +6185,7 @@ msgstr "Erreur lors de l'importation des paramètres globaux SEOPress : %s"
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 #, js-format
@@ -6270,6 +6197,7 @@ msgstr "%1$d %2$s nécessite une attention."
 #: build/admin-seo-bar/index.js:1
 #: build/bricks/index.js:1
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/search-console-widget/index.js:1
 #: build/seo-popup/index.js:1
 msgid "All SEO checks passed."
@@ -6373,24 +6301,28 @@ msgstr "Vérifications de la page"
 msgid "SEO analysis is not available for this page."
 msgstr "L'analyse SEO n'est pas disponible pour cette page."
 
+#: inc/admin/seo-popup.php:144
 #: build/seo-popup/index.js:1
 msgid "Open SureRank Meta Box"
 msgstr "Ouvrir la boîte à outils SureRank"
 
 #: inc/analyzer/post-analyzer.php:408
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "One or more images are missing alt text attributes."
 msgstr "Une ou plusieurs images manquent d'attributs alt."
 
 #: inc/analyzer/post-analyzer.php:411
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "But don't worry, we will add them automatically for you."
 msgstr "Mais ne vous inquiétez pas, nous les ajouterons automatiquement pour vous."
 
 #: inc/analyzer/post-analyzer.php:414
 #: build/elementor/index.js:1
+#: build/front-end-meta-box/index.js:1
 #: build/seo-popup/index.js:1
 msgid "You can add them manually or turn on auto-set image title and alt in the settings."
 msgstr "Vous pouvez les ajouter manuellement ou activer la configuration automatique du titre et de l'alt dans les paramètres."
@@ -6601,11 +6533,11 @@ msgstr "Échec de la vérification du nonce"
 msgid "No user email found in the decrypted data."
 msgstr "Aucun e-mail utilisateur trouvé dans les données déchiffrées"
 
-#: inc/modules/content-generation/utils.php:159
+#: inc/modules/content-generation/utils.php:173
 msgid "No authentication data found."
 msgstr "Aucune donnée d'authentification trouvée"
 
-#: inc/modules/content-generation/utils.php:163
+#: inc/modules/content-generation/utils.php:177
 msgid "No data found for the provided key."
 msgstr "Aucune donnée trouvée pour la clé fournie"
 
@@ -6629,7 +6561,7 @@ msgid "Invalid post ID"
 msgstr "ID de publication invalide"
 
 #. translators: %s is response code
-#: inc/modules/content-generation/controller.php:74
+#: inc/modules/content-generation/controller.php:75
 #, php-format
 msgid "Failed to generate content with error code %s."
 msgstr "Échec de la génération du contenu avec le code d'erreur %s"
@@ -6724,7 +6656,7 @@ msgstr "ID de terme invalide"
 msgid "Invalid term ID provided"
 msgstr "ID de terme fourni invalide"
 
-#: inc/modules/content-generation/utils.php:196
+#: inc/modules/content-generation/utils.php:210
 msgid "No authentication token found. Please connect your account."
 msgstr "Aucun jeton d'authentification trouvé. Veuillez connecter votre compte."
 
@@ -6948,18 +6880,22 @@ msgstr "Oups ! Une erreur est survenue lors de la génération du contenu. Vous 
 msgid "Retry"
 msgstr "Réessayer"
 
+#: build/admin-onboarding/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Authentication timeout. Please try again."
 msgstr "Délai d'authentification dépassé. Veuillez réessayer."
 
+#: build/admin-onboarding/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Authentication successful!"
 msgstr "Authentification réussie !"
 
+#: build/admin-onboarding/index.js:1
 #: build/seo-popup/index.js:1
 msgid "An error occurred during authentication"
 msgstr "Une erreur s'est produite lors de l'authentification"
 
+#: build/admin-onboarding/index.js:1
 #: build/seo-popup/index.js:1
 msgid "Popup blocked. Redirecting to authentication…"
 msgstr "Popup bloqué. Redirection vers l'authentification…"
@@ -6968,15 +6904,15 @@ msgstr "Popup bloqué. Redirection vers l'authentification…"
 msgid "Connect SureRank AI"
 msgstr "Connecter SureRank AI"
 
-#: inc/modules/content-generation/controller.php:68
+#: inc/modules/content-generation/controller.php:69
 msgid "Unable to generate content at this time. Please check your input and try again, or contact support if you need help."
 msgstr "Impossible de générer du contenu pour le moment. Veuillez vérifier votre saisie et réessayer, ou contacter le support si vous avez besoin d'aide."
 
-#: inc/modules/content-generation/utils.php:177
+#: inc/modules/content-generation/utils.php:191
 msgid "Something went wrong on our end. Please try again in a moment, or contact support if you need help."
 msgstr "Un problème est survenu de notre côté. Veuillez réessayer dans un instant, ou contacter le support si vous avez besoin d'aide."
 
-#: inc/modules/content-generation/controller.php:86
+#: inc/modules/content-generation/controller.php:87
 msgid "Unable to generate content at this time. Please try again, or contact support if you need help."
 msgstr "Impossible de générer du contenu pour le moment. Veuillez réessayer, ou contacter le support si vous avez besoin d'aide."
 
@@ -7088,6 +7024,7 @@ msgid "Connect & Create New Property"
 msgstr "Connecter & Créer une nouvelle propriété"
 
 #: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
 msgid "Connected"
 msgstr "Connecté"
 
@@ -7191,7 +7128,6 @@ msgstr "Aucune donnée de performance de contenu disponible. Veuillez revenir pl
 msgid "Once connected to Google Search Console, you'll see how your content is performing in search engines here."
 msgstr "Une fois connecté à Google Search Console, vous verrez ici comment votre contenu performe dans les moteurs de recherche."
 
-#: inc/admin/dashboard.php:291
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
 msgid "Redirections"
@@ -7205,7 +7141,7 @@ msgstr "Obtenir Pro ↗"
 msgid "SureRank Website Insights"
 msgstr "Aperçus du site SureRank"
 
-#: inc/api/onboarding.php:107
+#: inc/api/onboarding.php:79
 msgid "Business description of the website."
 msgstr "Description commerciale du site Web."
 
@@ -7213,16 +7149,16 @@ msgstr "Description commerciale du site Web."
 msgid "# SureRank will generate robots.txt automatically."
 msgstr "# SureRank générera automatiquement le fichier robots.txt."
 
-#: inc/modules/content-generation/utils.php:178
+#: inc/modules/content-generation/utils.php:192
 msgid "You've reached your free usage limit. Upgrade to Pro for additional credits to continue generating content. require_pro"
 msgstr "Vous avez atteint votre limite d'utilisation gratuite. Passez à Pro pour obtenir des crédits supplémentaires afin de continuer à générer du contenu. require_pro"
 
-#: inc/modules/content-generation/utils.php:179
+#: inc/modules/content-generation/utils.php:193
 #: build/seo-popup/index.js:1
 msgid "You've used all your AI credits for today. Your credits will refresh automatically tomorrow, so you can continue creating content."
 msgstr "Vous avez utilisé tous vos crédits AI pour aujourd'hui. Vos crédits seront renouvelés automatiquement demain, vous permettant de continuer à créer du contenu."
 
-#: inc/modules/content-generation/utils.php:204
+#: inc/modules/content-generation/utils.php:218
 msgid "Failed to encode request data to JSON."
 msgstr "Échec de l'encodage des données de la requête en JSON."
 
@@ -7851,106 +7787,94 @@ msgstr "SureRank génère et met à jour automatiquement votre sitemap, afin que
 msgid "No cached checks found."
 msgstr "Aucun contrôle de cache trouvé."
 
-#: inc/modules/email-reports/api.php:130
+#: inc/modules/email-reports/api.php:146
 msgid "Recipient email is required when enabled."
 msgstr "L'adresse e-mail du destinataire est requise lorsque l'option est activée."
 
-#: inc/modules/email-reports/api.php:149
+#: inc/modules/email-reports/api.php:167
 msgid "Email summary settings saved successfully."
 msgstr "Paramètres de résumé par e-mail enregistrés avec succès."
 
-#: inc/modules/email-reports/api.php:172
+#: inc/modules/email-reports/api.php:190
 msgid "Please provide a valid email address."
 msgstr "Veuillez fournir une adresse e-mail valide."
 
-#: inc/modules/email-reports/api.php:183
+#: inc/modules/email-reports/api.php:201
 msgid "Failed to send test email. Please check your email configuration."
 msgstr "Échec de l'envoi de l'e-mail de test. Veuillez vérifier votre configuration e-mail."
 
 #. translators: %s: Recipient email address
-#: inc/modules/email-reports/api.php:192
+#: inc/modules/email-reports/api.php:210
 #, php-format
 msgid "Test email sent successfully to %s."
 msgstr "E-mail de test envoyé avec succès à %s."
 
-#: inc/modules/email-reports/controller.php:102
-msgid "Once Weekly"
-msgstr "Une fois par semaine"
-
 #. translators: 1: Start date, 2: End date
-#: inc/modules/email-reports/controller.php:328
+#: inc/modules/email-reports/controller.php:272
 #, php-format
 msgid "SEO Summary of last week - %1$s to %2$s"
 msgstr "Résumé SEO de la semaine dernière - %1$s à %2$s"
 
 #. translators: %s: Site name
-#: inc/modules/email-reports/controller.php:429
-#: inc/modules/email-reports/controller.php:692
+#: inc/modules/email-reports/controller.php:378
+#: inc/modules/email-reports/controller.php:654
 #, php-format
 msgid "%s Logo"
 msgstr "%s Logo"
 
-#: inc/modules/email-reports/controller.php:436
-msgid "SEO Weekly Summary of Your Website"
-msgstr "Résumé SEO Hebdomadaire de votre site Web"
-
-#: inc/modules/email-reports/controller.php:463
-msgid "Your Website Performance (Last 7 Days)"
-msgstr "Performance de votre site Web (Derniers 7 jours)"
-
-#: inc/modules/email-reports/controller.php:488
+#: inc/modules/email-reports/controller.php:450
 msgid "Site Clicks"
 msgstr "Clics sur le site"
 
-#: inc/modules/email-reports/controller.php:489
+#: inc/modules/email-reports/controller.php:451
 msgid "Total Impressions"
 msgstr "Impressions totales"
 
-#: inc/modules/email-reports/controller.php:490
+#: inc/modules/email-reports/controller.php:452
 msgid "Average Position"
 msgstr "Position moyenne"
 
-#: inc/modules/email-reports/controller.php:561
+#: inc/modules/email-reports/controller.php:523
 msgid "Top Ranked Posts"
 msgstr "Articles les mieux classés"
 
-#: inc/modules/email-reports/controller.php:565
+#: inc/modules/email-reports/controller.php:527
 msgid "Posts"
 msgstr "Articles"
 
-#: inc/modules/email-reports/controller.php:610
+#: inc/modules/email-reports/controller.php:572
 msgid "View Full Analysis"
 msgstr "Voir l'analyse complète"
 
-#: inc/modules/email-reports/controller.php:626
+#: inc/modules/email-reports/controller.php:588
 msgid "Want to see SEO + traffic + sales in one dashboard?"
 msgstr "Vous souhaitez voir SEO + trafic + ventes sur un seul tableau de bord ?"
 
-#: inc/modules/email-reports/controller.php:627
+#: inc/modules/email-reports/controller.php:589
 msgid "See the data that matters, all in one clean, customizable dashboard. Track your site's traffic, sales, and form activity without the clutter."
 msgstr "Consultez les données importantes, toutes dans un tableau de bord propre et personnalisable. Suivez le trafic, les ventes et l'activité des formulaires de votre site sans encombrement."
 
-#: inc/modules/email-reports/controller.php:629
+#: inc/modules/email-reports/controller.php:591
 msgid "Explore"
 msgstr "Explorer"
 
-#: inc/modules/email-reports/controller.php:890
+#: inc/modules/email-reports/controller.php:840
 msgid "Home"
 msgstr "Accueil"
 
-#: inc/modules/email-reports/utils.php:70
+#: inc/modules/email-reports/utils.php:81
 msgid "Settings must be an array."
 msgstr "Les paramètres doivent être un tableau."
 
-#: inc/modules/email-reports/utils.php:74
+#: inc/modules/email-reports/utils.php:85
 msgid "Enabled must be a boolean."
 msgstr "Enabled doit être un booléen."
 
-#: inc/modules/email-reports/utils.php:78
+#: inc/modules/email-reports/utils.php:89
 msgid "Recipient email must be a valid email address."
 msgstr "L'adresse e-mail du destinataire doit être une adresse e-mail valide."
 
-#: inc/modules/email-reports/utils.php:82
+#: inc/modules/email-reports/utils.php:97
 msgid "Day of week must be a valid day."
 msgstr "Le jour de la semaine doit être un jour valide."
 
@@ -8027,11 +7951,6 @@ msgstr "Échec de l'enregistrement des paramètres des rapports par e-mail."
 #: build/admin-onboarding/index.js:1
 msgid "Settings saved successfully!"
 msgstr "Paramètres enregistrés avec succès !"
-
-#: build/admin-dashboard/index.js:1
-#: build/admin-onboarding/index.js:1
-msgid "An unexpected error occurred while saving the settings. Please try again later."
-msgstr "Une erreur inattendue est survenue lors de l'enregistrement des paramètres. Veuillez réessayer plus tard."
 
 #: build/admin-dashboard/index.js:1
 #: build/admin-onboarding/index.js:1
@@ -8124,3 +8043,362 @@ msgstr "Email de test"
 #: build/admin-onboarding/index.js:1
 msgid "Sending…"
 msgstr "Envoi en cours…"
+
+#: inc/admin/dashboard.php:291
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Link Manager"
+msgstr "Gestionnaire de liens"
+
+#: inc/api/onboarding.php:273
+msgid "Failed to encode request data"
+msgstr "Échec de l'encodage des données de la requête"
+
+#: inc/api/onboarding.php:292
+#: inc/api/onboarding.php:304
+msgid "Failed to improve description"
+msgstr "Échec de l'amélioration de la description"
+
+#: inc/api/onboarding.php:315
+msgid "Description improved successfully"
+msgstr "Description améliorée avec succès"
+
+#: inc/api/onboarding.php:321
+msgid "Invalid response from AI service"
+msgstr "Réponse invalide du service AI"
+
+#. translators: 1: Start date, 2: End date
+#: inc/modules/email-reports/controller.php:268
+#, php-format
+msgid "SEO Summary of last month - %1$s to %2$s"
+msgstr "Résumé SEO du mois dernier - %1$s à %2$s"
+
+#: inc/modules/email-reports/controller.php:374
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Monthly"
+msgstr "Mensuel"
+
+#: inc/modules/email-reports/controller.php:374
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Weekly"
+msgstr "Hebdomadaire"
+
+#. translators: %s: Frequency (Weekly or Monthly)
+#: inc/modules/email-reports/controller.php:388
+#, php-format
+msgid "SEO %s Summary of Your Website"
+msgstr "Résumé SEO %s de votre site Web"
+
+#: inc/modules/email-reports/controller.php:412
+msgid "Last 30 Days"
+msgstr "Derniers 30 jours"
+
+#: inc/modules/email-reports/controller.php:412
+msgid "Last 7 Days"
+msgstr "Derniers 7 jours"
+
+#. translators: %s: Period (Last 7 Days or Last 30 Days)
+#: inc/modules/email-reports/controller.php:423
+#, php-format
+msgid "Your Website Performance (%s)"
+msgstr "Performance de votre site Web (%s)"
+
+#: inc/modules/email-reports/utils.php:93
+msgid "Frequency must be either weekly or monthly."
+msgstr "La fréquence doit être soit hebdomadaire, soit mensuelle."
+
+#: inc/modules/email-reports/utils.php:103
+msgid "Monthly date must be between 1 and 31."
+msgstr "La date mensuelle doit être comprise entre 1 et 31."
+
+#: inc/schema/properties.php:256
+msgid "Include an overall rating based on customer reviews. This rating is used in structured data to reflect the product's average performance or satisfaction level."
+msgstr "Incluez une note globale basée sur les avis des clients. Cette note est utilisée dans les données structurées pour refléter la performance moyenne ou le niveau de satisfaction du produit."
+
+#: inc/schema/properties.php:263
+msgid "Specify the actual score given to the product, such as '4', '60%', or '6/10'. This numeric value contributes to the aggregate rating in structured data."
+msgstr "Spécifiez le score réel attribué au produit, tel que '4', '60%' ou '6/10'. Cette valeur numérique contribue à la note agrégée dans les données structurées."
+
+#: inc/schema/properties.php:270
+msgid "Enter the total number of reviews the product has received. This helps search engines understand the product's popularity and display review count in rich results."
+msgstr "Entrez le nombre total d'avis que le produit a reçus. Cela aide les moteurs de recherche à comprendre la popularité du produit et à afficher le nombre d'avis dans les résultats enrichis."
+
+#: inc/schema/types/article.php:67
+#: inc/schema/types/breadcrumb-list.php:66
+#: inc/schema/types/offer.php:58
+#: inc/schema/types/organization.php:75
+#: inc/schema/types/person.php:67
+#: inc/schema/types/product.php:70
+#: inc/schema/types/search-action.php:60
+#: inc/schema/types/thing.php:65
+#: inc/schema/types/web-site.php:68
+msgid "Give your schema a name to help you identify it later. This title is for internal reference only and won't be included in your site's structured data."
+msgstr "Donnez un nom à votre schéma pour vous aider à l'identifier plus tard. Ce titre est uniquement pour référence interne et ne sera pas inclus dans les données structurées de votre site."
+
+#: inc/schema/types/article.php:153
+msgid ""
+"Enter the total word count of the article's main content. This information is used in structured data to provide search engines with content length details.\n"
+""
+msgstr "Entrez le nombre total de mots du contenu principal de l'article. Cette information est utilisée dans les données structurées pour fournir aux moteurs de recherche des détails sur la longueur du contenu."
+
+#: inc/schema/types/organization.php:145
+msgid "Enter the direct URL to the organization's official logo image. This logo will be used in structured data to visually represent the brand."
+msgstr "Entrez l'URL directe de l'image du logo officiel de l'organisation. Ce logo sera utilisé dans les données structurées pour représenter visuellement la marque."
+
+#: inc/schema/types/organization.php:154
+msgid "Add a URL that clearly identifies the organization, such as a Wikipedia page, Wikidata entry, social media profile, or official site. This helps search engines verify the organization's identity."
+msgstr "Ajoutez une URL qui identifie clairement l'organisation, comme une page Wikipedia, une entrée Wikidata, un profil de réseau social ou un site officiel. Cela aide les moteurs de recherche à vérifier l'identité de l'organisation."
+
+#: inc/schema/types/product.php:234
+msgid "Enter the products sale price. This price is included in structured data to reflect what users would pay."
+msgstr "Entrez le prix de vente des produits. Ce prix est inclus dans les données structurées pour refléter ce que les utilisateurs paieraient."
+
+#: inc/schema/types/web-site.php:107
+msgid "Write a brief description of what your website is about. This summary helps search engines understand the site's purpose and content."
+msgstr "Rédigez une brève description de ce que votre site Web propose. Ce résumé aide les moteurs de recherche à comprendre le but et le contenu du site."
+
+#: build/admin-dashboard/index.js:1
+#: build/seo-popup/index.js:1
+msgid "Add Field"
+msgstr "Ajouter un champ"
+
+#: build/admin-dashboard/index.js:1
+#: build/seo-popup/index.js:1
+msgid "Search fields…"
+msgstr "Rechercher des champs…"
+
+#: build/admin-dashboard/index.js:1
+#: build/seo-popup/index.js:1
+msgid "Delete Field"
+msgstr "Supprimer le champ"
+
+#: build/admin-dashboard/index.js:1
+#: build/seo-popup/index.js:1
+msgid "Delete"
+msgstr "Supprimer"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Failed to save settings"
+msgstr "Échec de l'enregistrement des paramètres"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Frequency"
+msgstr "Fréquence"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Day of Month"
+msgstr "Jour du mois"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "If the selected day does not exist in a month (e.g., 31st in February), the email will be sent on the last day of that month."
+msgstr "Si le jour sélectionné n'existe pas dans un mois (par exemple, le 31 dans février), l'e-mail sera envoyé le dernier jour de ce mois."
+
+#: build/admin-dashboard/index.js:1
+msgid "Display conditions not set, please configure to ensure proper functionality."
+msgstr "Conditions d'affichage non définies, veuillez configurer pour assurer un bon fonctionnement."
+
+#: build/admin-dashboard/index.js:1
+msgid "Display conditions"
+msgstr "Conditions d'affichage"
+
+#: build/admin-dashboard/index.js:1
+msgid "No display conditions set. Without conditions, this schema will not appear on any pages. Configure \"Display On\" rules below to target specific pages."
+msgstr "Aucune condition d'affichage définie. Sans conditions, ce schéma n'apparaîtra sur aucune page. Configurez les règles \"Afficher sur\" ci-dessous pour cibler des pages spécifiques."
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Breadcrumbs"
+msgstr "Fil d'Ariane"
+
+#: build/admin-dashboard/index.js:1
+msgid "Add breadcrumb navigation to improve user experience and SEO. Customize separators, home links, and automatically generate JSON-LD schema for search engines."
+msgstr "Ajoutez une navigation par fil d'Ariane pour améliorer l'expérience utilisateur et le SEO. Personnalisez les séparateurs, les liens d'accueil et générez automatiquement un schéma JSON-LD pour les moteurs de recherche."
+
+#: build/admin-dashboard/index.js:1
+msgid "Unlock Breadcrumbs with Full Customization"
+msgstr "Déverrouillez les fils d'Ariane avec une personnalisation complète"
+
+#: build/admin-dashboard/index.js:1
+msgid "Upgrade to SureRank Pro to enable breadcrumb navigation with full customization options, shortcode support, template tags, and automatic schema markup generation."
+msgstr "Mettez à niveau vers SureRank Pro pour activer la navigation par fil d'Ariane avec des options de personnalisation complètes, le support des codes courts, des balises de modèle et la génération automatique de balisage schéma."
+
+#: build/admin-dashboard/index.js:1
+msgid "AI-Powered Link Suggestions"
+msgstr "Suggestions de liens alimentées par l'IA"
+
+#: build/admin-dashboard/index.js:1
+msgid "Discover relevant internal linking opportunities automatically. Our AI analyzes your content to suggest the most contextually appropriate links."
+msgstr "Découvrez automatiquement des opportunités de liens internes pertinents. Notre IA analyse votre contenu pour suggérer les liens les plus contextuellement appropriés."
+
+#: build/admin-dashboard/index.js:1
+msgid "AI-powered content similarity analysis using embeddings"
+msgstr "Analyse de similarité de contenu alimentée par l'IA utilisant des embeddings"
+
+#: build/admin-dashboard/index.js:1
+msgid "Automatically find related posts and pages for internal linking"
+msgstr "Trouvez automatiquement des articles et des pages connexes pour le lien interne"
+
+#: build/admin-dashboard/index.js:1
+msgid "Optimize your site structure and improve SEO with smart link suggestions"
+msgstr "Optimisez la structure de votre site et améliorez le SEO avec des suggestions de liens intelligentes"
+
+#: build/admin-dashboard/index.js:1
+msgid "Configure which post types and statuses to include"
+msgstr "Configurez les types de publications et les statuts à inclure"
+
+#: build/admin-dashboard/index.js:1
+#: build/admin-onboarding/index.js:1
+msgid "Link Suggestions"
+msgstr "Suggestions de liens"
+
+#: build/admin-onboarding/index.js:1
+msgid "Failed to get authentication URL"
+msgstr "Échec de l'obtention de l'URL d'authentification"
+
+#: build/admin-onboarding/index.js:1
+msgid "An error occurred while connecting"
+msgstr "Une erreur s'est produite lors de la connexion"
+
+#: build/admin-onboarding/index.js:1
+msgid "Improve with AI"
+msgstr "Améliorez avec l'IA"
+
+#: build/admin-onboarding/index.js:1
+msgid "Improving…"
+msgstr "Amélioration en cours…"
+
+#: build/admin-onboarding/index.js:1
+msgid "Metadata Generation"
+msgstr "Génération de métadonnées"
+
+#: build/admin-onboarding/index.js:1
+msgid "Automatically generates SEO meta titles and descriptions for your content."
+msgstr "Génère automatiquement des titres et des descriptions SEO pour votre contenu."
+
+#: build/admin-onboarding/index.js:1
+msgid "XML Sitemap Generated"
+msgstr "Sitemap XML généré"
+
+#: build/admin-onboarding/index.js:1
+msgid "An XML sitemap is automatically created and updated to help search engines discover and index your content."
+msgstr "Un sitemap XML est automatiquement créé et mis à jour pour aider les moteurs de recherche à découvrir et indexer votre contenu."
+
+#: build/admin-onboarding/index.js:1
+msgid "Schema Markup Enabled"
+msgstr "Balisage schéma activé"
+
+#: build/admin-onboarding/index.js:1
+msgid "Structured data is configured to help search engines better understand your content and improve rich snippet visibility."
+msgstr "Les données structurées sont configurées pour aider les moteurs de recherche à mieux comprendre votre contenu et améliorer la visibilité des extraits enrichis."
+
+#: build/admin-onboarding/index.js:1
+msgid "Open Graph & Twitter Cards"
+msgstr "Open Graph & Cartes Twitter"
+
+#: build/admin-onboarding/index.js:1
+msgid "Social media meta tags are enabled to ensure your content looks great when shared on Facebook, Twitter, and other platforms."
+msgstr "Les balises méta pour les réseaux sociaux sont activées pour garantir que votre contenu a fière allure lorsqu'il est partagé sur Facebook, Twitter et d'autres plateformes."
+
+#: build/admin-onboarding/index.js:1
+msgid "Auto-Set Image Alt & Title Attributes"
+msgstr "Attributs Alt et Titre d'image définis automatiquement"
+
+#: build/admin-onboarding/index.js:1
+msgid "Automatically adds alt text and title attributes to images that are missing them."
+msgstr "Ajoute automatiquement du texte alternatif et des attributs de titre aux images qui en manquent."
+
+#: build/admin-onboarding/index.js:1
+msgid "Craft optimized titles and descriptions automatically"
+msgstr "Créez automatiquement des titres et des descriptions optimisés"
+
+#: build/admin-onboarding/index.js:1
+msgid "Fix page-level and site-wide checks"
+msgstr "Corrigez les vérifications au niveau de la page et du site"
+
+#: build/admin-onboarding/index.js:1
+msgid "Link suggestions based on page context"
+msgstr "Suggestions de liens basées sur le contexte de la page"
+
+#: build/admin-onboarding/index.js:1
+msgid "SureRank AI Banner"
+msgstr "Bannière SureRank AI"
+
+#: build/admin-onboarding/index.js:1
+msgid "Meet SureRank AI, Your Personal SEO Copilot"
+msgstr "Rencontrez SureRank AI, votre copilote SEO personnel"
+
+#: build/admin-onboarding/index.js:1
+msgid "SureRank AI helps you identify, understand, and fix the SEO issues that actually matter. It analyzes your pages, understands your content, and generates perfectly balanced meta titles, descriptions, all in one click."
+msgstr "SureRank AI vous aide à identifier, comprendre et corriger les problèmes SEO qui comptent vraiment. Il analyse vos pages, comprend votre contenu et génère des titres et des descriptions méta parfaitement équilibrés, le tout en un clic."
+
+#: build/admin-onboarding/index.js:1
+msgid "Here's what SureRank AI can do:"
+msgstr "Voici ce que SureRank AI peut faire :"
+
+#: build/admin-onboarding/index.js:1
+msgid "List of AI capabilities"
+msgstr "Liste des capacités de l'IA"
+
+#: build/admin-onboarding/index.js:1
+msgid "Please add at least 5 words to your description before improving."
+msgstr "Veuillez ajouter au moins 5 mots à votre description avant d'améliorer."
+
+#: build/admin-onboarding/index.js:1
+msgid "Description improved successfully!"
+msgstr "Description améliorée avec succès !"
+
+#: build/admin-onboarding/index.js:1
+msgid "Failed to improve description. Please try again."
+msgstr "Échec de l'amélioration de la description. Veuillez réessayer."
+
+#: build/admin-onboarding/index.js:1
+msgid "Minimum word count required"
+msgstr "Nombre minimum de mots requis"
+
+#: build/admin-onboarding/index.js:1
+msgid "Connect with AI to improve this"
+msgstr "Connectez-vous à l'IA pour améliorer cela"
+
+#: build/admin-onboarding/index.js:1
+msgid "To generate better content with AI, you'll need to connect your AI provider first. It only takes a minute and unlocks all AI-powered features."
+msgstr "Pour générer un meilleur contenu avec l'IA, vous devez d'abord connecter votre fournisseur d'IA. Cela ne prend qu'une minute et débloque toutes les fonctionnalités alimentées par l'IA."
+
+#: build/admin-onboarding/index.js:1
+msgid "Add More"
+msgstr "Ajouter plus"
+
+#: build/admin-onboarding/index.js:1
+msgid "Your SEO Engine Is Ready! 🚀"
+msgstr "Votre moteur SEO est prêt ! 🚀"
+
+#: build/admin-onboarding/index.js:1
+msgid "You've successfully set up SureRank. We've enabled the best-recommended SEO settings for you so your site stays optimized from day one."
+msgstr "Vous avez configuré SureRank avec succès. Nous avons activé les meilleurs paramètres SEO recommandés pour vous afin que votre site reste optimisé dès le premier jour."
+
+#: build/admin-onboarding/index.js:1
+msgid "Default Settings Enabled"
+msgstr "Paramètres par défaut activés"
+
+#: build/admin-onboarding/index.js:1
+msgid "Documentation"
+msgstr "Documentation"
+
+#: build/admin-onboarding/index.js:1
+#: build/seo-popup/index.js:1
+msgid "Authentication cancelled. Please try again."
+msgstr "Authentification annulée. Veuillez réessayer."
+
+#: build/seo-popup/index.js:1
+msgid "Edit"
+msgstr "Modifier"
+
+#: build/seo-popup/index.js:1
+#, js-format
+msgid "%1$d/%2$d"
+msgstr "%1$d/%2$d"

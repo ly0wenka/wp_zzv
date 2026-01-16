@@ -623,6 +623,9 @@
 #surerank-root .mt-6, .surerank-root .mt-6 {
 	margin-top: 1.5rem;
 }
+#surerank-root .mt-\[0\.5px\], .surerank-root .mt-\[0\.5px\] {
+	margin-top: 0.5px;
+}
 #surerank-root .mt-\[2px\], .surerank-root .mt-\[2px\] {
 	margin-top: 2px;
 }
@@ -880,6 +883,9 @@
 #surerank-root .max-h-\[280px\], .surerank-root .max-h-\[280px\] {
 	max-height: 280px;
 }
+#surerank-root .max-h-\[500px\], .surerank-root .max-h-\[500px\] {
+	max-height: 500px;
+}
 #surerank-root .max-h-\[7\.625rem\], .surerank-root .max-h-\[7\.625rem\] {
 	max-height: 7.625rem;
 }
@@ -903,6 +909,9 @@
 }
 #surerank-root .min-h-\[2\.5rem\], .surerank-root .min-h-\[2\.5rem\] {
 	min-height: 2.5rem;
+}
+#surerank-root .min-h-\[20px\], .surerank-root .min-h-\[20px\] {
+	min-height: 20px;
 }
 #surerank-root .min-h-\[2rem\], .surerank-root .min-h-\[2rem\] {
 	min-height: 2rem;
@@ -993,9 +1002,6 @@
 }
 #surerank-root .w-2\.5, .surerank-root .w-2\.5 {
 	width: 0.625rem;
-}
-#surerank-root .w-2\/4, .surerank-root .w-2\/4 {
-	width: 50%;
 }
 #surerank-root .w-20, .surerank-root .w-20 {
 	width: 5rem;
@@ -1346,9 +1352,15 @@
 #surerank-root .cursor-pointer, .surerank-root .cursor-pointer {
 	cursor: pointer;
 }
+#surerank-root .cursor-text, .surerank-root .cursor-text {
+	cursor: text;
+}
 #surerank-root .select-none, .surerank-root .select-none {
 	-webkit-user-select: none;
 	        user-select: none;
+}
+#surerank-root .resize-none, .surerank-root .resize-none {
+	resize: none;
 }
 #surerank-root .resize, .surerank-root .resize {
 	resize: both;
@@ -2015,10 +2027,6 @@
 	--tw-border-opacity: 1;
 	border-color: rgb(243 244 246 / var(--tw-border-opacity, 1));
 }
-#surerank-root .border-gray-200, .surerank-root .border-gray-200 {
-	--tw-border-opacity: 1;
-	border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
-}
 #surerank-root .border-gray-300, .surerank-root .border-gray-300 {
 	--tw-border-opacity: 1;
 	border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
@@ -2426,6 +2434,14 @@
 	padding-left: 1.375rem;
 	padding-right: 1.375rem;
 }
+#surerank-root .px-6, .surerank-root .px-6 {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+#surerank-root .px-\[4px\], .surerank-root .px-\[4px\] {
+	padding-left: 4px;
+	padding-right: 4px;
+}
 #surerank-root .py-0, .surerank-root .py-0 {
 	padding-top: 0px;
 	padding-bottom: 0px;
@@ -2466,9 +2482,17 @@
 	padding-top: 1.25rem;
 	padding-bottom: 1.25rem;
 }
+#surerank-root .py-6, .surerank-root .py-6 {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+}
 #surerank-root .py-8, .surerank-root .py-8 {
 	padding-top: 2rem;
 	padding-bottom: 2rem;
+}
+#surerank-root .py-\[2px\], .surerank-root .py-\[2px\] {
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 #surerank-root .py-\[6\.875rem\], .surerank-root .py-\[6\.875rem\] {
 	padding-top: 6.875rem;
@@ -2525,6 +2549,9 @@
 #surerank-root .pl-9, .surerank-root .pl-9 {
 	padding-left: 2.25rem;
 }
+#surerank-root .pl-\[calc\(1rem\+1px\+0\.5rem\+80px\+0\.5rem\+1ch\+0\.5rem\)\], .surerank-root .pl-\[calc\(1rem\+1px\+0\.5rem\+80px\+0\.5rem\+1ch\+0\.5rem\)\] {
+	padding-left: calc(1rem + 1px + 0.5rem + 80px + 0.5rem + 1ch + 0.5rem);
+}
 #surerank-root .pr-10, .surerank-root .pr-10 {
 	padding-right: 2.5rem;
 }
@@ -2539,6 +2566,9 @@
 }
 #surerank-root .pr-3, .surerank-root .pr-3 {
 	padding-right: 0.75rem;
+}
+#surerank-root .pr-4, .surerank-root .pr-4 {
+	padding-right: 1rem;
 }
 #surerank-root .pr-5, .surerank-root .pr-5 {
 	padding-right: 1.25rem;
@@ -2699,6 +2729,9 @@
 #surerank-root .leading-\[1\.43\], .surerank-root .leading-\[1\.43\] {
 	line-height: 1.43;
 }
+#surerank-root .leading-\[1\.4\], .surerank-root .leading-\[1\.4\] {
+	line-height: 1.4;
+}
 #surerank-root .leading-none, .surerank-root .leading-none {
 	line-height: 1;
 }
@@ -2736,6 +2769,10 @@
 #surerank-root .text-amber-500, .surerank-root .text-amber-500 {
 	--tw-text-opacity: 1;
 	color: rgb(245 158 11 / var(--tw-text-opacity, 1));
+}
+#surerank-root .text-background-brand, .surerank-root .text-background-brand {
+	--tw-text-opacity: 1;
+	color: rgb(67 48 210 / var(--tw-text-opacity, 1));
 }
 #surerank-root .text-background-primary, .surerank-root .text-background-primary {
 	--tw-text-opacity: 1;
@@ -3171,6 +3208,11 @@
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 150ms;
 }
+#surerank-root .transition-\[height\], .surerank-root .transition-\[height\] {
+	transition-property: height;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 150ms;
+}
 #surerank-root .transition-\[outline\2c background-color\2c color\2c box-shadow\], .surerank-root .transition-\[outline\2c background-color\2c color\2c box-shadow\] {
 	transition-property: outline,background-color,color,box-shadow;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -3258,10 +3300,6 @@
 #surerank-root .placeholder\:text-text-disabled::placeholder, .surerank-root .placeholder\:text-text-disabled::placeholder {
 	--tw-text-opacity: 1;
 	color: rgb(209 213 219 / var(--tw-text-opacity, 1));
-}
-#surerank-root .placeholder\:text-text-tertiary::placeholder, .surerank-root .placeholder\:text-text-tertiary::placeholder {
-	--tw-text-opacity: 1;
-	color: rgb(156 163 175 / var(--tw-text-opacity, 1));
 }
 #surerank-root .before\:fixed::before, .surerank-root .before\:fixed::before {
 	content: var(--tw-content);
@@ -3777,6 +3815,10 @@
 	--tw-border-opacity: 1;
 	border-color: rgb(67 48 210 / var(--tw-border-opacity, 1));
 }
+#surerank-root .focus\:border-border-strong:focus, .surerank-root .focus\:border-border-strong:focus {
+	--tw-border-opacity: 1;
+	border-color: rgb(107 114 128 / var(--tw-border-opacity, 1));
+}
 #surerank-root .focus\:border-field-border:focus, .surerank-root .focus\:border-field-border:focus {
 	--tw-border-opacity: 1;
 	border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
@@ -3851,6 +3893,10 @@
 #surerank-root .focus\:ring-border-interactive:focus, .surerank-root .focus\:ring-border-interactive:focus {
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgb(67 48 210 / var(--tw-ring-opacity, 1));
+}
+#surerank-root .focus\:ring-border-subtle:focus, .surerank-root .focus\:ring-border-subtle:focus {
+	--tw-ring-opacity: 1;
+	--tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity, 1));
 }
 #surerank-root .focus\:ring-field-color-error:focus, .surerank-root .focus\:ring-field-color-error:focus {
 	--tw-ring-opacity: 1;
@@ -4237,9 +4283,6 @@
 	#surerank-root .md\:col-start-9, .surerank-root .md\:col-start-9 {
 		grid-column-start: 9;
 	}
-	#surerank-root .md\:inline-block, .surerank-root .md\:inline-block {
-		display: inline-block;
-	}
 	#surerank-root .md\:flex, .surerank-root .md\:flex {
 		display: flex;
 	}
@@ -4288,9 +4331,6 @@
 	#surerank-root .md\:w-80, .surerank-root .md\:w-80 {
 		width: 20rem;
 	}
-	#surerank-root .md\:w-\[25\%\], .surerank-root .md\:w-\[25\%\] {
-		width: 25%;
-	}
 	#surerank-root .md\:w-\[30\%\], .surerank-root .md\:w-\[30\%\] {
 		width: 30%;
 	}
@@ -4302,9 +4342,6 @@
 	}
 	#surerank-root .md\:w-slide-over-container, .surerank-root .md\:w-slide-over-container {
 		width: 35.375rem;
-	}
-	#surerank-root .md\:max-w-\[75\%\], .surerank-root .md\:max-w-\[75\%\] {
-		max-width: 75%;
 	}
 	#surerank-root .md\:shrink, .surerank-root .md\:shrink {
 		flex-shrink: 1;
